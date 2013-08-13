@@ -56,7 +56,7 @@ h3 {
 }
 a {
   text-decoration: none;
-  color: #08c;
+  color: #ed786a;
 }
 a:hover {
   text-decoration: underline;
@@ -343,7 +343,7 @@ article header .title a {
   color: #444;
 }
 article header .title a:hover {
-  color: #08c;
+  color: #ed786a;
   text-decoration: none;
 }
 article .entry {
@@ -576,10 +576,11 @@ article footer .addthis iframe {
   color: #999;
   font-family: "PT Serif", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-shadow: 0 0 1px #fff;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 #pagination a:hover {
-  background: #08c;
+  background: #ed786a;
   color: #fff;
   text-decoration: none;
   text-shadow: none;
@@ -646,7 +647,7 @@ article footer .addthis iframe {
   -ms-transition: background ease-in 0.1s;
   transition: background ease-in 0.1s;
   padding-left: 35px;
-  border-left: 5px solid #09f;
+  border-left: 5px solid #ed786a;
   background: #ffe;
 }
 .archive article .post-content {
@@ -702,10 +703,10 @@ article footer .addthis iframe {
   font-size: 100%;
 }
 .entry .gist .gist-file .gist-meta a {
-  color: #08c;
+  color: #ed786a;
 }
 .entry .gist .gist-file .gist-meta a:visited {
-  color: #08c;
+  color: #ed786a;
 }
 figure.highlight {
   background: #fdf6e3;
