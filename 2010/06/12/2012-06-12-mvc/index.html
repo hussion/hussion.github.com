@@ -22,7 +22,7 @@
   <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
   
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -119,14 +119,7 @@ MVC结构提供了一种按功能对各种对象进行分割的方法（这些�
   </div>
 </section>
 </div></div>
-    <!-- <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:yoursite.com">
-  </form>
-</div>
-</aside> -->
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
     <div class="clearfix"></div>
   </div>
   <footer id="footer" class="inner"><div>
@@ -135,7 +128,8 @@ MVC结构提供了一种按功能对各种对象进行分割的方法（这些�
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 
@@ -157,7 +151,13 @@ var disqus_shortname = 'hancy';
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
-  $('.fancybox').fancybox();
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
 })(jQuery);
 </script>
 
