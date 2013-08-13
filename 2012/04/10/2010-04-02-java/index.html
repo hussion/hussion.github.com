@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java程序员应该了解的10个面向对象设计原则 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java程序员应该了解的10个面向对象设计原则"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-04-10T12:06:00.000Z"><a href="/2012/04/10/2010-04-02-java/">Apr 10th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">Java程序员应该了解的10个面向对象设计原则</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>面向对象设计原则是OOPS（Object-Oriented Programming System，面向对象的程序设计系统）编程的核心，但大多数Java程序员追逐像Singleton、Decorator、Observer这样的设计模式，而不重视面向对象的分析和设计。甚至还有经验丰富的Java程序员没有听说过OOPS和SOLID设计原则，他们根本不知道设计原则的好处，也不知道如何依照这些原则来进行编程。<br><a name="more"></a></p>
+<p>众所周知，Java编程最基本的原则就是要追求高内聚和低耦合的解决方案和代码模块设计。查看Apache和Sun的开放源代码能帮助你发现其他Java设计原则在这些代码中的实际运用。Java Development Kit则遵循以下模式：BorderFactory类中的工厂模式、Runtime类中的单件模式。你可以通过Joshua Bloch的《Effective Java》一书来了解更多信息。我个人偏向的另一种面向对象的设计模式是Kathy Sierra的Head First Design Pattern以及Head First Object Oriented Analysis and Design。  </p>
+<p>虽然实际案例是学习设计原则或模式的最佳途径，但通过本文的介绍，没有接触过这些原则或还在学习阶段的Java程序员也能够了解这10个面向对象的设计原则。其实每条原则都需要大量的篇幅才能讲清楚，但我会尽力做到言简意赅。 </p>
+<blockquote>
+<p>原则1：DRY（Don&#39;t repeat yourself）  </p>
+</blockquote>
+<p>即不要写重复的代码，而是用“abstraction”类来抽象公有的东西。如果你需要多次用到一个硬编码值，那么可以设为公共常量；如果你要在两个以上的地方使用一个代码块，那么可以将它设为一个独立的方法。SOLID设计原则的优点是易于维护，但要注意，不要滥用，duplicate 不是针对代码，而是针对功能。这意味着，即使用公共代码来验证OrderID和SSN，二者也不会是相同的。使用公共代码来实现两个不同的功能，其实就是近似地把这两个功能永远捆绑到了一起，如果OrderID改变了其格式，SSN验证代码也会中断。因此要慎用这种组合，不要随意捆绑类似但不相关的功能。  </p>
+<blockquote>
+<p>原则2：封装变化  </p>
+</blockquote>
+<p>在软件领域中唯一不变的就是“Change”，因此封装你认为或猜测未来将发生变化的代码。OOPS设计模式的优点在于易于测试和维护封装的代码。如果你使用Java编码，可以默认私有化变量和方法，并逐步增加访问权限，比如从private到protected和not public。有几种Java设计模式也使用封装，比如Factory设计模式是封装“对象创建”，其灵活性使得之后引进新代码不会对现有的代码造成影响。  </p>
+<blockquote>
+<p>原则3：开闭原则  </p>
+</blockquote>
+<p>即对扩展开放，对修改关闭。这是另一种非常棒的设计原则，可以防止其他人更改已经测试好的代码。理论上，可以在不修改原有的模块的基础上，扩展功能。这也是开闭原则的宗旨。  </p>
+<blockquote>
+<p>原则4：单一职责原则  </p>
+</blockquote>
+<p>类被修改的几率很大，因此应该专注于单一的功能。如果你把多个功能放在同一个类中，功能之间就形成了关联，改变其中一个功能，有可能中止另一个功能，这时就需要新一轮的测试来避免可能出现的问题。  </p>
+<blockquote>
+<p>原则5：依赖注入或倒置原则  </p>
+</blockquote>
+<p>这个设计原则的亮点在于任何被DI框架注入的类很容易用mock对象进行测试和维护，因为对象创建代码集中在框架中，客户端代码也不混乱。有很多方式可以实现依赖倒置，比如像AspectJ等的AOP（Aspect Oriented programming）框架使用的字节码技术，或Spring框架使用的代理等。  </p>
+<blockquote>
+<p>原则6：优先利用组合而非继承  </p>
+</blockquote>
+<p>如果可能的话，优先利用组合而不是继承。一些人可能会质疑，但我发现，组合比继承灵活得多。组合允许在运行期间通过设置类的属性来改变类的行为，也可以通过使用接口来组合一个类，它提供了更高的灵活性，并可以随时实现。《Effective Java》也推荐此原则。  </p>
+<blockquote>
+<p>原则7：里氏代换原则（LSP）  </p>
+</blockquote>
+<p>根据该原则，子类必须能够替换掉它们的基类，也就是说使用基类的方法或函数能够顺利地引用子类对象。LSP原则与单一职责原则和接口分离原则密切相关，如果一个类比子类具备更多功能，很有可能某些功能会失效，这就违反了LSP原则。为了遵循该设计原则，派生类或子类必须增强功能。  </p>
+<blockquote>
+<p>原则8：接口分离原则  </p>
+</blockquote>
+<p>采用多个与特定客户类有关的接口比采用一个通用的涵盖多个业务方法的接口要好。设计接口很棘手，因为一旦释放接口，你就无法在不中断执行的情况下改变它。在Java中，该原则的另一个优势在于，在任何类使用接口之前，接口不利于实现所有的方法，所以单一的功能意味着更少的实现方法。  </p>
+<blockquote>
+<p>原则9：针对接口编程，而不是针对实现编程  </p>
+</blockquote>
+<p>该原则可以使代码更加灵活，以便可以在任何接口实现中使用。因此，在Java中最好使用变量接口类型、方法返回类型、方法参数类型等。《Effective Java》 和《head first design pattern》书中也有提到。  </p>
+<blockquote>
+<p>原则10：委托原则  </p>
+</blockquote>
+<p>该原则最典型的例子是Java中的equals() 和 hashCode() 方法。为了平等地比较两个对象，我们用类本身而不是客户端类来做比较。这个设计原则的好处是没有重复的代码，而且很容易对其进行修改。  </p>
+<p>总之，希望这些面向对象的设计原则能帮助你写出更灵活更好的代码。理论是第一步，更重要的是需要开发者在实践中去运用和体会。<br>译文出自：ITeye<br>英文出自：javarevisited</p>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/java-1/">java</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

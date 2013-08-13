@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>零基础windows安装octopress | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="零基础windows安装octopress"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-04-28T15:20:00.000Z"><a href="/2012/04/28/2012-05-07-octopress/">Apr 28th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">零基础windows安装octopress</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近好多朋友问我如何在windows下安装octopress，今天就给大家分享下安装过程。  </p>
+<ul>
+<li><strong><1></strong><br>Octopress在git中维护， 需要安装git，到msysgit查找下载最新版本当前的
+最新版本Git-1.7.10-preview20120409.exe，下载后直接安装  </li>
+</ul>
+<a name="more"></a>
+
+<ul>
+<li><strong><2></strong><br>Octopress/Jekyll是ruby应用程序，需要安装ruby环境。
+在windows下安装ruby环境。 推荐安装RailsInstaller-1.9.2， 里面包含了Ruby、Rails、Bundler、Git 、Sqlite、TinyTDS、SQLServersupport和DevKit。(或者安装rubyinstaller-1.9.2-p290)，Octopress要求安装ruby-1.9.2， 安装后， 确保<code>C:\Ruby192\bin</code>在Windows当前用户的<code>PATH</code>环境变量中。</li>
+<li><p><strong><3></strong><br>ruby的模块工具gem在生成本地模块时可能需要用到编译环境。有两种选择MinGWandMSYS或RubyInstaller DevKit，推荐安装<code>RubyInstaller DevKit</code></p>
+</li>
+<li><p><strong><4></strong> 安装需执行如下步骤将DevKit自解压包释放到<code>C:\DevKit</code>,在WindowsCMD窗口中执行  </p>
+<pre><code class="lang-java"><figure class="highlight lang-java"><pre>ruby dk.rb init  
+ruby dk.rb install
+</pre></figure></code></pre>
+</li>
+<li><p><strong><5></strong><br>jekyll/Octopress使用Python编写的代码加亮系统pygments，如果你想用这个插件的话，需要安装python。  </p>
+<pre><code><figure class="highlight"><pre>/*安装步骤*/:    
+首先下载python 2.7版，执行安装程序，  
+然后下载setup tools 0.6c11并安装，  
+安装完成后，把 C:<span class="command">\Python</span>27<span class="command">\Scripts</span> 添加到PATH环境变量中  
+CMD 里运行命令： easy_install Pygments 安装即可。
+</pre></figure></code></pre>
+</li>
+<li><6> 在Windows的“高级系统设置”中设置的环境变量里添加<code>LANG</code>和<code>LC_ALL</code>两个环境变量，其值均设置为<code>zh_CN.UTF-8</code></li>
+</ul>
+<h5>二：ruby环境的初始配置</h5>
+<ul>
+<li><1> 设置gem的更新源</li>
+</ul>
+<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>gem sources --remove <span class="symbol">http:</span>/<span class="regexp">/rubygems.org/</span>  
+gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.taobao.org/</span>  
+gem sources -l <span class="comment">#请确保只有http://ruby.taobao.org一行输出</span>
+</pre></figure></code></pre>
+<ul>
+<li><2> 安装rdoc和bundler  <pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>gem install rdoc bundler
+</pre></figure></code></pre>
+</li>
+</ul>
+<h5>三：安装octopress</h5>
+<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre> #1.克隆Octopress
+
+$ git clone git://github.com/imathis/octopress.git octopress  
+(octopress是存放路径,自己可以随便指定)  
+$ cd octopress
+
+
+ #2.修改Octopress的GEM源
+
+用notepad++打开octopress文件夹下面的Gemfile文件  
+将行：source "http://rubygems.org/"  
+改为：source "http://ruby.taobao.org/"
+
+
+ #3.安装Octopress所需的GEM组件
+
+$ gem install bundler  
+$ bundle install
+
+
+ #生成Octopress的模版文件  
+ #执行这一步的时候，可能会碰到这个问题↓
+
+rake aborted!
+You have already activated rake 0.9.2.2,but your Gem file requires rake 0.9.2.Using bundleexec may solve this.
+
+
+ #解决方法：  
+$bundle update
+
+
+最后  
+$ rake install  
+(完成之后，命令窗口不要关闭，最小化即可)
+</pre></figure></code></pre>
+<h5>四：github</h5>
+<ul>
+<li><1> 创建一个仓库，名字为 XXX.github.com</li>
+<li><2>  <pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre><span class="variable">$ </span>rake setup_github_pages  
+<span class="variable">$ </span>rake generate  
+<span class="variable">$ </span>rake deploy  
+<span class="variable">$ </span>git add .  
+<span class="variable">$ </span>git commit -m <span class="string">'yourmessage'</span>  
+<span class="variable">$ </span>git push origin source
+</pre></figure></code></pre>
+</li>
+</ul>
+<h5>五：结束语</h5>
+<p>好了，现在进入你的github，等一会就会收到信息通知，到此全部部署成功。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/octopress/">octopress</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

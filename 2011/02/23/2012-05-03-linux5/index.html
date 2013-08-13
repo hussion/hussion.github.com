@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux学习笔记(五):文件搜索命令 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="linux学习笔记(五):文件搜索命令"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-02-23T08:58:00.000Z"><a href="/2011/02/23/2012-05-03-linux5/">Feb 23rd, 2011</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">linux学习笔记(五):文件搜索命令</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>命令名称：<strong>which</strong>  <blockquote>
+<p>功能描述：显示系统命令所在目录,并可以提供命令的别名信息  </p>
+<figure class="highlight lang-ruby"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+</pre></td><td class="code"><pre>语法： which [命令名称].
+```   
+&lt;!--more--&gt;  
+* 命令名称：**whereis**  
+&gt; 功能描述：显示系统命令所在目录,并可以提供命令的帮助文件信息  
+``` ruby
+语法： whereis [命令名称].
+``` 
+
+* 命令名称：**find**  
+&gt; 功能描述：查找文件或目录  
+ 
+``` java    
+语法： find [搜索路径] [参数] [搜索关键字]     
+/*  
+  *常用参数列表  
+  */  
+-name //根据名字查找（可以用通配符 * 和 ? ）  
+-size //根据文件大小查找(根据数据块block计算，大于用+表示，小于用-表示，等于用=表示)   
+find /etc -size +204800   //查找大于100MB的文件(因为数据块大小512字节=0.5kb)  
+-type //根据文件类型进行查找（-f&lt;二进制文件&gt;，-d&lt;目录&gt;，-l&lt;链接文件&gt;）  
+-user //根据用户查找  
+-inum 根据i节点查找  
+-[cam]time //根据时间查找(time代表天,c=change&lt;属性被修改过&gt;,a=access&lt;被访问过&gt;,m=modify&lt;内容被修改过&gt;,后面跟时间的时候+，-，=代表范围)  
+-[cam]min //根据时间查找(min代表分钟)  
+/*  
+给查询加连接符 “-a(and)和-o(or)”  
+*/  
+find /etc -size +123 -a -size -456 //代表查找大小在123和456之间的文件  
+/*  
+*给查询增加执行→ find /etc -name xxx -exec 命令 {} /;  
+*"{}"是前面查到的结果，"/"代表转义，使用命令本身含义，";"代表结果&lt;类似某些编程语言的结束&gt;)  
+*/  
+find /etc -name xxx -exec ls -l {} /; 查找名为xxx的文件，并查看详细信息(exec=execute&lt;直接执行&gt;)  
+find /etc -name xxx -ok ls -l {} /; 查找文件并询问是否执行？  
+find /etc -inum xxx -exec rm -rf {} /; 根据i节点查找文件并删除  
+```
+
+* 命令名称：**locate**  
+&gt; 功能描述：查找文件或目录  
+ 
+``` java   
+语法： locate [搜索关键字]    
+ /* 该命令是从系统安装或者更新的数据库里面去查找，所以查找速度特别快，但是  
+  * 该数据库系统默认是定期更新的，所以你查找前如果没有更新数据库，那么可能  
+ * 好多文件查不到  所以可以配合 updatedb(更新数据库) 命令进行查找  
+*/
+```  
+
+* 命令名称：**grep**  
+&gt; 功能描述：在文件中搜寻字符串匹配的行并输出  
+ 
+```     
+语法： grep [指定字符串] [源文件]
+```
+
+* 命令名称：**updatedb**  
+&gt; 功能描述：建立整个系统目录文件的数据库  
+ 
+```     
+语法： updatedb
+```
+
+* 命令名称：**man**  
+&gt; 功能描述：获得帮助信息(既可以获得命令的帮助，又可以获得配置文件的帮助)  
+ 
+``` ruby      
+语法： man [命令名称] 和 man [配置文件名]  
+ #如果想要查找的配置文件名和命令名相同，那么默认会显示命令帮助信息  
+ #如果想获得配置文件信息，那么可以这么写： 例↓  
+man 5 passwd (#默认是man 1 passwd，所以会默认显示命令的帮助信息，)  
+5 和 1 分别代表查看配置文件的帮助和查看命令的帮助。
+```  
+
+* 命令名称：**info**  
+&gt; 功能描述：获得帮助信息(用法和man基本一样)  
+ 
+```     
+语法： info [命令名称] 和 info [配置文件名]
+```
+
+* 命令名称：**whatis, apropos, makewhatis**  
+&gt; 功能描述：获取索引的简短说明信息  
+ 
+```     
+语法：whatis [任何关键字] 和 apropos [任何关键字]  
+ #两者区别  
+apropos：使用关键字以模糊比对的方式查询资料库，然后将结果输出(宽松)，相当与man -k 命令  
+whatis：只输出完全符合关键字的信息(完全符合)，相当于man - f 命令 
+makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命令发生错误时，就是whatis database 没有建立
+</pre></td></tr></table></figure>
+
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/linux/">linux</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>struts2获取servlet对象 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="struts2获取servlet对象"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-06-23T07:42:00.000Z"><a href="/2010/06/23/2012-06-13-struts2-6/">Jun 23rd, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">struts2获取servlet对象</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在struts2中，为了进行解耦，对原生的servlet对象进行的包装，但同时也提供了获取原生servlet对象的入口。要获得Servlet对象，需要了解ActionContext和ServletActionContext这两个类。  </p>
+<p><strong>ActionContext</strong>  </p>
+<p>ActionContext（com.opensymphony.xwork.ActionContext）是Action执行时的上下文，上下文可以看作是一个容器（就是一个Map而已），它存放的是Action在执行时需要用到的对象，比如：在使用WebWork时，我们的上下文放有请求的参数（Parameter）、会话(Session)、Servlet上下文（ServletContext）、本地化（Locale）信息等。WebWork负责将Servlet相关数据转换为与ServletAPI无关的Map对象（即ActionContext），使得xwork的Action实现与web层、逻辑层与表现层的解耦。
+在每次执行Action之前都会创建新的ActionContext，ActionContext是<code>线程安全</code>的，也就是说在同一个线程里ActionContext里的属性是唯一的，这样Action就可以在多线程中使用。<br><a name="more"></a>
+<strong>ServletActionContext</strong></p>
+<p>ServletActionContext(com.opensymphony.webwork.ServletActionContext),这个类直接继承了ActionContext,它提供了直接与Servlet相关对象访问的功能,通过它可以直接获取HttpServletRequest,HttpServletResponse,Servletcontext，ServletConfig,PageContext这些对象。因为它继承了ActionContext，所有它也是线程安全的。  </p>
+<p><strong>Servlet对象的获取</strong>  </p>
+<p>1.Servlet API解耦方式  </p>
+<p>Struts2中，把Request、Session和Application三个对象都封装成了Map对象，直接使用封装好的Map对象来读取和保存数据，从而达到解耦的目的。下面来看一下如何获取：    </p>
+<pre><code class="lang-java"><figure class="highlight lang-java"><pre><span class="comment">// 获取当前执行线程的上下文</span>
+ActionContext context = ActionContext.getContext(); 
+<span class="comment">// 获取HttpServletRequest的Map对象  </span>
+Map request = (Map)context.get(<span class="string">"request"</span>);
+<span class="comment">// 获取HttpSession的Map对象</span>
+Map session = context.getSession();
+<span class="comment">// 获取ServletContext的Map对象</span>
+Map application = context.getApplication();
+
+<span class="comment">/*方式二： 利用Spring推崇的IOC方式*/</span>
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeAction</span> <span class="keyword">implements</span> <span class="title">Action</span>, 
+<span class="title">RequestAware</span>, <span class="title">SessionAware</span>, <span class="title">ApplicationAware</span> {</span> 
+
+    <span class="keyword">private</span> Map request;
+    <span class="keyword">private</span> Map session;
+    <span class="keyword">private</span> Map application;
+
+    <span class="annotation">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> setRequest(Map request) {
+        <span class="keyword">this</span>.request = request;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> setSession(Map session) {
+        <span class="keyword">this</span>.session = session;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> setApplication(Map application) {
+        <span class="keyword">this</span>.application = application;
+    }
+
+}
+</pre></figure></code></pre>
+<p>2.Servlet API耦合方式  </p>
+<pre><code class="lang-java"><figure class="highlight lang-java"><pre><span class="comment">// 获取HttpServletRequest  </span>
+HttpServletRequest request = ServletActionContext.getRequest();
+<span class="comment">// 获取HttpSession</span>
+HttpSession session = request.getSession();
+<span class="comment">// 获取ServletContext</span>
+ServletContext application = ServletActionContext.getServletContext();
+
+
+<span class="comment">/* 方式二： 利用ActionContext获取 */</span>
+
+<span class="comment">// 获取当前执行线程的上下文</span>
+ActionContext ctx = ActionContext.getContext();
+<span class="comment">// 获取HttpServletRequest </span>
+HttpServletRequest request = (HttpServletRequest)ctx.get(ServletActionContext.HTTP_REQUEST);
+<span class="comment">// 获取HttpServletResponse</span>
+HttpServletResponse response = (HttpServletResponse)ctx.get(ServletActionContext.HTTP_RESPONSE);
+<span class="comment">// 获取ServletContext</span>
+ServletContext application = (ServletContext)ctx.get(ServletActionContext.SERVLET_CONTEXT);
+
+<span class="comment">/* 方式三： ServletRequestAware,ServletResponseAware接口 */</span>
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span>  
+  <span class="keyword">implements</span> <span class="title">ServletRequestAware</span>,<span class="title">ServletResponseAware</span>{</span> 
+
+    <span class="keyword">private</span> HttpServletRequest request; 
+    <span class="keyword">private</span> HttpServletResponse response; 
+
+    <span class="annotation">@Override</span> 
+    <span class="keyword">public</span> String execute() <span class="keyword">throws</span> Exception { 
+      <span class="keyword">return</span> SUCCESS; 
+    } 
+
+    <span class="annotation">@Override</span> 
+    <span class="keyword">public</span> <span class="keyword">void</span> setServletResponse(HttpServletResponse response) { 
+      <span class="keyword">this</span>.response = response; 
+    } 
+
+    <span class="annotation">@Override</span> 
+    <span class="keyword">public</span> <span class="keyword">void</span> setServletRequest(HttpServletRequest request) {   
+        <span class="keyword">this</span>.request = request; 
+    } 
+}
+</pre></figure></code></pre>
+<p><strong>ServletActionContext和ActionContext的联系</strong>  </p>
+<p>ServletActionContext和ActionContext有着一些重复的功能,在我们的Action中,该如何去抉择呢?我们遵循的原则是:如果ActionContext能够实现我们的功能,那最好就不要使用ServletActionContext,让我们的Action尽量不要直接去访问Servlet的相关对象，以达到解耦的目的。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/struts2/">struts2</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

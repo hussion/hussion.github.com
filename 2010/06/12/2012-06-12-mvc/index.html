@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MVC框架特点 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MVC框架特点"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-06-12T01:36:00.000Z"><a href="/2010/06/12/2012-06-12-mvc/">Jun 12th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">MVC框架特点</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>MVC是<strong>Model-View-Controller</strong>的简称，即模型-视图-控制器。  </p>
+<img src="/images/java/mvc.jpg">
+
+
+<p>MVC它是一种设计模式，它把应用程序分成三个核心模块：模型、视图、控制器，它们各自处理自己的任务。
+MVC（Model-View-Controller）应用程序结构被用来分析分布式应用程序的特征。这种抽象结构能有助于将应用程序分割成若干逻辑部件，使程序设计变得更加容易。<br><a name="more"></a>
+MVC结构提供了一种按功能对各种对象进行分割的方法（这些对象是用来维护和表现数据的），其目的是为了将各对象间的耦合程度减至最小。MVC结构本来是为了将传统的输入（input）、处理（processing）、输出（output）任务运用到图形化用户交互模型中而设计的。但是，将这些概念运用于基于Web的企业级多层应用领域也是很适合的。 </p>
+<p>在MVC结构中，模型（Model）代表应用程序的数据（data）和用于控制访问和修改这些数据的业务规则（business rule）。通常模型被用来作为对现实世界中一个处理过程的软件近似，当定义一个模型时，可以采用一般的简单的建模技术。 </p>
+<p>当模型发生改变时，它会通知视图（View），并且为视提供查询模型相关状态的能力。同时，它也为控制器（Controller）提供访问封装在模型内部的应用程序功能的能力。 </p>
+<p>一个视图（View）用来组织模型的内容。它从模型那里获得数据并指定这些数据如何表现。当模型变化时，视负责维持数据表现的一致性。视同时将用户要求告知控制器（Controller）。 </p>
+<p>控制器（Controller）定义了应用程序的行为；它负责对来自视的用户要求进行解释，并把这些要求映射成相应的行为，这些行为由模型负责实现。在独立运行的GUI客户端，用户要求可能是一些鼠标单击或是菜单选择操作。在一个Web应用程序中，它们的表现形式可能是一些来自客户端的GET或POST的HTTP请求。模型所实现的行为包括处理业务和修改模型的状态。根据用户要求和模型行为的结果，控制器选择一个视作为对用户请求的应答。通常一组相关功能集对应一个控制器。</p>
+<p>MVC的处理过程：</p>
+<p>• 首先控制器接收用户的请求，并决定应该调用哪个模型来进行处理。</p>
+<p>• 然后模型根据用户请求进行相应的业务逻辑处理，并返回数据。</p>
+<p>• 最后控制器调用相应的视图格式化模型返回的数据，并通过视图呈现给用户。</p>
+<p>MVC的优点：</p>
+<p>• 首先，最重要的一点是多个视图能共享一个模型。同一个模型可以被不同的视图重用，大大提高了代码的可重用性。</p>
+<p>• 由于MVC的三个模块相互独立，改变其中一个不会影响其他两个，所以依据这种设计思想能构造良好的松耦合的构件。</p>
+<p>• 此外，控制器提高了应用程序的灵活性和可配置性。控制器可以用来联接不同的模型和视图去完成用户的需求，这样控制器可以为构造应用程序提供强有力的手段。</p>
+<p>MVC的适用范围：</p>
+<p>• 使用MVC需要精心的计划，由于它的内部原理比较复杂，所以你需要花费一些时间去理解它。将MVC运用到你的应用程序，会带来额外的工作量，增加应用的复杂性。</p>
+<p>• 但对于开发存在大量用户界面，并且业务逻辑复杂的大型应用程序，MVC将会使你的软件在健壮性、代码重用和结构方面上一个新的台阶。尽管在最初构建MVC框架时会花费一定的工作量，但从长远角度看，它会大大提高后期软件开发的效率。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

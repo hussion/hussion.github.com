@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux学习笔记(八): shell基础应用技巧 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="linux学习笔记(八): shell基础应用技巧"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-03-16T16:12:00.000Z"><a href="/2011/03/17/2012-05-07-linux9/">Mar 17th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">linux学习笔记(八): shell基础应用技巧</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>1.清屏快捷键：<code>Ctrl+l</code>, 清除光标前所有命令： <code>Ctrl+U</code>  </p>
+<p>2.命令别名： <strong>alias</strong>  </p>
+</blockquote>
+<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>/*  
+*语法  
+*/  
+alias #查看所有别名信息  
+alias #自定义的别名=命令  
+alias 自定义的别名="命令"  
+alias copy=cp #让cp命令定义别名为copy  
+alias drm="rm -rf" #定义带选项的命令别名  
+unalias #删除别名
+</pre></figure></code></pre>
+<a name="more"></a>
+
+<ul>
+<li>输入输出重定向  <blockquote>
+<p>同标准I/O一样，<code>Shell</code>对于每一个进程预先定义3个文件描述字（0，1，2）,分别对应于：<br>0 （STDIN） 标准输入；<br>1 （STDOUT） 标准输出；<br>2 （STDERR） 标准错误输出；  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>>和&gt;&gt; 输出重定向</p>
+</blockquote>
+<pre><code><figure class="highlight"><pre><span class="title">ls</span> -l/tmp &gt; /tmp.msg (覆盖式重定向输出)
+<span class="title">date</span> &gt;&gt; /tmp.msg (附加式重定向输出)
+</pre></figure></code></pre>
+<blockquote>
+<p>&lt; 输入重定向</p>
+</blockquote>
+<pre><code><figure class="highlight"><pre>wall <span class="tag">&lt; /<span class="attribute">etc</span>/<span class="attribute">motd</span>
+</pre></figure></code></pre>
+<blockquote>
+<p>错误输出重定向</p>
+</blockquote>
+<pre><code><figure class="highlight"><pre><span class="title">cat</span> usr/dsfxfd <span class="number">2</span>&gt; <span class="built_in">error</span> (文件<span class="string">'dsfxfd'</span>不存在，就会把错误信息输出到<span class="built_in">error</span>文件里)
+</pre></figure></code></pre>
+<ul>
+<li>管道  <blockquote>
+<p>将一个命令的输出传送给另一个命令，作为另一个命令的输入</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>使用方法：<br>命令1 | 命令2 | 命令3 |...</p>
+</blockquote>
+<pre><code><figure class="highlight"><pre><span class="comment">例：</span>
+<span class="comment">ls</span> <span class="literal">-</span><span class="comment">l</span> <span class="comment">/etc</span> <span class="comment">|</span> <span class="comment">more</span>
+<span class="comment">ls</span> <span class="literal">-</span><span class="comment">l</span> <span class="comment">/etc</span> <span class="comment">|</span> <span class="comment">grep</span> <span class="comment">init</span>
+<span class="comment">ls</span> <span class="literal">-</span><span class="comment">l</span> <span class="comment">/etc</span> <span class="comment">|</span> <span class="comment">grep</span> <span class="comment">init</span> <span class="comment">|</span> <span class="comment">wc</span> <span class="literal">-</span><span class="comment">l
+</pre></figure></code></pre>
+<ul>
+<li><p>命令连接符号  </p>
+<blockquote>
+<p><code>;</code> 用 ; 间隔的各命令按顺序依次执行<br><code>&amp;&amp;</code> 前后命令执行存在逻辑与关系，只有<code>&amp;&amp;</code>前面的命令执行成功后，它后面的命令才会被执行<br><code>||</code> 前后命令存在逻辑或关系，只有<code>||</code>前面的命令执行失败后，后面的命令才会被执行</p>
+</blockquote>
+</li>
+<li><p>命令替换符  </p>
+<blockquote>
+<p>将一个命令的输出作为另一个命令的参数<br>格式为： 命令1 <strong>`命令2`</strong></p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/linux/">linux</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

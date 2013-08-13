@@ -1,0 +1,538 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>struts2: OGNL &amp; Tag | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="struts2: OGNL &amp; Tag"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-06-26T11:03:00.000Z"><a href="/2010/06/26/2012-06-18-struts2-9/">Jun 26th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">struts2: OGNL &amp; Tag</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>OGNL</strong>  </p>
+<p>• OGNL的全称为Object Graph Navigation Language（对象图导航
+语言），在Struts2中可以使用OGNL获取值栈、Session等空间内的值。Struts2中的OGNL需要和Struts2的标签库配合起来使用。Struts2的标签库对OGNL、EL表达式都有很好的支持。<br><a name="more"></a></p>
+<blockquote>
+<p>OGNL操作普通属性  </p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+</pre></td><td class="code"><pre>地址：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"address"</span>/&gt;</span>
+编号：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"id"</span>/&gt;</span>  
+```
+&gt; OGNL操作对象   
+``` xml
+User对象：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user"</span>/&gt;</span> 
+userName: <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user.userName"</span>/&gt;</span> 
+userPwd: <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user.userPwd"</span>/&gt;</span> 
+```
+&gt; OGNL操作List集合  
+``` xml 
+	userList:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList"</span>/&gt;</span> 
+	list size:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.size"</span>/&gt;</span> 
+
+	第一个List对象：
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList[0]"</span>/&gt;</span> 
+	投影取得List中所有的姓名：
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userName}"</span>/&gt;</span> 
+	获取List第一个对象的姓名：
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userName}[0]"</span>/&gt;</span> 
+	获取List第一个对象的密码：
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userPwd}[0]"</span>/&gt;</span> 
+	 	 
+	输出List中姓名为aa的所有用户对象： 
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{?#this.userName == 'aa'}"</span>/&gt;</span> 
+	输出List中姓名为aa的第一个用户对象： 
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{^#this.userName == 'aa'}.{id}"</span>/&gt;</span> 
+	输出List中姓名为aa的所有用户对象： 
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{$#this.userName == 'aa'}.{id}"</span>/&gt;</span> 
+```  
+&gt; 动态创建List和Map  
+``` xml 
+动态创建List：
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"{'aa','bb','cc'}"</span>/&gt;</span>  
+动态创建Map:
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#{'aa':'aa','bb':'bb' }"</span>/&gt;</span> 
+```  
+&gt; 获取request  session  Application中的值  
+``` xml 
+获取Session中的值： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#session.sessionKey"</span>/&gt;</span> 
+ 
+获取reuqst中的值： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#request.requestKey"</span>/&gt;</span> 
+ 
+获取Application中的值： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#application.applicationKey"</span>/&gt;</span> 
+ 
+自动搜寻requset、session、application中的值： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#attr.sessionKey"</span>/&gt;</span> 
+```  
+
+**Tag**  
+
+Struts2 Tag分为逻辑标签，数据标签，UI标签  
+&gt; 逻辑标签  
+``` xml if else 标签
+<span class="tag">&lt;<span class="title">s:if</span> <span class="attribute">test</span>=<span class="value">"address == 'UK'"</span>&gt;</span> 
+  UK 
+<span class="tag">&lt;/<span class="title">s:if</span>&gt;</span> 
+<span class="tag">&lt;<span class="title">s:elseif</span> <span class="attribute">test</span>=<span class="value">"address == 'USA'"</span>&gt;</span> 
+  USA 
+<span class="tag">&lt;/<span class="title">s:elseif</span>&gt;</span> 
+<span class="tag">&lt;<span class="title">s:else</span>&gt;</span> 
+  未知区域 
+<span class="tag">&lt;/<span class="title">s:else</span>&gt;</span>
+```  
+``` xml iterator标签
+<span class="tag">&lt;<span class="title">s:iterator</span> <span class="attribute">value</span>=<span class="value">"userList"</span> <span class="attribute">var</span>=<span class="value">"u"</span>&gt;</span> 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#u.userName"</span>/&gt;</span> 
+<span class="tag">&lt;/<span class="title">s:iterator</span>&gt;</span>
+ 
+属性  			描述  
+------------------------------------------------- 
+value  		被迭代的集合或数组   
+status  	迭代状态对象，该值被放入值栈中  
+var  		当前迭代对象，该值被放入值栈中  
+``` 
+``` xml 
+<span class="tag">&lt;<span class="title">s:iterator</span> <span class="attribute">value</span>=<span class="value">"userList"</span> <span class="attribute">var</span>=<span class="value">"u"</span> <span class="attribute">status</span>=<span class="value">"status"</span>&gt;</span> 
+	<span class="tag">&lt;<span class="title">s:if</span> <span class="attribute">test</span>=<span class="value">"#status.odd"</span>&gt;</span> 
+		<span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"color:red"</span>&gt;</span> 
+		  <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#u.userName"</span>/&gt;</span> 
+		<span class="tag">&lt;/<span class="title">div</span>&gt;</span> 
+	<span class="tag">&lt;/<span class="title">s:if</span>&gt;</span> 
+	<span class="tag">&lt;<span class="title">s:else</span>&gt;</span> 
+		<span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"color:blue"</span>&gt;</span> 
+		  <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#u.userName"</span>/&gt;</span> 
+		<span class="tag">&lt;/<span class="title">div</span>&gt;</span> 
+	<span class="tag">&lt;/<span class="title">s:else</span>&gt;</span> 
+<span class="tag">&lt;/<span class="title">s:iterator</span>&gt;</span>
+  
+属性 				描述  
+-----------------------------------------------
+count  		当前迭代对象是集合中的第几个对象  
+index  		当前迭代对象在集合中的索引值  
+even  		是否是偶数行  
+odd  		是否是奇数行  
+first  		是否是第一个对象  
+last  		是否是最后一个对象   
+```
+&gt; UI标签  
+  
+包括 form, textfield, password, textarea, checkbox, select, radio  
+
+#####基础属性  
+方法名称 & 描述  
+
+`name: `  表单元素映射的名字  
+`value: `  表单元素的值  
+`label: `  显示在元素前的文字  
+`id: ` HTML的id属性，可以和JavaScript进行集成   
+
+``` xml form标签 
+<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span>&gt;</span> 
+ 
+<span class="tag">&lt;/<span class="title">s:form</span>&gt;</span> 
+
+属性名称        		描述 
+-----------------------------------------------
+action  	要提交到的action名称 
+method  	post和get 
+enctype  	进行文件上传时设置为multipart/form-data 
+```  
+``` xml textfield标签  
+<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
+  用户名：<span class="tag">&lt;<span class="title">s:textfield</span> <span class="attribute">name</span>=<span class="value">“userName”</span> <span class="attribute">theme</span>=<span class="value">“simple</span>/&gt;</span> 
+<span class="tag">&lt;/<span class="title">s:form</span>&gt;</span> 
+
+属性名称  			描述 
+-----------------------------------------------
+maxlength  	这个字段可以输入的最大长度 
+readonly 		当设置为true，用户不能在这个表当元素中修改值 
+size  		这个字段的宽度 
+```  
+``` xml password标签 
+<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
+用户名：<span class="tag">&lt;<span class="title">s:textfield</span> <span class="attribute">name</span>=<span class="value">"userName"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
+密码:<span class="tag">&lt;<span class="title">s:password</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
+<span class="tag">&lt;/<span class="title">s:form</span>&gt;</span> 
+
+属性名称  				描述 
+------------------------------------------------
+showPassword  	是否预置显示password，默认为true。 
+maxlength 		这个字段可以输入的最大长度 
+readonly  		当设置为true，用户不能在这个表当元素中修改值 
+size  			这个字段的宽度
+```  
+``` xml textarea标签 
+<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
+  用户名：<span class="tag">&lt;<span class="title">s:textfield</span> <span class="attribute">name</span>=<span class="value">"userName"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
+  密码:<span class="tag">&lt;<span class="title">s:password</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
+  留言:<span class="tag">&lt;<span class="title">s:textarea</span> <span class="attribute">theme</span>=<span class="value">"simple"</span> <span class="attribute">name</span>=<span class="value">"msg“/&gt; 
+&lt;/s:form&gt; 
+
+属性名称  			描述 
+------------------------------------------------
+cols  			文本区域的列数 
+rows  			文本区域的行数 
+readonly 			当设置为true，用户不能在这个表当元素中修改值 
+wrap  			指定文本区域内的内容是否该换行
+```  
+``` xml checkbox标签 
+爱好:&lt;s:checkbox name="</span><span class="attribute">fav</span>" <span class="attribute">fieldValue</span>=<span class="value">"football"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
+football 
+<span class="tag">&lt;<span class="title">s:checkbox</span> <span class="attribute">name</span>=<span class="value">"fav"</span> <span class="attribute">fieldValue</span>=<span class="value">"pingpang"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
+pingpang 
+
+属性名称  				描述 
+-------------------------------------------------
+fieldValue  	复选框被选中时提交给Action的值
+```  
+``` xml select标签 
+<span class="tag">&lt;<span class="title">s:select</span> <span class="attribute">list</span>=<span class="value">"userList"</span> <span class="attribute">listKey</span>=<span class="value">"id"</span> <span class="attribute">listValue</span>=<span class="value">"userName“/&gt; 
+
+属性名称  				描述
+------------------------------------------------- 
+list  			用来显示在下拉框中的集合 
+listKey 			如果集合中是对象，指定对象中哪个属性作为选项的key 
+listValue 		如果集合中是对象，指定对象中哪个属性作为选项的value 
+emptyOption  		当设置为true时，下拉框中第一项为空选项 
+size  			指定下拉框中可以看到多少个选项
+```  
+``` xml radio标签 
+&lt;s:radio list="</span>#{<span class="attribute">0:</span>'男',<span class="attribute">1:</span>'女' }" <span class="attribute">name</span>=<span class="value">"sex"</span>/&gt;</span> 
+
+属性名称  			描述 
+-------------------------------------------------
+list  		用来显示单选项的集合 
+listKey 		如果集合中是对象，指定对象中哪个属性作为选项的key 
+listValue 	如果集合中是对象，指定对象中哪个属性作为选项的value
+</pre></td></tr></table></figure>
+
+</blockquote>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/struts2/">struts2</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

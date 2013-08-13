@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于octopress：Could not open library '.dll': 找不到指定的模组 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="关于octopress：Could not open library '.dll': 找不到指定的模组"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-04-29T10:22:00.000Z"><a href="/2012/04/29/2012-05-08-octopress2/">Apr 29th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">关于octopress：Could not open library '.dll': 找不到指定的模组</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误...</p>
+<pre><code><figure class="highlight"><pre>(<span class="constant">LoadError</span>)ib/ruby/gems/<span class="number">1.9</span>.<span class="number">1</span>/gems/ffi-<span class="number">1.0</span>.<span class="number">9</span>-x86-mingw32/lib/ffi/library.<span class="symbol">rb:</span><span class="number">75</span><span class="symbol">:in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
+  from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:in `map'</span>
+  from <span class="constant">C</span><span class="symbol">:/Ruby192/lib/ruby/gems/</span><span class="number">1.9</span>.<span class="number">1</span>/gems/ffi-<span class="number">1.0</span>.<span class="number">9</span>-x86-mingw32/lib/ffi/library.<span class="symbol">rb:</span><span class="number">54</span><span class="symbol">:in</span> `ffi_lib<span class="string">'
+  from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:30:in `&lt;module:Python&gt;'</span>
+  from <span class="constant">C</span><span class="symbol">:/Ruby192/lib/ruby/gems/</span><span class="number">1.9</span>.<span class="number">1</span>/gems/rubypython-<span class="number">0</span>.<span class="number">5.1</span>/lib/rubypython/python.<span class="symbol">rb:</span><span class="number">21</span><span class="symbol">:in</span> `&lt;top (required)&gt;<span class="string">'
+</pre></figure></code></pre>
+<p>看到这错误，绝对让人很郁闷，如果对于那些非常熟悉<code>ruby</code>和<code>python</code>的人来说，可能会很容易解决，可是对于那些不熟悉这两者语言的友友们来说，脑子一篇空白，不知所措，好吧，下面我就给大家介绍一下此问题的解决办法，让我们一起来拥抱octopress  </p>
+<ul>
+<li>首先确认你的环境都配置正常了，不确定的可以看我的上一篇octopress博客，都正常之后执行以下命令  <figure class="highlight lang-ruby"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>gem update --system  
+gem update  
+bundle update
+```  
+
+* 现在再执行&lt;code&gt;rake generate&lt;/code&gt;生成博客，或者&lt;code&gt;rake preview&lt;/code&gt;进行预览，看是否已经正常（通常执行这3步可以解决此问题），如果还不行，将&lt;code&gt;C:\windows\system32\python27.dll &lt;/code&gt;复制到&lt;code&gt;C:\python27\libs&lt;/code&gt;下面，然后修改&lt;code&gt;C:\Ruby192\lib\ruby\gems\1.9.1\gems\rubypython-0.5.1\lib\rubypython\python.rb&lt;/code&gt;的26行
+  
+``` ruby 
+PYTHON_LIB = EXEC.library
+ # FFI::DynamicLibrary::RTLD_LAZY | FFI::DynamicLibrary::RTLD_GLOBAL  
+ffi_lib_flags :lazy, :global  
+ # ffi_lib EXEC.library # 问题出在 EXEC.library 一直是 nil，所以直接注解掉  
+ffi_lib "python27" # 加上此句
+</pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/octopress/">octopress</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

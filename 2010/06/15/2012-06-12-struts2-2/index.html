@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>struts2的工作原理以及请求流程 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="struts2的工作原理以及请求流程"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-06-15T02:43:00.000Z"><a href="/2010/06/15/2012-06-12-struts2-2/">Jun 15th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">struts2的工作原理以及请求流程</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>struts2的原理架构图</strong>  </p>
+<img src="/images/java/struts2.jpg">
+
+
+<p><code>ActionMapper</code><br>该类是HttpServletRequest和Action调用请求的一个映射，它屏蔽了Action对于Request等java servlet类的依赖；Struts2中它的默认实现类是DefaultActionMapper，ActionMapper很多的用处就是可以根据自己的要求来设计url格式，它自己也有RESTful的实现。<br><code>ActionProxy</code>和<code>ActionInvocation</code><br>Action的一个代理，由ActionProxyFactory创建，它本身不包括Action实例，默认实现DefaultActionProxy是由ActionInvocation持有Action实例。ActionProxy作用是如何取得Action，无论是本地还是远程。而ActionInvocation的作用是如何执行Action，拦截器的功能就是在ActionInvocation中实现的<br><code>ConfigurationProvider</code>和<code>Configuration</code><br>ConfigurationProvider就是struts2中配置文件的解析器，struts2中的配置文件主要是由其实现类XmlConfigurationProvider及其子类StrutsXmlConfigurationProvider来解析  </p>
+<p><strong>Struts2的请求流程</strong>  </p>
+<p>1、客户端发送请求<br>2、这个请求经过一系列的过滤器（ActionContextCleanUp--&gt;FilterDispatcher）<br>3、FilterDispatcher通过ActionMapper来决定这个请求需要调用哪个Action<br>4、如果ActionMapper决定调用某个Action，FilterDispatcher把请求的处理交给ActionProxy<br>5、ActionProxy通过ConfigurationManager询问框架的配置文件（struts.xml），找到需要调用的Action类<br>6、ActionProxy创建一个ActionInvocation的实例<br>7、ActionInvocation通过代理模式调用真正的Action，当然这涉及到相关拦截器的调用<br>8、Action执行完毕，ActionInvocation创建Result并返回。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/struts2/">struts2</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

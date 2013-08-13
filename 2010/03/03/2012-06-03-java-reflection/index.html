@@ -1,0 +1,735 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>反射 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="反射"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-03-03T11:07:00.000Z"><a href="/2010/03/03/2012-06-03-java-reflection/">Mar 3rd, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">反射</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>动态语言</strong> </p>
+<p>说到动态语言，大致认同的一个定义是：“程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言”。从这个观点看，Perl，Python
+，Ruby是动态语言，C++，Java，C#不是动态语言，但是也有人把java叫做&quot;动态语言&quot;,因为java所具有的Reflection是java被视为动态(或准动态)语言的一个关键性质。
+<a name="more"></a><br><strong>java语言的反射机制</strong> </p>
+<p>• 在运行时判断任意一个对象所属的类。<br>• 在运行时构造任意一个类的对象。<br>• 在运行时判断任意一个类所具有的成员变量和方法。<br>• 在运行时调用任意一个对象的方法  </p>
+<p>在JDK中，主要由以下类来实现Java反射机制，这些类都位于<code>java.lang.reflect</code>包中<br>– Class 类：代表一个类。<br>– Field 类：代表类的成员变量（成员变量也称为类的属性）。<br>– Method 类：代表类的方法。<br>– Constructor 类：代表类的构造方法。<br>– Array 类：提供了动态创建数组，以及访问数组的元素的静态方法  </p>
+<p><strong>Class类</strong> </p>
+<p>在java的Object类中的申明了数个应该在所有的java类中被改写的methods：hashCode(), equals(),clone(),toStrin(),getClass()等，其中的getClass()返回一个Class 类型的对象。Class类十分的特殊，它和一般的类一样继承自Object，其实体用以表达java程序运行
+时的 class和 interface，也用来表达 enum，array，primitive，Java Types 以及关键字void，当加载一个类，或者当加载器（class loader）的defineClass（）被JVM调用，便产生一个Class
+对象，Class是Reflection起源，针对任何你想探勘的class（类），唯有现为他产生一个Class的对象，接下来才能经由后者唤起为数十多个的反射API。  </p>
+<p><strong>Class类常用方法</strong>  </p>
+<blockquote>
+<p>getName()  　获得类的完整名字</p>
+<p>getMethods()  　获取所有public方法<br>getDeclaredMethods()　 获取所有方法<br>getMethod()　  获取特定方法<br>getDeclaredMethod()　 获取特定方法(包含私有)</p>
+<p>getFields()  　获取所有public属性<br>getDeclaredFields()　  获取所有属性<br>getField()  　获取特定属性 
+getDeclaredField()　  获取特定属性(包含私有)</p>
+<p>getConstructors() 　 获得类的public类型的构造方法<br>getConstructor()  　获得类的特定构造方法  </p>
+<p>newInstance()  　通过类的不带参数的构造方法创建这个类的一个对象  </p>
+</blockquote>
+<p><strong>获取某个类所对应的Class对象的三种方式</strong>  </p>
+<p>要想使用反射，首先需要获得待处理类或对象所对应的Class 对象。  </p>
+<figure class="highlight lang-java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+</pre></td><td class="code"><pre><span class="comment">//方式1： 使用Class 类的静态方法forName()  </span>
+Class.forName(<span class="string">"java.lang.String"</span>);  
+
+<span class="comment">//方式2： 使用类的.class语法  </span>
+xxx.<span class="class"><span class="keyword">class</span> //如： <span class="title">String</span>.<span class="title">class</span>;  
+
+//方式3： 使用对象的<span class="title">getClass</span>()方法  
+<span class="title">String</span> <span class="title">str</span> = "<span class="title">xxx</span>";  
+<span class="title">Class</span>&lt;?&gt; <span class="title">clazz</span> = <span class="title">str</span>.<span class="title">getClass</span>();
+```  
+**<span class="title">Constructor</span>类**  
+
+<span class="title">Constructor</span>类的作用是用来生成类所对应的对象  
+&gt; 通过类的不带参数的构造方法来生成对象的两种方式
+``` <span class="title">java</span>   
+//方式一： 先获得<span class="title">Class</span> 对象，然后通过该<span class="title">Class</span>对象的<span class="title">newInstance</span>()方法直接生成  
+ 
+<span class="title">Class</span>&lt;?&gt; <span class="title">clazz</span> = <span class="title">String</span>.<span class="title">class</span>;
+<span class="title">Object</span> <span class="title">obj</span> = <span class="title">clazz</span>.<span class="title">newInstance</span>();
+
+//方式二： 先获得<span class="title">Class</span> 对象，然后通过该对象获得对应的<span class="title">Constructor</span>对象，再通过该<span class="title">Constructor</span>对象的<span class="title">newInstance</span>()方法生成
+
+<span class="title">Class</span>&lt;?&gt; <span class="title">clazz</span> = <span class="title">String</span>.<span class="title">class</span>;
+<span class="title">Constructor</span> <span class="title">cons</span> = <span class="title">clazz</span>.<span class="title">getConstructor</span>();
+<span class="title">Object</span> <span class="title">obj</span> = <span class="title">cons</span>.<span class="title">newInstance</span>();
+``` 
+&gt; 通过类的带参数的构造方法生成对象 
+ 
+要想通过类的带参数的构造方法生成对象，只有下面这一种方式  
+``` <span class="title">java</span> 
+/*
+* 如：有一个<span class="title">Customer</span>类有下面这样一个带参构造方法
+*/
+<span class="title">public</span> <span class="title">Customer</span>(<span class="title">String</span> <span class="title">name</span>, <span class="title">int</span> <span class="title">age</span>) {</span>
+	
+}
+
+Class&lt;?&gt; clazz = Customer.class;
+Constructor cons = clazz.getConstructor(<span class="keyword">new</span> Class[]{String.class, <span class="keyword">int</span>.class});
+Object obj = cons.newInstance(<span class="keyword">new</span> Object[]{<span class="string">"tom"</span>, <span class="number">23</span>});
+```
+**Array类**  
+
+该类位于java.lang.reflect包中,该类提供了动态创建和访问数组元素的各种*静态*方法.
+
+**Reflection API 的基本使用方法**  
+``` java InvokeTest.java 
+<span class="keyword">package</span> com.hussion.reflect;
+<span class="keyword">import</span> java.lang.reflect.Method;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InvokeTest</span> {</span>
+	
+	<span class="comment">/*
+	* 两个简单方法
+	*/</span>
+	<span class="keyword">public</span> <span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b) {
+		<span class="keyword">return</span> a + b;
+	}
+	<span class="keyword">public</span> String sayHello(String str) {
+		<span class="keyword">return</span> <span class="string">"Hello "</span> + str;
+	}
+	
+	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception {
+		
+		<span class="comment">// 获取类InvokeTest的Class对象</span>
+		Class&lt;?&gt; clazz = InvokeTest.class;
+		<span class="comment">// 获取类InvokeTest的对象</span>
+		Object invokeTester = clazz.newInstance();
+		<span class="comment">// 获取add方法</span>
+		Method addMethod = clazz.getMethod(<span class="string">"add"</span>, <span class="keyword">int</span>.class, <span class="keyword">int</span>.class);
+		<span class="comment">// 调用add方法</span>
+		Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <span class="number">2</span>);
+		
+		Method sayHelloMethod = clazz.getMethod(<span class="string">"sayHello"</span>, String.class);
+		Object result2 = sayHelloMethod.invoke(invokeTester, <span class="string">"world"</span>);
+		
+		<span class="comment">// 打印方法执行结果</span>
+		System.out.println(result1);
+		System.out.println(result2);
+
+	}
+
+}
+```  
+&lt;span style=<span class="string">"color:red;font-weight:bold;"</span>&gt;注意:&lt;/span&gt;   
+Method类的`invoke(Object obj,Object args[])`方法接收的参数必须为对象，如果参数为基本类型数据，必须转换为相应的包装类型的对象;`invoke()`方法的返回值总是对象，如果实际被调用的方法的返回类型是基本类型数据，那么`invoke()`方法会把它转换为相应的包装类型的对象，再将其返回  
+自从`JDK5`开始有了自动装箱和拆箱的新特性,所以上面可以直接传入基本数据类型  
+``` java 
+<span class="comment">//本来应该为</span>
+Object result1 = addMethod.invoke(invokeTester, <span class="keyword">new</span> Integer(<span class="number">1</span>), <span class="keyword">new</span> Integer(<span class="number">2</span>));
+
+<span class="comment">//简写为</span>
+Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <span class="number">2</span>);  
+```
+
+下面这个演示： ReflectTester类有一个copy(Object object)方法，这个方法能够创建一个和参数object 同样类型的对象，然后把object对象中的所有属性拷贝到新建的对象中，并将它返回;另外这个例子只能复制简单的JavaBean，并假定JavaBean的每个属性都有<span class="keyword">public</span>类型的getXXX()和setXXX()方法。  
+``` java ReflectTest.java 
+<span class="keyword">package</span> com.hussion.reflect;
+
+<span class="keyword">import</span> java.lang.reflect.Field;
+<span class="keyword">import</span> java.lang.reflect.Method;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectTester</span> {</span>
+
+	<span class="comment">// 该方法实现对Customer对象的拷贝操作</span>
+	<span class="keyword">public</span> Object copy(Object object) <span class="keyword">throws</span> Exception {
+
+		Class&lt;?&gt; clazz = object.getClass();
+
+		Object objectCopy = clazz.getConstructor().newInstance();
+
+		<span class="comment">// 获得对象的所有成员变量</span>
+
+		Field[] fields = clazz.getDeclaredFields();
+
+		<span class="keyword">for</span> (Field field : fields) {
+			<span class="comment">// 获取属性名字</span>
+			String name = field.getName();
+			<span class="comment">// 将属性的首字母转换为大写</span>
+			String firstLetter = name.substring(<span class="number">0</span>, <span class="number">1</span>).toUpperCase();
+
+			String getMethodName = <span class="string">"get"</span> + firstLetter + name.substring(<span class="number">1</span>);
+			String setMethodName = <span class="string">"set"</span> + firstLetter + name.substring(<span class="number">1</span>);
+
+			Method getMethod = clazz.getMethod(getMethodName);
+			Method setMethod = clazz.getMethod(setMethodName, field.getType());
+
+			Object value = getMethod.invoke(object);
+
+			setMethod.invoke(objectCopy, value);
+		}
+
+		<span class="keyword">return</span> objectCopy;
+	}
+
+	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception {
+
+		Customer customer = <span class="keyword">new</span> Customer(<span class="string">"Tom"</span>, <span class="number">20</span>);
+		<span class="comment">// 因为此例id是long型，所以要写成1L</span>
+		customer.setId(<span class="number">1</span>L);
+
+		ReflectTester test = <span class="keyword">new</span> ReflectTester();
+
+		Customer customer2 = (Customer) test.copy(customer);
+
+		System.out.println(customer2.getId() + <span class="string">","</span> + customer2.getName() + <span class="string">","</span>
+				+ customer2.getAge());
+	}
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">Customer</span> {</span>
+
+	<span class="keyword">private</span> Long id;
+
+	<span class="keyword">private</span> String name;
+
+	<span class="keyword">private</span> <span class="keyword">int</span> age;
+
+	<span class="keyword">public</span> Customer() {
+
+	}
+
+	<span class="keyword">public</span> Customer(String name, <span class="keyword">int</span> age) {
+		<span class="keyword">this</span>.name = name;
+		<span class="keyword">this</span>.age = age;
+	}
+
+	<span class="keyword">public</span> Long getId() {
+		<span class="keyword">return</span> id;
+	}
+
+	<span class="keyword">public</span> <span class="keyword">void</span> setId(Long id) {
+		<span class="keyword">this</span>.id = id;
+	}
+
+	<span class="keyword">public</span> String getName() {
+		<span class="keyword">return</span> name;
+	}
+
+	<span class="keyword">public</span> <span class="keyword">void</span> setName(String name) {
+		<span class="keyword">this</span>.name = name;
+	}
+
+	<span class="keyword">public</span> <span class="keyword">int</span> getAge() {
+		<span class="keyword">return</span> age;
+	}
+
+	<span class="keyword">public</span> <span class="keyword">void</span> setAge(<span class="keyword">int</span> age) {
+		<span class="keyword">this</span>.age = age;
+	}
+}
+```
+&gt; Array类简单应用  
+``` java ArrayTest.java 
+<span class="keyword">package</span> com.hussion.reflect;
+
+<span class="keyword">import</span> java.lang.reflect.Array;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest</span> {</span>
+	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception {
+
+		<span class="comment">// 创建一个长度为10 的字符串数组</span>
+		Object array = Array.newInstance(String.class, <span class="number">10</span>);
+		<span class="comment">// 把索引位置为5的元素设为“Hello world”</span>
+		Array.set(array, <span class="number">5</span>, <span class="string">"Hello world"</span>);
+		<span class="comment">// 读取索引位置为5的元素的值</span>
+		String str = (String)Array.get(array, <span class="number">5</span>);
+		
+		System.out.println(str);
+	}
+}
+```  
+**访问类<span class="keyword">private</span>方法和<span class="keyword">private</span>属性** 
+
+虽然对被<span class="keyword">private</span>修饰的属性和方法进行访问违背了java面向对象的封装特点，但是有些时候我们需要访问私有的属性和方法
+&gt; 访问类的私有方法
+``` java private1.java 
+<span class="keyword">package</span> com.hussion.reflect;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Private1</span> {</span>
+	<span class="keyword">private</span> String sayHello(String name) {
+		<span class="keyword">return</span> <span class="string">"hello: "</span> + name;
+	}
+}
+```
+``` java private1Test.java 
+<span class="keyword">package</span> com.hussion.reflect;
+
+<span class="keyword">import</span> java.lang.reflect.Method;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Private1Test</span> {</span>
+	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception {
+		Private1 p1 = <span class="keyword">new</span> Private();
+
+		Class&lt;?&gt; clazz = p1.getClass();
+
+		Method method = clazz.getDeclaredMethod(<span class="string">"sayHello"</span>, String.class);
+
+		<span class="comment">// 抑制Java的访问控制检查</span>
+		method.setAccessible(<span class="keyword">true</span>);
+		
+		String str = (String)method.invoke(p1, <span class="string">"tom"</span>);
+		
+		System.out.println(str);
+	}
+}
+``` 
+&gt; 访问类的私有属性
+``` java private2.java 
+<span class="keyword">package</span> com.hussion.reflect;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Private2</span> {</span>
+	<span class="keyword">private</span> String name = <span class="string">"tom"</span>;
+	
+	<span class="keyword">public</span> String getName()
+	{
+		<span class="keyword">return</span> name;
+	}
+}
+```  
+``` java private2Test.java  
+<span class="keyword">package</span> com.hussion.reflect;
+
+<span class="keyword">import</span> java.lang.reflect.Field;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Private2Test</span> {</span>
+	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception {
+
+		Private2 p2 = <span class="keyword">new</span> Private2();
+		
+		Class&lt;?&gt; clazz = p2.getClass();
+		
+		Field field = clazz.getDeclaredField(<span class="string">"name"</span>);
+
+		<span class="comment">//抑制Java对访问修饰符的检查</span>
+		field.setAccessible(<span class="keyword">true</span>);
+		<span class="comment">// 修改属性值</span>
+		field.set(p2, <span class="string">"jerry"</span>);
+		
+		System.out.println(p2.getName());
+	}
+}
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/java基础/">java基础</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

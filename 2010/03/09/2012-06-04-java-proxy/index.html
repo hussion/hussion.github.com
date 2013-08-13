@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>代理模式(Proxy Pattern) | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="代理模式(Proxy Pattern)"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-03-09T02:36:00.000Z"><a href="/2010/03/09/2012-06-04-java-proxy/">Mar 9th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">代理模式(Proxy Pattern)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在某些情况下，我们可能不想或者不能直接引用另一个对象，这时候就需要有一个代理对象，它可以在客户端和目标对象之间起到中介的作用；java中代理模式的作用就是：为其他对象提供一种代理以控制对这个对象的访问<br><a name="more"></a>
+<strong>代理模式一般涉及到的角色有</strong>  </p>
+<p>– <code>抽象角色</code>：声明真实对象和代理对象的共同接口<br>– <code>代理角色</code>：代理对象角色内部含有对真实对象的引用，从而可以操作真实对象，同时代理对象提供与真实对象相同的接口以便在任何时刻都能代替真实对象。同时，代理对象可以在执行真实对象操作时，附加其
+他的操作，相当于对真实对象进行封装<br>– <code>真实角色</code>：代理角色所代表的真实对象，是我们最终要引用的对象  </p>
+<p><strong>静态代理(Static Proxy)</strong>  </p>
+<p>java中代理模式分为： <code>静态代理</code>和<code>动态代理</code><br>我们先来看下静态代理是如何实现的:<br>``` java Subject.java 
+package com.hussion.proxy;</p>
+<p>public interface Subject {</p>
+<pre><code><figure class="highlight"><pre><span class="keyword">public</span> <span class="keyword">void</span> request();
+</pre></figure></code></pre>
+<p>}</p>
+<pre><code><figure class="highlight"><pre>``` java RealSubject.java 
+<span class="keyword">package</span> com.hussion.proxy;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span> {</span>
+
+    <span class="keyword">public</span> <span class="keyword">void</span> request() {
+        System.out.println(<span class="string">"From realSubject !"</span>);
+    }
+
+}
+</pre></figure></code></pre>
+<p>``` java ProxySubject.java 
+package com.hussion.proxy;</p>
+<p>public class ProxySubject implements Subject {</p>
+<pre><code><figure class="highlight"><pre><span class="comment">// 代理角色内部对真实角色的引用</span>
+<span class="keyword">private</span> RealSubject realSubject;
+
+<span class="keyword">public</span> <span class="keyword">void</span> request() {
+
+    <span class="keyword">if</span> (null == realSubject) {
+        realSubject = new RealSubject();
+    }
+
+    beforeRequest();<span class="comment">// 在真实角色操作之前所附加的操作</span>
+
+    realSubject<span class="variable">.request</span>();<span class="comment">// 真实角色所完成的事情</span>
+
+    afterRequest();<span class="comment">// 在真实角色操作之后所附加的操作</span>
+}
+
+<span class="keyword">public</span> <span class="keyword">void</span> beforeRequest() {
+    System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"before request"</span>);
+}
+<span class="keyword">public</span> <span class="keyword">void</span> afterRequest() {
+    System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"after request"</span>);
+}
+</pre></figure></code></pre>
+<p>}</p>
+<pre><code><figure class="highlight"><pre>``` java client.java 
+<span class="package"><span class="keyword">package</span> <span class="title">com</span>.<span class="title">hussion</span>.<span class="title">proxy</span>;
+
+<span class="title">public</span> <span class="title">class</span> <span class="title">Client</span> {</span>
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        ProxySubject subject = <span class="keyword">new</span> ProxySubject();
+        subject.request();
+    }
+}
+</pre></figure></code></pre>
+<p>由以上代码可以看出，客户实际需要调用的是<code>RealSubject</code>类的<code>request()</code>方法，现在用<code>ProxySubject</code>来代理<code>RealSubject</code>类，同样达到目的，同时还封装了其他方法(<code>beforeRequest()</code>,<code>afterRequest()</code>)，可以处理一些其他问题<br>但是，如果要按照上述的方法使用代理模式，那么真实角色必须是事先已经存在的，并将其作为代理对象的内部属性。但是实际使用时，一个真实角色必须对应一个代理角色，如果大量使用会导致类的急剧膨胀；此外，如果事先并不知道真实角色，该如何使用代理呢？这时候我们就需要通过Java的动态代理类来解决  </p>
+<p><strong>动态代理(Dynamic Proxy)</strong>  </p>
+<p>java中的动态代理类位于java.lang.reflect包下，一般主要涉及到以下两个类：<br><strong>(1)</strong> <code>InvocationHandler</code>：该接口中仅定义了一个方法
+– public object invoke(Object obj,Method method, 
+Object[] args)<br>• 在实际使用时，第一个参数<code>obj</code>一般是指代理类，<code>method</code>是被代理的方法，如上例中的request()，<code>args</code>为该方法的参数数组。这个抽象方法在代理类中动态实现<br><strong>(2)</strong> <code>Proxy</code>：该类即为动态代理类，作用类似于上例中的ProxySubject，其中主要包含以下内容:<br>• protected Proxy(InvocationHandler h)：构造函数，
+用于给内部的h赋值。<br>• static Class getProxyClass (ClassLoader loader, 
+Class[] interfaces)：获得一个代理类，其中<code>loader</code>是
+类装载器，<code>interfaces</code>是真实类所拥有的全部接口的数组
+。<br>• static Object newProxyInstance(ClassLoader 
+loader, Class[] interfaces, InvocationHandler h)：
+返回代理类的一个实例，返回后的代理类可以当作被代理
+类使用(可使用被代理类的在Subject接口中声明过的方法
+)<br><strong>(3)</strong> 所谓Dynamic Proxy是这样一种class：它是在运行时生成的class，在生成它时你必须提供一组interface给它，然后该class
+就宣称它实现了这些 interface，你当然可以把该class的实例当作这些interface中的任何一个来用。当然，这个Dynamic Proxy其实就是一个Proxy，它不会替你作实质性的工作，在生成它的实例时你必须提供一个handler，由它接管实际的工作  </p>
+<p>下面我们来看一下动态代理是如何实现的: 
+``` java Subject.java 
+package com.hussion.proxy;</p>
+<p>public interface Subject {</p>
+<pre><code><figure class="highlight"><pre><span class="keyword">public</span> <span class="keyword">void</span> request();
+</pre></figure></code></pre>
+<p>}</p>
+<pre><code><figure class="highlight"><pre>``` java RealSubject.java 
+<span class="keyword">package</span> com.hussion.proxy;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span> {</span>
+
+    <span class="keyword">public</span> <span class="keyword">void</span> request() {
+        System.out.println(<span class="string">"from realSubject"</span>);
+    }
+}
+</pre></figure></code></pre>
+<p>``` java DynamicSubject.java 
+package com.hussion.proxy;</p>
+<p>import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;</p>
+<p>/<em>
+ </em> 该代理类的内部属性是Object类型，实际使用的时候通过该类的构造方法传递进来一个对象
+ <em> 此外，该类还实现了invoke方法，该方法中的method.invoke其实就是调用被代理对象的将要
+ </em> 执行的方法，方法参数是sub，表示该方法从属于sub，通过动态代理类，我们可以在执行真实对象的方法前后
+ <em> 加入自己的一些额外方法。
+ </em>
+ */</p>
+<p>public class DynamicSubject implements InvocationHandler {</p>
+<pre><code><figure class="highlight"><pre><span class="keyword">private</span> <span class="built_in">Object</span> obj;
+<span class="keyword">public</span> DynamicSubject(<span class="built_in">Object</span> obj) {
+    <span class="keyword">this</span>.obj = obj;
+}
+<span class="keyword">public</span> <span class="built_in">Object</span> invoke(<span class="built_in">Object</span> proxy, Method method, <span class="built_in">Object</span>[] args)
+        throws Throwable {
+
+    beforeRequest(); <span class="comment">// 被代理对象的将要执行的方法之前附加的操作</span>
+
+    <span class="built_in">Object</span> result = method.invoke(obj,args); <span class="comment">// 被代理对象的将要执行的方法</span>
+
+    afterRequest(); <span class="comment">// 被代理对象的将要执行的方法之后附加的操作</span>
+
+    <span class="keyword">return</span> result;
+}
+
+<span class="keyword">public</span> <span class="keyword">void</span> beforeRequest() {
+    System.out.println(<span class="string">"beforeRequst"</span>);
+}
+
+<span class="keyword">public</span> <span class="keyword">void</span> afterRequest() {
+    System.out.println(<span class="string">"afterRequest"</span>);
+}
+</pre></figure></code></pre>
+<p>}</p>
+<pre><code><figure class="highlight"><pre>``` java client.java 
+<span class="package"><span class="keyword">package</span> <span class="title">com</span>.<span class="title">hussion</span>.<span class="title">proxy</span>;
+
+<span class="title">import</span> <span class="title">java</span>.<span class="title">lang</span>.<span class="title">reflect</span>.<span class="title">InvocationHandler</span>;
+<span class="title">import</span> <span class="title">java</span>.<span class="title">lang</span>.<span class="title">reflect</span>.<span class="title">Proxy</span>;
+
+<span class="title">public</span> <span class="title">class</span> <span class="title">Client</span> {</span>
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        <span class="comment">// 被代理对象</span>
+        RealSubject realSubject = <span class="keyword">new</span> RealSubject();
+
+        InvocationHandler handler = <span class="keyword">new</span> DynamicSubject(realSubject);
+        <span class="comment">// 生成代理</span>
+        Subject subject = (Subject) Proxy.newProxyInstance(realSubject.getClass().getClassLoader(), 
+                realSubject.getClass().getInterfaces(), handler);
+
+        subject.request();
+
+    }
+}
+</pre></figure></code></pre>
+<p>从上面的代码可以看出，要想使用动态代理类，必须先要实现InvocationHandler接口，此外我们会发现通过动态代理这种方式，被代理的对象(RealSubject)可以在运行时动态改变，需要控制的接口(Subject接口)可以在运行时改变，控制的方式(DynamicSubject类)
+也可以动态改变，从而实现了非常灵活的动态代理关系  </p>
+<p>JDK动态代理虽然强大，我们细心会发现该方式只提供基于接口的代理，不支持类的代理，也就是说必须要面向接口编程，被代理对象必须实现相应的接口。下面我们来看另一种动态代理方式：基于Cglib的动态代理；Cglib动态代理使用底层的字节码技术，如果被代理对象没有实现相应的接口，就会动态为每个代理对象生成一个子类，在子类中拦截所有父类的方法，然后织入横切代码。这样就解决了基于的JDK的动态代理的缺陷。Spring中AOP的实现就同时采用了基于JDK的动态代理方式和基于Cglib的动态代理方式，之所以需要两种代理机制，很大程度上还是因为刚才所说的JDK本身只提供基于接口的代理，不支持类的代理。<br>下面我们来看下基于Cglib的动态代理如何实现：  </p>
+<blockquote>
+<p>基于Cglib的动态代理需要Cglib的jar包的支持
+``` java UserDAO.java 
+package com.hussion.proxy.cglib;  </p>
+</blockquote>
+<p>public class UserDAO {<br>    public void save(){<br>        System.out.println(&quot;save success!&quot;);<br>    }<br>} </p>
+<pre><code><figure class="highlight"><pre>``` java DAOIntercept.java 
+<span class="package"><span class="keyword">package</span> <span class="title">com</span>.<span class="title">hussion</span>.<span class="title">proxy</span>.<span class="title">cglib</span>; 
+
+<span class="title">import</span> <span class="title">java</span>.<span class="title">lang</span>.<span class="title">reflect</span>.<span class="title">Method</span>;   
+<span class="title">import</span> <span class="title">net</span>.<span class="title">sf</span>.<span class="title">cglib</span>.<span class="title">proxy</span>.<span class="title">MethodInterceptor</span>;  
+<span class="title">import</span> <span class="title">net</span>.<span class="title">sf</span>.<span class="title">cglib</span>.<span class="title">proxy</span>.<span class="title">MethodProxy</span>;  
+
+<span class="title">public</span> <span class="title">class</span> <span class="title">DAOIntercept</span> <span class="title">implements</span> <span class="title">MethodInterceptor</span>{</span>  
+
+    <span class="keyword">public</span> Object intercept(Object object, Method method, Object[] args,  
+            MethodProxy methodProxy) throws Throwable {
+
+        System.out.println(<span class="string">"before"</span>);<span class="comment">//执行之前做...  </span>
+
+        Object result = methodProxy.invokeSuper(object, args);  
+
+        System.out.println(<span class="string">"after"</span>);<span class="comment">//执行之后做... </span>
+
+        <span class="keyword">return</span> result;  
+    }  
+
+}
+</pre></figure></code></pre>
+<p>``` java CglibTest.java 
+package com.hussion.proxy.cglib;</p>
+<p>import net.sf.cglib.proxy.Enhancer;  </p>
+<p>public class CglibTest {<br>    public static void main(String[] args) { </p>
+<pre><code><figure class="highlight"><pre>    UserDAO dao = new UserDAO()<span class="comment">;  </span>
+    // 对象Enhancer来自于cglib  
+    Enhancer enhancer = new Enhancer()<span class="comment">;  </span>
+    enhancer<span class="preprocessor">.setSuperclass</span>(dao<span class="preprocessor">.getClass</span>())<span class="comment">;  </span>
+    enhancer<span class="preprocessor">.setCallback</span>(new DAOIntercept())<span class="comment">;  </span>
+
+    // 创建代理对象  
+    UserDAO proxyDAO = (UserDAO) enhancer<span class="preprocessor">.create</span>()<span class="comment">;  </span>
+    proxyDAO<span class="preprocessor">.save</span>()<span class="comment">;  </span>
+}  
+
+<span class="comment">/*
+* 运行结果：
+* before  
+* save success !
+* after
+*/</span>
+</pre></figure></code></pre>
+<p>}<br>```
+通过上面代码我们会发现：使用Cglib进行动态代理首先发现创建代理对象被包装的非常简单，最后再来说一下基于JDK的动态代理和基于Cglib的动态代理二者的优缺点：  </p>
+<p><strong>(1).</strong> 在代理对象的创建方面：使用Cglib实现动态代理时，是使用字节码技术创建一个目标类的子类，然后使用该子类的实例作为代理对象进行业务操作。所以，创建代理对象的过程效率较低<br><strong>(2).</strong> 在执行速度方面：基于JDK的动态代理，它创建出来的对象在进行业务操作时是通过动态的进行Class信息的更改，所以在性能方面较低<br><strong>(3).</strong> 对于singleton的代理对象或者具有实例池的代理，因为不需要频繁创建代理对象，所以比较适合用CGLib动态代理技术，反之适合用JDK动态代理技术。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/设计模式/">设计模式</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

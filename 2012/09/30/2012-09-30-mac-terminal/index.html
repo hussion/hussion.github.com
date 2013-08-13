@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>让Mac下的终端颜色高亮 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="让Mac下的终端颜色高亮"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-09-30T03:39:00.000Z"><a href="/2012/09/30/2012-09-30-mac-terminal/">Sep 30th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Mac"><a href="/tags/Mac/">Mac</a></span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">让Mac下的终端颜色高亮</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>以前用惯了linux下的bash对于不同类型的文件以不同的颜色进行高亮,对于现在mac下的terminal感觉很不爽，google了一下，终于找到解决办法。</p>
+<p><strong>针对terminal采用bash模式</strong><br>编辑 <code>~/.bash_profile</code>, 加入以下代码:</p>
+<figure class="highlight lang-bash"><figcaption><span>~/.bash_profile </span></figcaption><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>export CLICOLOR=1  
+export LSCOLORS=gxfxaxdxcxegedabagacad
+</pre></td></tr></table></figure>
+
+<p>保存并重启终端，测试一下,上色成功！  </p>
+<img src="http://ww4.sinaimg.cn/large/6cdc22a9gw1dxee4szrlkj.jpg">
+
+
+<p><strong>详细讲解代码中的涵义:</strong><br><code>CLICOLOR</code>: 前景色和背景色的字符串合并值<br><code>LSCOLORS</code>: 对于不同变量所采用的颜色方案,具体看如下表格:</p>
+<pre><code><figure class="highlight"><pre><span class="title">a</span>       black
+<span class="title">b</span>       red
+<span class="title">c</span>       green
+<span class="title">d</span>       brown
+<span class="title">e</span>       blue
+<span class="title">f</span>        magenta
+<span class="title">g</span>      cyan
+<span class="title">h</span>       light grey
+<span class="type">A</span>      bold black, usually shows up <span class="keyword">as</span> dark grey
+<span class="type">B</span>       bold red
+<span class="type">C</span>      bold green
+<span class="type">D</span>      bold brown, usually shows up <span class="keyword">as</span> yellow
+<span class="type">E</span>       bold blue
+<span class="type">F</span>       bold magenta
+<span class="type">G</span>     bold cyan
+<span class="type">H</span>      bold light grey; looks like bright white
+<span class="title">x</span>       default foreground or background
+</pre></figure></code></pre>
+<p>而文件类型列表如下:  </p>
+<pre><code><figure class="highlight"><pre>1. directory
+2. symbolic link
+3. socket
+4. pipe
+5. executable
+6. b<span class="operator"><span class="keyword">lock</span> special
+<span class="number">7.</span> <span class="keyword">character</span> special
+<span class="number">8.</span> executable <span class="keyword">with</span> setuid <span class="keyword">bit</span> <span class="keyword">set</span>
+<span class="number">9.</span> executable <span class="keyword">with</span> setgid <span class="keyword">bit</span> <span class="keyword">set</span>
+<span class="number">10.</span> directory writable <span class="keyword">to</span> others, <span class="keyword">with</span> sticky <span class="keyword">bit</span>
+<span class="number">11.</span> directory writable <span class="keyword">to</span> others, without sticky
+</pre></figure></code></pre>
+<p>所以对照这张表就可以得知:</p>
+<figure class="highlight lang-bash"><figcaption><span>LSCOLORS </span></figcaption><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>gxfxaxdxcxegedabagacad
+</pre></td></tr></table></figure>
+
+<p>就是对于directory而言,它的前景色就是: g(cyan),而背景色就是:x(默认的背景色).根据这个原理我们就可以自己进行配置了。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/Mac/">Mac</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

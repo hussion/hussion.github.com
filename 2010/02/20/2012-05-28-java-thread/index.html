@@ -1,0 +1,520 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>线程 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="线程"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-02-20T11:46:00.000Z"><a href="/2010/02/20/2012-05-28-java-thread/">Feb 20th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">线程</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>线程概念</strong><br>1. 线程就是程序中单独顺序的流控制。线程本身不能运行，它只能用于程序中<br>2. 多线程: 单个程序中可以同时运行多个不同的线程执行不同的任务<br>3. 线程是程序内的顺序控制流，只能使用分配给程序的资源和环境<br><strong>线程和进程</strong><br>1. 一个进程可以有多个线程<br>2. 多个进程的内部数据和状态都是完全独立的,是不可以进行数据交换的;而多线程是共享一块内存空间和一组系统资源,有可能互相影响进程之间，可以进行数据交换，而且线程的切换比进程切换的负担要小<br><a name="more"></a>
+<strong>线程的生命周期</strong>  </p>
+<img src="/images/java/thread.png">
+
+
+<p><strong>线程的创建</strong><br>1. 继承<code>java.lang.Thread</code>类，并重写<code>run()</code>方法<br>2. 实现<code>java.lang.Runnable</code>接口，并实现其<code>run()</code>方法  </p>
+<blockquote>
+<p><1> 继承Thread类后，无法再继承其他类，但实现Runable()接口后还可以继承其他类  </p>
+<p><2> 实现Runable接口，访问当前线程，需要使用Thread.currentThread()方法  </p>
+<p><3> 继承Thread类，访问当前线程，使用this即可  </p>
+</blockquote>
+<p><strong>线程的启动</strong>  </p>
+<figure class="highlight lang-java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+</pre></td><td class="code"><pre><span class="comment">//方式一 </span>
+MyThread mt = <span class="keyword">new</span> MyThread();
+mt.start();
+
+<span class="comment">//方式二</span>
+MyThread2 mt2 = <span class="keyword">new</span> MyThread2();
+Thread thread = <span class="keyword">new</span> Thread(mt2);
+thread.start();
+```  
+
+**线程进入阻塞**  
+
+<span class="number">1.</span> 线程调用sleep()方法进入休眠状态  
+<span class="number">2.</span> 线程调用了一个阻塞时IO方法，在该方法返回之前，线程处于阻塞  
+<span class="number">3.</span> 线程试图获取一个同步锁(监视器)，但是该锁正被其他线程所持有  
+<span class="number">4.</span> 线程在等待某个通知(notify)  
+
+**线程离开阻塞**  
+
+<span class="number">1.</span> 调用的sleep()方法时间到 
+<span class="number">2.</span> 调用的阻塞IO方法已经返回 
+<span class="number">3.</span> 成功获得到了同步锁 
+<span class="number">4.</span> 获得等待的通知  
+
+**线程死亡**  
+
+<span class="number">1.</span> run()方法执行完成，线程正常结束  
+<span class="number">2.</span> 线程抛出一个未捕获的Exception或Error  
+<span class="number">3.</span> 直接调用线程的stop方法(&lt;font color=<span class="string">"red"</span>&gt;禁止使用&lt;/font&gt;)  
+<span class="number">4.</span> 可以使用`isAlive()`方法判断线程是否死亡，该方法在线程处于就绪、运行、阻塞三种状态时返回`<span class="keyword">true</span>`，处于新建及死亡状态时返回`<span class="keyword">false</span>`    
+<span class="number">5.</span> 线程一旦死亡，则不能再次调用`start()`方法让其重新执行。
+
+**join线程**  
+
+Thread提供了让一个线程等待另一个线程完成的方法：`join()`。当某
+个程序在执行过程中调用了其他线程的`join()`方法，则当前线程被阻
+塞，直到被`join()`方法加入的线程完成为止  
+```java 
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException { 
+ 
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) { 
+	  System.out.println(Thread.currentThread().getName() +<span class="string">"\t"</span> + i); 
+		<span class="keyword">if</span>(i == <span class="number">5</span>) { 
+			TheThread t1 = <span class="keyword">new</span> TheThread(); 
+			t1.start(); 
+			t1.join();  <span class="comment">//开始执行t1线程</span>
+		} 
+	} 
+ 
+}
+```  
+
+**守护线程(Daemon Thread)**  
+
+<span class="number">1.</span> 除了特别设置外，我们创建的线程都是非守护线程  
+<span class="number">2.</span> 前台线程死亡，后台线程会自动死亡    
+``` java 
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TheThread3</span> <span class="keyword">extends</span> <span class="title">Thread</span>{</span> 
+	<span class="annotation">@Override</span> 
+	<span class="keyword">public</span> <span class="keyword">void</span> run() { 
+		<span class="keyword">while</span>(<span class="keyword">true</span>) { 
+			System.out.println(<span class="string">"非守护线程"</span>); 
+		<span class="keyword">try</span> { 
+			<span class="keyword">this</span>.sleep(<span class="number">1000</span>); 
+		} <span class="keyword">catch</span> (InterruptedException e) { 
+			e.printStackTrace(); 
+		} 
+		} 
+	} 
+}
+``` 
+ 
+``` java 
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException {
+ 
+	TheThread3 t3 = <span class="keyword">new</span> TheThread3(); 
+	t3.start(); 
+	 
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) { 
+		System.out.println(i); 
+	} 
+}
+```  
+
+``` java 
+<span class="comment">//设置为守护线程： </span>
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException {
+ 
+	TheThread3 t3 = <span class="keyword">new</span> TheThread3(); 
+	t3.setDaemon(<span class="keyword">true</span>); 
+	t3.start(); 
+	 
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) { 
+		System.out.println(i); 
+	} 
+}
+```  
+
+**线程同步**  
+
+当多个线程同时对同一个对象的实例变量进行操作时，会引起线程的同步问题！  
+&gt; 模拟线程同步(这里用银行取款来模拟)  
+``` java User.java 
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Thread</span>{</span> 
+ 
+	<span class="keyword">private</span> Account account; 
+	<span class="keyword">private</span> String name; 
+	<span class="keyword">private</span> <span class="keyword">float</span> money; 
+	 
+	<span class="keyword">public</span> User(String name,Account account,<span class="keyword">float</span> money) { 
+		<span class="keyword">this</span>.name = name; 
+		<span class="keyword">this</span>.account = account; 
+		<span class="keyword">this</span>.money = money; 
+	} 
+	 
+	<span class="annotation">@Override</span> 
+	<span class="keyword">public</span> <span class="keyword">void</span> run() { 
+		<span class="keyword">try</span> { 
+			<span class="keyword">this</span>.sleep(<span class="number">2000</span>); <span class="comment">//等待取款时间 </span>
+		    account.getMoney(name,money); 
+		} <span class="keyword">catch</span> (InterruptedException e) { 
+		    e.printStackTrace(); 
+		} 
+	} 
+} 
+```  
+  
+``` java 模拟取款.java 
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) { 
+
+	Account account = <span class="keyword">new</span> Account(); 
+	User u1 = <span class="keyword">new</span> User(<span class="string">"Tom"</span>,account,<span class="number">1500</span>); 
+	User u2 = <span class="keyword">new</span> User(<span class="string">"Lucy"</span>,account,<span class="number">1500</span>); 
+	 
+	u1.start(); 
+	u2.start(); 
+}
+``` 
+&gt; 线程同步的实现方式
+
+``` java <span class="number">1.</span>同步方法的方式 
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
+
+	<span class="keyword">if</span>(money &gt; <span class="keyword">this</span>.money) { 
+	    System.out.println(<span class="string">"余额不足，当前余额为："</span> + <span class="keyword">this</span>.money); 
+	} <span class="keyword">else</span> { 
+		<span class="keyword">this</span>.money -= money; 
+		System.out.println(name + <span class="string">"取款成功，当前余额为"</span> + <span class="keyword">this</span>.money); 
+	} 
+}
+```  
+``` java <span class="number">2.</span>同步代码块方式 
+<span class="keyword">public</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
+<span class="keyword">synchronized</span> (<span class="keyword">this</span>) { 
+	<span class="keyword">if</span>(money &gt; <span class="keyword">this</span>.money) { 
+	    System.out.println(<span class="string">"余额不足，当前余额为："</span> + <span class="keyword">this</span>.money); 
+	} <span class="keyword">else</span> { 
+		<span class="keyword">this</span>.money -= money; 
+		System.out.println(name + <span class="string">"取款成功，当前余额为"</span> + <span class="keyword">this</span>.money); 
+	} 
+	} 
+}
+```  
+``` java <span class="number">3.</span>同步锁(JDK&gt;=<span class="number">1.5</span>)方式 
+<span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock(); 
+ 
+<span class="keyword">public</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
+	lock.lock(); <span class="comment">//加锁 </span>
+	<span class="keyword">try</span>{ 
+		<span class="keyword">if</span>(money &gt; <span class="keyword">this</span>.money) { 
+		    System.out.println(<span class="string">"余额不足，当前余额为："</span> + <span class="keyword">this</span>.money); 
+		} <span class="keyword">else</span> { 
+			<span class="keyword">this</span>.money -= money; 
+			System.out.println(name + <span class="string">"取款成功，当前余额为"</span> + <span class="keyword">this</span>.money); 
+		} 
+	} <span class="keyword">finally</span> { 
+	    lock.unlock(); <span class="comment">//解锁 </span>
+	} 
+}
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/java基础/">java基础</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

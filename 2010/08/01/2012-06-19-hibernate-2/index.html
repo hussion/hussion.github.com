@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hibernate持久化对象的生命周期(状态) | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="hibernate持久化对象的生命周期(状态)"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-08-01T08:11:00.000Z"><a href="/2010/08/01/2012-06-19-hibernate-2/">Aug 1st, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">hibernate持久化对象的生命周期(状态)</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>包括三种状态：瞬态（自由态），持久态，托管态  </p>
+<p><strong>自由态</strong>  </p>
+<p>持久化对象的自由态，指的是对象在内存中存在，但是在数据库中并没有数据与其关联。比如Student student = new Student()，这里的student对象就是一个自由态的持久化对象。<br><a name="more"></a>
+<strong>持久态</strong>  </p>
+<p>持久态指的是持久化对象处于由Hibernate管理的状态，这种状态下持久化对象的变化将会被同步到数据库中。<br>``` java 持久态示例 
+session.beginTransaction(); </p>
+<p>User user = new User(); // 自由态
+user.setUserName(&quot;James&quot;); 
+user.setUserPwd(&quot;123&quot;); </p>
+<p>session.save(user); // 自由态 → 持久态</p>
+<p>session.getTransaction().commit(); </p>
+<pre><code><figure class="highlight"><pre>**游离态**  
+
+处于持久态的对象，在其对应的Session实例关闭后，此时对象进入游离态。也就是说Session实例是持久态对象的宿主环境，一旦宿主环境失效，那么持久态对象迚入游离状态。
+``` java 游离态示例 
+session<span class="preprocessor">.beginTransaction</span>()<span class="comment">; </span>
+User user = new User()<span class="comment">; </span>
+user<span class="preprocessor">.setUserName</span>(<span class="string">"James"</span>)<span class="comment">; </span>
+user<span class="preprocessor">.setUserPwd</span>(<span class="string">"123"</span>)<span class="comment">; </span>
+Integer id = (Integer) session<span class="preprocessor">.save</span>(user)<span class="comment">; </span>
+user<span class="preprocessor">.setUserPwd</span>(<span class="string">"456"</span>)<span class="comment">; </span>
+session<span class="preprocessor">.getTransaction</span>()<span class="preprocessor">.commit</span>()<span class="comment">;  // 持久态 → 游离态</span>
+user<span class="preprocessor">.setUserPwd</span>(<span class="string">"789"</span>)<span class="comment">; // 游离态</span>
+</pre></figure></code></pre>
+<p><strong>游离态和自由态区别</strong>  </p>
+<p><strong>1.</strong> 区别就在于游离态对象可以再次与Session迚行关联而成为持久态对
+象。<br>``` java 游离态 → 自由态 
+session.beginTransaction(); 
+User user = new User(); // 自由态
+user.setUserName(&quot;James&quot;); 
+user.setUserPwd(&quot;123&quot;); 
+Integer id = (Integer) session.save(user); //返回对应数据库中的id
+user.setUserPwd(&quot;456&quot;); 
+session.getTransaction().commit(); // 持久态 → 游离态</p>
+<p>Session session2 = HibernateUtil.getSessionFactory().getCurrentS
+session2.beginTransaction(); 
+user.setUserPwd(&quot;789&quot;); 
+session2.update(user); // 游离态 → 持久态
+session2.getTransaction().commit(); </p>
+<pre><code><figure class="highlight"><pre>**<span class="number">2.</span>** 自由态对象在数据库中没有数据与其对应，但是游离态对象在数据库
+中有数据与其对应，只不过当前对象不在Session环境中而已。从对
+象的是否有主键值可以做`简单`的判断。 
+``` java 对比示例 
+session<span class="preprocessor">.beginTransaction</span>()<span class="comment">; </span>
+User user = new User()<span class="comment">; </span>
+user<span class="preprocessor">.setUserName</span>(<span class="string">"James"</span>)<span class="comment">; </span>
+user<span class="preprocessor">.setUserPwd</span>(<span class="string">"123"</span>)<span class="comment">; </span>
+System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(user<span class="preprocessor">.getId</span>())<span class="comment">; //id不存在</span>
+Integer id = (Integer) session<span class="preprocessor">.save</span>(user)<span class="comment">; </span>
+session<span class="preprocessor">.getTransaction</span>()<span class="preprocessor">.commit</span>()<span class="comment">; </span>
+System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(user<span class="preprocessor">.getId</span>())<span class="comment">; // id存在</span>
+</pre></figure></code></pre>
+<p><strong>如果我自己创建一个对象，并且给主键属性赋值，该值还在数据库中存在，当前对象的状态不也是游离态了？</strong>  </p>
+<p>在Hibernate中根据主键判断对象是自由态还是游离态只是判断的一个参考点，在Hibernate中还有更复杂的机制来判断一个对象的状态，比如对象的version等等。  </p>
+<p><strong>回到自由态</strong>  </p>
+<p><code>java 持久态 → 自由态 
+session.beginTransaction(); 
+User user = (User) session.load(User.class, 120); // 持久态
+session.delete(user); // 持久态 → 自由态
+session.getTransaction().commit();</code>  </p>
+<p><strong>三种状态的改变</strong>  </p>
+<img src="/images/java/hibernate.jpg">
+
+
+<p><strong>load和get方法</strong>  </p>
+<p>• get和load方法都是利用对象的主键值获取相应的对象，并可以使对象处于持久状态。 </p>
+<p>• load方法获取对象时不会立即执行查询操作，而是在第一次使用对象是再去执行查询操作。如果查询的对象在数据库中不存在，load方法返回值不会为null，在第一次使用时抛出org.hibernate.ObjectNotFoundException异常。 </p>
+<p>• 使用get方法获取对象时会立即执行查询操作，并且对象在数据库中不存在时返回null值。  </p>
+<p><strong>save和persist方法</strong>  </p>
+<p>• save和persist方法都是将持久化对象保存到数据库中<br>• sava方法成功执行后，返回持久化对象的ID<br>• persist方法成功执行后，不会返回持久化对象的ID，persist方法是JPA中推荐使用的方法  </p>
+<p><strong>save和update方法</strong>  </p>
+<p>• save方法是将自由态的对象进行保存。<br>• update方法是将游离态的对象进行保存。  </p>
+<p><strong>update和saveOrUpdate方法</strong>  </p>
+<p>• 如果一个对象是游离态或持久态，对其执行update方法后会将对象的修改同步到数据库中，如果该对象是自由态，则执行update方法是没有作用的。 </p>
+<p>• 在执行saveOrUpdate方法时该方法会自动判断对象的状态，如果为自由态则执行save操作，如果为游离态或持久态则执行update操作。  </p>
+<p><strong>update和merge方法</strong>  </p>
+<p>• 如果持久化对象在数据库中存在，使用merge操作时迚行同步操作。如果对象在数据库不存在，merge对象则迚行保存操作。 </p>
+<p>• 如果对象是游离状态，经过update操作后，对象转换为持久态。但是经过merge操作后，对象状态依然是游离态。 </p>
+<p><strong>saveOrUpdate和merge方法</strong>  </p>
+<p>saveOrUpdate方法和merge方法的区别在于如果session中存在两个主键值相同的对象，进行saveOrUpdate操作时会有异常抛出。这时必须使用merge迚行操作。  </p>
+<p><strong>clear方法和flush方法</strong>  </p>
+<p>clear方法是将Session中对象全部清除，当前在Session中的对象由持久态转换为游离态。flush方法则是将持久态对象的更改同步到数据库中。(在事务提交之前进行flush操作)</p>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/hibernate/">hibernate</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

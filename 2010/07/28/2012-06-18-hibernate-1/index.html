@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hibernate配置与入门 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="热爱前，后端开发，关注互联网，分享技术和生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="hibernate配置与入门"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-07-28T13:25:00.000Z"><a href="/2010/07/28/2012-06-18-hibernate-1/">Jul 28th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title">hibernate配置与入门</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>ORM</strong>  </p>
+<p>ORM(Object Relation Mapping)对象关系映射。是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将java程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。<br><a name="more"></a>
+<strong>ORM优势</strong>   </p>
+<p>ORM框架可以让我们减少乏味的代码，更加的面向对象的设计，更好的性能，更好的移植性。  </p>
+<p><strong>第一个hibernate程序</strong>  </p>
+<p>•  加入Hibernate jar包<br>•  创建持久化类（pojo）<br>•  创建映射文件（XXX.hbm.xml）<br>•  创建Hibernate配置文件（hibernate.cfg.xml）<br>•  测试运行  </p>
+<blockquote>
+<p>创建持久化类  </p>
+</blockquote>
+<p>pojo: Plain Ordinary Java Object(无格式的Java对象)<br>Hibernate对pojo的要求：<br>–  属性要有对应的get和set方法<br>–  要有无参数的默认构造方法<br>–  不要使用final进行修饰</p>
+<blockquote>
+<p>创建映射文件  </p>
+<figure class="highlight lang-xml"><figcaption><span>映射文件示例 </span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+</pre></td><td class="code"><pre><span class="pi">&lt;?xml	version="1.0"	encoding="UTF-8"?&gt;</span>	
+<span class="doctype">&lt;!DOCTYPE	hibernate-mapping	PUBLIC		
+	"-//Hibernate/Hibernate	Mapping	DTD	3.0//EN"	
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span>	
+<span class="tag">&lt;<span class="title">hibernate-mapping	package="com.hussion.pojo"</span>&gt;</span>	
+	
+	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"User"</span> <span class="attribute">table</span>=<span class="value">"t_user"</span>&gt;</span>
+	
+		<span class="tag">&lt;<span class="title">id	name="id"</span> <span class="attribute">column</span>=<span class="value">"id"</span>&gt;</span>	
+			<span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>&gt;</span><span class="tag">&lt;/<span class="title">generator</span>&gt;</span>	
+		<span class="tag">&lt;/<span class="title">id</span>&gt;</span>	
+		
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"userName"</span> <span class="attribute">column</span>=<span class="value">"username"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		<span class="comment">&lt;!--如果name属性值和column属性值相同，column属性可以省略--&gt;</span>
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"password"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+	<span class="tag">&lt;/<span class="title">class</span>&gt;</span>	
+ 
+<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
+```  
+``` xml hibernate配置文件示例 
+<span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>	
+<span class="doctype">&lt;!DOCTYPE hibernate-configuration PUBLIC	
+"-//Hibernate/Hibernate	Configuration DTD 3.0//EN"	
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;</span>	
+<span class="tag">&lt;<span class="title">hibernate-configuration</span>&gt;</span>	
+	<span class="tag">&lt;<span class="title">session-factory</span>&gt;</span>	
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"connection.driver_class"</span>&gt;</span>	
+			com.mysql.jdbc.Driver	
+		<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"connection.url"</span>&gt;</span>	
+			jdbc:mysql:///mydb
+		<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"connection.username"</span>&gt;</span>root<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"connection.password"</span>&gt;</span>root<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		 
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"connection.pool_size"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		 
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"dialect"</span>&gt;</span>	
+			org.hibernate.dialect.MySQLDialect	
+		<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		  
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"current_session_context_class"</span>&gt;</span>thread<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		 
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"show_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="title">property</span>&gt;</span>
+		
+		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"format_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="title">property</span>&gt;</span>	
+		 
+		<span class="tag">&lt;<span class="title">mapping</span> <span class="attribute">resource</span>=<span class="value">"com/hussion/pojo/user.hbm.xml"</span>/&gt;</span>		
+	<span class="tag">&lt;/<span class="title">session-factory</span>&gt;</span>	
+<span class="tag">&lt;/<span class="title">hibernate-configuration</span>&gt;</span>
+```  
+&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">save</span>&gt;</span>  
+``` java HibernateTest.java 
+User user =	new	User();	
+user.setUserName("hibernate");	
+user.setPassword("123");
+
+Configuration cfg = new Configuration().configure();
+SessionFactory factory = cfg.buildSessionFactory();
+
+Session session = factory.getCurrentSession();
+session.beginTransaction();
+
+session.save(user);
+
+session.getTransaction().commit();
+```  
+&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">load</span> <span class="attribute">delete</span>&gt;</span>  
+``` java HibernateTest.java 
+Configuration cfg = new Configuration().configure();	
+SessionFactory factory = cfg.buildSessionFactory();	
+ 
+Session	session	= factory.getCurrentSession();	
+session.beginTransaction();
+
+User user = (User) session.load(User.class, 1);
+session.delete(user);
+
+session.getTransaction().commit();
+```  
+&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">Query</span>&gt;</span>  
+``` java HibernateTest.java 
+Configuration cfg = new Configuration().configure();	
+SessionFactory factory = cfg.buildSessionFactory();	
+ 
+Session	session	= factory.getCurrentSession();	
+session.beginTransaction();
+
+List<span class="tag">&lt;<span class="title">User</span>&gt;</span> userList = session.createQuery("from User").list();
+
+for(User user : userList){	
+	System.out.println(user.getUserName());	
+} 
+
+session.getTransaction().commit();
+```  
+&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">Update</span>&gt;</span>  
+``` java HibernateTest.java
+Configuration cfg = new Configuration().configure();	
+SessionFactory factory = cfg.buildSessionFactory();	
+ 
+Session	session	= factory.getCurrentSession();	
+session.beginTransaction();	
+ 
+User user = (User) session.load(User.class, 2);	
+user.setUserName("Alex");	
+ 
+session.update(user);	
+ 
+session.getTransaction().commit();
+</pre></td></tr></table></figure>
+
+</blockquote>
+
+      
+    </div>
+    <footer>
+      
+        <!-- 
+  
+  <div class="categories">
+    <a href="/categories/hibernate/">hibernate</a>
+  </div>
+ -->
+        <!--  -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+</aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hancy';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
