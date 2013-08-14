@@ -2,19 +2,19 @@
   font-family: 'PT Serif';
   font-style: normal;
   font-weight: 400;
-  src: local('PT Serif'), local('PTSerif-Regular'), url("font/pt400.woff") format('woff');
+  src: local('PT Serif'), local('PTSerif-Regular'), url("http://hussion.qiniudn.com/pt400.woff") format('woff');
 }
 @font-face {
   font-family: 'PT Serif';
   font-style: normal;
   font-weight: 700;
-  src: local('PT Serif Bold'), local('PTSerif-Bold'), url("font/pt700.woff") format('woff');
+  src: local('PT Serif Bold'), local('PTSerif-Bold'), url("http://hussion.qiniudn.com/pt700.woff") format('woff');
 }
 @font-face {
   font-family: 'FontAwesome';
   font-style: normal;
   font-weight: normal;
-  src: url("font/fontawesome-webfont.eot?#iefix") format('embedded-opentype'), url("font/fontawesome-webfont.woff") format('woff'), url("font/fontawesome-webfont.ttf") format('truetype'), url("font/fontawesome-webfont.svg#FontAwesomeRegular") format('svg');
+  src: url("http://hussion.qiniudn.com/fontawesome-webfont.eot?#iefix") format('embedded-opentype'), url("http://hussion.qiniudn.com/fontawesome-webfont.woff") format('woff'), url("http://hussion.qiniudn.com/fontawesome-webfont.ttf") format('truetype'), url("http://hussion.qiniudn.com/fontawesome-webfont.svg#FontAwesomeRegular") format('svg');
 }
 * {
   margin: 0;
@@ -23,7 +23,7 @@
 body {
   background: url("http://ww1.sinaimg.cn/large/6cdc22a9jw1e7iwasxiuaj205n08tjrj.jpg") fixed;
   color: #444;
-  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 14px;
   text-shadow: 0 0 1px transparent;
 }
@@ -127,6 +127,35 @@ a:hover {
     margin-right: 0;
   }
 }
+.ds-powered-by {
+  display: none;
+}
+#ds-reset .ds-avatar img {
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  border-radius: 50% !important;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(51,51,51,0.2) sf;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(51,51,51,0.2) sf;
+  box-shadow: inset 0 -1px 0 rgba(51,51,51,0.2) sf;
+  -webkit-transition: 0.4s;
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  -moz-transition: -moz-transform 0.4s ease-out;
+  -o-transition: -o-transform 0.4s ease-out;
+  -ms-transition: -ms-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  -moz-transition: -moz-transform 0.4s ease-out;
+}
+#ds-reset .ds-avatar img:hover {
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  -o-transform: rotateZ(360deg);
+  -ms-transform: rotateZ(360deg);
+  transform: rotateZ(360deg);
+}
 #header {
   margin: 50px auto 0 auto;
 }
@@ -161,7 +190,7 @@ a:hover {
   clear: both;
   line-height: 3.4em;
   padding-left: 10px;
-  background: transparent url("http://ww4.sinaimg.cn/large/6cdc22a9jw1e7iwq9cv6uj208d01ewec.jpg") repeat-x;
+  background: transparent url("http://hussion.qiniudn.com/nav.jpg") repeat-x;
   -webkit-border-top-left-radius: 6px;
   -webkit-border-top-right-radius: 6px;
   -moz-border-radius-topleft: 6px;
@@ -178,7 +207,7 @@ a:hover {
 }
 #header #main-nav ul li a {
   color: #999;
-  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   text-shadow: 0px 1px 1px #000;
 }
 #header #main-nav ul li a:hover {
@@ -280,7 +309,7 @@ article .gallery .next:before {
 }
 article header time {
   color: #999;
-  font: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  font: "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   margin-bottom: 5px;
   display: inline-block;
   line-height: 1;
@@ -304,7 +333,7 @@ article header .post-tags {
 }
 article header .post-tags span {
   display: inline-block;
-  padding: 2px 8px;
+  padding: 0 8px;
   margin-left: 10px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -313,6 +342,7 @@ article header .post-tags span {
 }
 article header .post-tags span a {
   color: #fff;
+  font-size: 12px;
 }
 article header .post-tags span a:hover {
   text-decoration: none;
@@ -334,6 +364,15 @@ article header .post-tags .tag-Python {
 }
 article header .post-tags .tag-Mac {
   background: #c78484;
+}
+article header .post-tags .tag-杂谈 {
+  background: #08c;
+}
+article header .post-tags .tag-前端开发 {
+  background: #10a296;
+}
+article header .post-tags .tag-Linux {
+  background: #905;
 }
 article header .title {
   font-weight: bold;
@@ -390,10 +429,10 @@ article .entry blockquote footer cite:before {
 }
 article .entry code,
 article .entry pre {
-  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
 }
 article .entry code {
-  background: #eee;
+  background: #fff;
   color: #666;
   padding: 0 5px;
   margin: 0 2px;
@@ -403,10 +442,10 @@ article .entry code {
   border-radius: 3px;
 }
 article .entry pre {
-  background: #fdf6e3;
+  background: #f6f2f0;
+  color: #555;
   border: 1px solid #ddd;
   margin-top: 15px;
-  overflow: auto;
   padding: 7px 15px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -502,7 +541,7 @@ article .entry .pullquote {
 article footer {
   margin-top: 15px;
   padding-top: 10px;
-  border-bottom: 1px dotted #ddd;
+  border-bottom: 1px dashed #999;
   color: #999;
   font-size: 0.9em;
   line-height: 16px;
@@ -692,7 +731,7 @@ article footer .addthis iframe {
 }
 .entry .gist .gist-file .gist-data pre {
   padding: 0 !important;
-  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
 }
 .entry .gist .gist-file .gist-meta {
   background: none;
@@ -709,33 +748,20 @@ article footer .addthis iframe {
   color: #ed786a;
 }
 figure.highlight {
-  background: #fdf6e3;
-  border: 1px solid #ddd;
+  background: #f6f2f0;
+  border: 1px dashed #ddd;
   margin-top: 15px;
   padding: 7px 15px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  text-shadow: 0 1px 1px #fff;
   line-height: 1.6;
   overflow: auto;
   position: relative;
   font-size: 0.9em;
 }
 figure.highlight figcaption {
-  color: #474747;
-  background: url("http://ww2.sinaimg.cn/large/6cdc22a9jw1e7j50clgfxj200k00q0ay.jpg") repeat-x;
-  margin: -7px -20px 5px -20px;
-  height: 27px;
+  color: #999;
   text-align: center;
-  line-height: 27px;
-  border: 1px solid #565656;
-  border-top-color: #cbcbcb;
-  border-left-color: #a5a5a5;
-  border-right-color: #a5a5a5;
-  border-bottom: 0;
-  text-shadow: 0 1px 1px #fff;
+  margin-bottom: 5px;
+  text-shadow: 0 0 1px #fff;
 }
 figure.highlight figcaption a {
   position: absolute;
@@ -758,8 +784,7 @@ figure.highlight .gutter {
 }
 figure.highlight .code {
   padding-left: 15px;
-  border-left: 1px solid #fff;
-  color: #666;
+  color: #aaa;
 }
 pre .comment,
 pre .template_comment,
@@ -779,9 +804,11 @@ pre .css .tag,
 pre .request,
 pre .status,
 pre .nginx .title {
-  color: #859900;
+  color: #c82829;
 }
-pre .number,
+pre .number {
+  color: #c78484;
+}
 pre .command,
 pre .string,
 pre .tag .value,
@@ -789,7 +816,7 @@ pre .phpdoc,
 pre .tex .formula,
 pre .regexp,
 pre .hexcolor {
-  color: #2aa198;
+  color: #718c00;
 }
 pre .title,
 pre .localvars,
@@ -800,17 +827,19 @@ pre .identifier,
 pre .vhdl,
 pre .literal,
 pre .id {
-  color: #268bd2;
+  color: #9086bd;
 }
 pre .attribute,
 pre .variable,
 pre .lisp .body,
 pre .smalltalk .number,
 pre .constant,
-pre .class .title,
 pre .parent,
 pre .haskell .type {
   color: #b58900;
+}
+pre .class .title {
+  color: #07a;
 }
 pre .preprocessor,
 pre .preprocessor .keyword,

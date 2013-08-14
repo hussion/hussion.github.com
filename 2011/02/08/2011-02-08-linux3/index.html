@@ -66,6 +66,10 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux"><a href="/tags/Linux/">Linux</a></span>
+            
+          
         </div>
       
   
@@ -76,373 +80,226 @@
     <div class="entry">
       
         <ul>
-<li>命令名称: <strong>ls</strong>  <blockquote>
-<p>命令英文原意： list<br>命令所在路径： /bin/ls<br>执行权限： 所有用户<br>功能描述： 显示目录文件及其信息</p>
-</blockquote>
-</li>
+<li>命令名称: <strong>ls</strong>  </li>
 </ul>
-<figure class="highlight lang-ruby"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-</pre></td><td class="code"><pre> <span class="comment">#语法：  </span>
+<figure class="highlight lang-bash"><pre>命令英文原意： list  
+命令所在路径： /bin/ls  
+执行权限： 所有用户  
+功能描述： 显示目录文件及其信息
+   
+ <span class="comment">#语法：  </span>
 ls 选项[-ald] [文件或目录]  
 -a <span class="comment">#显示所有文件，包括隐藏文件  </span>
 -l <span class="comment">#详细信息显示  </span>
 -d <span class="comment">#查看目录属性  </span>
--i <span class="comment">#显示文件或者目录的i节点信息  </span>
-```  
-&lt;!--more--&gt;  
+-i <span class="comment">#显示文件或者目录的i节点信息</span>
+</pre></figure>
+
+
+<a name="more"></a> 
+
+<ul>
+<li>命令名称: <strong>cd</strong>  </li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： change directory  
+命令所在路径： shell内置命令  
+执行权限： 所有用户  
+功能描述： 切换目录
   
-* 命令名称<span class="symbol">:</span> **cd**  
-&gt; 命令英文原意： change directory  
-&gt; 命令所在路径： shell内置命令  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 切换目录
-    
-``` ruby   
  <span class="comment">#语法：  </span>
 cd [目录]  
  <span class="comment">#例：   </span>
-<span class="variable">$ </span>cd / <span class="comment">#切换到根目录   </span>
-<span class="variable">$ </span>cd .. <span class="comment">#回到上级目录  </span>
-```  
-  
-* 命令名称<span class="symbol">:</span> **pwd**      
-&gt; 命令英文原意： print working directory  
-&gt; 命令所在路径： /bin/pwd  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 显示当前所在的工作目录
-    
-``` ruby   
+$ cd / <span class="comment">#切换到根目录   </span>
+$ cd .. <span class="comment">#回到上级目录</span>
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>pwd</strong> </li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： print working directory  
+命令所在路径： /bin/pwd  
+执行权限： 所有用户  
+功能描述： 显示当前所在的工作目录  
+
  <span class="comment">#语法：  </span>
-<span class="variable">$ </span>pwd    
-```  
-  
-* 命令名称<span class="symbol">:</span> **touch**      
-&gt; 命令所在路径： /bin/touch  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 创建空文件
-    
-``` ruby   
+$ pwd
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>touch</strong>     </li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令所在路径： /bin/touch  
+执行权限： 所有用户  
+功能描述： 创建空文件
+   
  <span class="comment">#语法：  </span>
-<span class="variable">$ </span>touch [文件名]    
-```
+$ touch [文件名]
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>mkdir</strong> </li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： make directories     
+命令所在路径： /bin/mkdir  
+执行权限： 所有用户  
+功能描述： 创建新目录
   
-* 命令名称<span class="symbol">:</span> **mkdir** 
-&gt; 命令英文原意： make directories     
-&gt; 命令所在路径： /bin/mkdir  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 创建新目录
-    
-``` ruby   
  <span class="comment">#语法：  </span>
-<span class="variable">$ </span>mkdir [目录名]    
-```
-  
-* 命令名称<span class="symbol">:</span> **cp** 
-&gt; 命令英文原意： copy     
-&gt; 命令所在路径： /bin/cp  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 复制文件或目录
-    
-``` ruby   
+$ mkdir [目录名]
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>cp</strong>     </li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： copy     
+命令所在路径： /bin/cp  
+执行权限： 所有用户  
+功能描述： 复制文件或目录
+   
  <span class="comment">#语法：  </span>
-<span class="variable">$ </span>cp [源文件] [目的目录] <span class="comment">#复制文件到目的目录  </span>
+$ cp [源文件] [目的目录] <span class="comment">#复制文件到目的目录  </span>
  <span class="comment">#可以同时复制多个文件  </span>
-<span class="variable">$ </span>cp file1 file2 dir1  
-<span class="variable">$ </span>cp -r [源目录] [目的目录] <span class="comment">#复制目录到目的目录   </span>
-<span class="variable">$ </span>cp -r dir1 dir2 <span class="comment">#将dir1下的所有文件及子目录复制到dir2 </span>
-<span class="variable">$ </span>cp -p <span class="comment">#不改变文件的创建或者修改时间进行复制  </span>
-```
+$ cp file1 file2 dir1  
+$ cp -r [源目录] [目的目录] <span class="comment">#复制目录到目的目录   </span>
+$ cp -r dir1 dir2 <span class="comment">#将dir1下的所有文件及子目录复制到dir2 </span>
+$ cp -p <span class="comment">#不改变文件的创建或者修改时间进行复制</span>
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>mv</strong></li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： move     
+命令所在路径： /bin/move  
+执行权限： 所有用户  
+功能描述： 移动文件或目录、更名
   
-* 命令名称<span class="symbol">:</span> **mv** 
-&gt; 命令英文原意： move     
-&gt; 命令所在路径： /bin/move  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 移动文件或目录、更名
-    
-``` ruby   
  <span class="comment">#语法：  </span>
-<span class="variable">$ </span>mv file1 file2 <span class="comment">#把file1更名为file2(file1和file2同目录)  </span>
-<span class="variable">$ </span>mv [源文件或目录] [目的目录] <span class="comment">#移动文件或目录到目的目录  </span>
-<span class="variable">$ </span>mv file1 file2 dir1 <span class="comment">#移动多个文件   </span>
-<span class="variable">$ </span>mv -f [源目录或文件] [目的目录] <span class="comment">#强制移动目录或文件到目的目录      </span>
-```
+$ mv file1 file2 <span class="comment">#把file1更名为file2(file1和file2同目录)  </span>
+$ mv [源文件或目录] [目的目录] <span class="comment">#移动文件或目录到目的目录  </span>
+$ mv file1 file2 dir1 <span class="comment">#移动多个文件   </span>
+$ mv -f [源目录或文件] [目的目录] <span class="comment">#强制移动目录或文件到目的目录</span>
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>rm</strong>  </li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： remove     
+命令所在路径： /bin/rm  
+执行权限： 所有用户  
+功能描述： 删除文件或目录
   
-* 命令名称<span class="symbol">:</span> **rm** 
-&gt; 命令英文原意： remove     
-&gt; 命令所在路径： /bin/rm  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 删除文件或目录
-    
-``` ruby   
  <span class="comment">#语法：    </span>
-<span class="variable">$ </span>rm [-irf] [源文件或目录]  
+$ rm [-irf] [源文件或目录]  
 -i <span class="comment">#进行交互式删除  </span>
 -r <span class="comment">#将参数中列出的全部目录和子目录均递归地删除  </span>
 -f <span class="comment">#忽略不存在的文件，从不给出提示</span>
-```
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>cat</strong></li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： concatenate and display files     
+命令所在路径： /bin/cat  
+执行权限： 所有用户  
+功能描述： 显示文件内容(只能显示一页)
   
-* 命令名称<span class="symbol">:</span> **cat** 
-&gt; 命令英文原意： concatenate <span class="keyword">and</span> display files     
-&gt; 命令所在路径： /bin/cat  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 显示文件内容(只能显示一页)
-    
-``` ruby   
  <span class="comment">#语法：    </span>
-<span class="variable">$ </span>cat [文件]
-<span class="variable">$ </span>cat [file1] [file2] <span class="comment">#合并显示多个文件  </span>
-```
-  
-* 命令名称<span class="symbol">:</span> **more** 
-&gt; 命令所在路径： /bin/more  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 分页显示文件内容
-    
-``` ruby   
+$ cat [文件]
+$ cat [file1] [file2] <span class="comment">#合并显示多个文件</span>
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>more</strong></li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令所在路径： /bin/more  
+执行权限： 所有用户  
+功能描述： 分页显示文件内容
+   
  <span class="comment">#语法：    </span>
-<span class="variable">$ </span>more [文件]  
+$ more [文件]  
  <span class="comment">#按键盘空格或f显示下一页，Enter显示下一行，q或Q退出</span>
-```
-  
-* 命令名称<span class="symbol">:</span> **less** 
-&gt; 命令所在路径： /bin/less  
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 分页显示文件内容
-    
-``` ruby   
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>less</strong></li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令所在路径： /bin/less  
+执行权限： 所有用户  
+功能描述： 分页显示文件内容
+   
  <span class="comment">#语法：    </span>
-<span class="variable">$ </span>less [文件]  
+$ less [文件]  
  <span class="comment">#按键盘空格或f显示下一页，Enter显示下一行，q或Q退出  </span>
  和more命令相比，还可以用↑ 和 ↓ 来显示内容
-```  
-  
-* 命令名称<span class="symbol">:</span> **head** 
-&gt; 命令所在路径： /bin/head   
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 显示文件前几行内容
-    
-``` ruby   
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>head</strong></li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令所在路径： /bin/head   
+执行权限： 所有用户  
+功能描述： 显示文件前几行内容  
+
  <span class="comment">#语法：    </span>
-<span class="variable">$ </span>head -num [文件] <span class="comment">#-num，显示文件的前num行  </span>
-```
+$ head -num [文件] <span class="comment">#-num，显示文件的前num行</span>
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>tail</strong></li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令所在路径： /bin/tail   
+执行权限： 所有用户  
+功能描述： 显示文件后几行内容
   
-* 命令名称<span class="symbol">:</span> **tail** 
-&gt; 命令所在路径： /bin/tail   
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 显示文件后几行内容
-    
-``` ruby   
  <span class="comment">#语法：    </span>
-<span class="variable">$ </span>tail -num [文件] <span class="comment">#-num，显示文件的后num行  </span>
-<span class="variable">$ </span>tali -f [文件] <span class="comment"># 动态显示文件内容(只要文件内容发生变化，就会动态显示出来) </span>
-```
+$ tail -num [文件] <span class="comment">#-num，显示文件的后num行  </span>
+$ tali -f [文件] <span class="comment"># 动态显示文件内容(只要文件内容发生变化，就会动态显示出来)</span>
+</pre></figure>
+
+
+<ul>
+<li>命令名称: <strong>ln</strong></li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： link  
+命令所在路径： /bin/ln   
+执行权限： 所有用户  
+功能描述： 创建链接文件
   
-* 命令名称<span class="symbol">:</span> **ln** 
-&gt; 命令英文原意： link  
-&gt; 命令所在路径： /bin/ln   
-&gt; 执行权限： 所有用户  
-&gt; 功能描述： 创建链接文件
-    
-``` ruby   
  <span class="comment">#语法：    </span>
-<span class="variable">$ </span>ln [源文件] [目标文件] <span class="comment">#创建硬链接文件  </span>
-<span class="variable">$ </span>ln -s [源文件] [目标文件] <span class="comment">#创建软链接文件  </span>
-两者区别：  
- /*  
-  软链接权限都是rwxrwxrwx的, --&gt; <span class="number">10</span> 数字代表时间值  
-  类似于windows的快捷方式，可以跨文件系统生成，源文件删除，软链接不能继续使用了。  
-  硬链接相当于不改变时间的对文件的拷贝(cp -p) + 同步更新，与源文件有相同的inode，  
-  不能跨文件系统生成，不能对目录创建硬链接，源文件删除，硬链接文件还可以继续使用，  
-  因为他相当于是对源文件的拷贝。 
-  硬链接文件是同步更新的(源文件发生变化，硬链接文件也同步变化)！！！   
- *<span class="regexp">/
-</pre></td></tr></table></figure>
+$ ln [源文件] [目标文件] <span class="comment">#创建硬链接文件  </span>
+$ ln -s [源文件] [目标文件] <span class="comment">#创建软链接文件  </span>
+两者区别：    
+软链接权限都是rwxrwxrwx的, --10 数字代表时间值  
+类似于windows的快捷方式，可以跨文件系统生成，源文件删除，软链接不能继续使用了。  
+硬链接相当于不改变时间的对文件的拷贝(cp -p) + 同步更新，与源文件有相同的inode，  
+不能跨文件系统生成，不能对目录创建硬链接，源文件删除，硬链接文件还可以继续使用，  
+因为他相当于是对源文件的拷贝。 
+硬链接文件是同步更新的(源文件发生变化，硬链接文件也同步变化)！！！
+</pre></figure>
 
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/linux/">linux</a>
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>
@@ -453,9 +310,18 @@ cd [目录]
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -467,22 +333,10 @@ cd [目录]
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

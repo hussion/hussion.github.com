@@ -66,6 +66,10 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-前端开发"><a href="/tags/前端开发/">前端开发</a></span>
+            
+          
         </div>
       
   
@@ -76,58 +80,42 @@
     <div class="entry">
       
         <p>最近发现博客页面在加载的时候很慢，然后打开调试工具的Network发现Google fonts在作怪，Google在天朝的状况，大家都懂的，但是我们无法离开Google,知道原因后，就可以下手了。<br>1. 进入<code>octopress/source/_includes/custom/head.html</code>,注掉里面代码。  </p>
-<figure class="highlight lang-html"><figcaption><span>head.html </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="comment">&lt;!--Fonts from Google"s Web font directory at http://google.com/webfonts 
-&lt;link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"&gt;
-&lt;link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"&gt;
+<figure class="highlight lang-html"><figcaption><span>head.html </span></figcaption><pre><span class="comment">&lt;!--Fonts from Google"s Web font directory at http://google.com/webfonts 
+&lt;link href="http://fonts.googleapis.com/xxx" type="text/css"&gt;
+&lt;link href="http://fonts.googleapis.com/xxx" type="text/css"&gt;
 --&gt;</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <ol>
-<li>如果你不想用Google fonts，那下面的就不用看了，否则继续第二步，将web字体格式化。  <figure class="highlight lang-css"><figcaption><span>style.css </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre></td><td class="code"><pre><span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">{
+<li>如果你不想用Google fonts，那下面的就不用看了，否则继续第二步，将web字体格式化。  </li>
+</ol>
+<figure class="highlight lang-css"><pre><span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">{
 <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">'Miltonian'</span>;</span></span>
 <span class="rule"><span class="attribute">font-style</span>:<span class="value"> normal;</span></span>
 <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> <span class="number">400</span>;</span></span>
-<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Miltonian'</span>)</span>, <span class="function">local(<span class="string">'Miltonian-Regular'</span>)</span>, <span class="function">url(http://themes.googleusercontent.com/static/fonts/miltonian/v5/DVUl6K_XDo9HSLlx2JoxNT8E0i7KZn-EPnyo3HZu7kw.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
+<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Miltonian'</span>)</span>, <span class="function">url(fonts/xxx.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
 <span class="rule">}</span></span>
 <span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">{
 <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">'Bitter'</span>;</span></span>
 <span class="rule"><span class="attribute">font-style</span>:<span class="value"> normal;</span></span>
 <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> <span class="number">400</span>;</span></span>
-<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Bitter-Regular'</span>)</span>, <span class="function">url(http://themes.googleusercontent.com/static/fonts/bitter/v4/SHIcXhdd5RknatSgOzyEkA.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
+<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Bitter-Regular'</span>)</span>, <span class="function">url(xxx.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
 <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
-</li>
-</ol>
 <p>ok，enjoy now ！</p>
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/Mac/">Mac</a>
+  <div class="tags">
+    <a href="/tags/前端开发/">前端开发</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>
@@ -138,9 +126,18 @@
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -152,22 +149,10 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

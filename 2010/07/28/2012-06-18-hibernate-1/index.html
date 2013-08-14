@@ -87,117 +87,7 @@
 <p>pojo: Plain Ordinary Java Object(无格式的Java对象)<br>Hibernate对pojo的要求：<br>–  属性要有对应的get和set方法<br>–  要有无参数的默认构造方法<br>–  不要使用final进行修饰</p>
 <blockquote>
 <p>创建映射文件  </p>
-<figure class="highlight lang-xml"><figcaption><span>映射文件示例 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-</pre></td><td class="code"><pre><span class="pi">&lt;?xml	version="1.0"	encoding="UTF-8"?&gt;</span>	
+<figure class="highlight lang-xml"><figcaption><span>映射文件示例 </span></figcaption><pre><span class="pi">&lt;?xml	version="1.0"	encoding="UTF-8"?&gt;</span>	
 <span class="doctype">&lt;!DOCTYPE	hibernate-mapping	PUBLIC		
 	"-//Hibernate/Hibernate	Mapping	DTD	3.0//EN"	
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span>	
@@ -307,7 +197,7 @@ user.setUserName("Alex");
 session.update(user);	
  
 session.getTransaction().commit();
-</pre></td></tr></table></figure>
+</pre></figure>
 
 </blockquote>
 
@@ -332,9 +222,18 @@ session.getTransaction().commit();
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -346,22 +245,10 @@ session.getTransaction().commit();
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

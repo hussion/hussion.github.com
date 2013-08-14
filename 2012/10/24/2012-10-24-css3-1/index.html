@@ -80,78 +80,57 @@
     <div class="entry">
       
         <p><strong>一、 接受差异</strong><br>在很多情况下，处理不支持的浏览器的最佳方法就是直接接受视觉表现上的差异，这就是渐进增强的核心思想。很多情况下添加额外的兼容方案反而会让访客更加反感，比如在旧式浏览器上添加背景图片，为了实现圆角，添加圆角背景图片，等一些列图片来实现类似css3效果，这样会导致页面加载缓慢，结果得不偿失。<br><strong>二、为一个属性同时提供非Css3和Css3的值</strong><br>在那些你希望或者不得不提供回滚方案的情形下，可以只为同一条规则提供多于一个的属性值：第一条是为不支持的浏览器准备的；第二条，css3特性值，是为高级浏览器准备的。这样不支持的浏览器会忽略那些它们不能理解的属性，而高级浏览器则会用第二条值去重载第一条的值。比如：  </p>
-<figure class="highlight lang-css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">div</span> <span class="rules">{
+<figure class="highlight lang-css"><pre><span class="tag">div</span> <span class="rules">{
 	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#CC0000</span>;</span></span>
 	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">hsla(<span class="number">0</span>, <span class="number">100</span>%, <span class="number">40</span>%, .<span class="number">5</span>)</span>;</span></span>
 <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p><strong>三、使用Modernizr检测css3支持</strong><br><a href="http://www.modernizr.com">Modernizr</a>是一个第三方脚本，它可以检测用户浏览器对css3和html5特性的支持情况，然后会对html元素添加一些类来表明当前浏览器是否支持某些特性，比如“no-multiplebgs”表明浏览器不支持在单一元素上排布多背景图片，而相应的“multiplebgs”则表明浏览器是支持的。<br>当这些类加入时，我们就可以很容易的为每个类编写特定的样式，而且能够确保每个样式只会被支持的浏览器识别。比如：</p>
-<figure class="highlight lang-css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="id">#wrapper</span> <span class="rules">{
+<figure class="highlight lang-css"><pre><span class="id">#wrapper</span> <span class="rules">{
 	<span class="rule">……	
 }</span></span>
 <span class="class">.no-multiplebgs</span> <span class="id">#wrapper</span> <span class="rules">{
 	<span class="rule">……
 }</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>另外推荐一遍文章 <a href="http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr">taking advantage of html5 and css3 with modernizr</a><br><strong>四、使用javascript模拟Css3</strong><br>javascript通常能够是的不支持的浏览器实现和高级浏览器一样的效果，例如现在已经有很多脚本实现圆角效果了。
 <a href="http://code.google.com/p/html5shiv/"><strong>html5.js</strong></a>,你只需且必须在页面head元素内调用它就行了(因为IE必须在元素解析前知道这个元素，所以这个js文件不能在页面底部调用）。</p>
-<figure class="highlight lang-javascript"><figcaption><span>html5.js </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;
+<figure class="highlight lang-javascript"><figcaption><span>html5.js </span></figcaption><pre>&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;
 <span class="xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://html5shiv.googlecode.com/svn/trunk/html5.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">![endif]--</span>&gt;</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>现在主要用的是html5.js，当然还有一些其他的js模拟脚本，有兴趣的可以去研究下，比如 <code>Selectivizr</code>, <code>cssSandpaper</code>, <code>PIE</code>等。<br><strong>五、IE滤镜</strong><br>滤镜是微软提供的主要用来并且只在IE浏览器中起作用的创建不同样式表。通常是通过独有的属性滤镜或者-ms-filter属性来实现。具体的属性滤镜语法则依赖于你所使用的特定滤镜，但它们通用的格式是一样的：  </p>
-<figure class="highlight lang-css"><figcaption><span>滤镜 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>filter:progid:DXImageTransform.Microsoft.filtername(sProperties)
+<figure class="highlight lang-css"><figcaption><span>滤镜 </span></figcaption><pre>filter:progid:DXImageTransform.Microsoft.filtername(sProperties)
 // filtername是滤镜的名字， sProperties是它的值
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>在IE8以后，这个语法升级成了<code>-ms-filter</code>作为属性名，你也应该用引号来包裹它的属性值。</p>
 <blockquote>
 <p>DropShadow、 Shadow、 Glow和Blur滤镜用来模拟box-shadow和text-shadow.<br>Gradient滤镜用来模拟RGBA、 HSLA和线性渐变效果<br>Alpha和BasicImage滤镜用来模拟opaticy效果<br>Matrix和BasicImage滤镜用来模拟2D变形效果  </p>
 </blockquote>
 <p>滤镜的优点是它不需要javascript并且只在IE中有效，当然也有很多缺点。<br><code>长度：</code>描述一个滤镜将会花费很多字符。如果一个css文件中使用很多滤镜，这样会明显增大css文件的大小。为了克服这个，需要将这些样式表放在一个单独的文件里面，使用IE条件表达式来引入它。<br><code>无法通过验证：</code>包含滤镜的样式表是无法通过验证的。你必须将这些滤镜放在IE-only的文件里面从而保证至少你的主样式表文件是可以验证通过的。<br><code>性能：</code>滤镜会让页面的加载速度变慢，并且消耗大量的内存<br><code>粗糙的字体：</code>滤镜会关闭windows的ClearType渲染，因此文本显示不再是抗锯齿的，从而看起来很粗糙。<br>当然还有很多其他的缺陷，就不一一列出了。<br><strong>六、使用条件表达式过滤IE</strong><br>1. 提供IE独有的样式表  </p>
-<figure class="highlight lang-css"><figcaption><span>IE独有样式表 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&lt;!--[if IE]&gt;
+<figure class="highlight lang-css"><figcaption><span>IE独有样式表 </span></figcaption><pre>&lt;!--[if IE]&gt;
 &lt;link rel="stylesheet" href=“ie_all.css” type="text/css"&gt;
 &lt;![endif]--&gt;
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <ol>
-<li><p>对IE不可见  </p>
-<figure class="highlight lang-css"><figcaption><span>非IE样式表 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&lt;!--[if !IE]&gt;--&gt;
+<li>对IE不可见</li>
+</ol>
+<figure class="highlight lang-css"><figcaption><span>非IE样式表 </span></figcaption><pre>&lt;!--[if !IE]&gt;--&gt;
 &lt;link rel="stylesheet" href=“not_ie.css” type="text/css"&gt;
 &lt;--&lt;![endif]--&gt;
-</pre></td></tr></table></figure>
-</li>
-<li><p>在html标签上添加IE版本类</p>
-<figure class="highlight lang-css"><figcaption><span>html标签加载IE</span></figcaption><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>&lt;!--[if lt IE 7]&gt; &lt;html class="ie6" lang="en"&gt; &lt;![endif]--&gt;
-</pre></td></tr></table></figure>
+</pre></figure>
 
-</li>
+<ol>
+<li>在html标签上添加IE版本类</li>
 </ol>
+<figure class="highlight lang-css"><figcaption><span>html标签加载IE</span></figcaption><pre>&lt;!--[if lt IE 7]&gt; &lt;html class="ie6" lang="en"&gt; &lt;![endif]--&gt;
+</pre></figure>
+
 
       
     </div>
@@ -174,9 +153,18 @@
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -188,22 +176,10 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

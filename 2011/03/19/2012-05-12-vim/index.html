@@ -79,84 +79,7 @@
 <a name="more"></a>   
 
 <p><1> 插入命令  </p>
-<figure class="highlight lang-ruby"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-</pre></td><td class="code"><pre>a <span class="comment">#在光标后附加文本  </span>
+<figure class="highlight lang-ruby"><pre>a <span class="comment">#在光标后附加文本  </span>
 <span class="constant">A</span> <span class="comment">#在本行行末附加文本  </span>
 i <span class="comment">#在光标前插入文本  </span>
 <span class="constant">I</span> <span class="comment">#在本行开始插入文本  </span>
@@ -233,7 +156,7 @@ n <span class="comment">#搜索指定字符串的下一个出现位置  </span>
 <span class="symbol">:n</span>,ns/^<span class="regexp">/\/\//g</span> <span class="comment">#替换n到n行行首//为空(\/\/表示//,\为转义符,加转义符是为了让系统正常的识别/)  </span>
 <span class="symbol">:ab</span> myemail xxx<span class="variable">@qq</span>.com <span class="comment">#定义输入myemail为xxx<span class="yardoctag">@qq</span>.com (输入myemail后按空格或回车就会变成xxx<span class="yardoctag">@qq</span>.com)</span>
 <span class="symbol">:unab</span> myemail <span class="comment">#取消定义myemail的替换</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 
       
@@ -257,9 +180,18 @@ n <span class="comment">#搜索指定字符串的下一个出现位置  </span>
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -271,22 +203,10 @@ n <span class="comment">#搜索指定字符串的下一个出现位置  </span>
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

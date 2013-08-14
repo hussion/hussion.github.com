@@ -66,6 +66,10 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux"><a href="/tags/Linux/">Linux</a></span>
+            
+          
         </div>
       
   
@@ -75,39 +79,49 @@
     </header>
     <div class="entry">
       
-        <h5>命令格式：</h5>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>命令 -选项 参数  
+        <h3>命令格式：</h3>
+<figure class="highlight lang-bash"><pre>命令 -选项 参数  
  <span class="comment">#例如  </span>
 ls -l -a /etc  
 如果有多个选项，可以写在一起  
 ls -la /etc <span class="comment">#和上面写法是等价的</span>
-</pre></figure></code></pre>
-<h5>命令分类</h5>
-<blockquote>
-<p>文件处理命令<br>权限管理命令<br>文件搜索命令<br>帮助命令<br>压缩解压命令<br>网络通信命令<br>...  </p>
-</blockquote>
-<p>常用简单命令：</p>
-<pre><code><figure class="highlight"><pre><span class="title">who</span>： 列出所有正在使用系统的用户、所用终端名和注册到系统的时间
-<span class="title">who</span> am i： 列出使用该命令的当前用户的相关信息
-<span class="title">echo</span>： 将命令行中的参数显示到标准输出(即屏幕)上
-<span class="title">date</span>： 显示或设置系统的日期和时间
-<span class="title">cal</span>： 显示日历(cal <span class="number">2011</span>&lt;显示<span class="number">2011</span>全年日历&gt;，cal <span class="number">02</span> <span class="number">2011</span>&lt;显示<span class="number">2011</span>年<span class="number">2</span>月日历&gt;)
-<span class="title">clear</span>： 清除屏幕上的信息
-<span class="title">adduser</span>: 添加用户
-<span class="title">passwd</span>: 修改密码
-</pre></figure></code></pre>
+</pre></figure>
+
+
+<h3>命令分类</h3>
+<figure class="highlight lang-bash"><pre>文件处理命令  
+权限管理命令  
+文件搜索命令  
+帮助命令  
+压缩解压命令  
+网络通信命令  
+...
+</pre></figure>
+
+
+<h3>常用简单命令：</h3>
+<figure class="highlight lang-bash"><pre>who： 列出所有正在使用系统的用户、所用终端名和注册到系统的时间
+who am i： 列出使用该命令的当前用户的相关信息
+<span class="keyword">echo</span>： 将命令行中的参数显示到标准输出(即屏幕)上
+date： 显示或设置系统的日期和时间
+cal： 显示日历(cal 2011&lt;显示2011全年日历&gt;，cal 02 2011&lt;显示2011年2月日历&gt;)
+clear： 清除屏幕上的信息
+adduser: 添加用户
+passwd: 修改密码
+</pre></figure>
+
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/linux/">linux</a>
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>
@@ -118,9 +132,18 @@ ls -la /etc <span class="comment">#和上面写法是等价的</span>
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -132,22 +155,10 @@ ls -la /etc <span class="comment">#和上面写法是等价的</span>
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

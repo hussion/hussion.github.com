@@ -80,38 +80,17 @@
     <div class="entry">
       
         <p><strong>算法：</strong><br>算法是描述如何完成一项任务的方法。实际上，在编写程序的时候，就是要使用计算机能够理解的语言（如python）来准确地描述算法。这类对机器友好的描述就叫做程序。<br><strong>函数（function）：</strong><br>python中的函数类似于java中的方法，可以有参数，并且返回值<br><strong>模块（module）：</strong><br>模块就是扩展，它可以导入到python中，从而扩展python的功能。在使用模块的时候需要先导入模块。例如： <code>math</code>模块提供了很多有用的数学函数。</p>
-<figure class="highlight lang-python"><figcaption><span>math模块 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="keyword">import</span> math	<span class="comment"># 导入math模块</span>
+<figure class="highlight lang-python"><figcaption><span>math模块 </span></figcaption><pre><span class="keyword">import</span> math	<span class="comment"># 导入math模块</span>
 math.floor()
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>如果不想每次都输入<code>模块名.函数名</code>来调用函数，想直接通过<code>函数名</code>来调用,可以这么做。</p>
-<figure class="highlight lang-python"><figcaption><span>通过函数名直接调用 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="keyword">from</span> math <span class="keyword">import</span> sqrt	<span class="comment"># 也可以使用from math import *  导入所有函数 </span>
+<figure class="highlight lang-python"><figcaption><span>通过函数名直接调用 </span></figcaption><pre><span class="keyword">from</span> math <span class="keyword">import</span> sqrt	<span class="comment"># 也可以使用from math import *  导入所有函数 </span>
 sqrt(<span class="number">9</span>)	<span class="comment"># 3.0</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>但是使用from…import…语句，容易造成命名冲突，比如cmath模块中也有个sqrt()方法，这样的话一旦使用此语句，就没法使用普通的sqrt函数了，所以除非真的需要from这个形式的模块导入语句，否则应该坚持使用普通的import<br><strong>运算符：</strong><br>对于基本的加减乘除和java都一样，对于乘除python里进行了增强。</p>
-<figure class="highlight lang-python"><figcaption><span>python乘除 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="code"><pre>print(<span class="number">1</span> / <span class="number">2</span>)	<span class="comment"># 0</span>
+<figure class="highlight lang-python"><figcaption><span>python乘除 </span></figcaption><pre>print(<span class="number">1</span> / <span class="number">2</span>)	<span class="comment"># 0</span>
 print(<span class="number">1</span> / <span class="number">2.</span>)	<span class="comment"># 0.5</span>
 
 ---------------------------------
@@ -128,29 +107,11 @@ print(<span class="number">1.0</span> // <span class="number">2.0</span>)	<span 
 print(<span class="number">2</span> ** <span class="number">3</span>)	<span class="comment"># 8</span>
 print(-<span class="number">3</span> ** <span class="number">2</span>) <span class="comment"># -9</span>
 print((-<span class="number">3</span>) ** <span class="number">2</span>)	<span class="comment"># 9</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p><strong>注意：</strong>Python 不支持 C 语言中的自增 1 和自减 1 运算符,这是因为 + 和 － 也是单目运算符，Python 会将 --n 解释为-(-n) 从而得到 n , 同样 ++n 的结果也是 n.  </p>
 <p><strong>获取用户输入：</strong><br>获取用户输入可以使用<code>input(prompt)</code>函数和<code>raw_input(prompt)</code>.</p>
-<figure class="highlight lang-python"><figcaption><span>input&raw_input </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="code"><pre>value1 = raw_input(<span class="string">"&gt; "</span>)
+<figure class="highlight lang-python"><figcaption><span>input&raw_input </span></figcaption><pre>value1 = raw_input(<span class="string">"&gt; "</span>)
 value2 = input(<span class="string">"&gt; "</span>)
  <span class="comment"># 现在我们分别都输入数字：123</span>
 print(type(value1), type(value2))	<span class="comment"># 结果：(&lt;type 'str'&gt;, &lt;type 'int'&gt;)</span>
@@ -168,26 +129,12 @@ Traceback (most recent call last):
     v2 = input(<span class="string">"&gt; "</span>)
   File <span class="string">"&lt;string&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;
 NameError: name <span class="string">'abc'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>从以上测试，我们知道：<br>1. <code>raw_input()</code>将所有输入作为字符串看待，返回字符串类型。而<code>input()</code>在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（ int, float ）;<br>2. 这两个函数均能接收字符串 ，但<code>raw_input()</code>直接读取控制台的输入（任何类型的输入它都可以接收）。而对于<code>input()</code>，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError。<br>3. 查看<a href="http://docs.python.org/library/functions.html?highlight=input#built-in-functions">Built-in Functions</a>可以知道<code>input()</code>本质上还是使用<code>raw_input()</code>来实现的，只是调用完<code>raw_input()</code>之后再调用<code>eval()</code>函数，所以，你甚至可以将表达式作为<code>input()</code>的参数，并且它会计算表达式的值并返回它。
 另外在<code>Built-in Functions</code>里说到：Consider using the raw_input() function for general input from users.
 意思就是<strong>除非对<code>input()</code>有特别需要，否则一般情况下我们都是推荐使用<code>raw_input()</code></strong>。l</p>
-<figure class="highlight lang-python"><figcaption><span>一些基础函数 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="code"><pre>abs(number) 			<span class="comment">#返回数字的绝对值  </span>
+<figure class="highlight lang-python"><figcaption><span>一些基础函数 </span></figcaption><pre>abs(number) 			<span class="comment">#返回数字的绝对值  </span>
 math.sqrt(number)		<span class="comment">#返回平方根，不适用于负数</span>
 cmath.sqrt(number) 		<span class="comment">#返回平方根，也可以应用于负数</span>
 float(object)			<span class="comment">#将字符串和数字转换为浮点数</span>
@@ -201,7 +148,7 @@ pow(x, y[.z])			<span class="comment">#返回x的y次幂（所得结果对z取�
 round(number)			<span class="comment">#根据给定的精度对数字进行四舍五入</span>
 str(object)				<span class="comment">#将值转换为字符串</span>
 repr(object)			<span class="comment">#返回值的字符串表示形式</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 
       
@@ -225,9 +172,18 @@ repr(object)			<span class="comment">#返回值的字符串表示形式</span>
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -239,22 +195,10 @@ repr(object)			<span class="comment">#返回值的字符串表示形式</span>
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

@@ -81,23 +81,19 @@
     <div class="entry">
       
         <p>三个方法主要用来转码操作，解决地址栏中文传参等问题，但有所不同。</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>encodeURI(URIstring)
-</pre></td></tr></table></figure>
+<figure class="highlight lang-javascript"><pre>encodeURI(URIstring)
+</pre></figure>
 
 <p>该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：<code>- _ . ! ~ * &#39; ( ) 。</code>
 该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：<code>;/?:@&amp;=+$,#</code>;此时就必须使用encodeURIComponent()进行编码。<br>1. 传递参数时需要使用encodeURIComponent，这样组合的url才不会被#等特殊字符截断。<br>2. 进行url跳转时可以整体使用encodeURI<br>3. js使用数据时可以使用escape<br>4. escape对0-255以外的unicode值进行编码时输出%u<em>**</em>格式，其它情况下escape，encodeURI，encodeURIComponent编码结果相同。另外使用<code>unescape()</code>对    <code>escape()</code>编码的字符进行解码。但是ECMAScript v3反对使用该方法，应使用<code>decodeURI()</code>和<code>decodeURIComponent()</code>代替<br>最多使用的应为encodeURIComponent，它是将中文、韩文等特殊字符转换成utf-8格式的url编码，所以如果给后台传递参数需要使用encodeURIComponent时需要后台解码对utf-8支持（form中的编码方式和当前页面编码方式相同）</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
+<figure class="highlight lang-javascript"><pre>escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
 
-encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，0-9，a-z，A-Z
+encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，
+
+0-9，a-z，A-Z
 
 encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~，0-9，a-z，A-Z
-</pre></td></tr></table></figure>
+</pre></figure>
 
 
       
@@ -138,78 +134,57 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
     <div class="entry">
       
         <p><strong>一、 接受差异</strong><br>在很多情况下，处理不支持的浏览器的最佳方法就是直接接受视觉表现上的差异，这就是渐进增强的核心思想。很多情况下添加额外的兼容方案反而会让访客更加反感，比如在旧式浏览器上添加背景图片，为了实现圆角，添加圆角背景图片，等一些列图片来实现类似css3效果，这样会导致页面加载缓慢，结果得不偿失。<br><strong>二、为一个属性同时提供非Css3和Css3的值</strong><br>在那些你希望或者不得不提供回滚方案的情形下，可以只为同一条规则提供多于一个的属性值：第一条是为不支持的浏览器准备的；第二条，css3特性值，是为高级浏览器准备的。这样不支持的浏览器会忽略那些它们不能理解的属性，而高级浏览器则会用第二条值去重载第一条的值。比如：  </p>
-<figure class="highlight lang-css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">div</span> <span class="rules">{
+<figure class="highlight lang-css"><pre><span class="tag">div</span> <span class="rules">{
 	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#CC0000</span>;</span></span>
 	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">hsla(<span class="number">0</span>, <span class="number">100</span>%, <span class="number">40</span>%, .<span class="number">5</span>)</span>;</span></span>
 <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p><strong>三、使用Modernizr检测css3支持</strong><br><a href="http://www.modernizr.com">Modernizr</a>是一个第三方脚本，它可以检测用户浏览器对css3和html5特性的支持情况，然后会对html元素添加一些类来表明当前浏览器是否支持某些特性，比如“no-multiplebgs”表明浏览器不支持在单一元素上排布多背景图片，而相应的“multiplebgs”则表明浏览器是支持的。<br>当这些类加入时，我们就可以很容易的为每个类编写特定的样式，而且能够确保每个样式只会被支持的浏览器识别。比如：</p>
-<figure class="highlight lang-css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="id">#wrapper</span> <span class="rules">{
+<figure class="highlight lang-css"><pre><span class="id">#wrapper</span> <span class="rules">{
 	<span class="rule">……	
 }</span></span>
 <span class="class">.no-multiplebgs</span> <span class="id">#wrapper</span> <span class="rules">{
 	<span class="rule">……
 }</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>另外推荐一遍文章 <a href="http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr">taking advantage of html5 and css3 with modernizr</a><br><strong>四、使用javascript模拟Css3</strong><br>javascript通常能够是的不支持的浏览器实现和高级浏览器一样的效果，例如现在已经有很多脚本实现圆角效果了。
 <a href="http://code.google.com/p/html5shiv/"><strong>html5.js</strong></a>,你只需且必须在页面head元素内调用它就行了(因为IE必须在元素解析前知道这个元素，所以这个js文件不能在页面底部调用）。</p>
-<figure class="highlight lang-javascript"><figcaption><span>html5.js </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;
+<figure class="highlight lang-javascript"><figcaption><span>html5.js </span></figcaption><pre>&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;
 <span class="xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://html5shiv.googlecode.com/svn/trunk/html5.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">![endif]--</span>&gt;</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>现在主要用的是html5.js，当然还有一些其他的js模拟脚本，有兴趣的可以去研究下，比如 <code>Selectivizr</code>, <code>cssSandpaper</code>, <code>PIE</code>等。<br><strong>五、IE滤镜</strong><br>滤镜是微软提供的主要用来并且只在IE浏览器中起作用的创建不同样式表。通常是通过独有的属性滤镜或者-ms-filter属性来实现。具体的属性滤镜语法则依赖于你所使用的特定滤镜，但它们通用的格式是一样的：  </p>
-<figure class="highlight lang-css"><figcaption><span>滤镜 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>filter:progid:DXImageTransform.Microsoft.filtername(sProperties)
+<figure class="highlight lang-css"><figcaption><span>滤镜 </span></figcaption><pre>filter:progid:DXImageTransform.Microsoft.filtername(sProperties)
 // filtername是滤镜的名字， sProperties是它的值
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>在IE8以后，这个语法升级成了<code>-ms-filter</code>作为属性名，你也应该用引号来包裹它的属性值。</p>
 <blockquote>
 <p>DropShadow、 Shadow、 Glow和Blur滤镜用来模拟box-shadow和text-shadow.<br>Gradient滤镜用来模拟RGBA、 HSLA和线性渐变效果<br>Alpha和BasicImage滤镜用来模拟opaticy效果<br>Matrix和BasicImage滤镜用来模拟2D变形效果  </p>
 </blockquote>
 <p>滤镜的优点是它不需要javascript并且只在IE中有效，当然也有很多缺点。<br><code>长度：</code>描述一个滤镜将会花费很多字符。如果一个css文件中使用很多滤镜，这样会明显增大css文件的大小。为了克服这个，需要将这些样式表放在一个单独的文件里面，使用IE条件表达式来引入它。<br><code>无法通过验证：</code>包含滤镜的样式表是无法通过验证的。你必须将这些滤镜放在IE-only的文件里面从而保证至少你的主样式表文件是可以验证通过的。<br><code>性能：</code>滤镜会让页面的加载速度变慢，并且消耗大量的内存<br><code>粗糙的字体：</code>滤镜会关闭windows的ClearType渲染，因此文本显示不再是抗锯齿的，从而看起来很粗糙。<br>当然还有很多其他的缺陷，就不一一列出了。<br><strong>六、使用条件表达式过滤IE</strong><br>1. 提供IE独有的样式表  </p>
-<figure class="highlight lang-css"><figcaption><span>IE独有样式表 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&lt;!--[if IE]&gt;
+<figure class="highlight lang-css"><figcaption><span>IE独有样式表 </span></figcaption><pre>&lt;!--[if IE]&gt;
 &lt;link rel="stylesheet" href=“ie_all.css” type="text/css"&gt;
 &lt;![endif]--&gt;
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <ol>
-<li><p>对IE不可见  </p>
-<figure class="highlight lang-css"><figcaption><span>非IE样式表 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&lt;!--[if !IE]&gt;--&gt;
+<li>对IE不可见</li>
+</ol>
+<figure class="highlight lang-css"><figcaption><span>非IE样式表 </span></figcaption><pre>&lt;!--[if !IE]&gt;--&gt;
 &lt;link rel="stylesheet" href=“not_ie.css” type="text/css"&gt;
 &lt;--&lt;![endif]--&gt;
-</pre></td></tr></table></figure>
-</li>
-<li><p>在html标签上添加IE版本类</p>
-<figure class="highlight lang-css"><figcaption><span>html标签加载IE</span></figcaption><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>&lt;!--[if lt IE 7]&gt; &lt;html class="ie6" lang="en"&gt; &lt;![endif]--&gt;
-</pre></td></tr></table></figure>
+</pre></figure>
 
-</li>
+<ol>
+<li>在html标签上添加IE版本类</li>
 </ol>
+<figure class="highlight lang-css"><figcaption><span>html标签加载IE</span></figcaption><pre>&lt;!--[if lt IE 7]&gt; &lt;html class="ie6" lang="en"&gt; &lt;![endif]--&gt;
+</pre></figure>
+
 
       
     </div>
@@ -249,38 +224,17 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
     <div class="entry">
       
         <p><strong>算法：</strong><br>算法是描述如何完成一项任务的方法。实际上，在编写程序的时候，就是要使用计算机能够理解的语言（如python）来准确地描述算法。这类对机器友好的描述就叫做程序。<br><strong>函数（function）：</strong><br>python中的函数类似于java中的方法，可以有参数，并且返回值<br><strong>模块（module）：</strong><br>模块就是扩展，它可以导入到python中，从而扩展python的功能。在使用模块的时候需要先导入模块。例如： <code>math</code>模块提供了很多有用的数学函数。</p>
-<figure class="highlight lang-python"><figcaption><span>math模块 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="keyword">import</span> math	<span class="comment"># 导入math模块</span>
+<figure class="highlight lang-python"><figcaption><span>math模块 </span></figcaption><pre><span class="keyword">import</span> math	<span class="comment"># 导入math模块</span>
 math.floor()
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>如果不想每次都输入<code>模块名.函数名</code>来调用函数，想直接通过<code>函数名</code>来调用,可以这么做。</p>
-<figure class="highlight lang-python"><figcaption><span>通过函数名直接调用 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="keyword">from</span> math <span class="keyword">import</span> sqrt	<span class="comment"># 也可以使用from math import *  导入所有函数 </span>
+<figure class="highlight lang-python"><figcaption><span>通过函数名直接调用 </span></figcaption><pre><span class="keyword">from</span> math <span class="keyword">import</span> sqrt	<span class="comment"># 也可以使用from math import *  导入所有函数 </span>
 sqrt(<span class="number">9</span>)	<span class="comment"># 3.0</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>但是使用from…import…语句，容易造成命名冲突，比如cmath模块中也有个sqrt()方法，这样的话一旦使用此语句，就没法使用普通的sqrt函数了，所以除非真的需要from这个形式的模块导入语句，否则应该坚持使用普通的import<br><strong>运算符：</strong><br>对于基本的加减乘除和java都一样，对于乘除python里进行了增强。</p>
-<figure class="highlight lang-python"><figcaption><span>python乘除 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="code"><pre>print(<span class="number">1</span> / <span class="number">2</span>)	<span class="comment"># 0</span>
+<figure class="highlight lang-python"><figcaption><span>python乘除 </span></figcaption><pre>print(<span class="number">1</span> / <span class="number">2</span>)	<span class="comment"># 0</span>
 print(<span class="number">1</span> / <span class="number">2.</span>)	<span class="comment"># 0.5</span>
 
 ---------------------------------
@@ -297,29 +251,11 @@ print(<span class="number">1.0</span> // <span class="number">2.0</span>)	<span 
 print(<span class="number">2</span> ** <span class="number">3</span>)	<span class="comment"># 8</span>
 print(-<span class="number">3</span> ** <span class="number">2</span>) <span class="comment"># -9</span>
 print((-<span class="number">3</span>) ** <span class="number">2</span>)	<span class="comment"># 9</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p><strong>注意：</strong>Python 不支持 C 语言中的自增 1 和自减 1 运算符,这是因为 + 和 － 也是单目运算符，Python 会将 --n 解释为-(-n) 从而得到 n , 同样 ++n 的结果也是 n.  </p>
 <p><strong>获取用户输入：</strong><br>获取用户输入可以使用<code>input(prompt)</code>函数和<code>raw_input(prompt)</code>.</p>
-<figure class="highlight lang-python"><figcaption><span>input&raw_input </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="code"><pre>value1 = raw_input(<span class="string">"&gt; "</span>)
+<figure class="highlight lang-python"><figcaption><span>input&raw_input </span></figcaption><pre>value1 = raw_input(<span class="string">"&gt; "</span>)
 value2 = input(<span class="string">"&gt; "</span>)
  <span class="comment"># 现在我们分别都输入数字：123</span>
 print(type(value1), type(value2))	<span class="comment"># 结果：(&lt;type 'str'&gt;, &lt;type 'int'&gt;)</span>
@@ -337,26 +273,12 @@ Traceback (most recent call last):
     v2 = input(<span class="string">"&gt; "</span>)
   File <span class="string">"&lt;string&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;
 NameError: name <span class="string">'abc'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>从以上测试，我们知道：<br>1. <code>raw_input()</code>将所有输入作为字符串看待，返回字符串类型。而<code>input()</code>在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（ int, float ）;<br>2. 这两个函数均能接收字符串 ，但<code>raw_input()</code>直接读取控制台的输入（任何类型的输入它都可以接收）。而对于<code>input()</code>，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError。<br>3. 查看<a href="http://docs.python.org/library/functions.html?highlight=input#built-in-functions">Built-in Functions</a>可以知道<code>input()</code>本质上还是使用<code>raw_input()</code>来实现的，只是调用完<code>raw_input()</code>之后再调用<code>eval()</code>函数，所以，你甚至可以将表达式作为<code>input()</code>的参数，并且它会计算表达式的值并返回它。
 另外在<code>Built-in Functions</code>里说到：Consider using the raw_input() function for general input from users.
 意思就是<strong>除非对<code>input()</code>有特别需要，否则一般情况下我们都是推荐使用<code>raw_input()</code></strong>。l</p>
-<figure class="highlight lang-python"><figcaption><span>一些基础函数 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="code"><pre>abs(number) 			<span class="comment">#返回数字的绝对值  </span>
+<figure class="highlight lang-python"><figcaption><span>一些基础函数 </span></figcaption><pre>abs(number) 			<span class="comment">#返回数字的绝对值  </span>
 math.sqrt(number)		<span class="comment">#返回平方根，不适用于负数</span>
 cmath.sqrt(number) 		<span class="comment">#返回平方根，也可以应用于负数</span>
 float(object)			<span class="comment">#将字符串和数字转换为浮点数</span>
@@ -370,7 +292,7 @@ pow(x, y[.z])			<span class="comment">#返回x的y次幂（所得结果对z取�
 round(number)			<span class="comment">#根据给定的精度对数字进行四舍五入</span>
 str(object)				<span class="comment">#将值转换为字符串</span>
 repr(object)			<span class="comment">#返回值的字符串表示形式</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 
       
@@ -440,6 +362,10 @@ repr(object)			<span class="comment">#返回值的字符串表示形式</span>
       
         <div class="post-tags">
           
+            
+              <span class="tag-前端开发"><a href="/tags/前端开发/">前端开发</a></span>
+            
+          
         </div>
       
   
@@ -450,45 +376,29 @@ repr(object)			<span class="comment">#返回值的字符串表示形式</span>
     <div class="entry">
       
         <p>最近发现博客页面在加载的时候很慢，然后打开调试工具的Network发现Google fonts在作怪，Google在天朝的状况，大家都懂的，但是我们无法离开Google,知道原因后，就可以下手了。<br>1. 进入<code>octopress/source/_includes/custom/head.html</code>,注掉里面代码。  </p>
-<figure class="highlight lang-html"><figcaption><span>head.html </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="comment">&lt;!--Fonts from Google"s Web font directory at http://google.com/webfonts 
-&lt;link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"&gt;
-&lt;link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"&gt;
+<figure class="highlight lang-html"><figcaption><span>head.html </span></figcaption><pre><span class="comment">&lt;!--Fonts from Google"s Web font directory at http://google.com/webfonts 
+&lt;link href="http://fonts.googleapis.com/xxx" type="text/css"&gt;
+&lt;link href="http://fonts.googleapis.com/xxx" type="text/css"&gt;
 --&gt;</span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <ol>
-<li>如果你不想用Google fonts，那下面的就不用看了，否则继续第二步，将web字体格式化。  <figure class="highlight lang-css"><figcaption><span>style.css </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre></td><td class="code"><pre><span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">{
+<li>如果你不想用Google fonts，那下面的就不用看了，否则继续第二步，将web字体格式化。  </li>
+</ol>
+<figure class="highlight lang-css"><pre><span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">{
 <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">'Miltonian'</span>;</span></span>
 <span class="rule"><span class="attribute">font-style</span>:<span class="value"> normal;</span></span>
 <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> <span class="number">400</span>;</span></span>
-<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Miltonian'</span>)</span>, <span class="function">local(<span class="string">'Miltonian-Regular'</span>)</span>, <span class="function">url(http://themes.googleusercontent.com/static/fonts/miltonian/v5/DVUl6K_XDo9HSLlx2JoxNT8E0i7KZn-EPnyo3HZu7kw.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
+<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Miltonian'</span>)</span>, <span class="function">url(fonts/xxx.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
 <span class="rule">}</span></span>
 <span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">{
 <span class="rule"><span class="attribute">font-family</span>:<span class="value"> <span class="string">'Bitter'</span>;</span></span>
 <span class="rule"><span class="attribute">font-style</span>:<span class="value"> normal;</span></span>
 <span class="rule"><span class="attribute">font-weight</span>:<span class="value"> <span class="number">400</span>;</span></span>
-<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Bitter-Regular'</span>)</span>, <span class="function">url(http://themes.googleusercontent.com/static/fonts/bitter/v4/SHIcXhdd5RknatSgOzyEkA.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
+<span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">local(<span class="string">'Bitter-Regular'</span>)</span>, <span class="function">url(xxx.woff)</span> <span class="function">format(<span class="string">'woff'</span>)</span>;</span></span>
 <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+</pre></figure>
 
-</li>
-</ol>
 <p>ok，enjoy now ！</p>
 
       
@@ -530,52 +440,51 @@ repr(object)			<span class="comment">#返回值的字符串表示形式</span>
       
         <p>以前用惯了linux下的bash对于不同类型的文件以不同的颜色进行高亮,对于现在mac下的terminal感觉很不爽，google了一下，终于找到解决办法。</p>
 <p><strong>针对terminal采用bash模式</strong><br>编辑 <code>~/.bash_profile</code>, 加入以下代码:</p>
-<figure class="highlight lang-bash"><figcaption><span>~/.bash_profile </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>export CLICOLOR=1  
+<figure class="highlight lang-bash"><figcaption><span>~/.bash_profile </span></figcaption><pre>export CLICOLOR=1  
 export LSCOLORS=gxfxaxdxcxegedabagacad
-</pre></td></tr></table></figure>
+</pre></figure>
 
 <p>保存并重启终端，测试一下,上色成功！  </p>
 <img src="http://ww4.sinaimg.cn/large/6cdc22a9gw1dxee4szrlkj.jpg">
 
 
 <p><strong>详细讲解代码中的涵义:</strong><br><code>CLICOLOR</code>: 前景色和背景色的字符串合并值<br><code>LSCOLORS</code>: 对于不同变量所采用的颜色方案,具体看如下表格:</p>
-<pre><code><figure class="highlight"><pre><span class="title">a</span>       black
-<span class="title">b</span>       red
-<span class="title">c</span>       green
-<span class="title">d</span>       brown
-<span class="title">e</span>       blue
-<span class="title">f</span>        magenta
-<span class="title">g</span>      cyan
-<span class="title">h</span>       light grey
-<span class="type">A</span>      bold black, usually shows up <span class="keyword">as</span> dark grey
-<span class="type">B</span>       bold red
-<span class="type">C</span>      bold green
-<span class="type">D</span>      bold brown, usually shows up <span class="keyword">as</span> yellow
-<span class="type">E</span>       bold blue
-<span class="type">F</span>       bold magenta
-<span class="type">G</span>     bold cyan
-<span class="type">H</span>      bold light grey; looks like bright white
-<span class="title">x</span>       default foreground or background
-</pre></figure></code></pre>
+<figure class="highlight lang-bash"><pre>    a       black
+    b       red
+    c       green
+    d       brown
+    e       blue
+    f        magenta
+    g      cyan
+    h       light grey
+    A      bold black, usually shows up as dark grey
+    B       bold red
+    C      bold green
+    D      bold brown, usually shows up as yellow
+    E       bold blue
+    F       bold magenta
+    G     bold cyan
+    H      bold light grey; looks like bright white
+    x       default foreground or background
+</pre></figure>
+
 <p>而文件类型列表如下:  </p>
-<pre><code><figure class="highlight"><pre>1. directory
-2. symbolic link
-3. socket
-4. pipe
-5. executable
-6. b<span class="operator"><span class="keyword">lock</span> special
-<span class="number">7.</span> <span class="keyword">character</span> special
-<span class="number">8.</span> executable <span class="keyword">with</span> setuid <span class="keyword">bit</span> <span class="keyword">set</span>
-<span class="number">9.</span> executable <span class="keyword">with</span> setgid <span class="keyword">bit</span> <span class="keyword">set</span>
-<span class="number">10.</span> directory writable <span class="keyword">to</span> others, <span class="keyword">with</span> sticky <span class="keyword">bit</span>
-<span class="number">11.</span> directory writable <span class="keyword">to</span> others, without sticky
-</pre></figure></code></pre>
+<figure class="highlight lang-bash"><pre>    1. directory
+    2. symbolic link
+    3. socket
+    4. pipe
+    5. executable
+    6. block special
+    7. character special
+    8. executable with setuid bit <span class="keyword">set</span>
+    9. executable with setgid bit <span class="keyword">set</span>
+    10. directory writable to others, with sticky bit
+    11. directory writable to others, without sticky
+</pre></figure>
+
 <p>所以对照这张表就可以得知:</p>
-<figure class="highlight lang-bash"><figcaption><span>LSCOLORS </span></figcaption><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>gxfxaxdxcxegedabagacad
-</pre></td></tr></table></figure>
+<figure class="highlight lang-bash"><figcaption><span>LSCOLORS </span></figcaption><pre>gxfxaxdxcxegedabagacad
+</pre></figure>
 
 <p>就是对于directory而言,它的前景色就是: g(cyan),而背景色就是:x(默认的背景色).根据这个原理我们就可以自己进行配置了。</p>
 
@@ -603,6 +512,10 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
       
         <div class="post-tags">
           
+            
+              <span class="tag-杂谈"><a href="/tags/杂谈/">杂谈</a></span>
+            
+          
         </div>
       
   
@@ -615,18 +528,10 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
         <p>HTML已经走过了近20的发展历程。从HTML4到XHTML，再到最近十分火热的HTML5，它几乎见证了整个互联网的发展。但是，即便到现在，有很多基础的概念和原则依然需要开发者高度注意。下面，向大家介绍这些应该遵循的开发原则。 </p>
 <p><strong>1、善用DIV来布局 </strong></p>
 <p>当开发一个Web页面时，要考虑第一件事就是区分页面重点。将这些内容用DIV标签包含起来，页面的代码会呈现出整洁、缩进良好的风格。 </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"header"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>  
-<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"body-container"</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"content"</span>&gt;</span>
-         <span class="comment">&lt;!-- Content --&gt;</span> 
-    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>   
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"right-side-bar"</span>&gt;</span> 
-        <span class="comment">&lt;!-- Right Side Bar Content Area --&gt;</span>
-    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>   
-<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"footer"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</pre></figure></code></pre>
-<p>
+<p><strong>2、将HTML标签和CSS样式表分割开来 </strong></p>
+<p>好的页面应该将HTML标签和CSS样式表分割开来。这是每一个Web开发者在首次接触Web开发时就应该知道的一条原则。然而，直到今天，仍然有很多开发者没有严格遵循这一原则。 </p>
+<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。 
+
       
     </div>
     <footer>
@@ -654,6 +559,10 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
         <time class="index-post-time" datetime="2012-06-04T08:36:00.000Z"><a href="/2012/06/04/2012-06-04-10tips/">Jun 4th, 2012</a></time>
       
         <div class="post-tags">
+          
+            
+              <span class="tag-杂谈"><a href="/tags/杂谈/">杂谈</a></span>
+            
           
         </div>
       
@@ -694,6 +603,10 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
         <time class="index-post-time" datetime="2012-06-04T08:18:00.000Z"><a href="/2012/06/04/2012-06-04-pd-story/">Jun 4th, 2012</a></time>
       
         <div class="post-tags">
+          
+            
+              <span class="tag-杂谈"><a href="/tags/杂谈/">杂谈</a></span>
+            
           
         </div>
       
@@ -818,22 +731,10 @@ Makefile <span class="transposed_variable">wasn'</span>t <span class="transposed
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

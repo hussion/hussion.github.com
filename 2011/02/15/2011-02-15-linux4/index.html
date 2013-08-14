@@ -66,6 +66,10 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux"><a href="/tags/Linux/">Linux</a></span>
+            
+          
         </div>
       
   
@@ -81,13 +85,15 @@
 </blockquote>
 </li>
 </ul>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>  <span class="comment">#语法  </span>
-<span class="variable">$ </span>chmod [{ugo}{+-=}{rwx}] [文件或者目录]  
-<span class="symbol">r:</span> <span class="number">4</span>, <span class="symbol">w:</span> <span class="number">2</span>, <span class="symbol">x:</span> <span class="number">1</span>  
-<span class="variable">$ </span>chmod [mode=<span class="number">421</span>] [文件或者目录]  
+<figure class="highlight lang-bash"><pre>  <span class="comment">#语法  </span>
+$ chmod [{ugo}{+-=}{rwx}] [文件或者目录]  
+r: 4, w: 2, x: 1  
+$ chmod [mode=421] [文件或者目录]  
  <span class="comment">#例  </span>
-<span class="variable">$ </span>chmod <span class="number">777</span> [file1] <span class="comment">#把file1所有用户的权限设为rwx</span>
-</pre></figure></code></pre>
+$ chmod 777 [file1] <span class="comment">#把file1所有用户的权限设为rwx</span>
+</pre></figure>
+
+
 <a name="more"></a>  
 
 <ul>
@@ -96,9 +102,9 @@
 </blockquote>
 </li>
 </ul>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>  <span class="comment">#语法  </span>
-<span class="variable">$ </span>chown [用户] [文件或者目录]    
-<span class="variable">$ </span>chown nobody file1 <span class="comment">#把file1所有者设为nobody</span>
+<pre><code class="lang-bash"><figure class="highlight lang-bash"><pre>    <span class="comment">#语法  </span>
+$ chown [用户] [文件或者目录]    
+$ chown nobody file1 <span class="comment">#把file1所有者设为nobody</span>
 </pre></figure></code></pre>
 <ul>
 <li>命令：<strong>chgrp</strong>  <blockquote>
@@ -106,9 +112,9 @@
 </blockquote>
 </li>
 </ul>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>  <span class="comment">#语法  </span>
-<span class="variable">$ </span>chgrp [用户组] [文件或者目录]    
-<span class="variable">$ </span>chgrp adm file1 <span class="comment">#把file1所属组设为adm</span>
+<pre><code class="lang-bash"><figure class="highlight lang-bash"><pre> <span class="comment">#语法  </span>
+$ chgrp [用户组] [文件或者目录]    
+$ chgrp adm file1 <span class="comment">#把file1所属组设为adm</span>
 </pre></figure></code></pre>
 <ul>
 <li>命令：<strong>umask</strong>  <blockquote>
@@ -116,14 +122,14 @@
 </blockquote>
 </li>
 </ul>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>  <span class="comment">#语法  </span>
-<span class="variable">$ </span>umask [选项] [掩码]  
+<pre><code class="lang-bash"><figure class="highlight lang-bash"><pre> <span class="comment">#语法  </span>
+$ umask [选项] [掩码]  
  <span class="comment">#例：  </span>
-<span class="variable">$ </span>umask <span class="comment">#以掩码形式显示新建文件或目录会具有的权限，如0022(第一个0代表特殊权限位，  </span>
-<span class="number">022</span>代表掩码值，用“<span class="number">777</span>-掩码值 = 文件的权限值”)     
-<span class="variable">$ </span>umask -<span class="constant">S</span> <span class="comment">#以rwx形式显示新建文件或目录缺省权限  </span>
+$ umask <span class="comment">#以掩码形式显示新建文件或目录会具有的权限，如0022(第一个0代表特殊权限位，  </span>
+022代表掩码值，用“777-掩码值 = 文件的权限值”)     
+$ umask -S <span class="comment">#以rwx形式显示新建文件或目录缺省权限  </span>
  <span class="comment">#设置新建文件或目录的缺省权限  </span>
-<span class="variable">$ </span>umask <span class="number">022</span> <span class="comment">#实际权限值为777-022=755</span>
+$ umask 022 <span class="comment">#实际权限值为777-022=755</span>
 </pre></figure></code></pre>
 <ul>
 <li>linux中权限概念  <blockquote>
@@ -166,13 +172,13 @@
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/linux/">linux</a>
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>
@@ -183,9 +189,18 @@
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -197,22 +212,10 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

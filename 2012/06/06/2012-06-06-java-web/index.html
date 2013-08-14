@@ -66,6 +66,10 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-杂谈"><a href="/tags/杂谈/">杂谈</a></span>
+            
+          
         </div>
       
   
@@ -78,25 +82,10 @@
         <p>HTML已经走过了近20的发展历程。从HTML4到XHTML，再到最近十分火热的HTML5，它几乎见证了整个互联网的发展。但是，即便到现在，有很多基础的概念和原则依然需要开发者高度注意。下面，向大家介绍这些应该遵循的开发原则。 </p>
 <p><strong>1、善用DIV来布局 </strong></p>
 <p>当开发一个Web页面时，要考虑第一件事就是区分页面重点。将这些内容用DIV标签包含起来，页面的代码会呈现出整洁、缩进良好的风格。 </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"header"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>  
-<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"body-container"</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"content"</span>&gt;</span>
-         <span class="comment">&lt;!-- Content --&gt;</span> 
-    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>   
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"right-side-bar"</span>&gt;</span> 
-        <span class="comment">&lt;!-- Right Side Bar Content Area --&gt;</span>
-    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>   
-<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"footer"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</pre></figure></code></pre>
-<p><a name="more"></a>
-<strong>2、将HTML标签和CSS样式表分割开来 </strong></p>
+<p><strong>2、将HTML标签和CSS样式表分割开来 </strong></p>
 <p>好的页面应该将HTML标签和CSS样式表分割开来。这是每一个Web开发者在首次接触Web开发时就应该知道的一条原则。然而，直到今天，仍然有很多开发者没有严格遵循这一原则。 </p>
-<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。 </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="tag">&lt;<span class="title">p</span> <span class="attribute">style</span>=<span class="value">"color: #CCC; font-size:16px; font-family: arial"</span>&gt;</span>
-    An example to illustrate inline style in html
-<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-</pre></figure></code></pre>
+<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。 
+<a name="more"></a>  </p>
 <p><strong>3、优化CSS代码 </strong></p>
 <p>现如今，为网站添加多个CSS文件的做法已经很普遍。但是，当网站包含的CSS文件过多时，会降低网站的响应速度。解决办法是：精简代码并对多个CSS文件进行优化，将其合并成一个文件。这个办法能显著提升网站的加载速度。此外，有很多工具可以用来优化CSS文件，例如CSS Optimizer、Clean CSS等。 </p>
 <p><strong>4、优化Javascript文件，并将其放到页面底部 </strong></p>
@@ -105,17 +94,10 @@
 <p>一个好的解决办法是：将Javascript文件的加载顺序放在最后。为了实现这一目标，开发者可以把Javascript代码放在HTML文档的底部，而最好的位置是放在接近<code>&lt;/body&gt;</code>标签的地方。 </p>
 <p><strong>5、善用标题元素</strong> </p>
 <p><code>&lt;h1&gt;</code> 到 <code>&lt;h6&gt;</code>这些元素用来突出页面的重点内容。这有助于用户更加关注页面的重点部分。对于博客，我（指本文作者）推荐使用<code>&lt;h1&gt;</code>标签来突出博客标题。因为，博客标题几乎是页面中最重要的部分。 </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="tag">&lt;<span class="title">h1</span>&gt;</span>This is the topmost heading<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>  
-<span class="tag">&lt;<span class="title">h2</span>&gt;</span>This is a sub-heading underneath the topmost heading.<span class="tag">&lt;/<span class="title">h2</span>&gt;</span>  
-<span class="tag">&lt;<span class="title">h3</span>&gt;</span>This is a sub-heading underneath the h2 heading.<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
-</pre></figure></code></pre>
 <p><strong>6、在合适的地方使用合适的HTML标签 </strong></p>
 <p>HTML标签是构造规范内容结构的关键。例如，<code>&lt;em&gt;</code>标签用来强调重点内容。<code>&lt;p&gt;</code>标签适用于突出文章段落。如果想要在段落间加空行，就不要使用<code>&lt;br /&gt;</code>标签。 </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="tag">&lt;<span class="title">em</span>&gt;</span>emphasized text<span class="tag">&lt;/<span class="title">em</span>&gt;</span>  
-<span class="tag">&lt;<span class="title">strong</span>&gt;</span>strongly emphasized text<span class="tag">&lt;/<span class="title">strong</span>&gt;</span>
-</pre></figure></code></pre>
 <p>对于一组相关的元素，建议使用<code>&lt;ul&gt;</code>、<code>&lt;ol&gt;</code>或<code>&lt;dl&gt;</code>标签。但是，不要错误的使用<code>&lt;blockquote&gt;</code>标签，因为它原本是用来定义块应用的。 </p>
-<p><strong>7、避免滥用<div>标签 </strong></p>
+<p><strong>7、避免滥用div标签 </strong></p>
 <p>并不是所有块元素都应该用<div>标签来创建。例如，可以在内联元素的属性里添加<code>display:block</code>，将其以块元素的方式显示。 </p>
 <p><strong>8、使用列表创建导航 </strong></p>
 <p>使用<code>&lt;ul&gt;</code>列表标签，再配以相应的CSS样式，可以创建美观的导航菜单。 </p>
@@ -123,46 +105,12 @@
 <p>现在，每当我回忆起在大学里学到的关于Web开发的第一堂课时，教授提到的HTML结构的重要性总是浮现在我的脑海。根据W3C标准，标签应该被封闭。那是因为，在一些浏览器下，如果没有按照标准来将标签封闭，会出现显示不正常的问题。而这一情况在IE6、7和8里尤为明显。 </p>
 <p><strong>10、标签小写语法 </strong></p>
 <p>标签采用小写语法是一项行业标准。虽然大写语法并不影响页面的显示效果，但是，代码的可读性很差。下面这段代码可读性就非常差： </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="tag">&lt;<span class="title">DIV</span>&gt;</span>  
-<span class="tag">&lt;<span class="title">IMG</span> <span class="attribute">SRC</span>=<span class="value">"images/demo_image.jpg"</span> <span class="attribute">alt</span>=<span class="value">"demo image"</span>/&gt;</span>  
-<span class="tag">&lt;<span class="title">A</span> <span class="attribute">HREF</span>=<span class="value">"#"</span> <span class="attribute">TITLE</span>=<span class="value">"click here"</span>&gt;</span>Click Here<span class="tag">&lt;/<span class="title">A</span>&gt;</span>  
-<span class="tag">&lt;<span class="title">P</span>&gt;</span>some sample text<span class="tag">&lt;/<span class="title">P</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">DIV</span>&gt;</span>
-</pre></figure></code></pre>
 <p><strong>11、为图片标签添加alt属性 </strong></p>
 <p>在<code>&lt;img&gt;</code>标签里，alt属性通常非常有用。因为搜索引擎通常无法直接抓取图片文件。但是，如果开发者在alt属性里添加了图片的描述内容，将会方便搜索引擎的抓取。 </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="comment">&lt;!-- has an alt attribute, which will validate, but alt value is meaningless -- &gt;  
-&lt;img id="logo" src="images/bgr_logo.png" alt="brg_logo.png" /&gt;  
-
-&lt;!-- The correct way -- &gt;   
-&lt;img id="logo" src="images/bgr_logo.png" alt="Anson Cheung - Web Development" /&gt;
-</pre></figure></code></pre>
-<p><strong>12、在表格里使用<label> 和 <fieldset> </strong></p>
+<p><strong>12、在表格里使用label和fieldset</strong></p>
 <p>为了提高代码质量，并让用户容易理解表格内容，我们应该用<code>&lt;label&gt;</code> 和 <code>&lt;fieldset&gt;</code>标签创建表格元素。 </p>
-<pre><code class="lang-html"><figure class="highlight lang-html"><pre><span class="tag">&lt;<span class="title">fieldset</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">legend</span>&gt;</span>Personal Particular<span class="tag">&lt;/<span class="title">legend</span>&gt;</span>  
-    <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"name"</span>&gt;</span>Name<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"name"</span> <span class="attribute">name</span>=<span class="value">"name"</span> /&gt;</span>  
-    <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"email"</span>&gt;</span>E-mail<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"email"</span> <span class="attribute">name</span>=<span class="value">"email"</span> /&gt;</span>  
-    <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"subject"</span>&gt;</span>Subject<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"subject"</span> <span class="attribute">name</span>=<span class="value">"subject"</span> /&gt;</span>  
-<span class="tag">&lt;/<span class="title">fieldset</span>&gt;</span>
-</pre></figure></code></pre>
 <p><strong>13、将浏览器兼容代码标明信息并相互分开 </strong></p>
 <p>对一名Web开发者来说，跨浏览器兼容是一个被重点关注的问题。通常，开发者会针对不同的浏览器来编码，也即是CSS hack。但是，如果开发者在编码时，能注明代码为哪一个版本的浏览器所写，会为以后的维护工作带来极大方便。下面就是一个很好的示例： </p>
-<pre><code class="lang-xml"><figure class="highlight lang-xml"><pre><span class="comment">&lt;!--[if IE 7]&gt;  
-&lt;link rel="stylesheet" href="css/ie-7.css" media="all"&gt;  
-&lt;![endif]--&gt;</span>
-</pre></figure></code></pre>
-<pre><code class="lang-xml"><figure class="highlight lang-xml"><pre><span class="comment">&lt;!--[if IE 6]&gt;  
-&lt;link rel="stylesheet" href="css/ie-6.css" media="all"&gt;  
-&lt;script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"&gt;&lt;/script&gt;  
-&lt;script type="text/javascript"&gt;  
-        DD_belatedPNG.fix('#logo');  
-&lt;/script&gt;  
-&lt;![endif]--&gt;</span>
-</pre></figure></code></pre>
 <p><strong>14、避免过度注释 </strong></p>
 <p>作为一名开发者，在代码中添加注释是一个好习惯，能方便理解并易于维护。这在其它编程语言如PHP、JAVA 和 C#里很普遍。但是，HTML/XHTML是文本标记语言，非常容易理解。因此，无需为每行代码都添加注释。 </p>
 <p><strong>15、测试代码 </strong></p>
@@ -174,7 +122,12 @@
     <footer>
       
         <!--  -->
-        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/杂谈/">杂谈</a>
+  </div>
+ -->
         
       
       <div class="clearfix"></div>
@@ -185,9 +138,18 @@
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -199,22 +161,10 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

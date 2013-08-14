@@ -66,6 +66,10 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java"><a href="/tags/Java/">Java</a></span>
+            
+          
         </div>
       
   
@@ -79,295 +83,7 @@
 <p><strong>HQL查询</strong>  </p>
 <p>• HQL（Hibernate Query Language）提供了丰富灵活的查询方式，使用HQL进行查询也是Hibernate官方推荐使用的查询方式。 </p>
 <p>• HQL在语法结构上和SQL语句十分的相同，所以可以很快的上手进行使用。使用HQL需要用到Hibernate中的Query对象，该对象专门执行HQL方式的操作。  </p>
-<figure class="highlight lang-java"><figcaption><span>查询所有示例 </span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
-239
-240
-241
-242
-243
-244
-245
-246
-247
-248
-249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-</pre></td><td class="code"><pre>session.beginTransaction(); 
+<figure class="highlight lang-java"><figcaption><span>查询所有示例 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"from User"</span>; <span class="comment">// from 后跟的是要查询的对象，而不是表</span>
 Query query = session.createQuery(hql); 
 List&lt;User&gt; userList = query.list(); 
@@ -375,9 +91,10 @@ List&lt;User&gt; userList = query.list();
   System.out.println(user.getUserName()); 
 } 
 session.getTransaction().commit();
-```  
-``` java 带where的查询示例 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>带where的查询示例 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"from User where userName = 'James'"</span>; 
 Query query = session.createQuery(hql); 
 List&lt;User&gt; userList = query.list(); 
@@ -387,7 +104,7 @@ List&lt;User&gt; userList = query.list();
 session.getTransaction().commit(); 
 
 <span class="comment">/*
-	在HQL中where语句中使用的是持久化对象的属性名，如上面示例中的userName。当然在HQL中也可以使用别名
+在HQL中where语句中使用的是持久化对象的属性名，如上面示例中的userName。当然在HQL中也可以使用别名
 */</span>
 
 String hql = <span class="string">"from User as u where u.userName = 'James'"</span>; 
@@ -397,9 +114,10 @@ String hql = <span class="string">"from User as u where u.userName = 'James'"</s
 在where语句中还可以使用各种过滤条件，如：=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between、not between、
 in、not in、is、like、and、or等
 */</span>
-``` 
-``` java 获取一个不完整的对象 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>获取一个不完整的对象 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"select userName from User"</span>; 
 Query query = session.createQuery(hql); 
 List nameList = query.list(); 
@@ -421,9 +139,10 @@ List nameList = query.list();
 	System.out.println(<span class="string">"pwd:"</span> + array[<span class="number">1</span>]); 
 } 
 session.getTransaction().commit();
-``` 
-``` java 统计和分组查询 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>统计和分组查询 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"select count(*),max(id) from User"</span>; 
 Query query = session.createQuery(hql); 
 List nameList = query.list(); 
@@ -435,25 +154,27 @@ List nameList = query.list();
 session.getTransaction().commit();
 
 <span class="comment">/*  
-	该条sql语句返回的是单条数据，所以还可以这样写
-	单列数据用Object，多列数据用Object[]
+*该条sql语句返回的是单条数据，所以还可以这样写
+*单列数据用Object，多列数据用Object[]
 */</span>
 
 Object[] object = (Object[]) query.uniqueResult();
 System.out.println(<span class="string">"count:"</span> + object[<span class="number">0</span>]); 
 System.out.println(<span class="string">"max:"</span> + object[<span class="number">1</span>]);
-```  
-``` java 更多写法 
-select distinct name from Student; 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>更多写法 </span></figcaption><pre>select distinct name from Student; 
  
 select max(age) from Student; 
  
 select count(age),age from Student group by age; 
  
 from Student order by age;
-```  
-``` java HQL占位符 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>HQL占位符 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"from User where userName = ?"</span>; 
 Query query = session.createQuery(hql); 
 <span class="comment">// 索引从0开始 </span>
@@ -465,9 +186,10 @@ List&lt;User&gt; userList = query.list();
   System.out.println(user.getUserName()); 
 } 
 session.getTransaction().commit();
-```  
-``` java HQL引用占位符 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>HQL引用占位符 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"from User where userName = :name"</span>; 
 Query query = session.createQuery(hql); 
  
@@ -480,9 +202,10 @@ List&lt;User&gt; userList = query.list();
 } 
  
 session.getTransaction().commit();
-```
-``` java HQL分页 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>HQL分页 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"from User"</span>; 
 Query query = session.createQuery(hql); 
  
@@ -494,15 +217,13 @@ List&lt;User&gt; userList = query.list();
   System.out.println(user.getUserName()); 
 } 
 session.getTransaction().commit();
-```  
+</pre></figure>
 
-**QBC（Query By Criteria）查询**  
 
-• Criteria对象提供了一种面向对象的方式查询数据库。Criteria对象需要使用Session对象来获得。 
- 
-• 一个Criteria对象表示对一个持久化类的查询。
-``` java 查询所有 
-session.beginTransaction(); 
+<p><strong>QBC（Query By Criteria）查询</strong>  </p>
+<p>• Criteria对象提供了一种面向对象的方式查询数据库。Criteria对象需要使用Session对象来获得。 </p>
+<p>• 一个Criteria对象表示对一个持久化类的查询。</p>
+<figure class="highlight lang-java"><figcaption><span>查询所有 </span></figcaption><pre>session.beginTransaction(); 
  
 Criteria c = session.createCriteria(User.class); 
  
@@ -512,10 +233,11 @@ List&lt;User&gt; userList = c.list();
   System.out.println(user.getUserName()); 
 } 
  
-session.getTransaction().commit(); 
-```  
-``` java where 
-session.beginTransaction(); 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>where </span></figcaption><pre>session.beginTransaction(); 
  
 Criteria c = session.createCriteria(User.class); 
  
@@ -526,31 +248,34 @@ List&lt;User&gt; userList = c.list();
   System.out.println(user.getUserName()); 
 } 
 session.getTransaction().commit();
-```  
-``` xml Restrictions对象
-方法名称  				对应SQL中的表达式
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>Restrictions对象</span></figcaption><pre>方法名称  				对应SQL中的表达式
 ---------------------------------------------------------- 
 Restrictions.eq  		field = value 
 Restrictions.gt  		field &gt; value 
-Restrictions.lt  		field &lt; value 
-Restrictions.ge  	field &gt;= value
-Restrictions.le  		field &lt;= value 
-Restrictions.between  	field between value1 and value2 
-Restrictions.in  		field in(…) 
-Restrictions.and  	and 
-Restrictions.or  		or 
-Restrictions.like  	field like value
-```
-``` java 示例 
-Criteria c = session.createCriteria(User.class); 
+Restrictions.lt  		field <span class="tag">&lt; <span class="attribute">value</span> 
+<span class="attribute">Restrictions.ge</span>  	<span class="attribute">field</span> &gt;</span>= value
+Restrictions.le  		field <span class="tag">&lt;<span class="title">=</span> <span class="attribute">value</span> 
+<span class="attribute">Restrictions.between</span>  	<span class="attribute">field</span> <span class="attribute">between</span> <span class="attribute">value1</span> <span class="attribute">and</span> <span class="attribute">value2</span> 
+<span class="attribute">Restrictions.in</span>  		<span class="attribute">field</span> <span class="attribute">in</span>(…) 
+<span class="attribute">Restrictions.and</span>  	<span class="attribute">and</span> 
+<span class="attribute">Restrictions.or</span>  		<span class="attribute">or</span> 
+<span class="attribute">Restrictions.like</span>  	<span class="attribute">field</span> <span class="attribute">like</span> <span class="attribute">value</span>
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>示例 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
  
 c.add(Restrictions.like(<span class="string">"userName"</span>, <span class="string">"J"</span>)); 
 c.add(Restrictions.eq(<span class="string">"id"</span>, <span class="number">120</span>));
 c.add(Restrictions.or(Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"James"</span>),  
   Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"Alex"</span>)));
-```
-``` java 获取唯一记录
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>获取唯一记录</span></figcaption><pre>session.beginTransaction(); 
  
 Criteria c = session.createCriteria(User.class); 
 c.add(Restrictions.eq(<span class="string">"id"</span>, <span class="number">120</span>)); 
@@ -559,16 +284,18 @@ User user = (User) c.uniqueResult();
  
 System.out.println(user.getUserName()); 
  
-session.getTransaction().commit(); 
-``` 
-``` java 分页 
-Criteria c = session.createCriteria(User.class); 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>分页 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
  
 c.setFirstResult(<span class="number">0</span>); 
 c.setMaxResults(<span class="number">5</span>);
-```  
-``` java 分组与统计 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>分组与统计 </span></figcaption><pre>session.beginTransaction(); 
  
 Criteria c = session.createCriteria(User.class); 
  
@@ -578,9 +305,10 @@ Object obj = c.uniqueResult();
 System.out.println(obj); 
  
 session.getTransaction().commit();
-```
-``` xml Projections对象
-方法名称  						描述 
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>Projections对象</span></figcaption><pre>方法名称  						描述 
 -------------------------------------------------------
 Projections.sum  			等于SQL中聚合函数sum 
 Projections.avg  			等于SQL中聚合函数avg 
@@ -588,10 +316,11 @@ Projections.count  		等于SQL中聚合函数count
 Projections .distinct  	去除重复记录 
 Projections.max  			等于SQL中聚合函数max 
 Projections.min  			等于SQL中聚合函数min 
-Projections .groupProperty  对指定的属性进行分组查询 
-```  
-``` java 多个统计与分组 
-session.beginTransaction(); 
+Projections .groupProperty  对指定的属性进行分组查询
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>多个统计与分组 </span></figcaption><pre>session.beginTransaction(); 
  
 Criteria c = session.createCriteria(User.class); 
  
@@ -605,17 +334,17 @@ Object[] obj = (Object[]) c.uniqueResult();
  
 System.out.println(<span class="string">"sum:"</span> + obj[<span class="number">0</span>]); 
 System.out.println(<span class="string">"min:"</span> + obj[<span class="number">1</span>]);
-```  
-``` java 排序 
-Criteria c = session.createCriteria(User.class); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>排序 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
  
-c.addOrder(Order.desc(<span class="string">"id"</span>)); 
-```
+c.addOrder(Order.desc(<span class="string">"id"</span>));
+</pre></figure>
 
-**原生SQL查询**  
 
-``` java 示例
-session.beginTransaction(); 
+<p><strong>原生SQL查询</strong>  </p>
+<figure class="highlight lang-java"><figcaption><span>示例</span></figcaption><pre>session.beginTransaction(); 
  
 String sql = <span class="string">"select id,username,userpwd from t_user"</span>; 
 List list = session.createSQLQuery(sql).list(); 
@@ -626,10 +355,11 @@ List list = session.createSQLQuery(sql).list();
 	  + rows[<span class="number">1</span>] + <span class="string">"userpwd:"</span> + rows[<span class="number">2</span>]); 
 } 
  
-session.getTransaction().commit(); 
-```  
-``` java addEntity()示例 
-session.beginTransaction(); 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>addEntity()示例 </span></figcaption><pre>session.beginTransaction(); 
  
 String sql = <span class="string">"select id,username,userpwd from t_user"</span>; 
 
@@ -643,9 +373,10 @@ List&lt;User&gt; list = query.list();
 } 
  
 session.getTransaction().commit();
-```  
-``` java uniqueResult示例 
-session.beginTransaction(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>uniqueResult示例 </span></figcaption><pre>session.beginTransaction(); 
  
 String sql = <span class="string">"select id,username,userpwd from t_user where id = 2"</span>; 
 SQLQuery query = session.createSQLQuery(sql).addEntity(User.class); 
@@ -655,20 +386,20 @@ User user = (User) query.uniqueResult();
 System.out.println(user.getUserName()); 
  
 session.getTransaction().commit();
-</pre></td></tr></table></figure>
+</pre></figure>
 
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/hibernate/">hibernate</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>
@@ -679,9 +410,18 @@ session.getTransaction().commit();
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -693,22 +433,10 @@ session.getTransaction().commit();
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 

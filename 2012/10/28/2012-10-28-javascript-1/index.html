@@ -80,23 +80,19 @@
     <div class="entry">
       
         <p>三个方法主要用来转码操作，解决地址栏中文传参等问题，但有所不同。</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>encodeURI(URIstring)
-</pre></td></tr></table></figure>
+<figure class="highlight lang-javascript"><pre>encodeURI(URIstring)
+</pre></figure>
 
 <p>该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：<code>- _ . ! ~ * &#39; ( ) 。</code>
 该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：<code>;/?:@&amp;=+$,#</code>;此时就必须使用encodeURIComponent()进行编码。<br>1. 传递参数时需要使用encodeURIComponent，这样组合的url才不会被#等特殊字符截断。<br>2. 进行url跳转时可以整体使用encodeURI<br>3. js使用数据时可以使用escape<br>4. escape对0-255以外的unicode值进行编码时输出%u<em>**</em>格式，其它情况下escape，encodeURI，encodeURIComponent编码结果相同。另外使用<code>unescape()</code>对    <code>escape()</code>编码的字符进行解码。但是ECMAScript v3反对使用该方法，应使用<code>decodeURI()</code>和<code>decodeURIComponent()</code>代替<br>最多使用的应为encodeURIComponent，它是将中文、韩文等特殊字符转换成utf-8格式的url编码，所以如果给后台传递参数需要使用encodeURIComponent时需要后台解码对utf-8支持（form中的编码方式和当前页面编码方式相同）</p>
-<figure class="highlight lang-javascript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
+<figure class="highlight lang-javascript"><pre>escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
 
-encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，0-9，a-z，A-Z
+encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，
+
+0-9，a-z，A-Z
 
 encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~，0-9，a-z，A-Z
-</pre></td></tr></table></figure>
+</pre></figure>
 
 
       
@@ -120,9 +116,18 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
 
 <section id="comment">
   <h1 class="title">Comments</h1>
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 </section>
 </div></div>
     <!-- <aside id="sidebar" class="alignright"></aside> -->
@@ -134,22 +139,10 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
-
-<script type="text/javascript">
-var disqus_shortname = 'hancy';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
 
 
 
