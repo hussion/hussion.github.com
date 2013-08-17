@@ -331,10 +331,12 @@ article header .post-tags {
       *  tag color
       */
 }
+article header .post-tags span:first-child {
+  margin-left: 10px;
+}
 article header .post-tags span {
   display: inline-block;
   padding: 0 8px;
-  margin-left: 10px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -348,13 +350,13 @@ article header .post-tags span a:hover {
   text-decoration: none;
 }
 article header .post-tags .tag-Javascript {
-  background: #72cca7;
+  background: #fa987d;
 }
 article header .post-tags .tag-NodeJs {
   background: #a29ac8;
 }
 article header .post-tags .tag-Java {
-  background: #fa987d;
+  background: #72cca7;
 }
 article header .post-tags .tag-Css {
   background: #94c045;
@@ -405,6 +407,11 @@ article .entry .video-container {
 }
 article .entry p {
   font-size: 1.1em;
+}
+article .entry p em {
+  border-left: 5px solid #ccc;
+  padding-left: 10px;
+  color: #aaa;
 }
 article .entry blockquote {
   border-top: 1px solid #ddd;
