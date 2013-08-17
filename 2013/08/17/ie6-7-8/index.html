@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>IE兼容问题总结 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="IE兼容问题总结"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-17T09:34:12.000Z"><a href="/2013/08/17/ie6-7-8/">Aug 17th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-前端开发">
+                <a href="/tags/前端开发/">前端开发</a>
+              </span>
+            
+              <span class="tag-Javascript">
+                <a href="/tags/Javascript/">Javascript</a>
+              </span>
+            
+              <span class="tag-Css">
+                <a href="/tags/Css/">Css</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">IE兼容问题总结</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>javascript兼容</strong>  </p>
+<p>在js中，各个浏览器的基本语法差距并不大,兼容问题出现在各个宿主环境里（就是所谓的的浏览器中），尤其是事件。</p>
+<ol>
+<li><p>ie6+都可以用事件一级模型和事件二级模型来绑定一个事件,在二级模型事件中,现代浏览器用的是addEventListener,而ie6,7,8用的是attachEvent，9,10两者都可以用  </p>
+</li>
+<li><p>标准浏览器采用事件捕获的方法，而ie6,7,8用 的事件冒泡机制（所谓事件捕获就是由最外层元素至目标元素最里层，事件冒泡就是由目标元素最里层冒泡到最外层），不过现代浏览器可能更加觉得冒泡机制更好，所以在addEventListener最后加了一个参数，表示是否是捕获机制，一般是false  </p>
+</li>
+<li><p>获取事件对象 标准浏览器回调函数定义e参数,而ie6,7,8使用的是window.event,获取目标元素,标准浏览器用e.target而ie6,7,8用e.srcElement  </p>
+<a name="more"></a>  
+</li>
+<li><p>innerHTML各个浏览器都可以用,innerText除了火狐，哪个浏览器都可以用  </p>
+</li>
+<li><p>日期函数处理 比如 var xxoo = new Date().getYear();在ie6,7,8中会获得当年,但在标准浏览器和ie10中会获得与1900的差值，统一用getFullYear()  </p>
+</li>
+<li><p>获得dom节点的差异，获取父节点,ie6,7,8可以用parentElement,parentNode,而火狐只能用parentNode，其次获取子节点集合,ie6,7,8,9的childNodes只会获取元素节点，会过滤到文本(文字，\n,\r,\t)，注释节点，而标准浏览器遵守dom规范，包括这些，可以用.nodeType === 1排除  </p>
+</li>
+<li><p>标准浏览器没有removeNode,ie浏览器有  </p>
+</li>
+<li><p>js对象ie6,7,8,9不能访问__proto__(prototype)而标准浏览器可以  </p>
+</li>
+<li><p>ie6,7,8判断dom是否解析完成 document.onreadystatechange这个事件,而现代浏览器用的是window.onDOMContentLoaded  </p>
+</li>
+<li><p>当用attributes来遍历一个元素的设置属性的时候,ie6,7,8会将元素的全部属性遍历出来，解决办法：specified判断是否指定  </p>
+</li>
+<li><p>ie6,7,8不支持document.getElementsByClassName  </p>
+</li>
+<li><p>当注册一个鼠标事件的时候，判断鼠标距离页面的横坐标的时候,ie6,7,8不支持e.pageX(用e.clientX),火狐不支持距离当前元素点击的对象的父级对象的距离e.offsetX(解决办法：e.clientX - 当前父级的对象的.offsetLeft),chrome支持三种表示方法e.pageX,e.clientX,e.offsetX  </p>
+</li>
+<li><p>offsetLeft意思是相对于距离设定为定位的父级元素的距离，如果父级元素没有设置postion:relative|absolute,那么往上一层一层找，如果没有，那么ie6是获取到body标签的距离,而ie7,8和现代浏览器都是获取到html的距离  </p>
+</li>
+<li><p>offsetParent意思是假如父级为定位的元素，那么就获取这个父级元素，如果往上没找到现代浏览器就获取body,而ie6,7和parentNode一样  </p>
+</li>
+<li><p>js加载方式的不同，ie6,7加载的方式，串行下载和执行（浪费cpu资源）,现代浏览器是并行下载,顺序执行  </p>
+</li>
+<li><p>判断dom对象是否加载完成 ie6,7,8不支持 xxoo.onload 解决办法 xxoo.onreadystatechange  </p>
+</li>
+</ol>
+<p><strong>css兼容问题</strong>  </p>
+<p>hack知识，俗称css补丁，不过真正的高手是不用补丁的，但是成为高手前一定得会补丁。  </p>
+<p><em>css属性hack</em>  </p>
+<p>color:red 浏览器全识别 _color:red 仅ie6识别 *color:red(+color:red)  ie6,7识别   color:red\9 ie6,7,8,9识别   color:red\0 仅ie8,9识别 color:red\9\0 仅ie9识别  </p>
+<p><em>css选择符hack</em>  </p>
+<p>*html .demo 仅ie6支持  *+html .demo 仅ie6,7支持 :html .demo 仅ie9识别  </p>
+<p><em>条件注释</em>  </p>
+<p><code>&lt;!--[if IE 6]--&gt;</code>仅仅在ie6里识别 <code>&lt;!--[if IE 7]--&gt;</code>仅仅在ie7里调试，依次类推(lt是大于，gt是小于；lte是大于等于，gte是小于等于)  </p>
+<p><em>css盒模型</em>  </p>
+<p>在ie6的怪异模式下解析有问题 width包括padding和子容器的宽度，标准模式width = width+padding的总和  </p>
+<p><em>浮动</em>  </p>
+<p>浮动双左边距和右边距多3px的解决方式(前提是只有相对于父元素的浮动产生条件：块元素+浮动+margin，建议用padding代替margin)；其实别人的例子上说的浮动双边距只是只带左边距双倍而不是左右边距都双倍,ie6中当一个元素浮动后，那么假如设置了margin-left:10px那么就会变为20px，如果没设置那么还是0px,你需要为浮动的元素加上display:inline,还是在ie6中假如一个元素浮动后那么margin-right都比设置了多3px,假如没有设置margin-right那么ie6中隐式的加入了margin-right:3px。</p>
+<p><em>最小高度</em>  </p>
+<p>(条件:块级元素+height:&lt;13px);在一个块级元素定义了height，在ie6中假如小于13px那么默认为13px;解决办法:height:5px;overflow:hidden;  </p>
+<p><em>子级超出元素</em>  </p>
+<p>(条件：块级元素+width或者height);在ie6中，块级元素设置了width，假如子级元素超出了块级元素那么快级元素会被子级元素所扩展，因为在ie6中,每定义一个元素那么他就拥有了hasLayout,如果设置为true,那么块级元素就会扩充自己包含子级元素。解决办法：width:100px;overflow:hidden</p>
+<p><em>父级设置了overflow隐藏不了子级定位的元素</em>  </p>
+<p>解决办法在父级定义position:relative  </p>
+<p><em>li和li之间有近10px的空白</em>  </p>
+<p>(条件:li没有浮动，并且里面的a标签为块元素);因为在ie6中,li是具有hasLayout，所以在li中  解决办法:display:inline.</p>
+<p><em>a:hover的无效的bug</em>  </p>
+<p>在ie6中只能通过a标签添加:hover这个伪类,a:hover span在ie6是无效的，解决办法在a:hover span前面在加个a:hover{outline:0}就可以了</p>
+<p>另外，很多的ie6,7bug是由具有hasLayout=true和hasLayout=false的时候。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/前端开发/">前端开发</a>, <a href="/tags/Javascript/">Javascript</a>, <a href="/tags/Css/">Css</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

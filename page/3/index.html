@@ -63,6 +63,75 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-03-08T15:40:00.000Z"><a href="/2011/03/08/2012-05-06-linux8/">Mar 8th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/03/08/2012-05-06-linux8/">linux学习笔记(七): 网络通信命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>命令名称： <strong>write</strong>  <blockquote>
+<p>功能描述：向另外一个用户发送信息，以Ctrl+D作为结束  </p>
+<figure class="highlight lang-ruby"><pre>语法： write [用户名]  
+<span class="symbol">ps:</span> 该命令是实时通信，接收信息的用户必须在线方可发送成功！ 
+```
+&lt;!--more--&gt;
+
+* 命令名称： **wall**  
+&gt; 功能描述：向所有用户发送广播信息（write all）  
+``` ruby 
+语法：wall [message] 
+``` 
+ 
+* 命令名称： **ping**  
+&gt; 功能描述：测试网络连通  
+&gt; 执行权限：root  
+``` ruby 
+语法： ping 选项 ip地址  
+ping ip地址    
+ping -c 次数 ip地址 <span class="comment">#自定义发送ICMP数据包次数  </span>
+ping -s 包大小 ip地址 <span class="comment">#自定义一次发送ICMP数据包大小    </span>
+```
+
+* 命令名称： **ifconfig**  
+&gt; 功能描述：查看网络设置信息  
+&gt; 执行权限：root  
+``` ruby 
+语法：ifconfig 选项[-a] [网卡设备标识]  
+-a <span class="comment">#显示所有网卡信息(linux中通常可以省略，在Unix中不能省略)</span>
+</pre></figure>
+
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2011-03-05T03:51:00.000Z"><a href="/2011/03/05/2012-05-05-linux7/">Mar 5th, 2011</a></time>
       
         <div class="post-tags">
@@ -334,7 +403,9 @@ makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命�
         <div class="post-tags">
           
             
-              <span class="tag-Linux"><a href="/tags/Linux/">Linux</a></span>
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
             
           
         </div>
@@ -391,7 +462,9 @@ $ chmod 777 [file1] <span class="comment">#把file1所有用户的权限设为rw
         <div class="post-tags">
           
             
-              <span class="tag-Linux"><a href="/tags/Linux/">Linux</a></span>
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
             
           
         </div>
@@ -450,7 +523,9 @@ ls 选项[-ald] [文件或目录]
         <div class="post-tags">
           
             
-              <span class="tag-Linux"><a href="/tags/Linux/">Linux</a></span>
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
             
           
         </div>
@@ -519,7 +594,9 @@ passwd: 修改密码
         <div class="post-tags">
           
             
-              <span class="tag-Linux"><a href="/tags/Linux/">Linux</a></span>
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
             
           
         </div>
@@ -823,7 +900,9 @@ passwd: 修改密码
         <div class="post-tags">
           
             
-              <span class="tag-Java"><a href="/tags/Java/">Java</a></span>
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
             
           
         </div>
@@ -1149,46 +1228,6 @@ session.getTransaction().commit();
     </div>
     <footer>
       
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-08-01T08:11:00.000Z"><a href="/2010/08/01/2012-06-19-hibernate-2/">Aug 1st, 2010</a></time>
-      
-        <div class="post-tags">
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/08/01/2012-06-19-hibernate-2/">hibernate持久化对象的生命周期(状态)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>包括三种状态：瞬态（自由态），持久态，托管态  </p>
-<p><strong>自由态</strong>  </p>
-<p>持久化对象的自由态，指的是对象在内存中存在，但是在数据库中并没有数据与其关联。比如Student student = new Student()，这里的student对象就是一个自由态的持久化对象。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2010/08/01/2012-06-19-hibernate-2/#more" class="more-link">Read More</a>
-          </div>
         
         
       
