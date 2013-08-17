@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>深入浅出Spring IOC原理 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="深入浅出Spring IOC原理"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-17T02:47:32.000Z"><a href="/2013/08/17/spring-ioc/">Aug 17th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Java"><a href="/tags/Java/">Java</a></span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">深入浅出Spring IOC原理</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>学过spring的应该知道，spring的核心就是ioc和aop了。今天来说一下ioc到底是什么，原理是什么，主要解决了哪些问题。<br><strong>IOC拟物化</strong><br>我不知道大家有没有经常网购的习惯，反正我平常消费的银子70%都是花在网购上，感觉网购很方便，可以随便挑，各种东西应有尽有，还送货上门，乐趣无限啊。说到网购，大家仔细想一下，其实，淘宝网就是很大的ioc容器，你要的东西应有尽有，店家把各自的东西挂到上面，就相当于把Bean放入容器的过程，而我们搜索我们想要的东西的过程，就类似于ioc注入的过程，找到了也就是注入成功了，找不到就抛出异常。意思就是：只要满足我们的条件，哪家卖的都无所谓。言外之意，反应到ioc中就是：只要实现的接口，具体注入哪个实现类都是无关紧要的。<br><strong>IOC概念</strong><br>我们都知道ioc是控制反转，什么是控制反转呢？个人认为这个概念比较抽象，另一个名称：DI(依赖注入)能更好的解释这个概念。从字面意义上理解，控制反转就是反过来控制。以前我们需要一个对象，都需要自己去new出来这个对象，控制反转之后，也就是说我们不需要主动自己去new这个对象，我们只要直接去接受这个对象就行了，换句话说这个对象被注入进来了，这就是DI的概念。<br><strong>IOC原理</strong><br>我们知道，ioc的最大作用就是bean管理和解耦。到底是如何进行解耦的呢？下面我用数学中的有向图进行说明。我们可以把Spring管理的每一个Bean当做一个节点（假设有N个Bean，那么就有N个节点），于是这些Bean加上相互之间表示调用关系的有向边就组成了一个有向图。毫无疑问，有向图的边越多那么平均来说每个顶点之间的耦合度就越大，最大的情况为完全有向图，即任何两个节点之间都有两条有向边，此时每个顶点的度为2（N-1），也就是说每个Bean与其他的N-1个Bean有耦合，而且还是双向耦合。如下图所示：<br><img src="http://ww3.sinaimg.cn/large/6cdc22a9jw1e7pj6y5vfpj20bx07at8r.jpg" alt="Bean之间相互耦合"><br>在编程的时候，我们都是本着高内聚、低耦合的编程方式，但是我们知道，要想达到完全的没有耦合是不可能的。所以能做的就是尽最大可能的保证松耦合。如何能减少类与类直接的耦合呢？一般我们都是用接口来实现。通过让类与类之间，依赖于接口，而不依赖于类，来达到松耦合的目的。但是无论耦合多么“松散”，具体的实现类还是需要new出来的，于是就得考虑这个new的过程应该放在哪里才是最合适的。如果在每个Bean中都去new这个Bean需要的其他Bean，那么耦合的程度又回到了上图的情况，那是没有意义的。所以我们就需要找一个中间人，在中间人那里实现new的过程，然后把new好的实例传递给需要这个实例的对象，这样的话一切问题就迎刃而解了。因此spring ioc容器就借助这个原理实现了bean管理和松耦合的功能。如下图所示：<br><img src="http://ww4.sinaimg.cn/large/6cdc22a9jw1e7pjqc4ddyj20a808awei.jpg" alt="IOC容器进行解耦"><br>上图也就是Spring的数学描述，图中很清晰的表明了在使用Spring之后，任意两个节点（Bean）之间的有向线段变成了0（确切的说不完全是0，因为任意两个节点之间还是可以通过容器连接的），唯一和这些Bean有关系的是容器（无论谁需要什么东西都去找容器，尽量避免两个Bean之间直接打交道）也正因为如此Spring才达到了解耦的目的。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

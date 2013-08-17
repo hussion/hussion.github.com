@@ -63,6 +63,100 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-03-05T03:51:00.000Z"><a href="/2011/03/05/2012-05-05-linux7/">Mar 5th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/03/05/2012-05-05-linux7/">linux学习笔记(六): 压缩解压缩命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>命令名称： <strong>gzip和gunzip</strong>  <blockquote>
+<p>功能描述：压缩和解压缩文件<br>``` ruby 
+语法：<br>gzip [文件] #压缩文件<br>gzip -d [文件] #解压缩.gz格式压缩文件<br>gunzip [选项] [压缩文件] #解压缩.gz格式的压缩文件   </p>
+</blockquote>
+</li>
+</ul>
+<p>ps:<br>1&gt; 压缩后的文件格式为 .gz<br>2&gt; 只能压缩文件<br>3&gt; 不保留原文件(直接替换原文件)</p>
+<pre><code><figure class="highlight"><pre>&lt;!--more--&gt;
+
+* 命令名称： **tar**  
+&gt; 功能描述：打包目录  
+``` ruby 
+语法： tar 选项[cvf] [目录]  
+-c <span class="preprocessor">#产生.tar打包文件  </span>
+-v <span class="preprocessor">#显示详细信息  </span>
+-f <span class="preprocessor">#指定压缩后的文件名  </span>
+-z <span class="preprocessor">#打包同时压缩，压缩后文件格式为.tar.gz(并不是所有的unix都支持)  </span>
+$ tar -zcvf dir1<span class="variable">.tar</span><span class="variable">.gz</span> dir1 <span class="preprocessor">#把目录dir1压缩成一个打包文件并压缩的文件</span>
+
+tar命令解压缩语法：  
+-x <span class="preprocessor">#解包.tar文件  </span>
+-v <span class="preprocessor">#显示详细信息  </span>
+-f <span class="preprocessor">#指定解压文件  </span>
+-z <span class="preprocessor">#解压缩  </span>
+$ tar -zxvf dir1<span class="variable">.tar</span><span class="variable">.gz</span> <span class="preprocessor">#将dir1.tar.gz文件解压缩</span>
+</pre></figure></code></pre>
+<ul>
+<li><p>命令名称： <strong>zip和unzip</strong>  </p>
+<blockquote>
+<p>功能描述：压缩文件和目录  </p>
+<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
+zip [压缩后文件名称] [文件] <span class="comment">#压缩文件  </span>
+zip -r [压缩后文件名称] [目录] <span class="comment">#压缩目录  </span>
+unzip [压缩文件] <span class="comment">#解压缩.zip文件    </span>
+压缩后的文件格式为 .zip
+</pre></figure></code></pre>
+</blockquote>
+</li>
+<li><p>命令名称： <strong>bzip2</strong>  </p>
+<blockquote>
+<p>功能描述：压缩文件  </p>
+<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
+bzip2 [文件]  
+bzip2 -k [文件] <span class="comment">#产生压缩文件并保留原文件  </span>
+压缩后的文件格式为 .bz2
+</pre></figure></code></pre>
+</blockquote>
+</li>
+<li><p>命令名称： <strong>bunzip2</strong>  </p>
+<blockquote>
+<p>功能描述：解压缩文件  </p>
+<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
+bunzip2 [压缩文件]  
+bunzip2 -k [压缩文件] <span class="comment">#解压缩文件并保留原文件</span>
+</pre></figure></code></pre>
+<p>PS：<br>1&gt; 如果文件不大，且对压缩比不太要求的话，推荐使用zip命令<br>2&gt; bzip2是gzip的升级版，压缩比很高!</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2011-03-02T02:13:00.000Z"><a href="/2011/03/02/2012-05-05-linux6/">Mar 2nd, 2011</a></time>
       
         <div class="post-tags">
@@ -1094,45 +1188,6 @@ session.getTransaction().commit();
         
           <div class="alignleft readMore">
             <a href="/2010/08/01/2012-06-19-hibernate-2/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-07-28T13:25:00.000Z"><a href="/2010/07/28/2012-06-18-hibernate-1/">Jul 28th, 2010</a></time>
-      
-        <div class="post-tags">
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/07/28/2012-06-18-hibernate-1/">hibernate配置与入门</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>ORM</strong>  </p>
-<p>ORM(Object Relation Mapping)对象关系映射。是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将java程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2010/07/28/2012-06-18-hibernate-1/#more" class="more-link">Read More</a>
           </div>
         
         
