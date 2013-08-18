@@ -63,6 +63,355 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-08-11T23:38:00.000Z"><a href="/2010/08/12/2012-06-20-hibernate-3/">Aug 12th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2010/08/12/2012-06-20-hibernate-3/">hibernate的查询方式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>hibernate的查询方式常见的主要分为三种: HQL, QBC, 以及使用原生SQL查询  </p>
+<p><strong>HQL查询</strong>  </p>
+<p>• HQL（Hibernate Query Language）提供了丰富灵活的查询方式，使用HQL进行查询也是Hibernate官方推荐使用的查询方式。 </p>
+<p>• HQL在语法结构上和SQL语句十分的相同，所以可以很快的上手进行使用。使用HQL需要用到Hibernate中的Query对象，该对象专门执行HQL方式的操作。  </p>
+<figure class="highlight lang-java"><figcaption><span>查询所有示例 </span></figcaption><pre>session.beginTransaction(); 
+String hql = <span class="string">"from User"</span>; <span class="comment">// from 后跟的是要查询的对象，而不是表</span>
+Query query = session.createQuery(hql); 
+List&lt;User&gt; userList = query.list(); 
+<span class="keyword">for</span>(User user:userList){ 
+  System.out.println(user.getUserName()); 
+} 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>带where的查询示例 </span></figcaption><pre>session.beginTransaction(); 
+String hql = <span class="string">"from User where userName = 'James'"</span>; 
+Query query = session.createQuery(hql); 
+List&lt;User&gt; userList = query.list(); 
+<span class="keyword">for</span>(User user:userList){ 
+  System.out.println(user.getUserName()); 
+} 
+session.getTransaction().commit(); 
+
+<span class="comment">/*
+在HQL中where语句中使用的是持久化对象的属性名，如上面示例中的userName。当然在HQL中也可以使用别名
+*/</span>
+
+String hql = <span class="string">"from User as u where u.userName = 'James'"</span>; 
+
+<span class="comment">/*
+过滤条件 
+在where语句中还可以使用各种过滤条件，如：=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between、not between、
+in、not in、is、like、and、or等
+*/</span>
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>获取一个不完整的对象 </span></figcaption><pre>session.beginTransaction(); 
+String hql = <span class="string">"select userName from User"</span>; 
+Query query = session.createQuery(hql); 
+List nameList = query.list(); 
+<span class="keyword">for</span>(Object obj:nameList){ 
+  System.out.println(obj); 
+} 
+session.getTransaction().commit();
+
+<span class="comment">// 多个属性的话，需要用object[]接收</span>
+
+session.beginTransaction(); 
+String hql = <span class="string">"select userName,userPwd from User"</span>; 
+Query query = session.createQuery(hql); 
+List nameList = query.list(); 
+
+<span class="keyword">for</span>(Object obj:nameList){ 
+	Object[] array = (Object[]) obj; <span class="comment">// 转成object[]</span>
+	System.out.println(<span class="string">"name:"</span> + array[<span class="number">0</span>]); 
+	System.out.println(<span class="string">"pwd:"</span> + array[<span class="number">1</span>]); 
+} 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>统计和分组查询 </span></figcaption><pre>session.beginTransaction(); 
+String hql = <span class="string">"select count(*),max(id) from User"</span>; 
+Query query = session.createQuery(hql); 
+List nameList = query.list(); 
+<span class="keyword">for</span>(Object obj:nameList){ 
+	Object[] array = (Object[]) obj; 
+	System.out.println(<span class="string">"count:"</span> + array[<span class="number">0</span>]); 
+	System.out.println(<span class="string">"max:"</span> + array[<span class="number">1</span>]); 
+} 
+session.getTransaction().commit();
+
+<span class="comment">/*  
+*该条sql语句返回的是单条数据，所以还可以这样写
+*单列数据用Object，多列数据用Object[]
+*/</span>
+
+Object[] object = (Object[]) query.uniqueResult();
+System.out.println(<span class="string">"count:"</span> + object[<span class="number">0</span>]); 
+System.out.println(<span class="string">"max:"</span> + object[<span class="number">1</span>]);
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>更多写法 </span></figcaption><pre>select distinct name from Student; 
+ 
+select max(age) from Student; 
+ 
+select count(age),age from Student group by age; 
+ 
+from Student order by age;
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>HQL占位符 </span></figcaption><pre>session.beginTransaction(); 
+String hql = <span class="string">"from User where userName = ?"</span>; 
+Query query = session.createQuery(hql); 
+<span class="comment">// 索引从0开始 </span>
+query.setString(<span class="number">0</span>, <span class="string">"James"</span>); 
+ 
+List&lt;User&gt; userList = query.list(); 
+ 
+<span class="keyword">for</span>(User user:userList){ 
+  System.out.println(user.getUserName()); 
+} 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>HQL引用占位符 </span></figcaption><pre>session.beginTransaction(); 
+String hql = <span class="string">"from User where userName = :name"</span>; 
+Query query = session.createQuery(hql); 
+ 
+query.setParameter(<span class="string">"name"</span>, <span class="string">"James"</span>); 
+ 
+List&lt;User&gt; userList = query.list(); 
+ 
+<span class="keyword">for</span>(User user:userList){ 
+  System.out.println(user.getUserName()); 
+} 
+ 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>HQL分页 </span></figcaption><pre>session.beginTransaction(); 
+String hql = <span class="string">"from User"</span>; 
+Query query = session.createQuery(hql); 
+ 
+query.setFirstResult(<span class="number">0</span>); 
+query.setMaxResults(<span class="number">2</span>); 
+ 
+List&lt;User&gt; userList = query.list(); 
+<span class="keyword">for</span>(User user:userList){ 
+  System.out.println(user.getUserName()); 
+} 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<p><strong>QBC（Query By Criteria）查询</strong>  </p>
+<p>• Criteria对象提供了一种面向对象的方式查询数据库。Criteria对象需要使用Session对象来获得。 </p>
+<p>• 一个Criteria对象表示对一个持久化类的查询。</p>
+<figure class="highlight lang-java"><figcaption><span>查询所有 </span></figcaption><pre>session.beginTransaction(); 
+ 
+Criteria c = session.createCriteria(User.class); 
+ 
+List&lt;User&gt; userList = c.list(); 
+ 
+<span class="keyword">for</span>(User user:userList){ 
+  System.out.println(user.getUserName()); 
+} 
+ 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>where </span></figcaption><pre>session.beginTransaction(); 
+ 
+Criteria c = session.createCriteria(User.class); 
+ 
+c.add(Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"James"</span>)); 
+ 
+List&lt;User&gt; userList = c.list(); 
+<span class="keyword">for</span>(User user:userList){ 
+  System.out.println(user.getUserName()); 
+} 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>Restrictions对象</span></figcaption><pre>方法名称  				对应SQL中的表达式
+---------------------------------------------------------- 
+Restrictions.eq  		field = value 
+Restrictions.gt  		field &gt; value 
+Restrictions.lt  		field <span class="tag">&lt; <span class="attribute">value</span> 
+<span class="attribute">Restrictions.ge</span>  	<span class="attribute">field</span> &gt;</span>= value
+Restrictions.le  		field <span class="tag">&lt;<span class="title">=</span> <span class="attribute">value</span> 
+<span class="attribute">Restrictions.between</span>  	<span class="attribute">field</span> <span class="attribute">between</span> <span class="attribute">value1</span> <span class="attribute">and</span> <span class="attribute">value2</span> 
+<span class="attribute">Restrictions.in</span>  		<span class="attribute">field</span> <span class="attribute">in</span>(…) 
+<span class="attribute">Restrictions.and</span>  	<span class="attribute">and</span> 
+<span class="attribute">Restrictions.or</span>  		<span class="attribute">or</span> 
+<span class="attribute">Restrictions.like</span>  	<span class="attribute">field</span> <span class="attribute">like</span> <span class="attribute">value</span>
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>示例 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
+ 
+c.add(Restrictions.like(<span class="string">"userName"</span>, <span class="string">"J"</span>)); 
+c.add(Restrictions.eq(<span class="string">"id"</span>, <span class="number">120</span>));
+c.add(Restrictions.or(Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"James"</span>),  
+  Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"Alex"</span>)));
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>获取唯一记录</span></figcaption><pre>session.beginTransaction(); 
+ 
+Criteria c = session.createCriteria(User.class); 
+c.add(Restrictions.eq(<span class="string">"id"</span>, <span class="number">120</span>)); 
+ 
+User user = (User) c.uniqueResult(); 
+ 
+System.out.println(user.getUserName()); 
+ 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>分页 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
+ 
+c.setFirstResult(<span class="number">0</span>); 
+c.setMaxResults(<span class="number">5</span>);
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>分组与统计 </span></figcaption><pre>session.beginTransaction(); 
+ 
+Criteria c = session.createCriteria(User.class); 
+ 
+c.setProjection(Projections.sum(<span class="string">"id"</span>)); 
+ 
+Object obj = c.uniqueResult(); 
+System.out.println(obj); 
+ 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>Projections对象</span></figcaption><pre>方法名称  						描述 
+-------------------------------------------------------
+Projections.sum  			等于SQL中聚合函数sum 
+Projections.avg  			等于SQL中聚合函数avg 
+Projections.count  		等于SQL中聚合函数count 
+Projections .distinct  	去除重复记录 
+Projections.max  			等于SQL中聚合函数max 
+Projections.min  			等于SQL中聚合函数min 
+Projections .groupProperty  对指定的属性进行分组查询
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>多个统计与分组 </span></figcaption><pre>session.beginTransaction(); 
+ 
+Criteria c = session.createCriteria(User.class); 
+ 
+ProjectionList projectionList = Projections.projectionList(); 
+projectionList.add(Projections.sum(<span class="string">"id"</span>)); 
+projectionList.add(Projections.min(<span class="string">"id"</span>)); 
+ 
+c.setProjection(projectionList); 
+<span class="comment">// 和HQL一样，单列用Object，多列用Object[] </span>
+Object[] obj = (Object[]) c.uniqueResult(); 
+ 
+System.out.println(<span class="string">"sum:"</span> + obj[<span class="number">0</span>]); 
+System.out.println(<span class="string">"min:"</span> + obj[<span class="number">1</span>]);
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>排序 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
+ 
+c.addOrder(Order.desc(<span class="string">"id"</span>));
+</pre></figure>
+
+
+<p><strong>原生SQL查询</strong>  </p>
+<figure class="highlight lang-java"><figcaption><span>示例</span></figcaption><pre>session.beginTransaction(); 
+ 
+String sql = <span class="string">"select id,username,userpwd from t_user"</span>; 
+List list = session.createSQLQuery(sql).list(); 
+ 
+<span class="keyword">for</span>(Object item : list){ 
+	Object[] rows = (Object[]) item; 
+	System.out.println(<span class="string">"id:"</span> + rows[<span class="number">0</span>] + <span class="string">"username:"</span>  
+	  + rows[<span class="number">1</span>] + <span class="string">"userpwd:"</span> + rows[<span class="number">2</span>]); 
+} 
+ 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>addEntity()示例 </span></figcaption><pre>session.beginTransaction(); 
+ 
+String sql = <span class="string">"select id,username,userpwd from t_user"</span>; 
+
+<span class="comment">// addEntity()可以告诉Hibernate你想要封装成对象的类型，然后自动为你封装</span>
+SQLQuery query = session.createSQLQuery(sql).addEntity(User.class); 
+ 
+List&lt;User&gt; list = query.list(); 
+ 
+<span class="keyword">for</span>(User user : list){ 
+  System.out.println(user.getUserName()); 
+} 
+ 
+session.getTransaction().commit();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>uniqueResult示例 </span></figcaption><pre>session.beginTransaction(); 
+ 
+String sql = <span class="string">"select id,username,userpwd from t_user where id = 2"</span>; 
+SQLQuery query = session.createSQLQuery(sql).addEntity(User.class); 
+ 
+User user = (User) query.uniqueResult(); 
+ 
+System.out.println(user.getUserName()); 
+ 
+session.getTransaction().commit();
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2010-08-01T08:11:00.000Z"><a href="/2010/08/01/2012-06-19-hibernate-2/">Aug 1st, 2010</a></time>
       
         <div class="post-tags">
@@ -597,47 +946,6 @@ public String execute(){
 <span class="tag">&lt;/<span class="title">struts</span>&gt;</span>
 </pre></figure>
 
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-06-15T02:43:00.000Z"><a href="/2010/06/15/2012-06-12-struts2-2/">Jun 15th, 2010</a></time>
-      
-        <div class="post-tags">
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/06/15/2012-06-12-struts2-2/">struts2的工作原理以及请求流程</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>struts2的原理架构图</strong>  </p>
-<img src="/images/java/struts2.jpg">
-
-
-<p><code>ActionMapper</code><br>该类是HttpServletRequest和Action调用请求的一个映射，它屏蔽了Action对于Request等java servlet类的依赖；Struts2中它的默认实现类是DefaultActionMapper，ActionMapper很多的用处就是可以根据自己的要求来设计url格式，它自己也有RESTful的实现。<br><code>ActionProxy</code>和<code>ActionInvocation</code><br>Action的一个代理，由ActionProxyFactory创建，它本身不包括Action实例，默认实现DefaultActionProxy是由ActionInvocation持有Action实例。ActionProxy作用是如何取得Action，无论是本地还是远程。而ActionInvocation的作用是如何执行Action，拦截器的功能就是在ActionInvocation中实现的<br><code>ConfigurationProvider</code>和<code>Configuration</code><br>ConfigurationProvider就是struts2中配置文件的解析器，struts2中的配置文件主要是由其实现类XmlConfigurationProvider及其子类StrutsXmlConfigurationProvider来解析  </p>
-<p><strong>Struts2的请求流程</strong>  </p>
-<p>1、客户端发送请求<br>2、这个请求经过一系列的过滤器（ActionContextCleanUp--&gt;FilterDispatcher）<br>3、FilterDispatcher通过ActionMapper来决定这个请求需要调用哪个Action<br>4、如果ActionMapper决定调用某个Action，FilterDispatcher把请求的处理交给ActionProxy<br>5、ActionProxy通过ConfigurationManager询问框架的配置文件（struts.xml），找到需要调用的Action类<br>6、ActionProxy创建一个ActionInvocation的实例<br>7、ActionInvocation通过代理模式调用真正的Action，当然这涉及到相关拦截器的调用<br>8、Action执行完毕，ActionInvocation创建Result并返回。</p>
 
       
     </div>

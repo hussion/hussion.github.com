@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>javascript性能优化 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="javascript性能优化"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-18T01:55:03.000Z"><a href="/2013/08/18/javascript-performance-optimize/">Aug 18th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Javascript">
+                <a href="/tags/Javascript/">Javascript</a>
+              </span>
+            
+              <span class="tag-前端开发">
+                <a href="/tags/前端开发/">前端开发</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">javascript性能优化</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>注意作用域</strong>  </p>
+<p><em>避免全局查询</em><br>局部查找比全局查找快<br><em>避免使用with</em><br>with()会创建自己的作用域，增加作用域链的长度</p>
+<p><strong>选择正确的方法</strong>  </p>
+<p><em>避免不必要的查找，减少复杂度</em><br><em>优化循环</em>  </p>
+<ol>
+<li>减值迭代(从高往低循环)  </li>
+<li>简化循环体  </li>
+<li>简化终止条件  </li>
+<li>避免双重解释(避免eval(&#39;alert(&quot;1&quot;)&#39;);避免new Function();避免setTimeout第一参数传入字符串)  </li>
+<li>其他事项(原生方法比较快;switch比if-else快[把更可能的case放在前面];位运算比逻辑与、逻辑或都要快)  </li>
+</ol>
+<p><em>使用Array作为String Buffer</em><br>IE在字符串拼接的时候，效率很低；firefox下，Array的join执行效率是拼接的1.4倍<br><em>对于多次重复执行，setIntelval效率高于setTimeout</em>  </p>
+<p><strong>最小语句化</strong>  </p>
+<p><em>多个变量声明合并</em><br><em>插入迭代值</em><br>将name=value[i];i++;合并为：name=value[i++]<br><em>使用数组和对象字面量,缩短定义</em></p>
+<p><strong>优化DOM交互</strong>  </p>
+<p><em>DOM交互最消耗时间</em><br><em>最小化现场更新</em><br><em>使用innerHTML</em><br>innerHTML比createElement快，而且比appendChild快<br><em>使用事件代理</em><br>如果可能，把事件附加到更高层次的地方<br><em>注意NodeList</em><br>查询NodeList的属性，方法开销很昂贵;另外特别要优化循环查询</p>
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/Javascript/">Javascript</a>, <a href="/tags/前端开发/">前端开发</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

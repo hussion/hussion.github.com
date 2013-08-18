@@ -411,7 +411,9 @@ article .entry p {
 article .entry p em {
   border-left: 5px solid #ccc;
   padding-left: 10px;
-  color: #aaa;
+  color: #777;
+  font-style: normal;
+  font-size: 1em;
 }
 article .entry blockquote {
   border-top: 1px solid #ddd;
