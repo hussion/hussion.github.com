@@ -51,12 +51,55 @@
     
       <li><a href="/archives">Archives</a></li>
     
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="http://weibo.com/hussion">Weibo</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-03-19T15:35:00.000Z"><a href="/2011/03/19/2012-05-12-vim/">Mar 19th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/03/19/2012-05-12-vim/">linux学习笔记(九): vim编辑器的使用</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Vim/Vi是一个功能强大的全屏幕文本编辑器，也是linux/unix上最常用的文本编辑器，它的作用是建立、编辑、显示文本文件。<br>Vim/Vi <strong>没有菜单，只有命令</strong>！<br>Vim的三种工作模式：<code>命令模式</code>、<code>插入模式</code>、<code>编辑模式</code>。<br>命令模式分为两种: 一种是<code>输入命令模式</code>,一种是<code>快捷键方式</code><br>命令以回车结束运行 </p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2011/03/19/2012-05-12-vim/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -666,266 +709,6 @@ passwd: 修改密码
 <li>避免使用 . 作为普通文件名的第一个字符(在linux中以.开头的代表隐藏文件)</li>
 <li>要注意大小写(在linux中，大小写敏感)</li>
 </ol>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-08-23T00:24:00.000Z"><a href="/2010/08/23/2012-06-23-hibernate-4/">Aug 23rd, 2010</a></time>
-      
-        <div class="post-tags">
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/08/23/2012-06-23-hibernate-4/">hibernate的数据关联映射</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>数据关联映射分为：一对多、多对一，一对一，多对多。  </p>
-<p><strong>一对多、多对一</strong>  </p>
-<pre><code><figure class="highlight"><pre><span class="comment">t_address</span>             <span class="comment">t_user</span>
-<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
-<span class="comment">id</span>                    <span class="comment">id</span>
-<span class="comment">address</span>               <span class="comment">name</span>
-<span class="comment">userid(FK)</span>            <span class="comment">age</span>
-<span class="comment">tel
-</pre></figure></code></pre>
-<figure class="highlight lang-java"><figcaption><span>一对多、多对一持久化类设计 </span></figcaption><pre><span class="comment">// User类</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String name; 
-<span class="keyword">private</span> <span class="keyword">int</span> age; 
-<span class="keyword">private</span> Set&lt;Address&gt; addressSet; 
- 
-<span class="comment">//get set method </span>
-}
-
-<span class="comment">//Address类</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String address; 
-<span class="keyword">private</span> <span class="keyword">int</span> tel; 
-<span class="keyword">private</span> User user; 
- 
-<span class="comment">//get set method </span>
-}
-```  
-``` xml user.hbm.xml 
-&lt;hibernate-mapping <span class="keyword">package</span>=<span class="string">"com.hussion.pojo"</span>&gt;  
-	&lt;<span class="class"><span class="keyword">class</span> <span class="title">name</span>="<span class="title">User</span>" <span class="title">table</span>="<span class="title">t_user</span>"&gt; 
-		&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>" <span class="title">column</span>="<span class="title">id</span>"&gt; 
-		  &lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">native</span>"&gt;&lt;/<span class="title">generator</span>&gt; 
-		&lt;/<span class="title">id</span>&gt; 
-		&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">name</span>" <span class="title">column</span>="<span class="title">name</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-		&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">age</span>" <span class="title">column</span>="<span class="title">age</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-
-		&lt;!--<span class="title">inverse</span>="<span class="title">true</span>"放弃关系维护--&gt; 
-		&lt;<span class="title">set</span> <span class="title">name</span>="<span class="title">addressSet</span>" <span class="title">inverse</span>="<span class="title">true</span>"&gt; 
-		  &lt;<span class="title">key</span> <span class="title">column</span>="<span class="title">userid</span>"/&gt; 
-		  &lt;<span class="title">one</span>-<span class="title">to</span>-<span class="title">many</span> <span class="title">class</span>="<span class="title">Address</span>"/&gt; 
-		&lt;/<span class="title">set</span>&gt; 
-	&lt;/<span class="title">class</span>&gt;  
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-```  
-``` <span class="title">xml</span> <span class="title">address</span>.<span class="title">hbm</span>.<span class="title">xml</span> 
-&lt;<span class="title">hibernate</span>-<span class="title">mapping</span> <span class="title">package</span>="<span class="title">com</span>.<span class="title">hussion</span>.<span class="title">pojo</span>"&gt; 
-	&lt;<span class="title">class</span> <span class="title">name</span>="<span class="title">Address</span>" <span class="title">table</span>="<span class="title">t_address</span>"&gt; 
-		&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>"&gt; 
-		  &lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">native</span>"/&gt; 
-		&lt;/<span class="title">id</span>&gt; 
-		&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">address</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-		&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">tel</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-		&lt;<span class="title">many</span>-<span class="title">to</span>-<span class="title">one</span> <span class="title">name</span>="<span class="title">user</span>" <span class="title">class</span>="<span class="title">User</span>" <span class="title">column</span>="<span class="title">userid</span>"/&gt; 
-	&lt;/<span class="title">class</span>&gt; 
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-```  
-``` <span class="title">java</span> 测试 
-<span class="title">User</span> <span class="title">user</span> = <span class="title">new</span> <span class="title">User</span>(); 
-<span class="title">user</span>.<span class="title">setName</span>("<span class="title">tom</span>"); 
-<span class="title">user</span>.<span class="title">setAge</span>(21); 
- 
-<span class="title">Address</span> <span class="title">address1</span> = <span class="title">new</span> <span class="title">Address</span>(); 
-<span class="title">address1</span>.<span class="title">setAddress</span>("<span class="title">China</span>"); 
-<span class="title">address1</span>.<span class="title">setTel</span>("010-9999999"); 
- 
-<span class="title">Address</span> <span class="title">address2</span> = <span class="title">new</span> <span class="title">Address</span>(); 
-<span class="title">address2</span>.<span class="title">setAddress</span>("<span class="title">USA</span>"); 
-<span class="title">address2</span>.<span class="title">setTel</span>("89898989"); 
- 
-<span class="title">Set</span>&lt;<span class="title">Address</span>&gt; <span class="title">set</span> = <span class="title">new</span> <span class="title">HashSet</span>&lt;<span class="title">Address</span>&gt;(); 
-<span class="title">set</span>.<span class="title">add</span>(<span class="title">address2</span>); 
-<span class="title">set</span>.<span class="title">add</span>(<span class="title">address1</span>); 
- 
-<span class="title">user</span>.<span class="title">setAddressSet</span>(<span class="title">set</span>);
-<span class="title">session</span>.<span class="title">beginTransaction</span>(); 
- 
-<span class="title">session</span>.<span class="title">save</span>(<span class="title">address1</span>); 
-<span class="title">session</span>.<span class="title">save</span>(<span class="title">address2</span>); 
-<span class="title">session</span>.<span class="title">save</span>(<span class="title">user</span>); 
- 
-<span class="title">session</span>.<span class="title">getTransaction</span>().<span class="title">commit</span>();
-```  
-
-**一对一**  
-
-	<span class="title">t_person</span>                        <span class="title">t_card</span>
-	---------------------------------------
-	<span class="title">id</span>                              <span class="title">id</span>(<span class="title">Fk</span>)
-	<span class="title">name</span>                            <span class="title">cardnum</span>
-``` <span class="title">java</span> 持久化类设计 
-<span class="title">public</span> <span class="title">class</span> <span class="title">Person</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String userName; 
-<span class="keyword">private</span> Card card; 
- 
-<span class="comment">//get set Method </span>
-} 
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Card</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String cardNum; 
-<span class="keyword">private</span> Person person; 
- 
-<span class="comment">//get set Method </span>
-} 
-```  
-``` xml person.hbm.xml 
-&lt;hibernate-mapping <span class="keyword">package</span>=<span class="string">"com.hussion.pojo"</span>&gt; 
-    &lt;<span class="class"><span class="keyword">class</span> <span class="title">name</span>="<span class="title">Person</span>" <span class="title">table</span>="<span class="title">t_person</span>"&gt; 
-    	&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>"&gt; 
-	      &lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">native</span>"&gt;&lt;/<span class="title">generator</span>&gt; 
-	    &lt;/<span class="title">id</span>&gt; 
-     	&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">userName</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-      	&lt;<span class="title">one</span>-<span class="title">to</span>-<span class="title">one</span> <span class="title">name</span>="<span class="title">card</span>" <span class="title">class</span>="<span class="title">Card</span>" <span class="title">cascade</span>="<span class="title">delete</span>"/&gt;
-    &lt;/<span class="title">class</span>&gt; 
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-```  
-<span class="title">cascade</span>属性 
-• `<span class="title">save</span>-<span class="title">update</span>`：在执行保存和修改是进行级联操作   
-• `<span class="title">delete</span>`：在执行删除时进行级联操作   
-• `<span class="title">all</span>`：在所有情况下进行级联操作    
-• `<span class="title">none</span>`：不进行级联操作（默认）  
-``` <span class="title">xml</span> <span class="title">card</span>.<span class="title">hbm</span>.<span class="title">xml</span> 
-&lt;<span class="title">hibernate</span>-<span class="title">mapping</span> <span class="title">package</span>="<span class="title">com</span>.<span class="title">hussion</span>.<span class="title">pojo</span>"&gt; 
-	&lt;<span class="title">class</span> <span class="title">name</span>="<span class="title">Card</span>" <span class="title">table</span>="<span class="title">t_card</span>"&gt; 
-		&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>" <span class="title">column</span>="<span class="title">id</span>"&gt; 
-			&lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">foreign</span>"&gt; 
-			  &lt;<span class="title">param</span> <span class="title">name</span>="<span class="title">property</span>"&gt;<span class="title">person</span>&lt;/<span class="title">param</span>&gt; 
-			&lt;/<span class="title">generator</span>&gt; 
-		&lt;/<span class="title">id</span>&gt; 
-		&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">cardNum</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-		&lt;<span class="title">one</span>-<span class="title">to</span>-<span class="title">one</span> <span class="title">name</span>="<span class="title">person</span>" <span class="title">class</span>="<span class="title">Person</span>"&gt;&lt;/<span class="title">one</span>-<span class="title">to</span>-<span class="title">one</span>&gt; 
-	&lt;/<span class="title">class</span>&gt; 
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-```  
-**一对一（唯一外键关联）**  
-
-	<span class="title">t_person</span>                 <span class="title">t_card</span>
-	---------------------------------
-	<span class="title">id</span>                       <span class="title">id</span>
-	<span class="title">name</span>                     <span class="title">cardnum</span>
-	<span class="title">cardid</span>(<span class="title">FK</span>)               <span class="title">personid</span>(<span class="title">FK</span>)
-``` <span class="title">xml</span> <span class="title">person</span>.<span class="title">hbm</span>.<span class="title">xml</span> 
-&lt;<span class="title">hibernate</span>-<span class="title">mapping</span> <span class="title">package</span>="<span class="title">com</span>.<span class="title">hussion</span>.<span class="title">pojo</span>"&gt; 
-    &lt;<span class="title">class</span> <span class="title">name</span>="<span class="title">Person</span>" <span class="title">table</span>="<span class="title">t_person</span>"&gt; 
-    	&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>"&gt; 
-	      &lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">native</span>"&gt;&lt;/<span class="title">generator</span>&gt; 
-	    &lt;/<span class="title">id</span>&gt; 
-	    &lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">userName</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-	  	&lt;<span class="title">many</span>-<span class="title">to</span>-<span class="title">one</span> <span class="title">name</span>="<span class="title">card</span>" <span class="title">column</span>="<span class="title">cardid</span>" <span class="title">class</span>="<span class="title">Card</span>"  
-	    <span class="title">cascade</span>="<span class="title">delete</span>" <span class="title">unique</span>="<span class="title">true</span>"/&gt; 
-    &lt;/<span class="title">class</span>&gt; 
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-```  
-``` <span class="title">xml</span> <span class="title">card</span>.<span class="title">hbm</span>.<span class="title">xml</span> 
-&lt;<span class="title">hibernate</span>-<span class="title">mapping</span> <span class="title">package</span>="<span class="title">com</span>.<span class="title">hussion</span>.<span class="title">pojo</span>"&gt; 
-	&lt;<span class="title">class</span> <span class="title">name</span>="<span class="title">Card</span>" <span class="title">table</span>="<span class="title">t_card</span>"&gt; 
-		&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>" <span class="title">column</span>="<span class="title">id</span>"&gt; 
-		  &lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">native</span>"&gt;&lt;/<span class="title">generator</span>&gt; 
-		&lt;/<span class="title">id</span>&gt; 
-		&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">cardNum</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-		&lt;<span class="title">many</span>-<span class="title">to</span>-<span class="title">one</span> <span class="title">name</span>="<span class="title">person</span>" <span class="title">class</span>="<span class="title">Person</span>" <span class="title">column</span>="<span class="title">personid</span>" <span class="title">unique</span>="<span class="title">true</span>“/&gt; 
-	&lt;/<span class="title">class</span>&gt; 
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-```  
-
-**多对多**  
-
-	<span class="title">t_student</span>         <span class="title">t_student_teacher</span>           <span class="title">t_teacher</span>
-	-------------------------------------------------------
-	<span class="title">id</span>                <span class="title">id</span>                          <span class="title">id</span>
-	<span class="title">name</span>              <span class="title">studentid</span>(<span class="title">FK</span>)                   <span class="title">name</span>
-					  <span class="title">teacherid</span>(<span class="title">FK</span>)
-``` <span class="title">java</span> 持久化类设计 
-<span class="title">public</span> <span class="title">class</span> <span class="title">Teacher</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String name; 
-<span class="keyword">private</span> Set&lt;Student&gt; student; 
- 
-<span class="comment">//get set method </span>
-} 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String name; 
-<span class="keyword">private</span> Set&lt;Teacher&gt; teacher; 
- 
-<span class="comment">//get set method </span>
-}
-```  
-``` xml teacher.hbm.xml 
-&lt;hibernate-mapping <span class="keyword">package</span>=<span class="string">"com.hussion.pojo"</span>&gt; 
-	&lt;<span class="class"><span class="keyword">class</span> <span class="title">name</span>="<span class="title">Teacher</span>" <span class="title">table</span>="<span class="title">t_teacher</span>"&gt; 
-		&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>" <span class="title">column</span>="<span class="title">id</span>"&gt; 
-		  &lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">native</span>"&gt;&lt;/<span class="title">generator</span>&gt; 
-		&lt;/<span class="title">id</span>&gt; 
-		  &lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">name</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-		&lt;<span class="title">set</span> <span class="title">name</span>="<span class="title">student</span>" <span class="title">table</span>="<span class="title">t_student_techer</span>"&gt; 
-		  &lt;<span class="title">key</span> <span class="title">column</span>="<span class="title">teacherid</span>"/&gt; 
-		  &lt;<span class="title">many</span>-<span class="title">to</span>-<span class="title">many</span> <span class="title">class</span>=“<span class="title">Student</span>” <span class="title">column</span>=“<span class="title">studentid</span>”/&gt; 
-		&lt;/<span class="title">set</span>&gt; 
-	&lt;/<span class="title">class</span>&gt; 
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-```
-``` <span class="title">xml</span> <span class="title">student</span>.<span class="title">hbm</span>.<span class="title">xml</span> 
-&lt;<span class="title">hibernate</span>-<span class="title">mapping</span> <span class="title">package</span>="<span class="title">com</span>.<span class="title">hussion</span>.<span class="title">pojo</span>"&gt; 
-	&lt;<span class="title">class</span> <span class="title">name</span>="<span class="title">Student</span>" <span class="title">table</span>="<span class="title">t_student</span>"&gt; 
-		&lt;<span class="title">id</span> <span class="title">name</span>="<span class="title">id</span>" <span class="title">column</span>="<span class="title">id</span>"&gt; 
-		  &lt;<span class="title">generator</span> <span class="title">class</span>="<span class="title">native</span>"&gt;&lt;/<span class="title">generator</span>&gt; 
-		&lt;/<span class="title">id</span>&gt; 
-		&lt;<span class="title">property</span> <span class="title">name</span>="<span class="title">name</span>"&gt;&lt;/<span class="title">property</span>&gt; 
-		&lt;<span class="title">set</span> <span class="title">name</span>="<span class="title">teacher</span>" <span class="title">table</span>="<span class="title">t_student_techer</span>"&gt; 
-			&lt;<span class="title">key</span> <span class="title">column</span>="<span class="title">studentid</span>"/&gt; 
-			&lt;<span class="title">many</span>-<span class="title">to</span>-<span class="title">many</span> <span class="title">class</span>="<span class="title">Teacher</span>" <span class="title">column</span>="<span class="title">teacherid</span>"/&gt; 
-		&lt;/<span class="title">set</span>&gt; 
-	&lt;/<span class="title">class</span>&gt; 
-&lt;/<span class="title">hibernate</span>-<span class="title">mapping</span>&gt;
-</pre></figure>
-
 
       
     </div>
