@@ -376,6 +376,9 @@ article header .post-tags .tag-前端开发 {
 article header .post-tags .tag-Linux {
   background: #905;
 }
+article header .post-tags .tag-Ios {
+  background: #74c0c8;
+}
 article header .title {
   font-weight: bold;
   font-size: 1.6em;
@@ -715,6 +718,41 @@ article footer .addthis iframe {
   margin-bottom: 10px;
   font: 1.2em/1.6 "PT Serif", Helvetica Neue, Helvetica, Arial, sans-serif;
   text-shadow: 0 1px 1px #fff;
+}
+.about-left {
+  width: 70px;
+  height: 70px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0px 1px 10px #000;
+  box-shadow: 0px 1px 10px #000;
+}
+.about-left img {
+  width: 70px;
+  height: 70px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.about-right {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.about-right p {
+  font-family: "PT Serif", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+.about-middle {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.about-middle h3 {
+  font-weight: bold !important;
+}
+article.page {
+  padding-left: 0 !important;
 }
 .entry .gist {
   background: #eee;
