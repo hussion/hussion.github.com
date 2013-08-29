@@ -213,6 +213,13 @@ a:hover {
 #header #main-nav ul li a:hover {
   color: #fff;
 }
+#scrollUp {
+  bottom: 50px;
+  right: 50px;
+  height: 38px;
+  width: 38px;
+  background: url("http://hussion.qiniudn.com/top.png") no-repeat;
+}
 article.page {
   padding-left: 20px;
 }
