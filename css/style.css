@@ -82,7 +82,7 @@ a:hover {
   width: 768px;
   margin: 0 auto;
 }
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 828px) {
   .inner {
     width: 100%;
   }
@@ -101,31 +101,16 @@ a:hover {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 }
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 828px) {
   #main-col {
     width: 100%;
-    margin-right: -300px;
-  }
-}
-@media screen and (max-width: 900px) {
-  #main-col {
-    margin-right: 0;
-    float: none;
   }
 }
 #wrapper {
   background: transparent url("http://ww2.sinaimg.cn/large/6cdc22a9jw1e7ixv38w43j208d00a3y9.jpg") repeat-x scroll left top;
   z-index: 1;
 }
-@media screen and (max-width: 1260px) {
-  #wrapper {
-    margin-right: 300px;
-  }
-}
 @media screen and (max-width: 900px) {
-  #wrapper {
-    margin-right: 0;
-  }
 }
 .ds-powered-by {
   display: none;
@@ -245,11 +230,6 @@ article.link .title a:after {
 article .post-content {
   padding: 30px 40px 0 40px;
   position: relative;
-}
-@media screen and (max-width: 600px) {
-  article .post-content {
-    padding-left: 20px;
-  }
 }
 article .gallery {
   overflow: hidden;
