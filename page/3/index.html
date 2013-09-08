@@ -80,8 +80,7 @@
     </header>
     <div class="entry">
       
-        <h5>说明：本文是简体中文版的markdown语法说明，转载于<a href="http://www.ituring.com.cn/article/504">图灵社区</a>，以方便大家对markdown语法的学习。</h5>
-<h1>Markdown: Syntax</h1>
+        <p>说明：本文是简体中文版的markdown语法说明，转载于<a href="http://www.ituring.com.cn/article/504">图灵社区</a>，以方便大家对markdown语法的学习。  </p>
 <ul>
 <li><a href="#overview">概述</a><ul>
 <li><a href="#philosophy">哲学</a></li>
@@ -147,6 +146,12 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -186,6 +191,12 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -199,16 +210,18 @@
 <p>1.清屏快捷键：<code>Ctrl+l</code>, 清除光标前所有命令： <code>Ctrl+U</code>  </p>
 <p>2.命令别名： <strong>alias</strong>  </p>
 </blockquote>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>/*  
+<figure class="highlight lang-bash"><pre>/*  
 *语法  
 */  
-alias #查看所有别名信息  
-alias #自定义的别名=命令  
-alias 自定义的别名="命令"  
-alias copy=cp #让cp命令定义别名为copy  
-alias drm="rm -rf" #定义带选项的命令别名  
-unalias #删除别名
-</pre></figure></code></pre>
+alias <span class="comment">#查看所有别名信息  </span>
+alias <span class="comment">#自定义的别名=命令  </span>
+alias 自定义的别名=<span class="string">"命令"</span>  
+alias copy=cp <span class="comment">#让cp命令定义别名为copy  </span>
+alias drm=<span class="string">"rm -rf"</span> <span class="comment">#定义带选项的命令别名  </span>
+unalias <span class="comment">#删除别名</span>
+</pre></figure>
+
+
 
       
     </div>
@@ -238,6 +251,12 @@ unalias #删除别名
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -248,45 +267,23 @@ unalias #删除别名
     <div class="entry">
       
         <ul>
-<li>命令名称： <strong>write</strong>  <blockquote>
-<p>功能描述：向另外一个用户发送信息，以Ctrl+D作为结束  </p>
-<figure class="highlight lang-ruby"><pre>语法： write [用户名]  
-<span class="symbol">ps:</span> 该命令是实时通信，接收信息的用户必须在线方可发送成功！ 
-```
-&lt;!--more--&gt;
-
-* 命令名称： **wall**  
-&gt; 功能描述：向所有用户发送广播信息（write all）  
-``` ruby 
-语法：wall [message] 
-``` 
- 
-* 命令名称： **ping**  
-&gt; 功能描述：测试网络连通  
-&gt; 执行权限：root  
-``` ruby 
-语法： ping 选项 ip地址  
-ping ip地址    
-ping -c 次数 ip地址 <span class="comment">#自定义发送ICMP数据包次数  </span>
-ping -s 包大小 ip地址 <span class="comment">#自定义一次发送ICMP数据包大小    </span>
-```
-
-* 命令名称： **ifconfig**  
-&gt; 功能描述：查看网络设置信息  
-&gt; 执行权限：root  
-``` ruby 
-语法：ifconfig 选项[-a] [网卡设备标识]  
--a <span class="comment">#显示所有网卡信息(linux中通常可以省略，在Unix中不能省略)</span>
+<li>命令名称： <strong>write</strong>  </li>
+</ul>
+<p><em>功能描述：向另外一个用户发送信息，以Ctrl+D作为结束</em></p>
+<figure class="highlight lang-bash"><pre>语法： write [用户名]  
+ps: 该命令是实时通信，接收信息的用户必须在线方可发送成功！
 </pre></figure>
 
-</blockquote>
-</li>
-</ul>
+
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft readMore">
+            <a href="/2011/03/08/2012-05-06-linux8/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -307,6 +304,12 @@ ping -s 包大小 ip地址 <span class="comment">#自定义一次发送ICMP数�
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -317,70 +320,30 @@ ping -s 包大小 ip地址 <span class="comment">#自定义一次发送ICMP数�
     <div class="entry">
       
         <ul>
-<li>命令名称： <strong>gzip和gunzip</strong>  <blockquote>
-<p>功能描述：压缩和解压缩文件<br>``` ruby 
-语法：<br>gzip [文件] #压缩文件<br>gzip -d [文件] #解压缩.gz格式压缩文件<br>gunzip [选项] [压缩文件] #解压缩.gz格式的压缩文件   </p>
-</blockquote>
-</li>
+<li>命令名称： <strong>gzip和gunzip</strong></li>
 </ul>
-<p>ps:<br>1&gt; 压缩后的文件格式为 .gz<br>2&gt; 只能压缩文件<br>3&gt; 不保留原文件(直接替换原文件)</p>
-<pre><code><figure class="highlight"><pre>&lt;!--more--&gt;
+<p><em>功能描述：压缩和解压缩文件</em></p>
+<figure class="highlight lang-bash"><pre>语法：  
+gzip [文件] <span class="comment">#压缩文件  </span>
+gzip -d [文件] <span class="comment">#解压缩.gz格式压缩文件    </span>
+gunzip [选项] [压缩文件] <span class="comment">#解压缩.gz格式的压缩文件   </span>
+ 
+ps:  
+1&gt; 压缩后的文件格式为 .gz  
+2&gt; 只能压缩文件  
+3&gt; 不保留原文件(直接替换原文件)
+</pre></figure>
 
-* 命令名称： **tar**  
-&gt; 功能描述：打包目录  
-``` ruby 
-语法： tar 选项[cvf] [目录]  
--c <span class="preprocessor">#产生.tar打包文件  </span>
--v <span class="preprocessor">#显示详细信息  </span>
--f <span class="preprocessor">#指定压缩后的文件名  </span>
--z <span class="preprocessor">#打包同时压缩，压缩后文件格式为.tar.gz(并不是所有的unix都支持)  </span>
-$ tar -zcvf dir1<span class="variable">.tar</span><span class="variable">.gz</span> dir1 <span class="preprocessor">#把目录dir1压缩成一个打包文件并压缩的文件</span>
 
-tar命令解压缩语法：  
--x <span class="preprocessor">#解包.tar文件  </span>
--v <span class="preprocessor">#显示详细信息  </span>
--f <span class="preprocessor">#指定解压文件  </span>
--z <span class="preprocessor">#解压缩  </span>
-$ tar -zxvf dir1<span class="variable">.tar</span><span class="variable">.gz</span> <span class="preprocessor">#将dir1.tar.gz文件解压缩</span>
-</pre></figure></code></pre>
-<ul>
-<li><p>命令名称： <strong>zip和unzip</strong>  </p>
-<blockquote>
-<p>功能描述：压缩文件和目录  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
-zip [压缩后文件名称] [文件] <span class="comment">#压缩文件  </span>
-zip -r [压缩后文件名称] [目录] <span class="comment">#压缩目录  </span>
-unzip [压缩文件] <span class="comment">#解压缩.zip文件    </span>
-压缩后的文件格式为 .zip
-</pre></figure></code></pre>
-</blockquote>
-</li>
-<li><p>命令名称： <strong>bzip2</strong>  </p>
-<blockquote>
-<p>功能描述：压缩文件  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
-bzip2 [文件]  
-bzip2 -k [文件] <span class="comment">#产生压缩文件并保留原文件  </span>
-压缩后的文件格式为 .bz2
-</pre></figure></code></pre>
-</blockquote>
-</li>
-<li><p>命令名称： <strong>bunzip2</strong>  </p>
-<blockquote>
-<p>功能描述：解压缩文件  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
-bunzip2 [压缩文件]  
-bunzip2 -k [压缩文件] <span class="comment">#解压缩文件并保留原文件</span>
-</pre></figure></code></pre>
-<p>PS：<br>1&gt; 如果文件不大，且对压缩比不太要求的话，推荐使用zip命令<br>2&gt; bzip2是gzip的升级版，压缩比很高!</p>
-</blockquote>
-</li>
-</ul>
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft readMore">
+            <a href="/2011/03/05/2012-05-05-linux7/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -401,6 +364,12 @@ bunzip2 -k [压缩文件] <span class="comment">#解压缩文件并保留原文�
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -411,10 +380,9 @@ bunzip2 -k [压缩文件] <span class="comment">#解压缩文件并保留原文�
     <div class="entry">
       
         <p>一开始我们用secure CRT和putty连接linux，发现中文都乱码了，实际上这是由于编码不一致引起的，当然了解决办法也很容易。</p>
-<pre><code><figure class="highlight"><pre>secure CRT: 选项-&gt;会话选项-&gt;外观-&gt;字符编码-&gt;UTF-<span class="number">8</span>
-
-putty: Change settings -&gt; Window-&gt;Translation-&gt;Remote character set: UTF-<span class="number">8</span> 
-</pre></figure></code></pre>
+<blockquote>
+<p>secure CRT: 选项-&gt;会话选项-&gt;外观-&gt;字符编码-&gt;UTF-8<br>putty: Change settings -&gt; Window-&gt;Translation-&gt;Remote character set: UTF-8</p>
+</blockquote>
 <p>PS: 以上请确认默认的字体是否支持中文，不支持的话，换一个字体即可。</p>
 
       
@@ -441,6 +409,12 @@ putty: Change settings -&gt; Window-&gt;Translation-&gt;Remote character set: UT
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -451,108 +425,21 @@ putty: Change settings -&gt; Window-&gt;Translation-&gt;Remote character set: UT
     <div class="entry">
       
         <ul>
-<li>命令名称：<strong>which</strong>  <blockquote>
-<p>功能描述：显示系统命令所在目录,并可以提供命令的别名信息  </p>
-<figure class="highlight lang-ruby"><pre>语法： which [命令名称].
-```   
-&lt;!--more--&gt;  
-* 命令名称：**whereis**  
-&gt; 功能描述：显示系统命令所在目录,并可以提供命令的帮助文件信息  
-``` ruby
-语法： whereis [命令名称].
-``` 
-
-* 命令名称：**find**  
-&gt; 功能描述：查找文件或目录  
- 
-``` java    
-语法： find [搜索路径] [参数] [搜索关键字]     
-/*  
-  *常用参数列表  
-  */  
--name //根据名字查找（可以用通配符 * 和 ? ）  
--size //根据文件大小查找(根据数据块block计算，大于用+表示，小于用-表示，等于用=表示)   
-find /etc -size +204800   //查找大于100MB的文件(因为数据块大小512字节=0.5kb)  
--type //根据文件类型进行查找（-f&lt;二进制文件&gt;，-d&lt;目录&gt;，-l&lt;链接文件&gt;）  
--user //根据用户查找  
--inum 根据i节点查找  
--[cam]time //根据时间查找(time代表天,c=change&lt;属性被修改过&gt;,a=access&lt;被访问过&gt;,m=modify&lt;内容被修改过&gt;,后面跟时间的时候+，-，=代表范围)  
--[cam]min //根据时间查找(min代表分钟)  
-/*  
-给查询加连接符 “-a(and)和-o(or)”  
-*/  
-find /etc -size +123 -a -size -456 //代表查找大小在123和456之间的文件  
-/*  
-*给查询增加执行→ find /etc -name xxx -exec 命令 {} /;  
-*"{}"是前面查到的结果，"/"代表转义，使用命令本身含义，";"代表结果&lt;类似某些编程语言的结束&gt;)  
-*/  
-find /etc -name xxx -exec ls -l {} /; 查找名为xxx的文件，并查看详细信息(exec=execute&lt;直接执行&gt;)  
-find /etc -name xxx -ok ls -l {} /; 查找文件并询问是否执行？  
-find /etc -inum xxx -exec rm -rf {} /; 根据i节点查找文件并删除  
-```
-
-* 命令名称：**locate**  
-&gt; 功能描述：查找文件或目录  
- 
-``` java   
-语法： locate [搜索关键字]    
- /* 该命令是从系统安装或者更新的数据库里面去查找，所以查找速度特别快，但是  
-  * 该数据库系统默认是定期更新的，所以你查找前如果没有更新数据库，那么可能  
- * 好多文件查不到  所以可以配合 updatedb(更新数据库) 命令进行查找  
-*/
-```  
-
-* 命令名称：**grep**  
-&gt; 功能描述：在文件中搜寻字符串匹配的行并输出  
- 
-```     
-语法： grep [指定字符串] [源文件]
-```
-
-* 命令名称：**updatedb**  
-&gt; 功能描述：建立整个系统目录文件的数据库  
- 
-```     
-语法： updatedb
-```
-
-* 命令名称：**man**  
-&gt; 功能描述：获得帮助信息(既可以获得命令的帮助，又可以获得配置文件的帮助)  
- 
-``` ruby      
-语法： man [命令名称] 和 man [配置文件名]  
- #如果想要查找的配置文件名和命令名相同，那么默认会显示命令帮助信息  
- #如果想获得配置文件信息，那么可以这么写： 例↓  
-man 5 passwd (#默认是man 1 passwd，所以会默认显示命令的帮助信息，)  
-5 和 1 分别代表查看配置文件的帮助和查看命令的帮助。
-```  
-
-* 命令名称：**info**  
-&gt; 功能描述：获得帮助信息(用法和man基本一样)  
- 
-```     
-语法： info [命令名称] 和 info [配置文件名]
-```
-
-* 命令名称：**whatis, apropos, makewhatis**  
-&gt; 功能描述：获取索引的简短说明信息  
- 
-```     
-语法：whatis [任何关键字] 和 apropos [任何关键字]  
- #两者区别  
-apropos：使用关键字以模糊比对的方式查询资料库，然后将结果输出(宽松)，相当与man -k 命令  
-whatis：只输出完全符合关键字的信息(完全符合)，相当于man - f 命令 
-makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命令发生错误时，就是whatis database 没有建立
-</pre></figure>
-
-</blockquote>
-</li>
+<li>命令名称：<strong>which</strong></li>
 </ul>
+<p><em>功能描述：显示系统命令所在目录,并可以提供命令的别名信息</em></p>
+<blockquote>
+<p>语法： which [命令名称].</p>
+</blockquote>
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft readMore">
+            <a href="/2011/02/23/2012-05-03-linux5/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -589,20 +476,12 @@ makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命�
     <div class="entry">
       
         <ul>
-<li>命令：<strong>chmod</strong>  <blockquote>
-<p>功能描述：改变文件或目录权限</p>
-</blockquote>
-</li>
+<li>命令：<strong>chmod</strong>  </li>
 </ul>
-<figure class="highlight lang-bash"><pre>  <span class="comment">#语法  </span>
-$ chmod [{ugo}{+-=}{rwx}] [文件或者目录]  
-r: 4, w: 2, x: 1  
-$ chmod [mode=421] [文件或者目录]  
- <span class="comment">#例  </span>
-$ chmod 777 [file1] <span class="comment">#把file1所有用户的权限设为rwx</span>
-</pre></figure>
-
-
+<p><em>功能描述：改变文件或目录权限</em></p>
+<blockquote>
+<p>语法<br>    $ chmod [{ugo}{+-=}{rwx}] [文件或者目录]<br>    r: 4, w: 2, x: 1<br>    $ chmod [mode=421] [文件或者目录]<br>    例<br>    $ chmod 777 [file1] #把file1所有用户的权限设为rwx</p>
+</blockquote>
 
       
     </div>

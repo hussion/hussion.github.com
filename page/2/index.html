@@ -303,6 +303,12 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -312,46 +318,59 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
     </header>
     <div class="entry">
       
-        <p>出现这个问题，按照上次缺少zlib的解决经验，首先去ruby source文件夹下安装openssl  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>cd .rvm/src/ruby-<span class="number">1.9</span>.<span class="number">2</span>-p32<span class="number">0</span>/ext/openssl  
-ruby extconf.rb
-</pre></figure></code></pre>
+        <p>出现这个问题，按照上次缺少zlib的解决经验，首先去bashsource文件夹下安装openssl  </p>
+<figure class="highlight lang-bash"><pre>cd .rvm/src/ruby-1.9.2-p320/ext/openssl  
+bashextconf.rb
+</pre></figure>
+
+
 <p>执行到这一步的时候，又开始郁闷了，出现了如下错误：</p>
-<pre><code><figure class="highlight"><pre>=== OpenSSL <span class="keyword">for</span> Ruby configurator === 
-=== Checking <span class="keyword">for</span> system dependent <span class="transposed_variable">stuff...</span> === 
-checking <span class="keyword">for</span> t_open() in -<span class="transposed_variable">lnsl...</span> no 
-checking <span class="keyword">for</span> socket() in -<span class="transposed_variable">lsocket...</span> no 
-checking <span class="keyword">for</span> <span class="transposed_variable">assert.</span><span class="transposed_variable">h...</span> yes 
-=== Checking <span class="keyword">for</span> required <span class="transposed_variable">stuff...</span> === 
-checking <span class="keyword">for</span> openssl/<span class="transposed_variable">ssl.</span><span class="transposed_variable">h...</span> no 
-=== Checking <span class="keyword">for</span> required stuff <span class="transposed_variable">failed.</span> === 
-Makefile <span class="transposed_variable">wasn'</span>t <span class="transposed_variable">created.</span> Fix the errors <span class="transposed_variable">above.</span> 
-</pre></figure></code></pre>
-<p>看了一下，说缺少<code>ssl.h</code>,然后makefile无法创建。没办法，只有去下载openssl，然后自己编译了；<a href="http://www.openssl.org/">点我</a>官网下载openssl,现在最新版是<code>OpenSSL 1.0.1c.tar.gz</code>，然后解压，完成后执行: </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>make &amp;&amp; sudo make install
-</pre></figure></code></pre>
-<p>漫长等待后,去该文件夹下可以发现<code>ssl.h</code>文件存在了，现在cd到ruby源文件文件夹的/ext/openssl文件夹下，执行： </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>ruby extconf.rb --with-openssl-<span class="keyword">include</span>=<span class="regexp">/usr/local</span><span class="regexp">/ssl/include</span><span class="regexp">/
-</pre></figure></code></pre>
+<figure class="highlight lang-bash"><pre>=== OpenSSL <span class="keyword">for</span> bashconfigurator === 
+=== Checking <span class="keyword">for</span> system dependent stuff... === 
+checking <span class="keyword">for</span> t_open() <span class="keyword">in</span> -lnsl... no 
+checking <span class="keyword">for</span> socket() <span class="keyword">in</span> -lsocket... no 
+checking <span class="keyword">for</span> assert.h... yes 
+=== Checking <span class="keyword">for</span> required stuff... === 
+checking <span class="keyword">for</span> openssl/ssl.h... no 
+=== Checking <span class="keyword">for</span> required stuff failed. === 
+Makefile wasn<span class="string">'t created. Fix the errors above.
+</pre></figure>
+
+
+<p>看了一下，说缺少<code>ssl.h</code>,然后makefile无法创建。没办法，只有去下载openssl，然后自己编译了；<a href="http://www.openssl.org/">点我</a>官网下载openssl,现在最新版是<code>OpenSSL 1.0.1c.tar.gz</code>，然后解压，完成后执行:</p>
+<figure class="highlight lang-bash"><pre>make && sudo make install
+</pre></figure>
+
+
+<p>漫长等待后,去该文件夹下可以发现<code>ssl.h</code>文件存在了，现在cd到ruby源文件文件夹的/ext/openssl文件夹下，执行:</p>
+<figure class="highlight lang-bash"><pre>bashextconf.rb --with-openssl-include=/usr/local/ssl/include/
+</pre></figure>
+
+
 <p>惊喜之余，又出现了新错误： </p>
-<pre><code><figure class="highlight"><pre>=== OpenSSL <span class="keyword">for</span> Ruby configurator === 
-=== Checking <span class="keyword">for</span> system dependent <span class="transposed_variable">stuff...</span> === 
-checking <span class="keyword">for</span> t_open() in -<span class="transposed_variable">lnsl...</span> no 
-checking <span class="keyword">for</span> socket() in -<span class="transposed_variable">lsocket...</span> no 
-checking <span class="keyword">for</span> <span class="transposed_variable">assert.</span><span class="transposed_variable">h...</span> yes 
-=== Checking <span class="keyword">for</span> required <span class="transposed_variable">stuff...</span> === 
-checking <span class="keyword">for</span> openssl/<span class="transposed_variable">ssl.</span><span class="transposed_variable">h...</span> yes 
-checking <span class="keyword">for</span> OpenSSL_add_all_digests() in -<span class="transposed_variable">lcrypto...</span> no 
-checking <span class="keyword">for</span> OpenSSL_add_all_digests() in -<span class="transposed_variable">llibeay32...</span> no 
-=== Checking <span class="keyword">for</span> required stuff <span class="transposed_variable">failed.</span> === 
-Makefile <span class="transposed_variable">wasn'</span>t <span class="transposed_variable">created.</span> Fix the errors <span class="transposed_variable">above.</span> 
-</pre></figure></code></pre>
-<p>虽然出错了，大家仔细看下会发现ssl.h已经check到了，下面只需要再执行一个命令即可： </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>ruby extconf.rb --with-openssl-<span class="keyword">include</span>=<span class="regexp">/usr/local</span><span class="regexp">/ssl/include</span><span class="regexp">/ --with-openssl-lib=/usr</span><span class="regexp">/local/ssl</span><span class="regexp">/lib
-</pre></figure></code></pre>
+<figure class="highlight lang-bash"><pre>=== OpenSSL <span class="keyword">for</span> bashconfigurator === 
+=== Checking <span class="keyword">for</span> system dependent stuff... === 
+checking <span class="keyword">for</span> t_open() <span class="keyword">in</span> -lnsl... no 
+checking <span class="keyword">for</span> socket() <span class="keyword">in</span> -lsocket... no 
+checking <span class="keyword">for</span> assert.h... yes 
+=== Checking <span class="keyword">for</span> required stuff... === 
+checking <span class="keyword">for</span> openssl/ssl.h... yes 
+checking <span class="keyword">for</span> OpenSSL_add_all_digests() <span class="keyword">in</span> -lcrypto... no 
+checking <span class="keyword">for</span> OpenSSL_add_all_digests() <span class="keyword">in</span> -llibeay32... no 
+=== Checking <span class="keyword">for</span> required stuff failed. === 
+Makefile wasn<span class="string">'t created. Fix the errors above.
+</pre></figure>
+
+<p>虽然出错了，大家仔细看下会发现ssl.h已经check到了，下面只需要再执行一个命令即可:</p>
+<figure class="highlight lang-bash"><pre>bashextconf.rb --with-openssl-include=/usr/local/ssl/include/ --with-openssl-lib=/usr/local/ssl/lib
+</pre></figure>
+
+
 <p>这时我们会发现makefile已经成功创建，现在就可以接着执行下面命令了</p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>make &amp;&amp; sudo make install
-</pre></figure></code></pre>
+<figure class="highlight lang-bash"><pre>make && sudo make install
+</pre></figure>
+
+
 <p>现在再测试一下吧，你会发现openssl被成功的安装了到ruby的安装文件夹!</p>
 
       
@@ -378,6 +397,12 @@ Makefile <span class="transposed_variable">wasn'</span>t <span class="transposed
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -387,15 +412,19 @@ Makefile <span class="transposed_variable">wasn'</span>t <span class="transposed
     </header>
     <div class="entry">
       
-        <p>在ubuntu中，在进行<code>gem update --system</code>的时候，可能会报<code>no such file to load --zlib</code>，这个时候我们第一反应就是去安装zlib1g-dev，执行命令如下：  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>sudo apt-get install zlib1g-dev
-</pre></figure></code></pre>
-<p>安装完成后，再次<code>gem update --system</code>我们会发现问题依旧，这时候需要到ruby Source文件夹下安装ruby自身提供的zlib包  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>cd .rvm/src/ruby-<span class="number">1.9</span>.<span class="number">2</span>-p32<span class="number">0</span>/ext/zlib  
+        <p>在ubuntu中，在进行<code>gem update --system</code>的时候，可能会报<code>no such file to load --zlib</code>，这个时候我们第一反应就是去安装zlib1g-dev，执行命令如下：</p>
+<figure class="highlight lang-bash"><pre>sudo apt-get install zlib1g-dev
+</pre></figure>
+
+
+<p>安装完成后，再次<code>gem update --system</code>我们会发现问题依旧，这时候需要到ruby Source文件夹下安装ruby自身提供的zlib包</p>
+<figure class="highlight lang-bash"><pre>cd .rvm/src/ruby-1.9.2-p320/ext/zlib  
 ruby extconf.rb  
 make 
 sudo make install
-</pre></figure></code></pre>
+</pre></figure>
+
+
 <p>现在再次运行gem update –system，搞定！</p>
 
       
@@ -431,34 +460,32 @@ sudo make install
     </header>
     <div class="entry">
       
-        <p>1.<strong>安装rvm</strong>  </p>
-<figure class="highlight lang-ruby"><pre>1.
+        <p>1.<strong>安装rvm</strong></p>
+<figure class="highlight lang-bash"><pre>1.
 bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)  
 2.
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile  
+<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bash_profile  
 3.
 source ~/.bash_profile  
 /*  
 *解决ruby use xxx时候会ERROR等一系列报错问题  
 */  
 4.
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bashrc  
+<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bashrc  
 5.
 source ~/.bashrc
-```  
+</pre></figure>
 
-2.**安装ruby 1.9.2**  
-``` ruby 
-rvm install 1.9.2 && rvm use 1.9.2  
-rvm rubygems latest  
-```  
+<p>2.<strong>安装ruby 1.9.2</strong></p>
+<figure class="highlight lang-bash"><pre>rvm install 1.9.2 && rvm use 1.9.2  
+rvm rubygems latest
+</pre></figure>
 
-3.**修改gem更新源**  
-``` ruby 
-gem sources --remove http://rubygems.org/  
+<p>3.<strong>修改gem更新源</strong></p>
+<figure class="highlight lang-bash"><pre>gem sources --remove http://rubygems.org/  
 gem sources -a http://ruby.taobao.org/  
-gem sources -l #检测是否只有http://ruby.taobao.org/  
- #打开octopress文件夹里面的Gemfile，把更新源也改为:  http://ruby.taobao.org/
+gem sources -l <span class="comment">#检测是否只有http://ruby.taobao.org/  </span>
+ <span class="comment">#打开octopress文件夹里面的Gemfile，把更新源也改为:  http://ruby.taobao.org/</span>
 </pre></figure>
 
 
@@ -496,31 +523,33 @@ gem sources -l #检测是否只有http://ruby.taobao.org/
     <div class="entry">
       
         <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误...</p>
-<pre><code><figure class="highlight"><pre>(<span class="constant">LoadError</span>)ib/ruby/gems/<span class="number">1.9</span>.<span class="number">1</span>/gems/ffi-<span class="number">1.0</span>.<span class="number">9</span>-x86-mingw32/lib/ffi/library.<span class="symbol">rb:</span><span class="number">75</span><span class="symbol">:in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
-  from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:in `map'</span>
-  from <span class="constant">C</span><span class="symbol">:/Ruby192/lib/ruby/gems/</span><span class="number">1.9</span>.<span class="number">1</span>/gems/ffi-<span class="number">1.0</span>.<span class="number">9</span>-x86-mingw32/lib/ffi/library.<span class="symbol">rb:</span><span class="number">54</span><span class="symbol">:in</span> `ffi_lib<span class="string">'
-  from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:30:in `&lt;module:Python&gt;'</span>
-  from <span class="constant">C</span><span class="symbol">:/Ruby192/lib/ruby/gems/</span><span class="number">1.9</span>.<span class="number">1</span>/gems/rubypython-<span class="number">0</span>.<span class="number">5.1</span>/lib/rubypython/python.<span class="symbol">rb:</span><span class="number">21</span><span class="symbol">:in</span> `&lt;top (required)&gt;<span class="string">'
-</pre></figure></code></pre>
-<p>看到这错误，绝对让人很郁闷，如果对于那些非常熟悉<code>ruby</code>和<code>python</code>的人来说，可能会很容易解决，可是对于那些不熟悉这两者语言的友友们来说，脑子一篇空白，不知所措，好吧，下面我就给大家介绍一下此问题的解决办法，让我们一起来拥抱octopress  </p>
-<ul>
-<li>首先确认你的环境都配置正常了，不确定的可以看我的上一篇octopress博客，都正常之后执行以下命令  <figure class="highlight lang-ruby"><pre>gem update --system  
-gem update  
-bundle update
-```  
-
-* 现在再执行&lt;code&gt;rake generate&lt;/code&gt;生成博客，或者&lt;code&gt;rake preview&lt;/code&gt;进行预览，看是否已经正常（通常执行这3步可以解决此问题），如果还不行，将&lt;code&gt;C:\windows\system32\python27.dll &lt;/code&gt;复制到&lt;code&gt;C:\python27\libs&lt;/code&gt;下面，然后修改&lt;code&gt;C:\Ruby192\lib\ruby\gems\1.9.1\gems\rubypython-0.5.1\lib\rubypython\python.rb&lt;/code&gt;的26行
-  
-``` ruby 
-PYTHON_LIB = EXEC.library
- # FFI::DynamicLibrary::RTLD_LAZY | FFI::DynamicLibrary::RTLD_GLOBAL  
-ffi_lib_flags :lazy, :global  
- # ffi_lib EXEC.library # 问题出在 EXEC.library 一直是 nil，所以直接注解掉  
-ffi_lib "python27" # 加上此句
+<figure class="highlight lang-bash"><pre>	(LoadError)ib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:75:<span class="keyword">in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:in `map'</span>
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:<span class="keyword">in</span> `ffi_lib<span class="string">'
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:30:in `&lt;module:Python&gt;'</span>
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:21:<span class="keyword">in</span> `&lt;top (required)&gt;<span class="string">'
 </pre></figure>
 
-</li>
+
+<p>看到这错误，绝对让人很郁闷，如果对于那些非常熟悉<code>ruby</code>和<code>python</code>的人来说，可能会很容易解决，可是对于那些不熟悉这两者语言的友友们来说，脑子一篇空白，不知所措，好吧，下面我就给大家介绍一下此问题的解决办法，让我们一起来拥抱octopress  </p>
+<ul>
+<li>首先确认你的环境都配置正常了，不确定的可以看我的上一篇octopress博客，都正常之后执行以下命令</li>
 </ul>
+<figure class="highlight lang-bash"><pre>gem update --system  
+gem update  
+bundle update
+</pre></figure>
+
+<ul>
+<li>现在再执行<code>rake generate</code>生成博客，或者<code>rake preview</code>进行预览，看是否已经正常（通常执行这3步可以解决此问题），如果还不行，将<code>C:\windows\system32\python27.dll </code>复制到<code>C:\python27\libs</code>下面，然后修改<code>C:\Ruby192\lib\ruby\gems\1.9.1\gems\rubypython-0.5.1\lib\rubypython\python.rb</code>的26行</li>
+</ul>
+<figure class="highlight lang-bash"><pre>PYTHON_LIB = EXEC.library
+ <span class="comment"># FFI::DynamicLibrary::RTLD_LAZY | FFI::DynamicLibrary::RTLD_GLOBAL  </span>
+ffi_lib_flags :lazy, :global  
+ <span class="comment"># ffi_lib EXEC.library # 问题出在 EXEC.library 一直是 nil，所以直接注解掉  </span>
+ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此句</span>
+</pre></figure>
+
 
       
     </div>
@@ -592,6 +621,10 @@ ffi_lib "python27" # 加上此句
             
               <span class="tag-Java">
                 <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-杂谈">
+                <a href="/tags/杂谈/">杂谈</a>
               </span>
             
           

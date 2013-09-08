@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>反射 | hussion</title>
+  <title>Java反射详解 | hussion</title>
   <meta name="author" content="hussion">
   
   <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="反射"/>
+  <meta property="og:title" content="Java反射详解"/>
   <meta property="og:site_name" content="hussion"/>
 
   
@@ -70,10 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
-    <h1 class="title">反射</h1>
+    <h1 class="title">Java反射详解</h1>
   
 
     </header>
@@ -90,17 +96,24 @@
 时的 class和 interface，也用来表达 enum，array，primitive，Java Types 以及关键字void，当加载一个类，或者当加载器（class loader）的defineClass（）被JVM调用，便产生一个Class
 对象，Class是Reflection起源，针对任何你想探勘的class（类），唯有现为他产生一个Class的对象，接下来才能经由后者唤起为数十多个的反射API。  </p>
 <p><strong>Class类常用方法</strong>  </p>
-<blockquote>
-<p>getName()  　获得类的完整名字</p>
-<p>getMethods()  　获取所有public方法<br>getDeclaredMethods()　 获取所有方法<br>getMethod()　  获取特定方法<br>getDeclaredMethod()　 获取特定方法(包含私有)</p>
-<p>getFields()  　获取所有public属性<br>getDeclaredFields()　  获取所有属性<br>getField()  　获取特定属性 
-getDeclaredField()　  获取特定属性(包含私有)</p>
-<p>getConstructors() 　 获得类的public类型的构造方法<br>getConstructor()  　获得类的特定构造方法  </p>
-<p>newInstance()  　通过类的不带参数的构造方法创建这个类的一个对象  </p>
-</blockquote>
-<p><strong>获取某个类所对应的Class对象的三种方式</strong>  </p>
-<p>要想使用反射，首先需要获得待处理类或对象所对应的Class 对象。  </p>
-<figure class="highlight lang-java"><pre><span class="comment">//方式1： 使用Class 类的静态方法forName()  </span>
+<figure class="highlight"><pre><span class="function"><span class="title">getName</span><span class="params">()</span>  　获得类的完整名字 
+<span class="title">getMethods</span><span class="params">()</span>  　获取所有<span class="title">public</span>方法    
+<span class="title">getDeclaredMethods</span><span class="params">()</span>　 获取所有方法  
+<span class="title">getMethod</span><span class="params">()</span>　  获取特定方法  
+<span class="title">getDeclaredMethod</span><span class="params">()</span>　 获取特定方法<span class="params">(包含私有)</span>
+<span class="title">getFields</span><span class="params">()</span>  　获取所有<span class="title">public</span>属性  
+<span class="title">getDeclaredFields</span><span class="params">()</span>　  获取所有属性  
+<span class="title">getField</span><span class="params">()</span>  　获取特定属性 
+<span class="title">getDeclaredField</span><span class="params">()</span>　  获取特定属性<span class="params">(包含私有)</span>
+<span class="title">getConstructors</span><span class="params">()</span> 　 获得类的<span class="title">public</span>类型的构造方法  
+<span class="title">getConstructor</span><span class="params">()</span>  　获得类的特定构造方法  
+<span class="title">newInstance</span><span class="params">()</span>  　通过类的不带参数的构造方法创建这个类的一个对象
+</pre></figure>
+
+<p><strong>获取某个类所对应的Class对象的三种方式</strong></p>
+<p>要想使用反射，首先需要获得待处理类或对象所对应的Class 对象。</p>
+<figure class="highlight lang-java"><pre>
+<span class="comment">//方式1： 使用Class 类的静态方法forName()  </span>
 Class.forName(<span class="string">"java.lang.String"</span>);  
 
 <span class="comment">//方式2： 使用类的.class语法  </span>
@@ -109,45 +122,42 @@ xxx.<span class="class"><span class="keyword">class</span> //如： <span class=
 //方式3： 使用对象的<span class="title">getClass</span>()方法  
 <span class="title">String</span> <span class="title">str</span> = "<span class="title">xxx</span>";  
 <span class="title">Class</span>&lt;?&gt; <span class="title">clazz</span> = <span class="title">str</span>.<span class="title">getClass</span>();
-```  
-**<span class="title">Constructor</span>类**  
+</pre></figure>
 
-<span class="title">Constructor</span>类的作用是用来生成类所对应的对象  
-&gt; 通过类的不带参数的构造方法来生成对象的两种方式
-``` <span class="title">java</span>   
-//方式一： 先获得<span class="title">Class</span> 对象，然后通过该<span class="title">Class</span>对象的<span class="title">newInstance</span>()方法直接生成  
+<p><strong>Constructor类</strong></p>
+<p>Constructor类的作用是用来生成类所对应的对象</p>
+<p><em>通过类的不带参数的构造方法来生成对象的两种方式</em></p>
+<figure class="highlight lang-java"><pre><span class="comment">//方式一： 先获得Class 对象，然后通过该Class对象的newInstance()方法直接生成  </span>
  
-<span class="title">Class</span>&lt;?&gt; <span class="title">clazz</span> = <span class="title">String</span>.<span class="title">class</span>;
-<span class="title">Object</span> <span class="title">obj</span> = <span class="title">clazz</span>.<span class="title">newInstance</span>();
+Class&lt;?&gt; clazz = String.class;
+Object obj = clazz.newInstance();
 
-//方式二： 先获得<span class="title">Class</span> 对象，然后通过该对象获得对应的<span class="title">Constructor</span>对象，再通过该<span class="title">Constructor</span>对象的<span class="title">newInstance</span>()方法生成
+<span class="comment">//方式二： 先获得Class 对象，然后通过该对象获得对应的Constructor对象，再通过该Constructor对象的newInstance()方法生成</span>
 
-<span class="title">Class</span>&lt;?&gt; <span class="title">clazz</span> = <span class="title">String</span>.<span class="title">class</span>;
-<span class="title">Constructor</span> <span class="title">cons</span> = <span class="title">clazz</span>.<span class="title">getConstructor</span>();
-<span class="title">Object</span> <span class="title">obj</span> = <span class="title">cons</span>.<span class="title">newInstance</span>();
-``` 
-&gt; 通过类的带参数的构造方法生成对象 
- 
-要想通过类的带参数的构造方法生成对象，只有下面这一种方式  
-``` <span class="title">java</span> 
-/*
-* 如：有一个<span class="title">Customer</span>类有下面这样一个带参构造方法
-*/
-<span class="title">public</span> <span class="title">Customer</span>(<span class="title">String</span> <span class="title">name</span>, <span class="title">int</span> <span class="title">age</span>) {</span>
+Class&lt;?&gt; clazz = String.class;
+Constructor cons = clazz.getConstructor();
+Object obj = cons.newInstance();
+</pre></figure>
+
+<p><em>通过类的带参数的构造方法生成对象</em></p>
+<p>要想通过类的带参数的构造方法生成对象，只有下面这一种方式</p>
+<figure class="highlight lang-java"><pre><span class="comment">/*
+* 如：有一个Customer类有下面这样一个带参构造方法
+*/</span>
+<span class="keyword">public</span> Customer(String name, <span class="keyword">int</span> age) {
 	
 }
 
 Class&lt;?&gt; clazz = Customer.class;
 Constructor cons = clazz.getConstructor(<span class="keyword">new</span> Class[]{String.class, <span class="keyword">int</span>.class});
 Object obj = cons.newInstance(<span class="keyword">new</span> Object[]{<span class="string">"tom"</span>, <span class="number">23</span>});
-```
-**Array类**  
+</pre></figure>
 
-该类位于java.lang.reflect包中,该类提供了动态创建和访问数组元素的各种*静态*方法.
 
-**Reflection API 的基本使用方法**  
-``` java InvokeTest.java 
-<span class="keyword">package</span> com.hussion.reflect;
+<p><strong>Array类</strong>  </p>
+<p>该类位于java.lang.reflect包中,该类提供了动态创建和访问数组元素的各种<code>静态</code>方法.</p>
+<p><strong>Reflection API 的基本使用方法</strong></p>
+<figure class="highlight lang-java"><figcaption><span>InvokeTest.java </span></figcaption><pre><span class="keyword">package</span> com.hussion.reflect;
 <span class="keyword">import</span> java.lang.reflect.Method;
 
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InvokeTest</span> {</span>
@@ -183,21 +193,20 @@ Object obj = cons.newInstance(<span class="keyword">new</span> Object[]{<span cl
 	}
 
 }
-```  
-&lt;span style=<span class="string">"color:red;font-weight:bold;"</span>&gt;注意:&lt;/span&gt;   
-Method类的`invoke(Object obj,Object args[])`方法接收的参数必须为对象，如果参数为基本类型数据，必须转换为相应的包装类型的对象;`invoke()`方法的返回值总是对象，如果实际被调用的方法的返回类型是基本类型数据，那么`invoke()`方法会把它转换为相应的包装类型的对象，再将其返回  
-自从`JDK5`开始有了自动装箱和拆箱的新特性,所以上面可以直接传入基本数据类型  
-``` java 
-<span class="comment">//本来应该为</span>
+</pre></figure>
+
+
+<p><span style="color:red;font-weight:bold;">注意:</span><br>Method类的<code>invoke(Object obj,Object args[])</code>方法接收的参数必须为对象，如果参数为基本类型数据，必须转换为相应的包装类型的对象;<code>invoke()</code>方法的返回值总是对象，如果实际被调用的方法的返回类型是基本类型数据，那么<code>invoke()</code>方法会把它转换为相应的包装类型的对象，再将其返回<br>自从<code>JDK5</code>开始有了自动装箱和拆箱的新特性,所以上面可以直接传入基本数据类型</p>
+<figure class="highlight lang-java"><pre><span class="comment">//本来应该为</span>
 Object result1 = addMethod.invoke(invokeTester, <span class="keyword">new</span> Integer(<span class="number">1</span>), <span class="keyword">new</span> Integer(<span class="number">2</span>));
 
 <span class="comment">//简写为</span>
-Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <span class="number">2</span>);  
-```
+Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <span class="number">2</span>);
+</pre></figure>
 
-下面这个演示： ReflectTester类有一个copy(Object object)方法，这个方法能够创建一个和参数object 同样类型的对象，然后把object对象中的所有属性拷贝到新建的对象中，并将它返回;另外这个例子只能复制简单的JavaBean，并假定JavaBean的每个属性都有<span class="keyword">public</span>类型的getXXX()和setXXX()方法。  
-``` java ReflectTest.java 
-<span class="keyword">package</span> com.hussion.reflect;
+
+<p>下面这个演示： ReflectTester类有一个copy(Object object)方法，这个方法能够创建一个和参数object 同样类型的对象，然后把object对象中的所有属性拷贝到新建的对象中，并将它返回;另外这个例子只能复制简单的JavaBean，并假定JavaBean的每个属性都有public类型的getXXX()和setXXX()方法。</p>
+<figure class="highlight lang-java"><figcaption><span>ReflectTest.java </span></figcaption><pre><span class="keyword">package</span> com.hussion.reflect;
 
 <span class="keyword">import</span> java.lang.reflect.Field;
 <span class="keyword">import</span> java.lang.reflect.Method;
@@ -291,10 +300,11 @@ Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <
 		<span class="keyword">this</span>.age = age;
 	}
 }
-```
-&gt; Array类简单应用  
-``` java ArrayTest.java 
-<span class="keyword">package</span> com.hussion.reflect;
+</pre></figure>
+
+
+<p><em>Array类简单应用</em></p>
+<figure class="highlight lang-java"><figcaption><span>ArrayTest.java </span></figcaption><pre><span class="keyword">package</span> com.hussion.reflect;
 
 <span class="keyword">import</span> java.lang.reflect.Array;
 
@@ -311,22 +321,23 @@ Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <
 		System.out.println(str);
 	}
 }
-```  
-**访问类<span class="keyword">private</span>方法和<span class="keyword">private</span>属性** 
+</pre></figure>
 
-虽然对被<span class="keyword">private</span>修饰的属性和方法进行访问违背了java面向对象的封装特点，但是有些时候我们需要访问私有的属性和方法
-&gt; 访问类的私有方法
-``` java private1.java 
-<span class="keyword">package</span> com.hussion.reflect;
+
+<p><strong>访问类private方法和private属性</strong></p>
+<p>虽然对被private修饰的属性和方法进行访问违背了java面向对象的封装特点，但是有些时候我们需要访问私有的属性和方法</p>
+<p><em>访问类的私有方法</em></p>
+<figure class="highlight lang-java"><figcaption><span>private1.java </span></figcaption><pre><span class="keyword">package</span> com.hussion.reflect;
 
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Private1</span> {</span>
 	<span class="keyword">private</span> String sayHello(String name) {
 		<span class="keyword">return</span> <span class="string">"hello: "</span> + name;
 	}
 }
-```
-``` java private1Test.java 
-<span class="keyword">package</span> com.hussion.reflect;
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>private1Test.java </span></figcaption><pre><span class="keyword">package</span> com.hussion.reflect;
 
 <span class="keyword">import</span> java.lang.reflect.Method;
 
@@ -346,39 +357,31 @@ Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <
 		System.out.println(str);
 	}
 }
-``` 
-&gt; 访问类的私有属性
-``` java private2.java 
-<span class="keyword">package</span> com.hussion.reflect;
+</pre></figure>
 
+
+<p><em>访问类的私有属性</em></p>
+<figure class="highlight lang-java"><pre><span class="keyword">package</span> com.hussion.reflect;
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Private2</span> {</span>
 	<span class="keyword">private</span> String name = <span class="string">"tom"</span>;
-	
 	<span class="keyword">public</span> String getName()
 	{
 		<span class="keyword">return</span> name;
 	}
 }
-```  
-``` java private2Test.java  
-<span class="keyword">package</span> com.hussion.reflect;
+</pre></figure>
 
+<figure class="highlight lang-java"><pre><span class="keyword">package</span> com.hussion.reflect;
 <span class="keyword">import</span> java.lang.reflect.Field;
-
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Private2Test</span> {</span>
 	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> Exception {
-
 		Private2 p2 = <span class="keyword">new</span> Private2();
-		
 		Class&lt;?&gt; clazz = p2.getClass();
-		
 		Field field = clazz.getDeclaredField(<span class="string">"name"</span>);
-
 		<span class="comment">//抑制Java对访问修饰符的检查</span>
 		field.setAccessible(<span class="keyword">true</span>);
 		<span class="comment">// 修改属性值</span>
 		field.set(p2, <span class="string">"jerry"</span>);
-		
 		System.out.println(p2.getName());
 	}
 }
@@ -389,13 +392,13 @@ Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/java基础/">java基础</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

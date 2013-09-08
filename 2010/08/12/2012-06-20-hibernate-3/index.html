@@ -75,6 +75,10 @@
                 <a href="/tags/Java/">Java</a>
               </span>
             
+              <span class="tag-Hibernate">
+                <a href="/tags/Hibernate/">Hibernate</a>
+              </span>
+            
           
         </div>
       
@@ -88,7 +92,7 @@
         <p>hibernate的查询方式常见的主要分为三种: HQL, QBC, 以及使用原生SQL查询  </p>
 <p><strong>HQL查询</strong>  </p>
 <p>• HQL（Hibernate Query Language）提供了丰富灵活的查询方式，使用HQL进行查询也是Hibernate官方推荐使用的查询方式。 </p>
-<p>• HQL在语法结构上和SQL语句十分的相同，所以可以很快的上手进行使用。使用HQL需要用到Hibernate中的Query对象，该对象专门执行HQL方式的操作。  </p>
+<p>• HQL在语法结构上和SQL语句十分的相同，所以可以很快的上手进行使用。使用HQL需要用到Hibernate中的Query对象，该对象专门执行HQL方式的操作。</p>
 <figure class="highlight lang-java"><figcaption><span>查询所有示例 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"from User"</span>; <span class="comment">// from 后跟的是要查询的对象，而不是表</span>
 Query query = session.createQuery(hql); 
@@ -121,7 +125,6 @@ String hql = <span class="string">"from User as u where u.userName = 'James'"</s
 in、not in、is、like、and、or等
 */</span>
 </pre></figure>
-
 
 <figure class="highlight lang-java"><figcaption><span>获取一个不完整的对象 </span></figcaption><pre>session.beginTransaction(); 
 String hql = <span class="string">"select userName from User"</span>; 
@@ -403,7 +406,7 @@ session.getTransaction().commit();
         <!-- 
   
   <div class="tags">
-    <a href="/tags/Java/">Java</a>
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Hibernate/">Hibernate</a>
   </div>
  -->
         

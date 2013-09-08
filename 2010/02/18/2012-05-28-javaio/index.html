@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>IO | hussion</title>
+  <title>Java IO总结 | hussion</title>
   <meta name="author" content="hussion">
   
   <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="IO"/>
+  <meta property="og:title" content="Java IO总结"/>
   <meta property="og:site_name" content="hussion"/>
 
   
@@ -70,10 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
-    <h1 class="title">IO</h1>
+    <h1 class="title">Java IO总结</h1>
   
 
     </header>
@@ -92,14 +98,14 @@ listFiles() <span class="comment">//列出当前目录下的所有文件及目�
 createNewFile() <span class="comment">//创建文件  </span>
 mkdir() <span class="comment">//创建目录(只能创建单层目录)  </span>
 mkdirs() <span class="comment">//创建目录(可以创建多层目录)</span>
-```
-&lt;!--more--&gt; 
-  
-**递归算法** 
-&gt;输出一个目录(子目录)下所有的文件及文件夹  
+</pre></figure>
 
-``` java 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> showFileList(String path){ 
+
+<a name="more"></a> 
+
+<p><strong>递归算法</strong> </p>
+<p><em>输出一个目录(子目录)下所有的文件及文件夹</em></p>
+<figure class="highlight lang-java"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> showFileList(String path){ 
   System.out.println(<span class="string">"-----"</span> + path + <span class="string">"---------------"</span>); 
   File file = <span class="keyword">new</span> File(path); 
   <span class="keyword">if</span>(file.isFile()) { 
@@ -118,35 +124,26 @@ mkdirs() <span class="comment">//创建目录(可以创建多层目录)</span>
    }
 }
 …
-```
-   
-**IO流的结构**  
-  
-javaIO里面的流分为`字节流`和`字符流`。  
-  
-* 字节流的输入流和输出流是基于`InputStream`和`OutputStream`
-这两个抽象类的，字节流的输入输出操作是由这两个类的子类实现的  
-* 字符流的输入流和输出流是基于`Reader`和`Writer`
-这两个抽象类的，字符流的输入输出操作是由这两个类的子类实现的  
-* 输入和输出是相对程序来说的  
-* 字节流是处理字节的输入和输出，例如：使用字节流读取写入二进制数据，字符流是处理字符的输入和输出，某些场合，字符流比字节流更有效  
+</pre></figure>
 
-**字节流和字符流的区别：**
-    
-**&lt;<span class="number">1</span>&gt;** 字节流在操作时本身不会用到缓冲区（内存），是文件本身直接操作的，而字符流在操作时使用了缓冲区，通过缓冲区再操作文件.  
-**&lt;<span class="number">2</span>&gt;**  字节流可用于任何类型的对象，包括二进制对象，而字符流只能处理字符或者字符串  
-**&lt;<span class="number">3</span>&gt;** 字节流提供了处理任何类型的IO操作的功能，但不能直接处理Unicode字符，而字符流就可以  
-**&lt;<span class="number">4</span>&gt;** 在最底层，所有的输入和输出都是以字节形式的 
-
-**字节流**  
-
-&lt;notextile&gt;<span class="number">0</span>&lt;/notextile&gt;
+<p><strong>IO流的结构</strong></p>
+<p>javaIO里面的流分为<code>字节流</code>和<code>字符流</code>。  </p>
+<ul>
+<li>字节流的输入流和输出流是基于<code>InputStream</code>和<code>OutputStream</code>
+这两个抽象类的，字节流的输入输出操作是由这两个类的子类实现的  </li>
+<li>字符流的输入流和输出流是基于<code>Reader</code>和<code>Writer</code>
+这两个抽象类的，字符流的输入输出操作是由这两个类的子类实现的  </li>
+<li>输入和输出是相对程序来说的  </li>
+<li>字节流是处理字节的输入和输出，例如：使用字节流读取写入二进制数据，字符流是处理字符的输入和输出，某些场合，字符流比字节流更有效  </li>
+</ul>
+<p><strong>字节流和字符流的区别：</strong></p>
+<p><strong><1></strong> 字节流在操作时本身不会用到缓冲区（内存），是文件本身直接操作的，而字符流在操作时使用了缓冲区，通过缓冲区再操作文件.<br><strong><2></strong>  字节流可用于任何类型的对象，包括二进制对象，而字符流只能处理字符或者字符串<br><strong><3></strong> 字节流提供了处理任何类型的IO操作的功能，但不能直接处理Unicode字符，而字符流就可以<br><strong><4></strong> 在最底层，所有的输入和输出都是以字节形式的 </p>
+<p><strong>字节流</strong>  </p>
+<img src="http://ww4.sinaimg.cn/large/6cdc22a9gw1e8f1l57s4ij20ib0bx40k.jpg">
 
 
-&gt;FileInputStream & FileOutputStream   
-
-``` java 文件拷贝.java  
-System.out.println(<span class="string">"请输入一个文件的路径："</span>); 
+<p><em>FileInputStream &amp; FileOutputStream</em></p>
+<figure class="highlight lang-java"><figcaption><span>文件拷贝.java  </span></figcaption><pre>System.out.println(<span class="string">"请输入一个文件的路径："</span>); 
 String path = input.next(); 
 FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(path)); 
 FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\temp.jpg"</span>));
@@ -162,11 +159,12 @@ FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStrea
 System.out.println(<span class="string">"耗时："</span> + (System.currentTimeMillis() - startTime) + <span class="string">"ms"</span>);
  
 inputStream.close(); 
-outputStream.close();  
-```  
-上面这种方式，因为`read()`方法每次读入一个字节的数据，所以拷贝速度比较慢，效率低，现在给它加上缓冲，一起来看一下做法。
-``` java 缓冲式拷贝.java 
-<span class="keyword">int</span> i = <span class="number">0</span>; 
+outputStream.close();
+</pre></figure>
+
+
+<p>上面这种方式，因为<code>read()</code>方法每次读入一个字节的数据，所以拷贝速度比较慢，效率低，现在给它加上缓冲，一起来看一下做法。</p>
+<figure class="highlight lang-java"><figcaption><span>缓冲式拷贝.java </span></figcaption><pre><span class="keyword">int</span> i = <span class="number">0</span>; 
 <span class="comment">//缓冲区大小 </span>
 <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>]; 
 <span class="keyword">long</span> startTime = System.currentTimeMillis();
@@ -179,11 +177,12 @@ System.out.println(<span class="string">"耗时："</span> + (System.currentTime
 
 inputStream.close();
 outputStream.close();
-```  
-通过对比，明显发现加上缓冲之后速度快了很多。下面我们再来看加上双缓冲的效果  
-&gt;BufferedInputStream & BufferedOutputStream  
-``` java 双缓冲文件拷贝.java
-<span class="comment">//读取</span>
+</pre></figure>
+
+
+<p>通过对比，明显发现加上缓冲之后速度快了很多。下面我们再来看加上双缓冲的效果</p>
+<p><em>BufferedInputStream &amp; BufferedOutputStream</em></p>
+<figure class="highlight lang-java"><figcaption><span>双缓冲文件拷贝.java</span></figcaption><pre><span class="comment">//读取</span>
 FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(sourceFile);
 BufferedInputStream bufferedInputStream = <span class="keyword">new</span> BufferedInputStream(inputStream);
 
@@ -204,12 +203,13 @@ System.out.println(<span class="string">"耗时："</span> + (System.currentTime
 bufferedInputStream.close();
 
 bufferedOutputStream.flush();
-bufferedOutputStream.close(); 
-```  
-通过对比，会发现速度又更快了一点  
-&gt;DataInputStream & DataOutputStream  
-``` java 基本数据类型的输出.java  
-FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
+bufferedOutputStream.close();
+</pre></figure>
+
+
+<p>通过对比，会发现速度又更快了一点</p>
+<p><em>DataInputStream &amp; DataOutputStream</em></p>
+<figure class="highlight lang-java"><figcaption><span>基本数据类型的输出.java  </span></figcaption><pre>FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
  
 DataOutputStream dataOutputStream = <span class="keyword">new</span> DataOutputStream(outputStream); 
 
@@ -220,26 +220,24 @@ dataOutputStream.writeInt(num);
 dataOutputStream.writeUTF(str);
 
 dataOutputStream.flush(); 
-dataOutputStream.close(); 
-``` 
-``` java 基本数据类型的输入.java 
-FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
+dataOutputStream.close();
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>基本数据类型的输入.java </span></figcaption><pre>FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
 DataInputStream dataInputStream = <span class="keyword">new</span> DataInputStream(inputStream);
 
 <span class="keyword">int</span> num = dataInputStream.readInt();
 String str = dataInputStream.readUTF();  
 System.out.println(<span class="string">"num:"</span> + num + <span class="string">"str:"</span> + str);
 
-dataInputStream.close();  
-```  
+dataInputStream.close();
+</pre></figure>
 
-**序列化与反序列化**  
-
-&lt;notextile&gt;<span class="number">1</span>&lt;/notextile&gt;
-  
-&gt; ObjectOutputStream & ObjectInputStream
-``` java 序列化操作.java 
-FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\person.dat"</span>)); 
+<p><strong>序列化与反序列化</strong>  </p>
+<p><img src="http://ww1.sinaimg.cn/large/6cdc22a9gw1e8f1qlo7tkj20hr057js6.jpg" alt=""></p>
+<p><em>ObjectOutputStream &amp; ObjectInputStream</em></p>
+<figure class="highlight lang-java"><figcaption><span>序列化操作.java </span></figcaption><pre>FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\person.dat"</span>)); 
 ObjectOutputStream objectOutputStream = <span class="keyword">new</span> ObjectOutputStream(outputStream); 
  
 Person person = <span class="keyword">new</span> Person(); 
@@ -251,9 +249,10 @@ objectOutputStream.writeObject(person);
  
 objectOutputStream.flush(); 
 objectOutputStream.close();
-```  
-``` java 反序列化操作.java 
-FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\person.dat"</span>)); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>反序列化操作.java </span></figcaption><pre>FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\person.dat"</span>)); 
 ObjectInputStream objectInputStream = <span class="keyword">new</span> ObjectInputStream(inputStream); 
  
 Person p = (Person) objectInputStream.readObject(); 
@@ -261,16 +260,12 @@ Person p = (Person) objectInputStream.readObject();
 System.out.println(p.getAge() + <span class="string">":"</span> + p.getName() + <span class="string">":"</span> + p.getNum()); 
  
 objectInputStream.close();
-```
+</pre></figure>
 
-**字符流**  
-
-&lt;notextile&gt;<span class="number">2</span>&lt;/notextile&gt;
-
-
-&gt;InputStreamReader & OutputStreamWriter  
-``` java 写入操作.java
-Scanner input = <span class="keyword">new</span> Scanner(System.in); 
+<p><strong>字符流</strong></p>
+<p><img src="http://ww4.sinaimg.cn/large/6cdc22a9gw1e8f1rbo1j8j20ip05s3z8.jpg" alt=""></p>
+<p><em>InputStreamReader &amp; OutputStreamWriter</em></p>
+<figure class="highlight lang-java"><figcaption><span>写入操作.java</span></figcaption><pre>Scanner input = <span class="keyword">new</span> Scanner(System.in); 
 System.out.println(<span class="string">"请输入文本："</span>); 
 String text = input.next(); 
  
@@ -281,9 +276,10 @@ BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(
 bufferedWriter.write(text); 
  
 bufferedWriter.close();
-```  
-``` java 读入操作.java 
-FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>读入操作.java </span></figcaption><pre>FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
 InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(fileInputStream); 
 BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(inputStreamReader); 
  
@@ -293,10 +289,11 @@ String str;
 } 
  
 bufferedReader.close();
-```  
-&gt;FileReader & FileWriter  
-``` java 写入操作.java 
-Scanner input = <span class="keyword">new</span> Scanner(System.in); 
+</pre></figure>
+
+
+<p><em>FileReader &amp; FileWriter</em></p>
+<figure class="highlight lang-java"><figcaption><span>写入操作.java </span></figcaption><pre>Scanner input = <span class="keyword">new</span> Scanner(System.in); 
 System.out.println(<span class="string">"请输入文本："</span>); 
 String text = input.next(); 
  
@@ -306,13 +303,15 @@ BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(
 bufferedWriter.write(text); 
  
 bufferedWriter.close();
-```  
-每次写入操作时默认都会清空该文件的原有字符，要想实现追加写入的方式可以这样做：  
-``` java 
-FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>),<span class="keyword">true</span>);
-```
-``` java 读入操作.java 
-FileReader fileReader = <span class="keyword">new</span> FileReader(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
+</pre></figure>
+
+
+<p>每次写入操作时默认都会清空该文件的原有字符，要想实现追加写入的方式可以这样做：</p>
+<figure class="highlight lang-java"><pre>FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>),<span class="keyword">true</span>);
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>读入操作.java </span></figcaption><pre>FileReader fileReader = <span class="keyword">new</span> FileReader(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
 BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(fileReader); 
  
 String str; 
@@ -320,24 +319,20 @@ String str;
   System.out.println(str); 
 } 
  
-bufferedReader.close(); 
-```  
-&gt; PrintWriter
-``` java 
-PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>));
+bufferedReader.close();
+</pre></figure>
+
+<p><em>PrintWriter</em></p>
+<figure class="highlight lang-java"><pre>PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>));
 pw.println(<span class="string">"aaaaaa"</span>);
 
 pw.flush();
 pw.close();
-```
+</pre></figure>
 
-**System类**  
-
-&lt;notextile&gt;<span class="number">3</span>&lt;/notextile&gt;
-
-
-``` java 
-PrintStream ps = <span class="keyword">new</span> PrintStream(<span class="keyword">new</span> File(<span class="string">"c:\\a.txt"</span>));
+<p><strong>System类</strong>  </p>
+<p><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8f1sls2rnj20f604f74s.jpg" alt=""></p>
+<figure class="highlight lang-java"><pre>PrintStream ps = <span class="keyword">new</span> PrintStream(<span class="keyword">new</span> File(<span class="string">"c:\\a.txt"</span>));
 ps.print(<span class="number">5.67</span>);
 
 <span class="comment">/*设置输出方式*/</span>
@@ -355,13 +350,13 @@ System.out.println(str);
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/java基础/">java基础</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

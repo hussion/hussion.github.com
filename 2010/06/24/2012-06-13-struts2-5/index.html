@@ -70,6 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -80,35 +90,32 @@
     <div class="entry">
       
         <p><strong>Action接口</strong>  </p>
-<p>该接口宣称，所有的action类都可以实现这个接口，该接口暴露了一个execute()方法，另外该接口还提供了5个常量。<br>``` java Action.java 
-public interface Action {  </p>
-<pre><code><figure class="highlight"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SUCCESS = <span class="string">"success"</span> ;  
+<p>该接口宣称，所有的action类都可以实现这个接口，该接口暴露了一个execute()方法，另外该接口还提供了5个常量。</p>
+<figure class="highlight lang-java"><figcaption><span>Action.java </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Action</span> {</span>  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SUCCESS = <span class="string">"success"</span> ;  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NONE = <span class="string">"none"</span> ;  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ERROR = <span class="string">"error"</span> ;  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String INPUT = <span class="string">"input"</span> ;  
+  
+     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOGIN = <span class="string">"login"</span> ;  
+  
+     <span class="keyword">public</span> String execute() <span class="keyword">throws</span> Exception;  
+  
+}
+</pre></figure>
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NONE = <span class="string">"none"</span> ;  
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ERROR = <span class="string">"error"</span> ;  
+<a name="more"></a>
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String INPUT = <span class="string">"input"</span> ;  
-
- <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOGIN = <span class="string">"login"</span> ;  
-
- <span class="keyword">public</span> String execute() <span class="keyword">throws</span> Exception;  
-</pre></figure></code></pre>
-<p>} </p>
-<pre><code><figure class="highlight"><pre>&lt;!--more--&gt;
-`ERROR`: Action执行失败。显示一个错误的视图（页面），这个页面可以要求用户再次输入相关数据  
-`NONE`: Action执行成功，但是不会显示一个视图。  
-`LOGIN`: Action不能执行，登录失败。  
-`SUCCESS`: Action执行成功。显示结果视图（页面）给用户。  
-`INPUT`: Action的执行成功需要更多的输入。这个结果是一个典型的结果，它表明如果一个表单通过提供默认的表单来操作一个Action。这个表单会显示给最终用户。这个结果也用于用户输入无效，意味着用户需要再次输入。  
-
-**ActionSupport类**  
-
-该类实现了Action接口，并增加了验证，国际化，获取本地信息，增加错误提示信息等...当然，继承此类，用户的Action将拥有这些功能。  
-**<span class="number">1.</span>**验证的实现  
-``` java ProductAction.java 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span>   
-
+<p><code>ERROR</code>: Action执行失败。显示一个错误的视图（页面），这个页面可以要求用户再次输入相关数据<br><code>NONE</code>: Action执行成功，但是不会显示一个视图。<br><code>LOGIN</code>: Action不能执行，登录失败。<br><code>SUCCESS</code>: Action执行成功。显示结果视图（页面）给用户。<br><code>INPUT</code>: Action的执行成功需要更多的输入。这个结果是一个典型的结果，它表明如果一个表单通过提供默认的表单来操作一个Action。这个表单会显示给最终用户。这个结果也用于用户输入无效，意味着用户需要再次输入。  </p>
+<p><strong>ActionSupport类</strong>  </p>
+<p>该类实现了Action接口，并增加了验证，国际化，获取本地信息，增加错误提示信息等...当然，继承此类，用户的Action将拥有这些功能。<br><strong>1.</strong>验证的实现</p>
+<figure class="highlight lang-java"><figcaption><span>ProductAction.java </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span>   
+   
   <span class="title">public</span> <span class="title">String</span> <span class="title">execute</span>() <span class="title">throws</span> <span class="title">Exception</span>  
     <span class="title">System</span>.<span class="title">out</span>.<span class="title">println</span>("<span class="title">execute</span>");   
     <span class="title">return</span> <span class="title">SUCCESS</span>;   
@@ -123,12 +130,14 @@ public interface Action {  </p>
     System.out.println(<span class="string">"我是Validate方法"</span>);   
   }   
 }
-</pre></figure></code></pre>
-<p>其中的validate()方法就是我们所需的验证方法，由ActionSupport类提供，我们只需要重写此方法即可完成所欲的验证。<br>但是实际运行起来，我们会发现，无论你执行任何方法，该validate方法都会被执行，显然这不是我们想要的，对于这个问题，struts2是借鉴了<code>ruby on rails</code>，提出了一个约定，你可以自己编写针对某个方法的validate，从而达到用户自己的验证目的，关于这个约定问题，也就是我们经常说的&quot;约定大于配置&quot;。下面来看一下如何编写自己的validate()方法。  </p>
-<pre><code class="lang-java"><figure class="highlight lang-java"><pre><span class="comment">/*
-    如何编写自己需要的验证方法呢？实际上很简单，你只需写一个返回类型为void，
-    方法名子为 validateXxx();Xxx为你需要验证的方法名,首字母要大写。
-    例如你想验证上面的del()方法，你只需这样写即可：  
+</pre></figure>
+
+
+<p>其中的validate()方法就是我们所需的验证方法，由ActionSupport类提供，我们只需要重写此方法即可完成所欲的验证。<br>但是实际运行起来，我们会发现，无论你执行任何方法，该validate方法都会被执行，显然这不是我们想要的，对于这个问题，struts2是借鉴了<code>ruby on rails</code>，提出了一个约定，你可以自己编写针对某个方法的validate，从而达到用户自己的验证目的，关于这个约定问题，也就是我们经常说的&quot;约定大于配置&quot;。下面来看一下如何编写自己的validate()方法。</p>
+<figure class="highlight lang-java"><pre><span class="comment">/*
+	如何编写自己需要的验证方法呢？实际上很简单，你只需写一个返回类型为void，
+	方法名子为 validateXxx();Xxx为你需要验证的方法名,首字母要大写。
+	例如你想验证上面的del()方法，你只需这样写即可：  
 */</span>  
 
 <span class="keyword">public</span> <span class="keyword">void</span> validateDel() {  
@@ -136,35 +145,31 @@ public interface Action {  </p>
 }  
 
 <span class="comment">/*
-    此种写法底层是由反射机制来实现的，需要注意的是，必须要按此约定来进行编写，还是那句话，
-    约定大于配置。 
+	此种写法底层是由反射机制来实现的，需要注意的是，必须要按此约定来进行编写，还是那句话，
+	约定大于配置。 
 */</span>
-</pre></figure></code></pre>
+</pre></figure>
+
 <p><strong>执行流程</strong>  </p>
-<p>加上validate()方法后，在访问一个action的时候，程序流程如下:  </p>
-<blockquote>
-<p>首先是只有validate()方法存在时候  </p>
-</blockquote>
-<img src="/images/java/validate.jpg">
-
-
-<blockquote>
-<p>validate()方法和validateXxx()方法都存在的时候  </p>
-</blockquote>
-<img src="/images/java/validateXxx.jpg">
-
-
+<p>加上validate()方法后，在访问一个action的时候，程序流程如下:</p>
+<p><em>首先是只有validate()方法存在时候</em></p>
+<p><img src="http://ww4.sinaimg.cn/large/6cdc22a9gw1e8f3ym1n2ij20aa08x0st.jpg" alt=""></p>
+<p><em>validate()方法和validateXxx()方法都存在的时候</em></p>
+<p><img src="http://ww4.sinaimg.cn/large/6cdc22a9gw1e8f3z0s8tzj209709kq32.jpg" alt=""></p>
 <p>1） 首先进行类型转换<br>2） 然后进行输入校验(validate)<br>3） 当在Action中指定了自定义的execute方法时，首先会执行自定义的execute方法所对应的输入校验方法，然后再去执行validate方法。<br>4） 如果在上述过程中不管出现了任何错误都将不会再去执行自定义的execute方法，流程将会直接转向struts.xml中该action中的name属性值为input的result所对应的页面  </p>
-<p><strong>添加错误提示</strong>  </p>
-<pre><code class="lang-java"><figure class="highlight lang-java"><pre>addActionError(<span class="string">"xxxx"</span>);  
+<p><strong>添加错误提示</strong></p>
+<figure class="highlight lang-java"><pre>addActionError(<span class="string">"xxxx"</span>);  
 addFieldError(<span class="string">"k"</span>,<span class="string">"v"</span>); <span class="comment">//键值对的添加方式  </span>
 addActionMessage(); <span class="comment">//注意此方法只会添加信息，不会阻止程序的正常执行流程！</span>
-</pre></figure></code></pre>
+</pre></figure>
+
+
 <p>1）想在页面获取错误提示消息可以使用struts2标签<code>&lt;s:actionerror/&gt;</code>和<code>&lt;s:fielderror/&gt;</code><br>2）必须是通过请求转发的方式到达此页面方可拿到值，因为struts2默认是把值放到request空间里面的。<br>3）Action级别的错误信息列表对开发者来说是只读的!!!（要特别注意此句话）   </p>
 <p>4）struts2默认给添加的Field级别的错误提示消息是可以自定义的。方法如下：   </p>
 <p><1>新建一个以 xxxAction 名命名的properties文件，如ProductAction.properties。  </p>
 <p><2>然后在该属性文件中指定每一个出错字段的错误消息，例如invalid.fieldvalue.prodName=prodName invalid!!  </p>
-<p><strong>混合校验</strong><br>有时候，我们会用到struts2校验框架（有效的xml）,具体来说分为字段优先校验器与校验器 优先校验器。当有校验器出现的时候，校验的执行顺序将是：<br>1） 首先执行校验框架（xml 文件）<br>2） 执行自定义方法的校验方法（validateMyExecute）<br>3） 执行validate方法   </p>
+<p><strong>混合校验</strong></p>
+<p>有时候，我们会用到struts2校验框架（有效的xml）,具体来说分为字段优先校验器与校验器 优先校验器。当有校验器出现的时候，校验的执行顺序将是：<br>1） 首先执行校验框架（xml 文件）<br>2） 执行自定义方法的校验方法（validateMyExecute）<br>3） 执行validate方法   </p>
 <p><strong>国际化</strong>  </p>
 <p>对于国际化的资源文件，其命名规则是：package_语言名_国家名，比如package_zh_CN，package_en_US</p>
 
@@ -172,13 +177,13 @@ addActionMessage(); <span class="comment">//注意此方法只会添加信息，
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/struts2/">struts2</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Struts/">Struts</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

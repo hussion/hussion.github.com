@@ -70,6 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -80,9 +90,7 @@
     <div class="entry">
       
         <p><strong>struts2的原理架构图</strong>  </p>
-<img src="/images/java/struts2.jpg">
-
-
+<p><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8f35a7kk3j20hs0kuq4s.jpg" alt=""></p>
 <p><code>ActionMapper</code><br>该类是HttpServletRequest和Action调用请求的一个映射，它屏蔽了Action对于Request等java servlet类的依赖；Struts2中它的默认实现类是DefaultActionMapper，ActionMapper很多的用处就是可以根据自己的要求来设计url格式，它自己也有RESTful的实现。<br><code>ActionProxy</code>和<code>ActionInvocation</code><br>Action的一个代理，由ActionProxyFactory创建，它本身不包括Action实例，默认实现DefaultActionProxy是由ActionInvocation持有Action实例。ActionProxy作用是如何取得Action，无论是本地还是远程。而ActionInvocation的作用是如何执行Action，拦截器的功能就是在ActionInvocation中实现的<br><code>ConfigurationProvider</code>和<code>Configuration</code><br>ConfigurationProvider就是struts2中配置文件的解析器，struts2中的配置文件主要是由其实现类XmlConfigurationProvider及其子类StrutsXmlConfigurationProvider来解析  </p>
 <p><strong>Struts2的请求流程</strong>  </p>
 <p>1、客户端发送请求<br>2、这个请求经过一系列的过滤器（ActionContextCleanUp--&gt;FilterDispatcher）<br>3、FilterDispatcher通过ActionMapper来决定这个请求需要调用哪个Action<br>4、如果ActionMapper决定调用某个Action，FilterDispatcher把请求的处理交给ActionProxy<br>5、ActionProxy通过ConfigurationManager询问框架的配置文件（struts.xml），找到需要调用的Action类<br>6、ActionProxy创建一个ActionInvocation的实例<br>7、ActionInvocation通过代理模式调用真正的Action，当然这涉及到相关拦截器的调用<br>8、Action执行完毕，ActionInvocation创建Result并返回。</p>
@@ -91,13 +99,13 @@
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/struts2/">struts2</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Struts/">Struts</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

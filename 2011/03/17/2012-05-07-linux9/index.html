@@ -70,6 +70,12 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -83,78 +89,76 @@
 <p>1.清屏快捷键：<code>Ctrl+l</code>, 清除光标前所有命令： <code>Ctrl+U</code>  </p>
 <p>2.命令别名： <strong>alias</strong>  </p>
 </blockquote>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>/*  
+<figure class="highlight lang-bash"><pre>/*  
 *语法  
 */  
-alias #查看所有别名信息  
-alias #自定义的别名=命令  
-alias 自定义的别名="命令"  
-alias copy=cp #让cp命令定义别名为copy  
-alias drm="rm -rf" #定义带选项的命令别名  
-unalias #删除别名
-</pre></figure></code></pre>
+alias <span class="comment">#查看所有别名信息  </span>
+alias <span class="comment">#自定义的别名=命令  </span>
+alias 自定义的别名=<span class="string">"命令"</span>  
+alias copy=cp <span class="comment">#让cp命令定义别名为copy  </span>
+alias drm=<span class="string">"rm -rf"</span> <span class="comment">#定义带选项的命令别名  </span>
+unalias <span class="comment">#删除别名</span>
+</pre></figure>
+
+
 <a name="more"></a>
 
 <ul>
-<li>输入输出重定向  <blockquote>
+<li>输入输出重定向</li>
+</ul>
+<blockquote>
 <p>同标准I/O一样，<code>Shell</code>对于每一个进程预先定义3个文件描述字（0，1，2）,分别对应于：<br>0 （STDIN） 标准输入；<br>1 （STDOUT） 标准输出；<br>2 （STDERR） 标准错误输出；  </p>
+<p>>和&gt;&gt; 输出重定向
+ls -l/tmp &gt; /tmp.msg (覆盖式重定向输出)
+date &gt;&gt; /tmp.msg (附加式重定向输出)</p>
 </blockquote>
-</li>
-</ul>
+<p><em>&lt; 输入重定向</em></p>
+<figure class="highlight lang-bash"><pre>wall &lt; /etc/motd
+</pre></figure>
+
+
 <blockquote>
-<p>>和&gt;&gt; 输出重定向</p>
+<p>错误输出重定向
+cat usr/dsfxfd 2&gt; error (文件&#39;dsfxfd&#39;不存在，就会把错误信息输出到error文件里)</p>
 </blockquote>
-<pre><code><figure class="highlight"><pre><span class="title">ls</span> -l/tmp &gt; /tmp.msg (覆盖式重定向输出)
-<span class="title">date</span> &gt;&gt; /tmp.msg (附加式重定向输出)
-</pre></figure></code></pre>
-<blockquote>
-<p>&lt; 输入重定向</p>
-</blockquote>
-<pre><code><figure class="highlight"><pre>wall <span class="tag">&lt; /<span class="attribute">etc</span>/<span class="attribute">motd</span>
-</pre></figure></code></pre>
-<blockquote>
-<p>错误输出重定向</p>
-</blockquote>
-<pre><code><figure class="highlight"><pre><span class="title">cat</span> usr/dsfxfd <span class="number">2</span>&gt; <span class="built_in">error</span> (文件<span class="string">'dsfxfd'</span>不存在，就会把错误信息输出到<span class="built_in">error</span>文件里)
-</pre></figure></code></pre>
 <ul>
-<li>管道  <blockquote>
-<p>将一个命令的输出传送给另一个命令，作为另一个命令的输入</p>
-</blockquote>
-</li>
+<li>管道</li>
 </ul>
-<blockquote>
-<p>使用方法：<br>命令1 | 命令2 | 命令3 |...</p>
-</blockquote>
-<pre><code><figure class="highlight"><pre><span class="comment">例：</span>
-<span class="comment">ls</span> <span class="literal">-</span><span class="comment">l</span> <span class="comment">/etc</span> <span class="comment">|</span> <span class="comment">more</span>
-<span class="comment">ls</span> <span class="literal">-</span><span class="comment">l</span> <span class="comment">/etc</span> <span class="comment">|</span> <span class="comment">grep</span> <span class="comment">init</span>
-<span class="comment">ls</span> <span class="literal">-</span><span class="comment">l</span> <span class="comment">/etc</span> <span class="comment">|</span> <span class="comment">grep</span> <span class="comment">init</span> <span class="comment">|</span> <span class="comment">wc</span> <span class="literal">-</span><span class="comment">l
-</pre></figure></code></pre>
+<p><em>将一个命令的输出传送给另一个命令，作为另一个命令的输入</em></p>
+<figure class="highlight lang-bash"><pre>使用方法：  
+命令1 | 命令2 | 命令3 |...
+
+例：
+ls -l /etc | more
+ls -l /etc | grep init
+ls -l /etc | grep init | wc -l
+</pre></figure>
+
+
 <ul>
-<li><p>命令连接符号  </p>
+<li>命令连接符号</li>
+</ul>
 <blockquote>
 <p><code>;</code> 用 ; 间隔的各命令按顺序依次执行<br><code>&amp;&amp;</code> 前后命令执行存在逻辑与关系，只有<code>&amp;&amp;</code>前面的命令执行成功后，它后面的命令才会被执行<br><code>||</code> 前后命令存在逻辑或关系，只有<code>||</code>前面的命令执行失败后，后面的命令才会被执行</p>
 </blockquote>
-</li>
-<li><p>命令替换符  </p>
+<ul>
+<li>命令替换符</li>
+</ul>
 <blockquote>
 <p>将一个命令的输出作为另一个命令的参数<br>格式为： 命令1 <strong>`命令2`</strong></p>
 </blockquote>
-</li>
-</ul>
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/linux/">linux</a>
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

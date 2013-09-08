@@ -70,6 +70,12 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -80,77 +86,87 @@
     <div class="entry">
       
         <ul>
-<li>命令名称： <strong>gzip和gunzip</strong>  <blockquote>
-<p>功能描述：压缩和解压缩文件<br>``` ruby 
-语法：<br>gzip [文件] #压缩文件<br>gzip -d [文件] #解压缩.gz格式压缩文件<br>gunzip [选项] [压缩文件] #解压缩.gz格式的压缩文件   </p>
-</blockquote>
-</li>
+<li>命令名称： <strong>gzip和gunzip</strong></li>
 </ul>
-<p>ps:<br>1&gt; 压缩后的文件格式为 .gz<br>2&gt; 只能压缩文件<br>3&gt; 不保留原文件(直接替换原文件)</p>
-<pre><code><figure class="highlight"><pre>&lt;!--more--&gt;
+<p><em>功能描述：压缩和解压缩文件</em></p>
+<figure class="highlight lang-bash"><pre>语法：  
+gzip [文件] <span class="comment">#压缩文件  </span>
+gzip -d [文件] <span class="comment">#解压缩.gz格式压缩文件    </span>
+gunzip [选项] [压缩文件] <span class="comment">#解压缩.gz格式的压缩文件   </span>
+ 
+ps:  
+1&gt; 压缩后的文件格式为 .gz  
+2&gt; 只能压缩文件  
+3&gt; 不保留原文件(直接替换原文件)
+</pre></figure>
 
-* 命令名称： **tar**  
-&gt; 功能描述：打包目录  
-``` ruby 
-语法： tar 选项[cvf] [目录]  
--c <span class="preprocessor">#产生.tar打包文件  </span>
--v <span class="preprocessor">#显示详细信息  </span>
--f <span class="preprocessor">#指定压缩后的文件名  </span>
--z <span class="preprocessor">#打包同时压缩，压缩后文件格式为.tar.gz(并不是所有的unix都支持)  </span>
-$ tar -zcvf dir1<span class="variable">.tar</span><span class="variable">.gz</span> dir1 <span class="preprocessor">#把目录dir1压缩成一个打包文件并压缩的文件</span>
 
-tar命令解压缩语法：  
--x <span class="preprocessor">#解包.tar文件  </span>
--v <span class="preprocessor">#显示详细信息  </span>
--f <span class="preprocessor">#指定解压文件  </span>
--z <span class="preprocessor">#解压缩  </span>
-$ tar -zxvf dir1<span class="variable">.tar</span><span class="variable">.gz</span> <span class="preprocessor">#将dir1.tar.gz文件解压缩</span>
-</pre></figure></code></pre>
+<a name="more"></a>
+
 <ul>
-<li><p>命令名称： <strong>zip和unzip</strong>  </p>
-<blockquote>
-<p>功能描述：压缩文件和目录  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
+<li>命令名称： <strong>tar</strong></li>
+</ul>
+<p><em>功能描述：打包目录</em></p>
+<figure class="highlight lang-bash"><pre>语法： tar 选项[cvf] [目录]  
+-c <span class="comment">#产生.tar打包文件  </span>
+-v <span class="comment">#显示详细信息  </span>
+-f <span class="comment">#指定压缩后的文件名  </span>
+-z <span class="comment">#打包同时压缩，压缩后文件格式为.tar.gz(并不是所有的unix都支持)  </span>
+$ tar -zcvf dir1.tar.gz dir1 <span class="comment">#把目录dir1压缩成一个打包文件并压缩的文件</span>
+  
+tar命令解压缩语法：  
+-x <span class="comment">#解包.tar文件  </span>
+-v <span class="comment">#显示详细信息  </span>
+-f <span class="comment">#指定解压文件  </span>
+-z <span class="comment">#解压缩  </span>
+$ tar -zxvf dir1.tar.gz <span class="comment">#将dir1.tar.gz文件解压缩</span>
+</pre></figure>
+
+
+<ul>
+<li>命令名称： <strong>zip和unzip</strong></li>
+</ul>
+<p><em>功能描述：压缩文件和目录</em></p>
+<figure class="highlight lang-bash"><pre>语法：  
 zip [压缩后文件名称] [文件] <span class="comment">#压缩文件  </span>
 zip -r [压缩后文件名称] [目录] <span class="comment">#压缩目录  </span>
 unzip [压缩文件] <span class="comment">#解压缩.zip文件    </span>
 压缩后的文件格式为 .zip
-</pre></figure></code></pre>
-</blockquote>
-</li>
-<li><p>命令名称： <strong>bzip2</strong>  </p>
-<blockquote>
-<p>功能描述：压缩文件  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
+</pre></figure>
+
+<ul>
+<li>命令名称： <strong>bzip2</strong></li>
+</ul>
+<p><em>功能描述：压缩文件</em></p>
+<figure class="highlight lang-bash"><pre>语法：  
 bzip2 [文件]  
 bzip2 -k [文件] <span class="comment">#产生压缩文件并保留原文件  </span>
 压缩后的文件格式为 .bz2
-</pre></figure></code></pre>
-</blockquote>
-</li>
-<li><p>命令名称： <strong>bunzip2</strong>  </p>
-<blockquote>
-<p>功能描述：解压缩文件  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>语法：  
+</pre></figure>
+
+<ul>
+<li>命令名称： <strong>bunzip2</strong></li>
+</ul>
+<p><em>功能描述：解压缩文件</em> </p>
+<figure class="highlight lang-bash"><pre>语法：  
 bunzip2 [压缩文件]  
 bunzip2 -k [压缩文件] <span class="comment">#解压缩文件并保留原文件</span>
-</pre></figure></code></pre>
+</pre></figure>
+
+
 <p>PS：<br>1&gt; 如果文件不大，且对压缩比不太要求的话，推荐使用zip命令<br>2&gt; bzip2是gzip的升级版，压缩比很高!</p>
-</blockquote>
-</li>
-</ul>
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/linux/">linux</a>
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

@@ -70,6 +70,12 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -82,84 +88,91 @@
         <p>Vim/Vi是一个功能强大的全屏幕文本编辑器，也是linux/unix上最常用的文本编辑器，它的作用是建立、编辑、显示文本文件。<br>Vim/Vi <strong>没有菜单，只有命令</strong>！<br>Vim的三种工作模式：<code>命令模式</code>、<code>插入模式</code>、<code>编辑模式</code>。<br>命令模式分为两种: 一种是<code>输入命令模式</code>,一种是<code>快捷键方式</code><br>命令以回车结束运行 </p>
 <a name="more"></a>   
 
-<p><1> 插入命令  </p>
-<figure class="highlight lang-ruby"><pre>a <span class="comment">#在光标后附加文本  </span>
-<span class="constant">A</span> <span class="comment">#在本行行末附加文本  </span>
+<p><1> 插入命令</p>
+<figure class="highlight lang-bash"><pre>a <span class="comment">#在光标后附加文本  </span>
+A <span class="comment">#在本行行末附加文本  </span>
 i <span class="comment">#在光标前插入文本  </span>
-<span class="constant">I</span> <span class="comment">#在本行开始插入文本  </span>
+I <span class="comment">#在本行开始插入文本  </span>
 o <span class="comment">#在光标下插入新行  </span>
-<span class="constant">O</span> <span class="comment">#在光标上插入新行</span>
-```  
-&lt;<span class="number">2</span>&gt; 定位命令  
-``` ruby 
-h、方向左键 <span class="comment">#左移一个字符  </span>
+O <span class="comment">#在光标上插入新行</span>
+</pre></figure>
+
+
+<p><2> 定位命令</p>
+<figure class="highlight lang-bash"><pre>h、方向左键 <span class="comment">#左移一个字符  </span>
 j、方向下键 <span class="comment">#下移一行  </span>
 k、方向上键 <span class="comment">#上移一行  </span>
 l、方向右键 <span class="comment">#右移一个字符  </span>
-<span class="variable">$ </span><span class="comment">#移至行尾  </span>
-<span class="number">0</span> <span class="comment">#移至行首  </span>
-<span class="constant">H</span> <span class="comment">#移至屏幕上端  </span>
-<span class="constant">M</span> <span class="comment">#移至屏幕中央  </span>
-<span class="constant">L</span> <span class="comment">#移至屏幕下端  </span>
-<span class="symbol">:set</span> nu <span class="comment">#设置行号  </span>
-<span class="symbol">:set</span> nonu <span class="comment">#取消行号  </span>
+$ <span class="comment">#移至行尾  </span>
+0 <span class="comment">#移至行首  </span>
+H <span class="comment">#移至屏幕上端  </span>
+M <span class="comment">#移至屏幕中央  </span>
+L <span class="comment">#移至屏幕下端  </span>
+:<span class="keyword">set</span> nu <span class="comment">#设置行号  </span>
+:<span class="keyword">set</span> nonu <span class="comment">#取消行号  </span>
 gg <span class="comment">#到第一行  </span>
-<span class="constant">G</span> <span class="comment">#到最后一行  </span>
+G <span class="comment">#到最后一行  </span>
 nG <span class="comment">#到第n行  </span>
-<span class="symbol">:n</span> <span class="comment">#到第n行</span>
-```  
-&lt;<span class="number">3</span>&gt; 删除命令  
-``` ruby 
-x <span class="comment">#删除光标所在处字符  </span>
+:n <span class="comment">#到第n行</span>
+</pre></figure>
+
+
+<p><3> 删除命令</p>
+<figure class="highlight lang-bash"><pre>x <span class="comment">#删除光标所在处字符  </span>
 nx <span class="comment">#删除光标所在处后n个字符  </span>
 dd <span class="comment">#删除光标所在行,ndd删除n行  </span>
 dG <span class="comment">#删除光标所在行到末尾的内容  </span>
-<span class="constant">D</span> <span class="comment">#删除从光标所在处到行尾  </span>
-<span class="symbol">:n1</span>,n2d <span class="comment">#删除指定范围的行</span>
-```  
-&lt;<span class="number">4</span>&gt; 复制和剪切命令  
-``` ruby   
-yy、<span class="constant">Y</span> <span class="comment">#复制当前行  </span>
+D <span class="comment">#删除从光标所在处到行尾  </span>
+:n1,n2d <span class="comment">#删除指定范围的行</span>
+</pre></figure>
+
+
+<p><4> 复制和剪切命令</p>
+<figure class="highlight lang-bash"><pre>yy、Y <span class="comment">#复制当前行  </span>
 nyy、nY <span class="comment">#复制当前行以下n行  </span>
 dd <span class="comment">#剪切当前行  </span>
 ndd <span class="comment">#剪切当前行以下n行  </span>
-p、<span class="constant">P</span> <span class="comment">#粘贴在当前光标所在行下、行上  </span>
-```  
-&lt;<span class="number">5</span>&gt; 替换和取消命令  
-``` ruby 
-r <span class="comment">#取消光标所在处字符  </span>
-<span class="constant">R</span> <span class="comment">#从光标所在处开始替换字符，按ESC结束  </span>
-u <span class="comment">#取消上一步操作  </span>
-```  
-&lt;<span class="number">6</span>&gt; 搜索和替换命令  
-``` ruby 
-/string <span class="comment">#向前搜索指定字符串  </span>
-<span class="symbol">:set</span> ic <span class="comment">#搜索时忽略大小写  </span>
+p、P <span class="comment">#粘贴在当前光标所在行下、行上</span>
+</pre></figure>
+
+
+<p><5> 替换和取消命令</p>
+<figure class="highlight lang-bash"><pre>r <span class="comment">#取消光标所在处字符  </span>
+R <span class="comment">#从光标所在处开始替换字符，按ESC结束  </span>
+u <span class="comment">#取消上一步操作</span>
+</pre></figure>
+
+
+<p><6> 搜索和替换命令</p>
+<figure class="highlight lang-bash"><pre>/string <span class="comment">#向前搜索指定字符串  </span>
+:<span class="keyword">set</span> ic <span class="comment">#搜索时忽略大小写  </span>
 n <span class="comment">#搜索指定字符串的下一个出现位置  </span>
-<span class="symbol">:%s/old/new/g</span> <span class="comment">#全文替换指定字符串  </span>
-<span class="symbol">:n1</span>,n2s/old/new/g <span class="comment">#在一定范围内替换指定字符串</span>
-```  
-&lt;<span class="number">7</span>&gt; 保存和退出命令  
-``` ruby 
-<span class="symbol">:w</span> <span class="comment">#保存修改  </span>
-<span class="symbol">:w</span> new_filename <span class="comment">#另存为指定文件  </span>
-<span class="symbol">:wq</span> <span class="comment">#保存修改并退出  </span>
-<span class="constant">ZZ</span> <span class="comment">#保存修改并退出  </span>
-<span class="symbol">:q!</span> <span class="comment">#不保存修改并强制退出  </span>
-<span class="symbol">:wq!</span> <span class="comment">#保存修改并强制退出(强制保存只有ROOT和所有者，文件所有者可以忽略文件的只读属性)</span>
-```  
-&lt;<span class="number">8</span>&gt; vim技巧  
-``` ruby 
-<span class="symbol">:r</span> !命令 <span class="comment">#导入命令执行结果(如 ：r !date导入当前系统时间)  </span>
+:%s/old/new/g <span class="comment">#全文替换指定字符串  </span>
+:n1,n2s/old/new/g <span class="comment">#在一定范围内替换指定字符串</span>
+</pre></figure>
+
+
+<p><7> 保存和退出命令</p>
+<figure class="highlight lang-bash"><pre>:w <span class="comment">#保存修改  </span>
+:w new_filename <span class="comment">#另存为指定文件  </span>
+:wq <span class="comment">#保存修改并退出  </span>
+ZZ <span class="comment">#保存修改并退出  </span>
+:q! <span class="comment">#不保存修改并强制退出  </span>
+:wq! <span class="comment">#保存修改并强制退出(强制保存只有ROOT和所有者，文件所有者可以忽略文件的只读属性)</span>
+</pre></figure>
+
+
+<p><8> vim技巧</p>
+<figure class="highlight lang-bash"><pre>:r !命令 <span class="comment">#导入命令执行结果(如 ：r !date导入当前系统时间)  </span>
 
  <span class="comment">#定义快捷键  </span>
-<span class="symbol">:map</span> ^p <span class="constant">I</span><span class="comment">#&lt;ESC&gt; #设置快捷键ctrl+p为在行首加入#然后返回命令模式(^P为ctrl+v+p或者ctrl+v然后ctrl+p,I为行首插入,ESC为命令模式)  </span>
-<span class="symbol">:unmap</span> 快捷键 <span class="comment">#取消自定义快捷键  </span>
-<span class="symbol">:n</span>,ns/^<span class="regexp">/#/g</span> 设置n到n行的行首为<span class="comment">#注视(^为符号不同于map的^,这里面^为行首)</span>
-<span class="symbol">:n</span>,ns/^<span class="comment">#//g  #设置n到n行行首的#为空值(/^/为空/g)  </span>
-<span class="symbol">:n</span>,ns/^<span class="regexp">/\/\//g</span> <span class="comment">#替换n到n行行首//为空(\/\/表示//,\为转义符,加转义符是为了让系统正常的识别/)  </span>
-<span class="symbol">:ab</span> myemail xxx<span class="variable">@qq</span>.com <span class="comment">#定义输入myemail为xxx<span class="yardoctag">@qq</span>.com (输入myemail后按空格或回车就会变成xxx<span class="yardoctag">@qq</span>.com)</span>
-<span class="symbol">:unab</span> myemail <span class="comment">#取消定义myemail的替换</span>
+:map ^p I<span class="comment">#&lt;ESC&gt; #设置快捷键ctrl+p为在行首加入#然后返回命令模式(^P为ctrl+v+p或者ctrl+v然后ctrl+p,I为行首插入,ESC为命令模式)  </span>
+:unmap 快捷键 <span class="comment">#取消自定义快捷键  </span>
+:n,ns/^/<span class="comment">#/g 设置n到n行的行首为#注视(^为符号不同于map的^,这里面^为行首)</span>
+:n,ns/^<span class="comment">#//g  #设置n到n行行首的#为空值(/^/为空/g)  </span>
+:n,ns/^/\/\//g <span class="comment">#替换n到n行行首//为空(\/\/表示//,\为转义符,加转义符是为了让系统正常的识别/)  </span>
+:ab myemail xxx@qq.com <span class="comment">#定义输入myemail为xxx@qq.com (输入myemail后按空格或回车就会变成xxx@qq.com)</span>
+:unab myemail <span class="comment">#取消定义myemail的替换</span>
 </pre></figure>
 
 
@@ -167,13 +180,13 @@ n <span class="comment">#搜索指定字符串的下一个出现位置  </span>
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/linux/">linux</a>
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

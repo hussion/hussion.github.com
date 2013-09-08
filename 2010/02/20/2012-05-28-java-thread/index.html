@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>线程 | hussion</title>
+  <title>Java线程 | hussion</title>
   <meta name="author" content="hussion">
   
   <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="线程"/>
+  <meta property="og:title" content="Java线程"/>
   <meta property="og:site_name" content="hussion"/>
 
   
@@ -70,10 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
-    <h1 class="title">线程</h1>
+    <h1 class="title">Java线程</h1>
   
 
     </header>
@@ -81,16 +87,16 @@
       
         <p><strong>线程概念</strong><br>1. 线程就是程序中单独顺序的流控制。线程本身不能运行，它只能用于程序中<br>2. 多线程: 单个程序中可以同时运行多个不同的线程执行不同的任务<br>3. 线程是程序内的顺序控制流，只能使用分配给程序的资源和环境<br><strong>线程和进程</strong><br>1. 一个进程可以有多个线程<br>2. 多个进程的内部数据和状态都是完全独立的,是不可以进行数据交换的;而多线程是共享一块内存空间和一组系统资源,有可能互相影响进程之间，可以进行数据交换，而且线程的切换比进程切换的负担要小<br><a name="more"></a>
 <strong>线程的生命周期</strong>  </p>
-<img src="/images/java/thread.png">
-
-
+<p><img src="http://ww1.sinaimg.cn/large/6cdc22a9gw1e8f2dpcah3j20ic06saak.jpg" alt=""></p>
 <p><strong>线程的创建</strong><br>1. 继承<code>java.lang.Thread</code>类，并重写<code>run()</code>方法<br>2. 实现<code>java.lang.Runnable</code>接口，并实现其<code>run()</code>方法  </p>
 <blockquote>
-<p><1> 继承Thread类后，无法再继承其他类，但实现Runable()接口后还可以继承其他类  </p>
-<p><2> 实现Runable接口，访问当前线程，需要使用Thread.currentThread()方法  </p>
-<p><3> 继承Thread类，访问当前线程，使用this即可  </p>
+<ol>
+<li>继承Thread类后，无法再继承其他类，但实现Runable()接口后还可以继承其他类  </li>
+<li>实现Runable接口，访问当前线程，需要使用Thread.currentThread()方法  </li>
+<li>继承Thread类，访问当前线程，使用this即可  </li>
+</ol>
 </blockquote>
-<p><strong>线程的启动</strong>  </p>
+<p><strong>线程的启动</strong></p>
 <figure class="highlight lang-java"><pre><span class="comment">//方式一 </span>
 MyThread mt = <span class="keyword">new</span> MyThread();
 mt.start();
@@ -99,37 +105,35 @@ mt.start();
 MyThread2 mt2 = <span class="keyword">new</span> MyThread2();
 Thread thread = <span class="keyword">new</span> Thread(mt2);
 thread.start();
-```  
+</pre></figure>
 
-**线程进入阻塞**  
-
-<span class="number">1.</span> 线程调用sleep()方法进入休眠状态  
-<span class="number">2.</span> 线程调用了一个阻塞时IO方法，在该方法返回之前，线程处于阻塞  
-<span class="number">3.</span> 线程试图获取一个同步锁(监视器)，但是该锁正被其他线程所持有  
-<span class="number">4.</span> 线程在等待某个通知(notify)  
-
-**线程离开阻塞**  
-
-<span class="number">1.</span> 调用的sleep()方法时间到 
-<span class="number">2.</span> 调用的阻塞IO方法已经返回 
-<span class="number">3.</span> 成功获得到了同步锁 
-<span class="number">4.</span> 获得等待的通知  
-
-**线程死亡**  
-
-<span class="number">1.</span> run()方法执行完成，线程正常结束  
-<span class="number">2.</span> 线程抛出一个未捕获的Exception或Error  
-<span class="number">3.</span> 直接调用线程的stop方法(&lt;font color=<span class="string">"red"</span>&gt;禁止使用&lt;/font&gt;)  
-<span class="number">4.</span> 可以使用`isAlive()`方法判断线程是否死亡，该方法在线程处于就绪、运行、阻塞三种状态时返回`<span class="keyword">true</span>`，处于新建及死亡状态时返回`<span class="keyword">false</span>`    
-<span class="number">5.</span> 线程一旦死亡，则不能再次调用`start()`方法让其重新执行。
-
-**join线程**  
-
-Thread提供了让一个线程等待另一个线程完成的方法：`join()`。当某
-个程序在执行过程中调用了其他线程的`join()`方法，则当前线程被阻
-塞，直到被`join()`方法加入的线程完成为止  
-```java 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException { 
+<p><strong>线程进入阻塞</strong></p>
+<ol>
+<li>线程调用sleep()方法进入休眠状态  </li>
+<li>线程调用了一个阻塞时IO方法，在该方法返回之前，线程处于阻塞  </li>
+<li>线程试图获取一个同步锁(监视器)，但是该锁正被其他线程所持有  </li>
+<li>线程在等待某个通知(notify)  </li>
+</ol>
+<p><strong>线程离开阻塞</strong>  </p>
+<ol>
+<li>调用的sleep()方法时间到 </li>
+<li>调用的阻塞IO方法已经返回 </li>
+<li>成功获得到了同步锁 </li>
+<li>获得等待的通知  </li>
+</ol>
+<p><strong>线程死亡</strong>  </p>
+<ol>
+<li>run()方法执行完成，线程正常结束  </li>
+<li>线程抛出一个未捕获的Exception或Error  </li>
+<li>直接调用线程的stop方法(<font color="red">禁止使用</font>)  </li>
+<li>可以使用<code>isAlive()</code>方法判断线程是否死亡，该方法在线程处于就绪、运行、阻塞三种状态时返回<code>true</code>，处于新建及死亡状态时返回<code>false</code>    </li>
+<li>线程一旦死亡，则不能再次调用<code>start()</code>方法让其重新执行。</li>
+</ol>
+<p><strong>join线程</strong>  </p>
+<p>Thread提供了让一个线程等待另一个线程完成的方法：<code>join()</code>。当某
+个程序在执行过程中调用了其他线程的<code>join()</code>方法，则当前线程被阻
+塞，直到被<code>join()</code>方法加入的线程完成为止</p>
+<figure class="highlight lang-java"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException { 
  
 	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) { 
 	  System.out.println(Thread.currentThread().getName() +<span class="string">"\t"</span> + i); 
@@ -141,14 +145,14 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 	} 
  
 }
-```  
+</pre></figure>
 
-**守护线程(Daemon Thread)**  
-
-<span class="number">1.</span> 除了特别设置外，我们创建的线程都是非守护线程  
-<span class="number">2.</span> 前台线程死亡，后台线程会自动死亡    
-``` java 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TheThread3</span> <span class="keyword">extends</span> <span class="title">Thread</span>{</span> 
+<p><strong>守护线程(Daemon Thread)</strong>  </p>
+<ol>
+<li>除了特别设置外，我们创建的线程都是非守护线程  </li>
+<li>前台线程死亡，后台线程会自动死亡</li>
+</ol>
+<figure class="highlight lang-java"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TheThread3</span> <span class="keyword">extends</span> <span class="title">Thread</span>{</span> 
 	<span class="annotation">@Override</span> 
 	<span class="keyword">public</span> <span class="keyword">void</span> run() { 
 		<span class="keyword">while</span>(<span class="keyword">true</span>) { 
@@ -161,10 +165,10 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 		} 
 	} 
 }
-``` 
- 
-``` java 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException {
+</pre></figure>
+
+
+<figure class="highlight lang-java"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException {
  
 	TheThread3 t3 = <span class="keyword">new</span> TheThread3(); 
 	t3.start(); 
@@ -173,10 +177,10 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 		System.out.println(i); 
 	} 
 }
-```  
+</pre></figure>
 
-``` java 
-<span class="comment">//设置为守护线程： </span>
+
+<figure class="highlight lang-java"><pre><span class="comment">//设置为守护线程： </span>
 <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException {
  
 	TheThread3 t3 = <span class="keyword">new</span> TheThread3(); 
@@ -187,14 +191,12 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 		System.out.println(i); 
 	} 
 }
-```  
+</pre></figure>
 
-**线程同步**  
-
-当多个线程同时对同一个对象的实例变量进行操作时，会引起线程的同步问题！  
-&gt; 模拟线程同步(这里用银行取款来模拟)  
-``` java User.java 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Thread</span>{</span> 
+<p><strong>线程同步</strong>  </p>
+<p>当多个线程同时对同一个对象的实例变量进行操作时，会引起线程的同步问题!</p>
+<p><em>模拟线程同步(这里用银行取款来模拟)</em></p>
+<figure class="highlight lang-java"><figcaption><span>User.java </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Thread</span>{</span> 
  
 	<span class="keyword">private</span> Account account; 
 	<span class="keyword">private</span> String name; 
@@ -215,11 +217,11 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 		    e.printStackTrace(); 
 		} 
 	} 
-} 
-```  
-  
-``` java 模拟取款.java 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) { 
+}
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>模拟取款.java </span></figcaption><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) { 
 
 	Account account = <span class="keyword">new</span> Account(); 
 	User u1 = <span class="keyword">new</span> User(<span class="string">"Tom"</span>,account,<span class="number">1500</span>); 
@@ -228,11 +230,10 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 	u1.start(); 
 	u2.start(); 
 }
-``` 
-&gt; 线程同步的实现方式
+</pre></figure>
 
-``` java <span class="number">1.</span>同步方法的方式 
-<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
+<p><em>线程同步的实现方式</em></p>
+<figure class="highlight lang-java"><figcaption><span>1.同步方法的方式 </span></figcaption><pre><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
 
 	<span class="keyword">if</span>(money &gt; <span class="keyword">this</span>.money) { 
 	    System.out.println(<span class="string">"余额不足，当前余额为："</span> + <span class="keyword">this</span>.money); 
@@ -241,9 +242,10 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 		System.out.println(name + <span class="string">"取款成功，当前余额为"</span> + <span class="keyword">this</span>.money); 
 	} 
 }
-```  
-``` java <span class="number">2.</span>同步代码块方式 
-<span class="keyword">public</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>2.同步代码块方式 </span></figcaption><pre><span class="keyword">public</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
 <span class="keyword">synchronized</span> (<span class="keyword">this</span>) { 
 	<span class="keyword">if</span>(money &gt; <span class="keyword">this</span>.money) { 
 	    System.out.println(<span class="string">"余额不足，当前余额为："</span> + <span class="keyword">this</span>.money); 
@@ -253,9 +255,10 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
 	} 
 	} 
 }
-```  
-``` java <span class="number">3.</span>同步锁(JDK&gt;=<span class="number">1.5</span>)方式 
-<span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock(); 
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>3.同步锁(JDK>=1.5)方式 </span></figcaption><pre><span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock(); 
  
 <span class="keyword">public</span> <span class="keyword">void</span> getMoney(String name,<span class="keyword">float</span> money) { 
 	lock.lock(); <span class="comment">//加锁 </span>
@@ -277,13 +280,13 @@ Thread提供了让一个线程等待另一个线程完成的方法：`join()`。
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/java基础/">java基础</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

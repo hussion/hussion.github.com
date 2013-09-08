@@ -343,7 +343,7 @@ article header .post-tags .tag-NodeJs {
   background: #a29ac8;
 }
 article header .post-tags .tag-Java {
-  background: #72cca7;
+  background: #f44a56;
 }
 article header .post-tags .tag-Css {
   background: #94c045;
@@ -361,10 +361,19 @@ article header .post-tags .tag-前端开发 {
   background: #10a296;
 }
 article header .post-tags .tag-Linux {
-  background: #905;
+  background: #72cca7;
 }
 article header .post-tags .tag-Ios {
   background: #74c0c8;
+}
+article header .post-tags .tag-Struts {
+  background: #599cc7;
+}
+article header .post-tags .tag-Hibernate {
+  background: #9086bd;
+}
+article header .post-tags .tag-Spring {
+  background: #6eb056;
 }
 article header .title {
   font-weight: bold;
@@ -406,13 +415,13 @@ article .entry p em {
   font-size: 1em;
 }
 article .entry blockquote {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  font-style: italic;
-  font-family: "Georgia", serif;
+  border-left: 5px solid #dfb5b4;
+  background: #fcf2f2;
   font-size: 0.9em;
-  padding: 0 30px 15px;
-  text-align: center;
+  padding: 10px 20px;
+}
+article .entry blockquote p {
+  margin-top: 5px;
 }
 article .entry blockquote footer {
   border-top: none;

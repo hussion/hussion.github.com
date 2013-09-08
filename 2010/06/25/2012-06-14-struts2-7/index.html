@@ -70,6 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -91,7 +101,7 @@
 
 
 <p><strong>3.struts2自带的拦截器</strong> </p>
-<p>struts2默认提供了十分丰富的拦截器，大家可以在struts2-core-2.3.1.2.jar包中的struts-default.xml查看关于默认的拦截器与拦截器链的配置。  </p>
+<p>struts2默认提供了十分丰富的拦截器，大家可以在struts2-core-2.3.1.2.jar包中的struts-default.xml查看关于默认的拦截器与拦截器链的配置。</p>
 <figure class="highlight lang-xml"><figcaption><span>截取的部分默认拦截器</span></figcaption><pre><span class="tag">&lt;<span class="title">interceptors</span>&gt;</span>  
     <span class="tag">&lt;<span class="title">interceptor</span> <span class="attribute">name</span>=<span class="value">"alias"</span> <span class="attribute">class</span>=<span class="value">"com.opensymphony.xwork2.interceptor.AliasInterceptor"</span>/&gt;</span>  
     <span class="tag">&lt;<span class="title">interceptor</span> <span class="attribute">name</span>=<span class="value">"autowiring"</span> <span class="attribute">class</span>=<span class="value">"com.opensymphony.xwork2.spring.interceptor.ActionAutowiringInterceptor"</span>/&gt;</span>  
@@ -125,14 +135,12 @@
     <span class="tag">&lt;<span class="title">interceptor</span> <span class="attribute">name</span>=<span class="value">"roles"</span> <span class="attribute">class</span>=<span class="value">"org.apache.struts2.interceptor.RolesInterceptor"</span> /&gt;</span>  
     <span class="tag">&lt;<span class="title">interceptor</span> <span class="attribute">name</span>=<span class="value">"annotationWorkflow"</span> <span class="attribute">class</span>=<span class="value">"com.opensymphony.xwork2.interceptor.annotations.AnnotationWorkflowInterceptor"</span> /&gt;</span>  
     <span class="tag">&lt;<span class="title">interceptor</span> <span class="attribute">name</span>=<span class="value">"multiselect"</span> <span class="attribute">class</span>=<span class="value">"org.apache.struts2.interceptor.MultiselectInterceptor"</span> /&gt;</span>  
-<span class="tag">&lt;/<span class="title">interceptors</span>&gt;</span>  
-```  
+<span class="tag">&lt;/<span class="title">interceptors</span>&gt;</span>
+</pre></figure>
 
-**4.拦截器的配置** 
-
-既然struts2自带了这么多拦截器，那么我们该怎么使用呢？下面我将给大家介绍自带拦截器的使用。  
-``` xml struts.xml 
-<span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>  
+<p><strong>4.拦截器的配置</strong> </p>
+<p>既然struts2自带了这么多拦截器，那么我们该怎么使用呢？下面我将给大家介绍自带拦截器的使用。</p>
+<figure class="highlight lang-xml"><figcaption><span>struts.xml </span></figcaption><pre><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>  
 <span class="doctype">&lt;!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd" &gt;</span>  
   
 <span class="tag">&lt;<span class="title">struts</span>&gt;</span>  
@@ -144,169 +152,166 @@
         <span class="tag">&lt;/<span class="title">action</span>&gt;</span>  
     <span class="tag">&lt;/<span class="title">package</span>&gt;</span>  
 <span class="tag">&lt;/<span class="title">struts</span>&gt;</span>
-```  
-如果想让某个Action使用某个拦截器，只需在此Action里面加上如上配置即可，`<span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"xxx"</span>&gt;</span><span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>`，这个name属性值和你想要用的自带拦截器name属性值对应即可，要特别注意的是，每个action都有默认的拦截器，你如果加上“<span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"xxx"</span> /&gt;</span>”就会覆盖默认的defaultStack。如果你既想使用默认defaultStack，又想使用你想用的如上的<span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"timer"</span>&gt;</span><span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>拦截器，该怎么办呢？其实很简单，你只需在action的上面自己建一个拦截器栈即可。方法如下:  
-``` xml struts.xml 
-<span class="tag">&lt;<span class="title">interceptors</span>&gt;</span>  
+</pre></figure>
+
+
+<p>如果想让某个Action使用某个拦截器，只需在此Action里面加上如上配置即可，<code>&lt;interceptor-ref name=&quot;xxx&quot;&gt;&lt;/interceptor-ref&gt;</code>，这个name属性值和你想要用的自带拦截器name属性值对应即可，要特别注意的是，每个action都有默认的拦截器，你如果加上“<interceptor-ref name="xxx" />”就会覆盖默认的defaultStack。如果你既想使用默认defaultStack，又想使用你想用的如上的<interceptor-ref name="timer"></interceptor-ref>拦截器，该怎么办呢？其实很简单，你只需在action的上面自己建一个拦截器栈即可。方法如下:</p>
+<figure class="highlight lang-xml"><figcaption><span>struts.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">interceptors</span>&gt;</span>  
     <span class="tag">&lt;<span class="title">interceptor-stack</span> <span class="attribute">name</span>=<span class="value">"myStack"</span>&gt;</span>  
         <span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"defaultStack"</span>&gt;</span><span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>  
         <span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"timer"</span>&gt;</span><span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>  
     <span class="tag">&lt;/<span class="title">interceptor-stack</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">interceptors</span>&gt;</span> 
-```   
-现在只需引入<span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"myStack"</span>&gt;</span><span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>即可满足你的需求，而且myStack里面可以任意添加自己想要实现的拦截器。  
+<span class="tag">&lt;/<span class="title">interceptors</span>&gt;</span>
+</pre></figure>
 
-**5.自定义拦截器的实现**   
 
-拦截器分为两种：1&gt;.普通拦截器 2&gt;方法拦截器  
-大家在创建拦截器的时候一定要注意：拦截器必须是无状态的，否则可能引起线程同步！  
-``` java 普通拦截器的实现  
-public class MyInterceptor implements Interceptor {   
+<p>现在只需引入<interceptor-ref name="myStack"></interceptor-ref>即可满足你的需求，而且myStack里面可以任意添加自己想要实现的拦截器。  </p>
+<p><strong>5.自定义拦截器的实现</strong>   </p>
+<p>拦截器分为两种：1&gt;.普通拦截器 2&gt;方法拦截器<br>大家在创建拦截器的时候一定要注意：拦截器必须是无状态的，否则可能引起线程同步！</p>
+<figure class="highlight lang-java"><figcaption><span>普通拦截器的实现  </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> {</span>   
    
-	@Override   
-	public void destroy() {   
-	  System.out.println("interceptor销毁");   
+	<span class="annotation">@Override</span>   
+	<span class="keyword">public</span> <span class="keyword">void</span> destroy() {   
+	  System.out.println(<span class="string">"interceptor销毁"</span>);   
 	}   
 	   
-	@Override   
-	public void init() {   
-	  System.out.println("interceptor初始化");   
+	<span class="annotation">@Override</span>   
+	<span class="keyword">public</span> <span class="keyword">void</span> init() {   
+	  System.out.println(<span class="string">"interceptor初始化"</span>);   
 	}   
 	   
-	@Override   
-	public String intercept(ActionInvocation invocation)    
-	  throws Exception {   
-	  //验证代码...  
-	  return xxx;   
+	<span class="annotation">@Override</span>   
+	<span class="keyword">public</span> String intercept(ActionInvocation invocation)    
+	  <span class="keyword">throws</span> Exception {   
+	  <span class="comment">//验证代码...  </span>
+	  <span class="keyword">return</span> xxx;   
 	}
 } 
 
-/*
+<span class="comment">/*
 在大部分的情况下，我们不需要实现init方法以及destroy方法，那么此时只需要让拦截器类继承自
 com.opensymphony.xwork2.interceptor.AbstractInterceptor类，
 该类使用适配器模式对init方法和destroy方法进行了空实现
-*/
+*/</span>
 
-//在配置文件struts.xml中配置自定义的拦截器  
+<span class="comment">//在配置文件struts.xml中配置自定义的拦截器  </span>
 
-<span class="tag">&lt;<span class="title">interceptors</span>&gt;</span>   
-  <span class="tag">&lt;<span class="title">interceptor</span> <span class="attribute">name</span>=<span class="value">"myTimer"</span> <span class="attribute">class</span>=<span class="value">"com.kaishengit.interceptor.MyInterceptor"</span>&gt;</span>  <span class="tag">&lt;/<span class="title">interceptor</span>&gt;</span>   
-  <span class="tag">&lt;<span class="title">interceptor-stack</span> <span class="attribute">name</span>=<span class="value">"myInterceptor"</span>&gt;</span>   
-    <span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"myTimer"</span>&gt;</span><span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>   
-    <span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"defaultStack"</span>&gt;</span><span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>   
-  <span class="tag">&lt;/<span class="title">interceptor-stack</span>&gt;</span>   
-<span class="tag">&lt;/<span class="title">interceptors</span>&gt;</span>  
-```  
-``` java 方法拦截器的实现  
-import com.opensymphony.xwork2.ActionInvocation;  
-import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;  
+&lt;interceptors&gt;   
+  &lt;interceptor name=<span class="string">"myTimer"</span> class=<span class="string">"com.kaishengit.interceptor.MyInterceptor"</span>&gt;  &lt;/interceptor&gt;   
+  &lt;interceptor-stack name=<span class="string">"myInterceptor"</span>&gt;   
+    &lt;interceptor-ref name=<span class="string">"myTimer"</span>&gt;&lt;/interceptor-ref&gt;   
+    &lt;interceptor-ref name=<span class="string">"defaultStack"</span>&gt;&lt;/interceptor-ref&gt;   
+  &lt;/interceptor-stack&gt;   
+&lt;/interceptors&gt;
+</pre></figure>
+
+
+<figure class="highlight lang-java"><figcaption><span>方法拦截器的实现  </span></figcaption><pre><span class="keyword">import</span> com.opensymphony.xwork2.ActionInvocation;  
+<span class="keyword">import</span> com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;  
   
-public class MyMethodInterceptor extends MethodFilterInterceptor {  
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMethodInterceptor</span> <span class="keyword">extends</span> <span class="title">MethodFilterInterceptor</span> {</span>  
   
-  private static final long serialVersionUID = 1L;  
+  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;  
   
-  @Override  
-  protected String doIntercept(ActionInvocation invocation) throws Exception   {  
+  <span class="annotation">@Override</span>  
+  <span class="keyword">protected</span> String doIntercept(ActionInvocation invocation) <span class="keyword">throws</span> Exception   {  
       
-    System.out.println(invocation.getProxy().getMethod() + "interceptor...");  
-    return invocation.invoke();   
+    System.out.println(invocation.getProxy().getMethod() + <span class="string">"interceptor..."</span>);  
+    <span class="keyword">return</span> invocation.invoke();   
   
   }  
   
 }  
 
-// 方法拦截器的配置和普通拦截器的一样，另外方法拦截器还可以自定义拦截哪些方法 
+<span class="comment">// 方法拦截器的配置和普通拦截器的一样，另外方法拦截器还可以自定义拦截哪些方法 </span>
 
-<span class="tag">&lt;<span class="title">interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"myMethodInterceptor"</span>&gt;</span>  
-    //会拦截的方法  
-    <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"includeMethods"</span>&gt;</span>login,edit,saveEdit<span class="tag">&lt;/<span class="title">param</span>&gt;</span>  
-    //放行的方法  
-    <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"excludeMethods"</span>&gt;</span>execute,edit<span class="tag">&lt;/<span class="title">param</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">interceptor-ref</span>&gt;</span>
+&lt;interceptor-ref name=<span class="string">"myMethodInterceptor"</span>&gt;  
+    <span class="comment">//会拦截的方法  </span>
+    &lt;param name=<span class="string">"includeMethods"</span>&gt;login,edit,saveEdit&lt;/param&gt;  
+    <span class="comment">//放行的方法  </span>
+    &lt;param name=<span class="string">"excludeMethods"</span>&gt;execute,edit&lt;/param&gt;  
+&lt;/interceptor-ref&gt;
 
-/* 
+<span class="comment">/* 
 如果你想让每个action都应用某个拦截器或者拦截器栈，
 为每个action都配置同一个拦截器肯定不合理，这时候你可以自定义一个默认的拦截器。
 注意：默认拦截器一定要放到定义的拦截器的下面，这个struts2的约定！ 
-*/  
+*/</span>  
 
-<span class="tag">&lt;<span class="title">default-interceptor-ref</span> <span class="attribute">name</span>=<span class="value">"myStack"</span>&gt;</span><span class="tag">&lt;/<span class="title">default-interceptor-ref</span>&gt;</span>
-```  
+&lt;<span class="keyword">default</span>-interceptor-ref name=<span class="string">"myStack"</span>&gt;&lt;/<span class="keyword">default</span>-interceptor-ref&gt;
+</pre></figure>
 
-**拦截器的实例**  
+<p><strong>拦截器的实例</strong></p>
+<figure class="highlight lang-java"><figcaption><span>自定义Timer拦截器</span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTimerInterceptor</span> <span class="keyword">extends</span> <span class="title">AbstractInterceptor</span>{</span>
 
-``` java 自定义Timer拦截器
-public class MyTimerInterceptor extends AbstractInterceptor{
+	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;
 
-	private static final long serialVersionUID = 1L;
-
-	@Override
-	public String intercept(ActionInvocation invocation) throws Exception {
-		//获取开始时间
-		long startTime = System.currentTimeMillis();
+	<span class="annotation">@Override</span>
+	<span class="keyword">public</span> String intercept(ActionInvocation invocation) <span class="keyword">throws</span> Exception {
+		<span class="comment">//获取开始时间</span>
+		<span class="keyword">long</span> startTime = System.currentTimeMillis();
 		String result = invocation.invoke();
-		//计算耗时
-		long time = System.currentTimeMillis() - startTime;
+		<span class="comment">//计算耗时</span>
+		<span class="keyword">long</span> time = System.currentTimeMillis() - startTime;
 		
-		//获取当前拦截的Action在struts.xml中配置的name名称
+		<span class="comment">//获取当前拦截的Action在struts.xml中配置的name名称</span>
 		String actionName = invocation.getProxy().getActionName();
-		//获取当前拦截的Action所执行的方法
+		<span class="comment">//获取当前拦截的Action所执行的方法</span>
 		String method = invocation.getProxy().getMethod();
 		
-		StringBuilder msg = new StringBuilder();
-		msg.append(actionName).append("!")
-			.append(method).append("执行耗时：")
-			.append(time).append("ms");
+		StringBuilder msg = <span class="keyword">new</span> StringBuilder();
+		msg.append(actionName).append(<span class="string">"!"</span>)
+			.append(method).append(<span class="string">"执行耗时："</span>)
+			.append(time).append(<span class="string">"ms"</span>);
 		System.out.println(msg);
-		return result;
+		<span class="keyword">return</span> result;
 	}
 
 }
-```  
-``` java 登陆验证拦截器  
-public class LoginInterceptor extends AbstractInterceptor{
+</pre></figure>
 
-	private static final long serialVersionUID = 1L;
 
-	private Set<span class="tag">&lt;<span class="title">String</span>&gt;</span> excludeActionSet;
+<figure class="highlight lang-java"><figcaption><span>登陆验证拦截器  </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginInterceptor</span> <span class="keyword">extends</span> <span class="title">AbstractInterceptor</span>{</span>
+
+	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1</span>L;
+
+	<span class="keyword">private</span> Set&lt;String&gt; excludeActionSet;
 	
-	@Override
-	public String intercept(ActionInvocation invocation) throws Exception {
-		//获取当前执行的Action的name
+	<span class="annotation">@Override</span>
+	<span class="keyword">public</span> String intercept(ActionInvocation invocation) <span class="keyword">throws</span> Exception {
+		<span class="comment">//获取当前执行的Action的name</span>
 		String name = invocation.getProxy().getActionName();
 
-		if(excludeActionSet.contains(name)) {
-			//如果不属于拦截的Action，直接放行
-			return invocation.invoke();
-		} else {
-			//属于拦截的Action，检查Session中是否有User对象
-			Map<span class="tag">&lt;<span class="title">String,Object</span>&gt;</span> session = invocation.getInvocationContext().getContext().getSession();
-			User user = (User) session.get("session_in_user");
-			if(user == null) {
-				return Action.LOGIN;
-			} else {
-				return invocation.invoke();
+		<span class="keyword">if</span>(excludeActionSet.contains(name)) {
+			<span class="comment">//如果不属于拦截的Action，直接放行</span>
+			<span class="keyword">return</span> invocation.invoke();
+		} <span class="keyword">else</span> {
+			<span class="comment">//属于拦截的Action，检查Session中是否有User对象</span>
+			Map&lt;String,Object&gt; session = invocation.getInvocationContext().getContext().getSession();
+			User user = (User) session.get(<span class="string">"session_in_user"</span>);
+			<span class="keyword">if</span>(user == <span class="keyword">null</span>) {
+				<span class="keyword">return</span> Action.LOGIN;
+			} <span class="keyword">else</span> {
+				<span class="keyword">return</span> invocation.invoke();
 			}
 		}
 	}
 
-	/**
+	<span class="javadoc">/**
 	 * 该方法由struts2自动调用，用来配置哪些Action不被该拦截器拦截
-	 * @param excludeActions
-	 */
-	public void setExcludeActions(String excludeActions) {
-		//将一个字符串根据逗号分割，返回set集合
+	 * <span class="javadoctag">@param</span> excludeActions
+	 */</span>
+	<span class="keyword">public</span> <span class="keyword">void</span> setExcludeActions(String excludeActions) {
+		<span class="comment">//将一个字符串根据逗号分割，返回set集合</span>
 		excludeActionSet = TextParseUtil.commaDelimitedStringToSet(excludeActions);
 	}
 
 }
-```  
+</pre></figure>
 
-**其他**  
-
-获取拦截的Action的完全限定名
-``` java 
-invocation.getAction().getClass().getName();
+<p><strong>其他</strong>  </p>
+<p>获取拦截的Action的完全限定名</p>
+<figure class="highlight lang-java"><pre>invocation.getAction().getClass().getName();
 </pre></figure>
 
 
@@ -314,13 +319,13 @@ invocation.getAction().getClass().getName();
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/struts2/">struts2</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Struts/">Struts</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

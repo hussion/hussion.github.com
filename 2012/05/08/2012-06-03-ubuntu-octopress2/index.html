@@ -70,6 +70,12 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
         </div>
       
   
@@ -79,28 +85,32 @@
     </header>
     <div class="entry">
       
-        <p>在ubuntu中，在进行<code>gem update --system</code>的时候，可能会报<code>no such file to load --zlib</code>，这个时候我们第一反应就是去安装zlib1g-dev，执行命令如下：  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>sudo apt-get install zlib1g-dev
-</pre></figure></code></pre>
-<p>安装完成后，再次<code>gem update --system</code>我们会发现问题依旧，这时候需要到ruby Source文件夹下安装ruby自身提供的zlib包  </p>
-<pre><code class="lang-ruby"><figure class="highlight lang-ruby"><pre>cd .rvm/src/ruby-<span class="number">1.9</span>.<span class="number">2</span>-p32<span class="number">0</span>/ext/zlib  
+        <p>在ubuntu中，在进行<code>gem update --system</code>的时候，可能会报<code>no such file to load --zlib</code>，这个时候我们第一反应就是去安装zlib1g-dev，执行命令如下：</p>
+<figure class="highlight lang-bash"><pre>sudo apt-get install zlib1g-dev
+</pre></figure>
+
+
+<p>安装完成后，再次<code>gem update --system</code>我们会发现问题依旧，这时候需要到ruby Source文件夹下安装ruby自身提供的zlib包</p>
+<figure class="highlight lang-bash"><pre>cd .rvm/src/ruby-1.9.2-p320/ext/zlib  
 ruby extconf.rb  
 make 
 sudo make install
-</pre></figure></code></pre>
+</pre></figure>
+
+
 <p>现在再次运行gem update –system，搞定！</p>
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/ubuntu/">ubuntu</a>
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

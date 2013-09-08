@@ -70,6 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -88,11 +98,13 @@
 	<span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span>
 	<span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span>
 <span class="tag">&lt;/<span class="title">filter-mapping</span>&gt;</span>
-```   
-<span class="comment">&lt;!--more--&gt;</span>
-2.在src目录下新建struts.xml配置文件，并进行配置
-``` xml struts.xml 
-<span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>   
+</pre></figure>
+
+
+<a name="more"></a>
+
+<p>2.在src目录下新建struts.xml配置文件，并进行配置</p>
+<figure class="highlight lang-xml"><figcaption><span>struts.xml </span></figcaption><pre><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>   
 <span class="doctype">&lt;!DOCTYPE struts PUBLIC   
 "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"   
 "http://struts.apache.org/dtds/struts-2.1.7.dtd"&gt;</span>   
@@ -123,25 +135,24 @@ result的name属性默认为"success",另外result还有4个常用的type属性�
     <span class="tag">&lt;/<span class="title">action</span>&gt;</span>   
   <span class="tag">&lt;/<span class="title">package</span>&gt;</span>   
 <span class="tag">&lt;/<span class="title">struts</span>&gt;</span>
-```
-3.新建一个类:HelloAction  
-``` java HelloAction.java 
-public class HelloAction {   
+</pre></figure>
+
+
+<p>3.新建一个类:HelloAction</p>
+<figure class="highlight lang-java"><figcaption><span>HelloAction.java </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> {</span>   
    
-public String execute(){     
-	System.out.println("Hello Struts2 !");   
-	return "success";   
-} 
-```  
-4.新建一个jsp：hello.jsp  
-  
-5.部署应启动项目，然后浏览器访问localhost:port/项目名/hello.action；此时控制台输出：Hello Struts2!,而且浏览器自动跳转到hello.jsp，说明配置成功!  
+<span class="keyword">public</span> String execute(){     
+	System.out.println(<span class="string">"Hello Struts2 !"</span>);   
+	<span class="keyword">return</span> <span class="string">"success"</span>;   
+}
+</pre></figure>
 
-**配置进阶：在action中调用指定的方法**  
 
-在请求一个action的时候，struts2默认调用的是execute()方法，如何调用自己指定的方法呢？
-``` xml struts.xml 
-<span class="comment">&lt;!--
+<p>4.新建一个jsp：hello.jsp  </p>
+<p>5.部署应启动项目，然后浏览器访问localhost:port/项目名/hello.action；此时控制台输出：Hello Struts2!,而且浏览器自动跳转到hello.jsp，说明配置成功!  </p>
+<p><strong>配置进阶：在action中调用指定的方法</strong>  </p>
+<p>在请求一个action的时候，struts2默认调用的是execute()方法，如何调用自己指定的方法呢？</p>
+<figure class="highlight lang-xml"><figcaption><span>struts.xml </span></figcaption><pre><span class="comment">&lt;!--
 	方式一：通过配置method属性，来调用指定方法
 --&gt;</span>
 <span class="tag">&lt;<span class="title">action</span> <span class="attribute">name</span>=<span class="value">"user"</span> <span class="attribute">class</span>=<span class="value">"com.hussion.web.UserAction"</span> <span class="attribute">method</span>=<span class="value">"add"</span>&gt;</span>   
@@ -172,12 +183,10 @@ public String execute(){
 	我们想请求userAction中的add()方法,那么我们可以直接在url中写成：
 	localhost:port/项目名/user!add.action即可;此种方法不推荐，了解即可
 --&gt;</span>
-```  
+</pre></figure>
 
-**其他的一些配置**  
-
-``` xml struts.xml
-<span class="tag">&lt;<span class="title">struts</span>&gt;</span>
+<p><strong>其他的一些配置</strong></p>
+<figure class="highlight lang-xml"><figcaption><span>struts.xml</span></figcaption><pre><span class="tag">&lt;<span class="title">struts</span>&gt;</span>
 
 <span class="comment">&lt;!-- include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中,
 然后用include节点引用 
@@ -203,13 +212,13 @@ public String execute(){
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/struts2/">struts2</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Struts/">Struts</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

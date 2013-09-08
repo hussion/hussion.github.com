@@ -70,6 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -81,21 +91,24 @@
       
         <p><strong>OGNL</strong>  </p>
 <p>• OGNL的全称为Object Graph Navigation Language（对象图导航
-语言），在Struts2中可以使用OGNL获取值栈、Session等空间内的值。Struts2中的OGNL需要和Struts2的标签库配合起来使用。Struts2的标签库对OGNL、EL表达式都有很好的支持。<br><a name="more"></a></p>
-<blockquote>
-<p>OGNL操作普通属性  </p>
+语言），在Struts2中可以使用OGNL获取值栈、Session等空间内的值。Struts2中的OGNL需要和Struts2的标签库配合起来使用。Struts2的标签库对OGNL、EL表达式都有很好的支持。  </p>
+<a name="more"></a>
+
+<p><em>OGNL操作普通属性</em></p>
 <figure class="highlight lang-xml"><pre>地址：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"address"</span>/&gt;</span>
-编号：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"id"</span>/&gt;</span>  
-```
-&gt; OGNL操作对象   
-``` xml
-User对象：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user"</span>/&gt;</span> 
+编号：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"id"</span>/&gt;</span>
+</pre></figure>
+
+
+<p><em>OGNL操作对象</em></p>
+<figure class="highlight lang-xml"><pre>User对象：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user"</span>/&gt;</span> 
 userName: <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user.userName"</span>/&gt;</span> 
-userPwd: <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user.userPwd"</span>/&gt;</span> 
-```
-&gt; OGNL操作List集合  
-``` xml 
-	userList:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList"</span>/&gt;</span> 
+userPwd: <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"user.userPwd"</span>/&gt;</span>
+</pre></figure>
+
+
+<p><em>OGNL操作List集合</em></p>
+<figure class="highlight lang-xml"><pre>	userList:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList"</span>/&gt;</span> 
 	list size:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.size"</span>/&gt;</span> 
 
 	第一个List对象：
@@ -112,18 +125,20 @@ userPwd: <span class="tag">&lt;<span class="title">s:property</span> <span class
 	输出List中姓名为aa的第一个用户对象： 
 	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{^#this.userName == 'aa'}.{id}"</span>/&gt;</span> 
 	输出List中姓名为aa的所有用户对象： 
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{$#this.userName == 'aa'}.{id}"</span>/&gt;</span> 
-```  
-&gt; 动态创建List和Map  
-``` xml 
-动态创建List：
+	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{$#this.userName == 'aa'}.{id}"</span>/&gt;</span>
+</pre></figure>
+
+
+<p><em>动态创建List和Map</em></p>
+<figure class="highlight lang-xml"><pre>动态创建List：
 <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"{'aa','bb','cc'}"</span>/&gt;</span>  
 动态创建Map:
-<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#{'aa':'aa','bb':'bb' }"</span>/&gt;</span> 
-```  
-&gt; 获取request  session  Application中的值  
-``` xml 
-获取Session中的值： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#{'aa':'aa','bb':'bb' }"</span>/&gt;</span>
+</pre></figure>
+
+
+<p><em>获取request  session  Application中的值</em></p>
+<figure class="highlight lang-xml"><pre>获取Session中的值： 
 <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#session.sessionKey"</span>/&gt;</span> 
  
 获取reuqst中的值： 
@@ -133,15 +148,13 @@ userPwd: <span class="tag">&lt;<span class="title">s:property</span> <span class
 <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#application.applicationKey"</span>/&gt;</span> 
  
 自动搜寻requset、session、application中的值： 
-<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#attr.sessionKey"</span>/&gt;</span> 
-```  
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#attr.sessionKey"</span>/&gt;</span>
+</pre></figure>
 
-**Tag**  
-
-Struts2 Tag分为逻辑标签，数据标签，UI标签  
-&gt; 逻辑标签  
-``` xml if else 标签
-<span class="tag">&lt;<span class="title">s:if</span> <span class="attribute">test</span>=<span class="value">"address == 'UK'"</span>&gt;</span> 
+<p><strong>Tag</strong>  </p>
+<p>Struts2 Tag分为逻辑标签，数据标签，UI标签</p>
+<p><em>逻辑标签</em></p>
+<figure class="highlight lang-xml"><figcaption><span>if else 标签</span></figcaption><pre><span class="tag">&lt;<span class="title">s:if</span> <span class="attribute">test</span>=<span class="value">"address == 'UK'"</span>&gt;</span> 
   UK 
 <span class="tag">&lt;/<span class="title">s:if</span>&gt;</span> 
 <span class="tag">&lt;<span class="title">s:elseif</span> <span class="attribute">test</span>=<span class="value">"address == 'USA'"</span>&gt;</span> 
@@ -150,9 +163,10 @@ Struts2 Tag分为逻辑标签，数据标签，UI标签
 <span class="tag">&lt;<span class="title">s:else</span>&gt;</span> 
   未知区域 
 <span class="tag">&lt;/<span class="title">s:else</span>&gt;</span>
-```  
-``` xml iterator标签
-<span class="tag">&lt;<span class="title">s:iterator</span> <span class="attribute">value</span>=<span class="value">"userList"</span> <span class="attribute">var</span>=<span class="value">"u"</span>&gt;</span> 
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>iterator标签</span></figcaption><pre><span class="tag">&lt;<span class="title">s:iterator</span> <span class="attribute">value</span>=<span class="value">"userList"</span> <span class="attribute">var</span>=<span class="value">"u"</span>&gt;</span> 
 <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#u.userName"</span>/&gt;</span> 
 <span class="tag">&lt;/<span class="title">s:iterator</span>&gt;</span>
  
@@ -160,10 +174,11 @@ Struts2 Tag分为逻辑标签，数据标签，UI标签
 ------------------------------------------------- 
 value  		被迭代的集合或数组   
 status  	迭代状态对象，该值被放入值栈中  
-var  		当前迭代对象，该值被放入值栈中  
-``` 
-``` xml 
-<span class="tag">&lt;<span class="title">s:iterator</span> <span class="attribute">value</span>=<span class="value">"userList"</span> <span class="attribute">var</span>=<span class="value">"u"</span> <span class="attribute">status</span>=<span class="value">"status"</span>&gt;</span> 
+var  		当前迭代对象，该值被放入值栈中
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><pre><span class="tag">&lt;<span class="title">s:iterator</span> <span class="attribute">value</span>=<span class="value">"userList"</span> <span class="attribute">var</span>=<span class="value">"u"</span> <span class="attribute">status</span>=<span class="value">"status"</span>&gt;</span> 
 	<span class="tag">&lt;<span class="title">s:if</span> <span class="attribute">test</span>=<span class="value">"#status.odd"</span>&gt;</span> 
 		<span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"color:red"</span>&gt;</span> 
 		  <span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"#u.userName"</span>/&gt;</span> 
@@ -183,22 +198,16 @@ index  		当前迭代对象在集合中的索引值
 even  		是否是偶数行  
 odd  		是否是奇数行  
 first  		是否是第一个对象  
-last  		是否是最后一个对象   
-```
-&gt; UI标签  
-  
-包括 form, textfield, password, textarea, checkbox, select, radio  
+last  		是否是最后一个对象
+</pre></figure>
 
-#####基础属性  
-方法名称 & 描述  
 
-`name: `  表单元素映射的名字  
-`value: `  表单元素的值  
-`label: `  显示在元素前的文字  
-`id: ` HTML的id属性，可以和JavaScript进行集成   
-
-``` xml form标签 
-<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span>&gt;</span> 
+<p><em>UI标签</em></p>
+<p>包括 form, textfield, password, textarea, checkbox, select, radio  </p>
+<h5>基础属性</h5>
+<p>方法名称 &amp; 描述  </p>
+<p><code>name:</code>  表单元素映射的名字<br><code>value:</code>  表单元素的值<br><code>label:</code>  显示在元素前的文字<br><code>id:</code> HTML的id属性，可以和JavaScript进行集成</p>
+<figure class="highlight lang-xml"><figcaption><span>form标签 </span></figcaption><pre><span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span>&gt;</span> 
  
 <span class="tag">&lt;/<span class="title">s:form</span>&gt;</span> 
 
@@ -206,10 +215,11 @@ last  		是否是最后一个对象
 -----------------------------------------------
 action  	要提交到的action名称 
 method  	post和get 
-enctype  	进行文件上传时设置为multipart/form-data 
-```  
-``` xml textfield标签  
-<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
+enctype  	进行文件上传时设置为multipart/form-data
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>textfield标签  </span></figcaption><pre><span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
   用户名：<span class="tag">&lt;<span class="title">s:textfield</span> <span class="attribute">name</span>=<span class="value">“userName”</span> <span class="attribute">theme</span>=<span class="value">“simple</span>/&gt;</span> 
 <span class="tag">&lt;/<span class="title">s:form</span>&gt;</span> 
 
@@ -217,10 +227,11 @@ enctype  	进行文件上传时设置为multipart/form-data
 -----------------------------------------------
 maxlength  	这个字段可以输入的最大长度 
 readonly 		当设置为true，用户不能在这个表当元素中修改值 
-size  		这个字段的宽度 
-```  
-``` xml password标签 
-<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
+size  		这个字段的宽度
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>password标签 </span></figcaption><pre><span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
 用户名：<span class="tag">&lt;<span class="title">s:textfield</span> <span class="attribute">name</span>=<span class="value">"userName"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
 密码:<span class="tag">&lt;<span class="title">s:password</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
 <span class="tag">&lt;/<span class="title">s:form</span>&gt;</span> 
@@ -231,9 +242,10 @@ showPassword  	是否预置显示password，默认为true。
 maxlength 		这个字段可以输入的最大长度 
 readonly  		当设置为true，用户不能在这个表当元素中修改值 
 size  			这个字段的宽度
-```  
-``` xml textarea标签 
-<span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>textarea标签 </span></figcaption><pre><span class="tag">&lt;<span class="title">s:form</span> <span class="attribute">action</span>=<span class="value">"ognl"</span> <span class="attribute">method</span>=<span class="value">"post"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>&gt;</span> 
   用户名：<span class="tag">&lt;<span class="title">s:textfield</span> <span class="attribute">name</span>=<span class="value">"userName"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
   密码:<span class="tag">&lt;<span class="title">s:password</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
   留言:<span class="tag">&lt;<span class="title">s:textarea</span> <span class="attribute">theme</span>=<span class="value">"simple"</span> <span class="attribute">name</span>=<span class="value">"msg“/&gt; 
@@ -245,9 +257,10 @@ cols  			文本区域的列数
 rows  			文本区域的行数 
 readonly 			当设置为true，用户不能在这个表当元素中修改值 
 wrap  			指定文本区域内的内容是否该换行
-```  
-``` xml checkbox标签 
-爱好:&lt;s:checkbox name="</span><span class="attribute">fav</span>" <span class="attribute">fieldValue</span>=<span class="value">"football"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>checkbox标签 </span></figcaption><pre>爱好:<span class="tag">&lt;<span class="title">s:checkbox</span> <span class="attribute">name</span>=<span class="value">"fav"</span> <span class="attribute">fieldValue</span>=<span class="value">"football"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
 football 
 <span class="tag">&lt;<span class="title">s:checkbox</span> <span class="attribute">name</span>=<span class="value">"fav"</span> <span class="attribute">fieldValue</span>=<span class="value">"pingpang"</span> <span class="attribute">theme</span>=<span class="value">"simple"</span>/&gt;</span> 
 pingpang 
@@ -255,9 +268,10 @@ pingpang
 属性名称  				描述 
 -------------------------------------------------
 fieldValue  	复选框被选中时提交给Action的值
-```  
-``` xml select标签 
-<span class="tag">&lt;<span class="title">s:select</span> <span class="attribute">list</span>=<span class="value">"userList"</span> <span class="attribute">listKey</span>=<span class="value">"id"</span> <span class="attribute">listValue</span>=<span class="value">"userName“/&gt; 
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>select标签 </span></figcaption><pre><span class="tag">&lt;<span class="title">s:select</span> <span class="attribute">list</span>=<span class="value">"userList"</span> <span class="attribute">listKey</span>=<span class="value">"id"</span> <span class="attribute">listValue</span>=<span class="value">"userName“/&gt; 
 
 属性名称  				描述
 ------------------------------------------------- 
@@ -266,9 +280,10 @@ listKey 			如果集合中是对象，指定对象中哪个属性作为选项的
 listValue 		如果集合中是对象，指定对象中哪个属性作为选项的value 
 emptyOption  		当设置为true时，下拉框中第一项为空选项 
 size  			指定下拉框中可以看到多少个选项
-```  
-``` xml radio标签 
-&lt;s:radio list="</span>#{<span class="attribute">0:</span>'男',<span class="attribute">1:</span>'女' }" <span class="attribute">name</span>=<span class="value">"sex"</span>/&gt;</span> 
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>radio标签 </span></figcaption><pre><span class="tag">&lt;<span class="title">s:radio</span> <span class="attribute">list</span>=<span class="value">"#{0:'男',1:'女' }"</span> <span class="attribute">name</span>=<span class="value">"sex"</span>/&gt;</span> 
 
 属性名称  			描述 
 -------------------------------------------------
@@ -277,19 +292,18 @@ listKey 		如果集合中是对象，指定对象中哪个属性作为选项的k
 listValue 	如果集合中是对象，指定对象中哪个属性作为选项的value
 </pre></figure>
 
-</blockquote>
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/struts2/">struts2</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Struts/">Struts</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

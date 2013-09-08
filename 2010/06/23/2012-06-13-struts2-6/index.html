@@ -70,6 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -82,13 +92,15 @@
         <p>在struts2中，为了进行解耦，对原生的servlet对象进行的包装，但同时也提供了获取原生servlet对象的入口。要获得Servlet对象，需要了解ActionContext和ServletActionContext这两个类。  </p>
 <p><strong>ActionContext</strong>  </p>
 <p>ActionContext（com.opensymphony.xwork.ActionContext）是Action执行时的上下文，上下文可以看作是一个容器（就是一个Map而已），它存放的是Action在执行时需要用到的对象，比如：在使用WebWork时，我们的上下文放有请求的参数（Parameter）、会话(Session)、Servlet上下文（ServletContext）、本地化（Locale）信息等。WebWork负责将Servlet相关数据转换为与ServletAPI无关的Map对象（即ActionContext），使得xwork的Action实现与web层、逻辑层与表现层的解耦。
-在每次执行Action之前都会创建新的ActionContext，ActionContext是<code>线程安全</code>的，也就是说在同一个线程里ActionContext里的属性是唯一的，这样Action就可以在多线程中使用。<br><a name="more"></a>
-<strong>ServletActionContext</strong></p>
+在每次执行Action之前都会创建新的ActionContext，ActionContext是<code>线程安全</code>的，也就是说在同一个线程里ActionContext里的属性是唯一的，这样Action就可以在多线程中使用。</p>
+<a name="more"></a>
+
+<p><strong>ServletActionContext</strong></p>
 <p>ServletActionContext(com.opensymphony.webwork.ServletActionContext),这个类直接继承了ActionContext,它提供了直接与Servlet相关对象访问的功能,通过它可以直接获取HttpServletRequest,HttpServletResponse,Servletcontext，ServletConfig,PageContext这些对象。因为它继承了ActionContext，所有它也是线程安全的。  </p>
 <p><strong>Servlet对象的获取</strong>  </p>
 <p>1.Servlet API解耦方式  </p>
-<p>Struts2中，把Request、Session和Application三个对象都封装成了Map对象，直接使用封装好的Map对象来读取和保存数据，从而达到解耦的目的。下面来看一下如何获取：    </p>
-<pre><code class="lang-java"><figure class="highlight lang-java"><pre><span class="comment">// 获取当前执行线程的上下文</span>
+<p>Struts2中，把Request、Session和Application三个对象都封装成了Map对象，直接使用封装好的Map对象来读取和保存数据，从而达到解耦的目的。下面来看一下如何获取：</p>
+<figure class="highlight lang-java"><pre><span class="comment">// 获取当前执行线程的上下文</span>
 ActionContext context = ActionContext.getContext(); 
 <span class="comment">// 获取HttpServletRequest的Map对象  </span>
 Map request = (Map)context.get(<span class="string">"request"</span>);
@@ -102,29 +114,30 @@ Map application = context.getApplication();
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeAction</span> <span class="keyword">implements</span> <span class="title">Action</span>, 
 <span class="title">RequestAware</span>, <span class="title">SessionAware</span>, <span class="title">ApplicationAware</span> {</span> 
 
-    <span class="keyword">private</span> Map request;
-    <span class="keyword">private</span> Map session;
-    <span class="keyword">private</span> Map application;
+	<span class="keyword">private</span> Map request;
+	<span class="keyword">private</span> Map session;
+	<span class="keyword">private</span> Map application;
 
-    <span class="annotation">@Override</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> setRequest(Map request) {
-        <span class="keyword">this</span>.request = request;
-    }
+	<span class="annotation">@Override</span>
+	<span class="keyword">public</span> <span class="keyword">void</span> setRequest(Map request) {
+		<span class="keyword">this</span>.request = request;
+	}
 
-    <span class="annotation">@Override</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> setSession(Map session) {
-        <span class="keyword">this</span>.session = session;
-    }
+	<span class="annotation">@Override</span>
+	<span class="keyword">public</span> <span class="keyword">void</span> setSession(Map session) {
+		<span class="keyword">this</span>.session = session;
+	}
 
-    <span class="annotation">@Override</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> setApplication(Map application) {
-        <span class="keyword">this</span>.application = application;
-    }
+	<span class="annotation">@Override</span>
+	<span class="keyword">public</span> <span class="keyword">void</span> setApplication(Map application) {
+		<span class="keyword">this</span>.application = application;
+	}
 
 }
-</pre></figure></code></pre>
-<p>2.Servlet API耦合方式  </p>
-<pre><code class="lang-java"><figure class="highlight lang-java"><pre><span class="comment">// 获取HttpServletRequest  </span>
+</pre></figure>
+
+<p>2.Servlet API耦合方式</p>
+<figure class="highlight lang-java"><pre><span class="comment">// 获取HttpServletRequest  </span>
 HttpServletRequest request = ServletActionContext.getRequest();
 <span class="comment">// 获取HttpSession</span>
 HttpSession session = request.getSession();
@@ -147,26 +160,27 @@ ServletContext application = (ServletContext)ctx.get(ServletActionContext.SERVLE
 
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span>  
   <span class="keyword">implements</span> <span class="title">ServletRequestAware</span>,<span class="title">ServletResponseAware</span>{</span> 
-
-    <span class="keyword">private</span> HttpServletRequest request; 
-    <span class="keyword">private</span> HttpServletResponse response; 
-
-    <span class="annotation">@Override</span> 
-    <span class="keyword">public</span> String execute() <span class="keyword">throws</span> Exception { 
-      <span class="keyword">return</span> SUCCESS; 
-    } 
-
-    <span class="annotation">@Override</span> 
-    <span class="keyword">public</span> <span class="keyword">void</span> setServletResponse(HttpServletResponse response) { 
-      <span class="keyword">this</span>.response = response; 
-    } 
-
-    <span class="annotation">@Override</span> 
-    <span class="keyword">public</span> <span class="keyword">void</span> setServletRequest(HttpServletRequest request) {   
-        <span class="keyword">this</span>.request = request; 
-    } 
+ 
+	<span class="keyword">private</span> HttpServletRequest request; 
+	<span class="keyword">private</span> HttpServletResponse response; 
+	 
+	<span class="annotation">@Override</span> 
+	<span class="keyword">public</span> String execute() <span class="keyword">throws</span> Exception { 
+	  <span class="keyword">return</span> SUCCESS; 
+	} 
+	 
+	<span class="annotation">@Override</span> 
+	<span class="keyword">public</span> <span class="keyword">void</span> setServletResponse(HttpServletResponse response) { 
+	  <span class="keyword">this</span>.response = response; 
+	} 
+	 
+	<span class="annotation">@Override</span> 
+	<span class="keyword">public</span> <span class="keyword">void</span> setServletRequest(HttpServletRequest request) {   
+		<span class="keyword">this</span>.request = request; 
+	} 
 }
-</pre></figure></code></pre>
+</pre></figure>
+
 <p><strong>ServletActionContext和ActionContext的联系</strong>  </p>
 <p>ServletActionContext和ActionContext有着一些重复的功能,在我们的Action中,该如何去抉择呢?我们遵循的原则是:如果ActionContext能够实现我们的功能,那最好就不要使用ServletActionContext,让我们的Action尽量不要直接去访问Servlet的相关对象，以达到解耦的目的。</p>
 
@@ -174,13 +188,13 @@ ServletContext application = (ServletContext)ctx.get(ServletActionContext.SERVLE
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/struts2/">struts2</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Struts/">Struts</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

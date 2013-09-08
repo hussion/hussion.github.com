@@ -79,34 +79,32 @@
     </header>
     <div class="entry">
       
-        <p>1.<strong>安装rvm</strong>  </p>
-<figure class="highlight lang-ruby"><pre>1.
+        <p>1.<strong>安装rvm</strong></p>
+<figure class="highlight lang-bash"><pre>1.
 bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)  
 2.
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile  
+<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bash_profile  
 3.
 source ~/.bash_profile  
 /*  
 *解决ruby use xxx时候会ERROR等一系列报错问题  
 */  
 4.
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bashrc  
+<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bashrc  
 5.
 source ~/.bashrc
-```  
+</pre></figure>
 
-2.**安装ruby 1.9.2**  
-``` ruby 
-rvm install 1.9.2 && rvm use 1.9.2  
-rvm rubygems latest  
-```  
+<p>2.<strong>安装ruby 1.9.2</strong></p>
+<figure class="highlight lang-bash"><pre>rvm install 1.9.2 && rvm use 1.9.2  
+rvm rubygems latest
+</pre></figure>
 
-3.**修改gem更新源**  
-``` ruby 
-gem sources --remove http://rubygems.org/  
+<p>3.<strong>修改gem更新源</strong></p>
+<figure class="highlight lang-bash"><pre>gem sources --remove http://rubygems.org/  
 gem sources -a http://ruby.taobao.org/  
-gem sources -l #检测是否只有http://ruby.taobao.org/  
- #打开octopress文件夹里面的Gemfile，把更新源也改为:  http://ruby.taobao.org/
+gem sources -l <span class="comment">#检测是否只有http://ruby.taobao.org/  </span>
+ <span class="comment">#打开octopress文件夹里面的Gemfile，把更新源也改为:  http://ruby.taobao.org/</span>
 </pre></figure>
 
 
@@ -114,12 +112,7 @@ gem sources -l #检测是否只有http://ruby.taobao.org/
     </div>
     <footer>
       
-        <!-- 
-  
-  <div class="categories">
-    <a href="/categories/ubuntu/">ubuntu</a>
-  </div>
- -->
+        <!--  -->
         <!--  -->
         
       

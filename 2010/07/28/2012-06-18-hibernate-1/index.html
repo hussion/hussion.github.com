@@ -70,6 +70,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Hibernate">
+                <a href="/tags/Hibernate/">Hibernate</a>
+              </span>
+            
+          
         </div>
       
   
@@ -84,13 +94,10 @@
 <strong>ORM优势</strong>   </p>
 <p>ORM框架可以让我们减少乏味的代码，更加的面向对象的设计，更好的性能，更好的移植性。  </p>
 <p><strong>第一个hibernate程序</strong>  </p>
-<p>•  加入Hibernate jar包<br>•  创建持久化类（pojo）<br>•  创建映射文件（XXX.hbm.xml）<br>•  创建Hibernate配置文件（hibernate.cfg.xml）<br>•  测试运行  </p>
-<blockquote>
-<p>创建持久化类  </p>
-</blockquote>
+<p>•  加入Hibernate jar包<br>•  创建持久化类（pojo）<br>•  创建映射文件（XXX.hbm.xml）<br>•  创建Hibernate配置文件（hibernate.cfg.xml）<br>•  测试运行</p>
+<p><em>创建持久化类</em></p>
 <p>pojo: Plain Ordinary Java Object(无格式的Java对象)<br>Hibernate对pojo的要求：<br>–  属性要有对应的get和set方法<br>–  要有无参数的默认构造方法<br>–  不要使用final进行修饰</p>
-<blockquote>
-<p>创建映射文件  </p>
+<p><em>创建映射文件</em></p>
 <figure class="highlight lang-xml"><figcaption><span>映射文件示例 </span></figcaption><pre><span class="pi">&lt;?xml	version="1.0"	encoding="UTF-8"?&gt;</span>	
 <span class="doctype">&lt;!DOCTYPE	hibernate-mapping	PUBLIC		
 	"-//Hibernate/Hibernate	Mapping	DTD	3.0//EN"	
@@ -109,9 +116,10 @@
 	<span class="tag">&lt;/<span class="title">class</span>&gt;</span>	
  
 <span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-```  
-``` xml hibernate配置文件示例 
-<span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>	
+</pre></figure>
+
+
+<figure class="highlight lang-xml"><figcaption><span>hibernate配置文件示例 </span></figcaption><pre><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>	
 <span class="doctype">&lt;!DOCTYPE hibernate-configuration PUBLIC	
 "-//Hibernate/Hibernate	Configuration DTD 3.0//EN"	
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;</span>	
@@ -141,14 +149,15 @@
 		<span class="tag">&lt;<span class="title">mapping</span> <span class="attribute">resource</span>=<span class="value">"com/hussion/pojo/user.hbm.xml"</span>/&gt;</span>		
 	<span class="tag">&lt;/<span class="title">session-factory</span>&gt;</span>	
 <span class="tag">&lt;/<span class="title">hibernate-configuration</span>&gt;</span>
-```  
-&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">save</span>&gt;</span>  
-``` java HibernateTest.java 
-User user =	new	User();	
-user.setUserName("hibernate");	
-user.setPassword("123");
+</pre></figure>
 
-Configuration cfg = new Configuration().configure();
+
+<p><em>运行Hibernate save</em></p>
+<figure class="highlight lang-java"><figcaption><span>HibernateTest.java </span></figcaption><pre>User user =	<span class="keyword">new</span>	User();	
+user.setUserName(<span class="string">"hibernate"</span>);	
+user.setPassword(<span class="string">"123"</span>);
+
+Configuration cfg = <span class="keyword">new</span> Configuration().configure();
 SessionFactory factory = cfg.buildSessionFactory();
 
 Session session = factory.getCurrentSession();
@@ -157,65 +166,67 @@ session.beginTransaction();
 session.save(user);
 
 session.getTransaction().commit();
-```  
-&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">load</span> <span class="attribute">delete</span>&gt;</span>  
-``` java HibernateTest.java 
-Configuration cfg = new Configuration().configure();	
+</pre></figure>
+
+
+<p><em>运行Hibernate load delete</em></p>
+<figure class="highlight lang-java"><figcaption><span>HibernateTest.java </span></figcaption><pre>Configuration cfg = <span class="keyword">new</span> Configuration().configure();	
 SessionFactory factory = cfg.buildSessionFactory();	
  
 Session	session	= factory.getCurrentSession();	
 session.beginTransaction();
 
-User user = (User) session.load(User.class, 1);
+User user = (User) session.load(User.class, <span class="number">1</span>);
 session.delete(user);
 
 session.getTransaction().commit();
-```  
-&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">Query</span>&gt;</span>  
-``` java HibernateTest.java 
-Configuration cfg = new Configuration().configure();	
+</pre></figure>
+
+
+<p><em>运行Hibernate Query</em></p>
+<figure class="highlight lang-java"><figcaption><span>HibernateTest.java </span></figcaption><pre>Configuration cfg = <span class="keyword">new</span> Configuration().configure();	
 SessionFactory factory = cfg.buildSessionFactory();	
  
 Session	session	= factory.getCurrentSession();	
 session.beginTransaction();
 
-List<span class="tag">&lt;<span class="title">User</span>&gt;</span> userList = session.createQuery("from User").list();
+List&lt;User&gt; userList = session.createQuery(<span class="string">"from User"</span>).list();
 
-for(User user : userList){	
+<span class="keyword">for</span>(User user : userList){	
 	System.out.println(user.getUserName());	
 } 
 
 session.getTransaction().commit();
-```  
-&gt; 运行Hibernate\<span class="tag">&lt;<span class="title">Update</span>&gt;</span>  
-``` java HibernateTest.java
-Configuration cfg = new Configuration().configure();	
+</pre></figure>
+
+
+<p><em>运行Hibernate Update</em></p>
+<figure class="highlight lang-java"><figcaption><span>HibernateTest.java</span></figcaption><pre>Configuration cfg = <span class="keyword">new</span> Configuration().configure();	
 SessionFactory factory = cfg.buildSessionFactory();	
  
 Session	session	= factory.getCurrentSession();	
 session.beginTransaction();	
  
-User user = (User) session.load(User.class, 2);	
-user.setUserName("Alex");	
+User user = (User) session.load(User.class, <span class="number">2</span>);	
+user.setUserName(<span class="string">"Alex"</span>);	
  
 session.update(user);	
  
 session.getTransaction().commit();
 </pre></figure>
 
-</blockquote>
 
       
     </div>
     <footer>
       
+        <!--  -->
         <!-- 
   
-  <div class="categories">
-    <a href="/categories/hibernate/">hibernate</a>
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>, <a href="/tags/Hibernate/">Hibernate</a>
   </div>
  -->
-        <!--  -->
         
       
       <div class="clearfix"></div>

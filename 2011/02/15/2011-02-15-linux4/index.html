@@ -86,63 +86,53 @@
     <div class="entry">
       
         <ul>
-<li>命令：<strong>chmod</strong>  <blockquote>
-<p>功能描述：改变文件或目录权限</p>
-</blockquote>
-</li>
+<li>命令：<strong>chmod</strong>  </li>
 </ul>
-<figure class="highlight lang-bash"><pre>  <span class="comment">#语法  </span>
-$ chmod [{ugo}{+-=}{rwx}] [文件或者目录]  
-r: 4, w: 2, x: 1  
-$ chmod [mode=421] [文件或者目录]  
- <span class="comment">#例  </span>
-$ chmod 777 [file1] <span class="comment">#把file1所有用户的权限设为rwx</span>
-</pre></figure>
-
-
+<p><em>功能描述：改变文件或目录权限</em></p>
+<blockquote>
+<p>语法<br>    $ chmod [{ugo}{+-=}{rwx}] [文件或者目录]<br>    r: 4, w: 2, x: 1<br>    $ chmod [mode=421] [文件或者目录]<br>    例<br>    $ chmod 777 [file1] #把file1所有用户的权限设为rwx</p>
+</blockquote>
 <a name="more"></a>  
 
 <ul>
-<li>命令：<strong>chown</strong>  <blockquote>
-<p>功能描述：改变文件或目录的所有者</p>
-</blockquote>
-</li>
+<li>命令：<strong>chown</strong></li>
 </ul>
-<pre><code class="lang-bash"><figure class="highlight lang-bash"><pre>    <span class="comment">#语法  </span>
-$ chown [用户] [文件或者目录]    
-$ chown nobody file1 <span class="comment">#把file1所有者设为nobody</span>
-</pre></figure></code></pre>
+<p><em>功能描述：改变文件或目录的所有者</em></p>
+<figure class="highlight"><pre>	<span class="comment">#语法  </span>
+<span class="variable">$ </span>chown [用户] [文件或者目录]    
+<span class="variable">$ </span>chown nobody file1 <span class="comment">#把file1所有者设为nobody</span>
+</pre></figure>
+
+
 <ul>
-<li>命令：<strong>chgrp</strong>  <blockquote>
-<p>功能描述：改变文件或目录的所属组</p>
-</blockquote>
-</li>
+<li>命令：<strong>chgrp</strong></li>
 </ul>
-<pre><code class="lang-bash"><figure class="highlight lang-bash"><pre> <span class="comment">#语法  </span>
-$ chgrp [用户组] [文件或者目录]    
-$ chgrp adm file1 <span class="comment">#把file1所属组设为adm</span>
-</pre></figure></code></pre>
+<p><em>功能描述：改变文件或目录的所属组</em></p>
+<figure class="highlight"><pre> <span class="comment">#语法  </span>
+<span class="variable">$ </span>chgrp [用户组] [文件或者目录]    
+<span class="variable">$ </span>chgrp adm file1 <span class="comment">#把file1所属组设为adm</span>
+</pre></figure>
+
+
 <ul>
-<li>命令：<strong>umask</strong>  <blockquote>
-<p>功能描述：显示、设置新建文件的缺省权限</p>
-</blockquote>
-</li>
+<li>命令：<strong>umask</strong></li>
 </ul>
-<pre><code class="lang-bash"><figure class="highlight lang-bash"><pre> <span class="comment">#语法  </span>
-$ umask [选项] [掩码]  
+<p><em>功能描述：显示、设置新建文件的缺省权限</em></p>
+<figure class="highlight"><pre> <span class="comment">#语法  </span>
+<span class="variable">$ </span>umask [选项] [掩码]  
  <span class="comment">#例：  </span>
-$ umask <span class="comment">#以掩码形式显示新建文件或目录会具有的权限，如0022(第一个0代表特殊权限位，  </span>
-022代表掩码值，用“777-掩码值 = 文件的权限值”)     
-$ umask -S <span class="comment">#以rwx形式显示新建文件或目录缺省权限  </span>
+<span class="variable">$ </span>umask <span class="comment">#以掩码形式显示新建文件或目录会具有的权限，如0022(第一个0代表特殊权限位，  </span>
+<span class="number">022</span>代表掩码值，用“<span class="number">777</span>-掩码值 = 文件的权限值”)     
+<span class="variable">$ </span>umask -<span class="constant">S</span> <span class="comment">#以rwx形式显示新建文件或目录缺省权限  </span>
  <span class="comment">#设置新建文件或目录的缺省权限  </span>
-$ umask 022 <span class="comment">#实际权限值为777-022=755</span>
-</pre></figure></code></pre>
+<span class="variable">$ </span>umask <span class="number">022</span> <span class="comment">#实际权限值为777-022=755</span>
+</pre></figure>
+
+
 <ul>
-<li>linux中权限概念  <blockquote>
-<p>下面是linux中权限概念 ↓</p>
-</blockquote>
-</li>
+<li>linux中权限概念</li>
 </ul>
+<p><em>下面是linux中权限概念 ↓</em></p>
 <table>
 <thead>
 <tr>

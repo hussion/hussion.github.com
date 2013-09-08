@@ -71,6 +71,16 @@
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -110,6 +120,16 @@ com.hussion.bean.User=com.hussion.converter.UserConverter</p>
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -128,121 +148,18 @@ com.hussion.bean.User=com.hussion.converter.UserConverter</p>
 	<span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span>
 	<span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span>
 <span class="tag">&lt;/<span class="title">filter-mapping</span>&gt;</span>
-```   
-<span class="comment">&lt;!--more--&gt;</span>
-2.在src目录下新建struts.xml配置文件，并进行配置
-``` xml struts.xml 
-<span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>   
-<span class="doctype">&lt;!DOCTYPE struts PUBLIC   
-"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"   
-"http://struts.apache.org/dtds/struts-2.1.7.dtd"&gt;</span>   
-  
-<span class="tag">&lt;<span class="title">struts</span>&gt;</span>   
-<span class="comment">&lt;!-- 
-package提供了将多个Action组织为一个模块的方式
-package的名字必须是唯一的，package可以扩展，当一个package扩展自另一个package时，
-该package会在本身配置的基础上加入扩展的package
-的配置，父package必须在子package前配置 
-name：package名称
-extends: 继承的父package名称
-abstract: 设置package的属性为抽象的 抽象的package不能定义action，值true和false
-namespace: 定义package命名空间 该命名空间影响到url的地址，例如此命名空间为/test,
-那么访问是的地址为http://localhost:port/项目名/test/XX.action
-action的name属性就是你自己命名了，后面的class属性是代表该action所对应的类的完全限定名
---&gt;</span> 
-  <span class="tag">&lt;<span class="title">package</span> <span class="attribute">name</span>=<span class="value">"myPackage"</span> <span class="attribute">extends</span>=<span class="value">"struts-default"</span>&gt;</span> 
-<span class="comment">&lt;!--
-result的name属性默认为"success",另外result还有4个常用的type属性：(默认为dispatcher)  
-1.chain→请求转发到action
-2.dispatcher→请求转发到jsp
-3.redirect→重定向到jsp
-4.redirectAction→重定向到action
---&gt;</span>   
-    <span class="tag">&lt;<span class="title">action</span> <span class="attribute">name</span>=<span class="value">"hello"</span> <span class="attribute">class</span>=<span class="value">"com.hussion.web.HelloAction"</span>&gt;</span>
-      <span class="tag">&lt;<span class="title">result</span> <span class="attribute">name</span>=<span class="value">"success"</span> <span class="attribute">type</span>=<span class="value">"dispatcher"</span>&gt;</span>hello.jsp<span class="tag">&lt;/<span class="title">result</span>&gt;</span>   
-    <span class="tag">&lt;/<span class="title">action</span>&gt;</span>   
-  <span class="tag">&lt;/<span class="title">package</span>&gt;</span>   
-<span class="tag">&lt;/<span class="title">struts</span>&gt;</span>
-```
-3.新建一个类:HelloAction  
-``` java HelloAction.java 
-public class HelloAction {   
-   
-public String execute(){     
-	System.out.println("Hello Struts2 !");   
-	return "success";   
-} 
-```  
-4.新建一个jsp：hello.jsp  
-  
-5.部署应启动项目，然后浏览器访问localhost:port/项目名/hello.action；此时控制台输出：Hello Struts2!,而且浏览器自动跳转到hello.jsp，说明配置成功!  
-
-**配置进阶：在action中调用指定的方法**  
-
-在请求一个action的时候，struts2默认调用的是execute()方法，如何调用自己指定的方法呢？
-``` xml struts.xml 
-<span class="comment">&lt;!--
-	方式一：通过配置method属性，来调用指定方法
---&gt;</span>
-<span class="tag">&lt;<span class="title">action</span> <span class="attribute">name</span>=<span class="value">"user"</span> <span class="attribute">class</span>=<span class="value">"com.hussion.web.UserAction"</span> <span class="attribute">method</span>=<span class="value">"add"</span>&gt;</span>   
-  <span class="tag">&lt;<span class="title">result</span>&gt;</span>user.jsp<span class="tag">&lt;/<span class="title">result</span>&gt;</span>   
-  <span class="tag">&lt;<span class="title">result</span> <span class="attribute">name</span>=<span class="value">"error"</span>&gt;</span>adduser.jsp<span class="tag">&lt;/<span class="title">result</span>&gt;</span>   
-<span class="tag">&lt;/<span class="title">action</span>&gt;</span>
-<span class="comment">&lt;!--
-	补充:在写result的时候，可以用param标签,如：  
-  	&lt;result name="xxx" type="redirectAction"&gt;
-		&lt;param name="actionName"&gt;要跳转的action名字&lt;/param&gt;
-		&lt;param name="method"&gt;要调用的xx方法&lt;/param&gt;
-	&lt;/result&gt;   
---&gt;</span>
-<span class="comment">&lt;!--该方式还可以这么写--&gt;</span>
-<span class="tag">&lt;<span class="title">action</span> <span class="attribute">name</span>=<span class="value">"*user"</span> <span class="attribute">class</span>=<span class="value">"com.hussion.web.UserAction"</span> <span class="attribute">method</span>=<span class="value">"{1}"</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">result</span> <span class="attribute">name</span>=<span class="value">"success"</span>&gt;</span>user.jsp<span class="tag">&lt;/<span class="title">result</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">result</span> <span class="attribute">name</span>=<span class="value">"error"</span>&gt;</span>adduser.jsp<span class="tag">&lt;/<span class="title">result</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">result</span> <span class="attribute">name</span>=<span class="value">"edit"</span>&gt;</span>edituser.jsp<span class="tag">&lt;/<span class="title">result</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">action</span>&gt;</span>
-<span class="comment">&lt;!--
-	意思是：比如你现在请求一个action，名字叫adduser.action,那么method的属性值{1}
-	就代表*的值: add，从而调用action的add方法；如果你愿意，还可以写两个*号，
-	如：name="*—*",同样的，第一个*号，用{1},第二个用{2}代表
---&gt;</span>
-
-<span class="comment">&lt;!--
-	方式二：直接在要请求的action后面加上 "！方法名"即可，例如  
-	我们想请求userAction中的add()方法,那么我们可以直接在url中写成：
-	localhost:port/项目名/user!add.action即可;此种方法不推荐，了解即可
---&gt;</span>
-```  
-
-**其他的一些配置**  
-
-``` xml struts.xml
-<span class="tag">&lt;<span class="title">struts</span>&gt;</span>
-
-<span class="comment">&lt;!-- include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中,
-然后用include节点引用 
---&gt;</span>
-    <span class="tag">&lt;<span class="title">include</span> <span class="attribute">file</span>=<span class="value">"xxx.xml"</span>&gt;</span><span class="tag">&lt;/<span class="title">include</span>&gt;</span>
-
- <span class="comment">&lt;!-- 全局results配置 --&gt;</span>
-    <span class="tag">&lt;<span class="title">global-results</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">result</span> <span class="attribute">name</span>=<span class="value">"input"</span>&gt;</span>/error.jsp<span class="tag">&lt;/<span class="title">result</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">global-results</span>&gt;</span>
-
-	<span class="tag">&lt;<span class="title">action</span> <span class="attribute">name</span>=<span class="value">"xx"</span> <span class="attribute">class</span>=<span class="value">"xxxxx"</span>&gt;</span>
-		<span class="comment">&lt;!-- 参数设置 
-             name：对应Action中的get/set方法 
-        --&gt;</span>
-         <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"url"</span>&gt;</span>http://hussion.me<span class="tag">&lt;/<span class="title">param</span>&gt;</span>
-	<span class="tag">&lt;/<span class="title">action</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">struts</span>&gt;</span>
 </pre></figure>
+
 
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft readMore">
+            <a href="/2010/06/20/2012-06-12-struts2-3/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -263,6 +180,16 @@ public String execute(){
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
         </div>
       
   
@@ -273,9 +200,7 @@ public String execute(){
     <div class="entry">
       
         <p><strong>struts2的原理架构图</strong>  </p>
-<img src="/images/java/struts2.jpg">
-
-
+<p><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8f35a7kk3j20hs0kuq4s.jpg" alt=""></p>
 <p><code>ActionMapper</code><br>该类是HttpServletRequest和Action调用请求的一个映射，它屏蔽了Action对于Request等java servlet类的依赖；Struts2中它的默认实现类是DefaultActionMapper，ActionMapper很多的用处就是可以根据自己的要求来设计url格式，它自己也有RESTful的实现。<br><code>ActionProxy</code>和<code>ActionInvocation</code><br>Action的一个代理，由ActionProxyFactory创建，它本身不包括Action实例，默认实现DefaultActionProxy是由ActionInvocation持有Action实例。ActionProxy作用是如何取得Action，无论是本地还是远程。而ActionInvocation的作用是如何执行Action，拦截器的功能就是在ActionInvocation中实现的<br><code>ConfigurationProvider</code>和<code>Configuration</code><br>ConfigurationProvider就是struts2中配置文件的解析器，struts2中的配置文件主要是由其实现类XmlConfigurationProvider及其子类StrutsXmlConfigurationProvider来解析  </p>
 <p><strong>Struts2的请求流程</strong>  </p>
 <p>1、客户端发送请求<br>2、这个请求经过一系列的过滤器（ActionContextCleanUp--&gt;FilterDispatcher）<br>3、FilterDispatcher通过ActionMapper来决定这个请求需要调用哪个Action<br>4、如果ActionMapper决定调用某个Action，FilterDispatcher把请求的处理交给ActionProxy<br>5、ActionProxy通过ConfigurationManager询问框架的配置文件（struts.xml），找到需要调用的Action类<br>6、ActionProxy创建一个ActionInvocation的实例<br>7、ActionInvocation通过代理模式调用真正的Action，当然这涉及到相关拦截器的调用<br>8、Action执行完毕，ActionInvocation创建Result并返回。</p>
@@ -303,6 +228,16 @@ public String execute(){
         <time class="index-post-time" datetime="2010-06-14T05:56:00.000Z"><a href="/2010/06/14/2012-06-12-struts2-1/">Jun 14th, 2010</a></time>
       
         <div class="post-tags">
+          
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
           
         </div>
       
@@ -356,6 +291,12 @@ public String execute(){
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
@@ -366,9 +307,7 @@ public String execute(){
     <div class="entry">
       
         <p>MVC是<strong>Model-View-Controller</strong>的简称，即模型-视图-控制器。  </p>
-<img src="/images/java/mvc.jpg">
-
-
+<p><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8f30hrtdcj209604z3yf.jpg" alt=""></p>
 <p>MVC它是一种设计模式，它把应用程序分成三个核心模块：模型、视图、控制器，它们各自处理自己的任务。
 MVC（Model-View-Controller）应用程序结构被用来分析分布式应用程序的特征。这种抽象结构能有助于将应用程序分割成若干逻辑部件，使程序设计变得更加容易。<br>
       
@@ -399,6 +338,12 @@ MVC（Model-View-Controller）应用程序结构被用来分析分布式应用�
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
@@ -408,7 +353,8 @@ MVC（Model-View-Controller）应用程序结构被用来分析分布式应用�
     </header>
     <div class="entry">
       
-        <p>在某些情况下，我们可能不想或者不能直接引用另一个对象，这时候就需要有一个代理对象，它可以在客户端和目标对象之间起到中介的作用；java中代理模式的作用就是：为其他对象提供一种代理以控制对这个对象的访问<br>
+        <p>在某些情况下，我们可能不想或者不能直接引用另一个对象，这时候就需要有一个代理对象，它可以在客户端和目标对象之间起到中介的作用；java中代理模式的作用就是：为其他对象提供一种代理以控制对这个对象的访问</p>
+
       
     </div>
     <footer>
@@ -437,10 +383,16 @@ MVC（Model-View-Controller）应用程序结构被用来分析分布式应用�
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
-    <h1 class="title"><a href="/2010/03/03/2012-06-03-java-reflection/">反射</a></h1>
+    <h1 class="title"><a href="/2010/03/03/2012-06-03-java-reflection/">Java反射详解</a></h1>
   
 
     </header>
@@ -478,10 +430,16 @@ MVC（Model-View-Controller）应用程序结构被用来分析分布式应用�
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
-    <h1 class="title"><a href="/2010/02/20/2012-05-28-java-thread/">线程</a></h1>
+    <h1 class="title"><a href="/2010/02/20/2012-05-28-java-thread/">Java线程</a></h1>
   
 
     </header>
@@ -516,10 +474,16 @@ MVC（Model-View-Controller）应用程序结构被用来分析分布式应用�
       
         <div class="post-tags">
           
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+          
         </div>
       
   
-    <h1 class="title"><a href="/2010/02/18/2012-05-28-javaio/">IO</a></h1>
+    <h1 class="title"><a href="/2010/02/18/2012-05-28-javaio/">Java IO总结</a></h1>
   
 
     </header>
@@ -538,269 +502,18 @@ listFiles() <span class="comment">//列出当前目录下的所有文件及目�
 createNewFile() <span class="comment">//创建文件  </span>
 mkdir() <span class="comment">//创建目录(只能创建单层目录)  </span>
 mkdirs() <span class="comment">//创建目录(可以创建多层目录)</span>
-```
-&lt;!--more--&gt; 
-  
-**递归算法** 
-&gt;输出一个目录(子目录)下所有的文件及文件夹  
-
-``` java 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> showFileList(String path){ 
-  System.out.println(<span class="string">"-----"</span> + path + <span class="string">"---------------"</span>); 
-  File file = <span class="keyword">new</span> File(path); 
-  <span class="keyword">if</span>(file.isFile()) { 
-  	System.out.println(file.getPath()); 
-  } <span class="keyword">else</span> <span class="keyword">if</span>(file.isDirectory()) { 
-  File[] fileList = file.listFiles();  
-  <span class="keyword">if</span>(fileList != <span class="keyword">null</span>) { 
-      <span class="keyword">for</span> (File f:fileList) { 
-         <span class="keyword">if</span>(f.isDirectory()) { 
-	       		System.out.println(<span class="string">"["</span>+f.getPath()+<span class="string">"]"</span>); 
-	       		showFileList(f.getPath()); 
-	     	} <span class="keyword">else</span> { 
-	      		System.out.println(f.getPath()); 
-	     	}
-	  	} 
-   }
-}
-…
-```
-   
-**IO流的结构**  
-  
-javaIO里面的流分为`字节流`和`字符流`。  
-  
-* 字节流的输入流和输出流是基于`InputStream`和`OutputStream`
-这两个抽象类的，字节流的输入输出操作是由这两个类的子类实现的  
-* 字符流的输入流和输出流是基于`Reader`和`Writer`
-这两个抽象类的，字符流的输入输出操作是由这两个类的子类实现的  
-* 输入和输出是相对程序来说的  
-* 字节流是处理字节的输入和输出，例如：使用字节流读取写入二进制数据，字符流是处理字符的输入和输出，某些场合，字符流比字节流更有效  
-
-**字节流和字符流的区别：**
-    
-**&lt;<span class="number">1</span>&gt;** 字节流在操作时本身不会用到缓冲区（内存），是文件本身直接操作的，而字符流在操作时使用了缓冲区，通过缓冲区再操作文件.  
-**&lt;<span class="number">2</span>&gt;**  字节流可用于任何类型的对象，包括二进制对象，而字符流只能处理字符或者字符串  
-**&lt;<span class="number">3</span>&gt;** 字节流提供了处理任何类型的IO操作的功能，但不能直接处理Unicode字符，而字符流就可以  
-**&lt;<span class="number">4</span>&gt;** 在最底层，所有的输入和输出都是以字节形式的 
-
-**字节流**  
-
-&lt;notextile&gt;<span class="number">0</span>&lt;/notextile&gt;
-
-
-&gt;FileInputStream & FileOutputStream   
-
-``` java 文件拷贝.java  
-System.out.println(<span class="string">"请输入一个文件的路径："</span>); 
-String path = input.next(); 
-FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(path)); 
-FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\temp.jpg"</span>));
- 
-<span class="keyword">int</span> i = <span class="number">0</span>;  
-<span class="keyword">long</span> startTime = System.currentTimeMillis();
-<span class="comment">//read()方法一次读入一个字节的数据，读到文件结束返回-1</span>
-<span class="keyword">while</span>((i = inputStream.read()) != -<span class="number">1</span>) { 
-	inputStream.read(i);
-	outputStream.write(i); 
-} 
-
-System.out.println(<span class="string">"耗时："</span> + (System.currentTimeMillis() - startTime) + <span class="string">"ms"</span>);
- 
-inputStream.close(); 
-outputStream.close();  
-```  
-上面这种方式，因为`read()`方法每次读入一个字节的数据，所以拷贝速度比较慢，效率低，现在给它加上缓冲，一起来看一下做法。
-``` java 缓冲式拷贝.java 
-<span class="keyword">int</span> i = <span class="number">0</span>; 
-<span class="comment">//缓冲区大小 </span>
-<span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>]; 
-<span class="keyword">long</span> startTime = System.currentTimeMillis();
-<span class="keyword">while</span>((i = inputStream.read(buffer)) != -<span class="number">1</span>) { 
-	inputStream.read(buffer);
-	outputStream.write(buffer, <span class="number">0</span>, buffer.length); 
-}
-
-System.out.println(<span class="string">"耗时："</span> + (System.currentTimeMillis() - startTime) + <span class="string">"ms"</span>);
-
-inputStream.close();
-outputStream.close();
-```  
-通过对比，明显发现加上缓冲之后速度快了很多。下面我们再来看加上双缓冲的效果  
-&gt;BufferedInputStream & BufferedOutputStream  
-``` java 双缓冲文件拷贝.java
-<span class="comment">//读取</span>
-FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(sourceFile);
-BufferedInputStream bufferedInputStream = <span class="keyword">new</span> BufferedInputStream(inputStream);
-
-<span class="comment">//写</span>
-FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(newFile);
-BufferedOutputStream bufferedOutputStream = <span class="keyword">new</span> BufferedOutputStream(outputStream);
-
-<span class="keyword">int</span> b = <span class="number">0</span>;
-<span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2048</span>];
-
-<span class="keyword">long</span> startTime = System.currentTimeMillis();
-<span class="keyword">while</span>(b  != -<span class="number">1</span>) {
-	b = bufferedInputStream.read(buffer);
-	bufferedOutputStream.write(buffer,<span class="number">0</span>,buffer.length);
-}
-System.out.println(<span class="string">"耗时："</span> + (System.currentTimeMillis() - startTime) + <span class="string">"ms"</span>);
-
-bufferedInputStream.close();
-
-bufferedOutputStream.flush();
-bufferedOutputStream.close(); 
-```  
-通过对比，会发现速度又更快了一点  
-&gt;DataInputStream & DataOutputStream  
-``` java 基本数据类型的输出.java  
-FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
- 
-DataOutputStream dataOutputStream = <span class="keyword">new</span> DataOutputStream(outputStream); 
-
-<span class="keyword">int</span> num = <span class="number">123</span>;
-String str = <span class="string">"xxxx"</span>;
-
-dataOutputStream.writeInt(num);
-dataOutputStream.writeUTF(str);
-
-dataOutputStream.flush(); 
-dataOutputStream.close(); 
-``` 
-``` java 基本数据类型的输入.java 
-FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
-DataInputStream dataInputStream = <span class="keyword">new</span> DataInputStream(inputStream);
-
-<span class="keyword">int</span> num = dataInputStream.readInt();
-String str = dataInputStream.readUTF();  
-System.out.println(<span class="string">"num:"</span> + num + <span class="string">"str:"</span> + str);
-
-dataInputStream.close();  
-```  
-
-**序列化与反序列化**  
-
-&lt;notextile&gt;<span class="number">1</span>&lt;/notextile&gt;
-  
-&gt; ObjectOutputStream & ObjectInputStream
-``` java 序列化操作.java 
-FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\person.dat"</span>)); 
-ObjectOutputStream objectOutputStream = <span class="keyword">new</span> ObjectOutputStream(outputStream); 
- 
-Person person = <span class="keyword">new</span> Person(); 
-person.setAge(<span class="number">12</span>); 
-person.setName(<span class="string">"tom"</span>); 
-person.setNum(<span class="number">343</span>); 
- 
-objectOutputStream.writeObject(person); 
- 
-objectOutputStream.flush(); 
-objectOutputStream.close();
-```  
-``` java 反序列化操作.java 
-FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\person.dat"</span>)); 
-ObjectInputStream objectInputStream = <span class="keyword">new</span> ObjectInputStream(inputStream); 
- 
-Person p = (Person) objectInputStream.readObject(); 
- 
-System.out.println(p.getAge() + <span class="string">":"</span> + p.getName() + <span class="string">":"</span> + p.getNum()); 
- 
-objectInputStream.close();
-```
-
-**字符流**  
-
-&lt;notextile&gt;<span class="number">2</span>&lt;/notextile&gt;
-
-
-&gt;InputStreamReader & OutputStreamWriter  
-``` java 写入操作.java
-Scanner input = <span class="keyword">new</span> Scanner(System.in); 
-System.out.println(<span class="string">"请输入文本："</span>); 
-String text = input.next(); 
- 
-FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
-OutputStreamWriter outputStreamWriter = <span class="keyword">new</span> OutputStreamWriter(fileOutputStream); 
-BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(outputStreamWriter); 
- 
-bufferedWriter.write(text); 
- 
-bufferedWriter.close();
-```  
-``` java 读入操作.java 
-FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
-InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(fileInputStream); 
-BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(inputStreamReader); 
- 
-String str; 
-<span class="keyword">while</span>(<span class="keyword">null</span> != (str = bufferedReader.readLine())) { 
-  System.out.println(str); 
-} 
- 
-bufferedReader.close();
-```  
-&gt;FileReader & FileWriter  
-``` java 写入操作.java 
-Scanner input = <span class="keyword">new</span> Scanner(System.in); 
-System.out.println(<span class="string">"请输入文本："</span>); 
-String text = input.next(); 
- 
-FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
-BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(fileWriter); 
- 
-bufferedWriter.write(text); 
- 
-bufferedWriter.close();
-```  
-每次写入操作时默认都会清空该文件的原有字符，要想实现追加写入的方式可以这样做：  
-``` java 
-FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>),<span class="keyword">true</span>);
-```
-``` java 读入操作.java 
-FileReader fileReader = <span class="keyword">new</span> FileReader(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>)); 
-BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(fileReader); 
- 
-String str; 
-<span class="keyword">while</span>(<span class="keyword">null</span> != (str = bufferedReader.readLine())) { 
-  System.out.println(str); 
-} 
- 
-bufferedReader.close(); 
-```  
-&gt; PrintWriter
-``` java 
-PrintWriter pw = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>));
-pw.println(<span class="string">"aaaaaa"</span>);
-
-pw.flush();
-pw.close();
-```
-
-**System类**  
-
-&lt;notextile&gt;<span class="number">3</span>&lt;/notextile&gt;
-
-
-``` java 
-PrintStream ps = <span class="keyword">new</span> PrintStream(<span class="keyword">new</span> File(<span class="string">"c:\\a.txt"</span>));
-ps.print(<span class="number">5.67</span>);
-
-<span class="comment">/*设置输出方式*/</span>
-System.setOut(<span class="keyword">new</span> PrintStream(<span class="keyword">new</span> File(<span class="string">"c:\\test.txt"</span>)));
-System.out.println(<span class="string">"xxxx"</span>); <span class="comment">//输出到"c:\\test.txt"</span>
-
-<span class="comment">/*输入方式为从文档输入*/</span>
-Scanner input = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">"C:\\test.txt"</span>));
-String str = input.next();
-System.out.println(str);
 </pre></figure>
+
 
 
       
     </div>
     <footer>
       
+        
+          <div class="alignleft readMore">
+            <a href="/2010/02/18/2012-05-28-javaio/#more" class="more-link">Read More</a>
+          </div>
         
         
       
