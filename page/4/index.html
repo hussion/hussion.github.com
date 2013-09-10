@@ -67,6 +67,77 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-02-03T03:17:00.000Z"><a href="/2011/02/03/2012-02-03-linux2/">Feb 3rd, 2011</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/02/03/2012-02-03-linux2/">linux学习笔记(二):命令格式和命令分类</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3>命令格式：</h3>
+<figure class="highlight lang-bash"><pre>命令 -选项 参数  
+ <span class="comment">#例如  </span>
+ls -l -a /etc  
+如果有多个选项，可以写在一起  
+ls -la /etc <span class="comment">#和上面写法是等价的</span>
+</pre></figure>
+
+
+<h3>命令分类</h3>
+<figure class="highlight lang-bash"><pre>文件处理命令  
+权限管理命令  
+文件搜索命令  
+帮助命令  
+压缩解压命令  
+网络通信命令  
+...
+</pre></figure>
+
+
+<h3>常用简单命令：</h3>
+<figure class="highlight lang-bash"><pre>who： 列出所有正在使用系统的用户、所用终端名和注册到系统的时间
+who am i： 列出使用该命令的当前用户的相关信息
+<span class="keyword">echo</span>： 将命令行中的参数显示到标准输出(即屏幕)上
+date： 显示或设置系统的日期和时间
+cal： 显示日历(cal 2011&lt;显示2011全年日历&gt;，cal 02 2011&lt;显示2011年2月日历&gt;)
+clear： 清除屏幕上的信息
+adduser: 添加用户
+passwd: 修改密码
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2011-02-03T02:17:00.000Z"><a href="/2011/02/03/2011-02-03-linux/">Feb 3rd, 2011</a></time>
       
         <div class="post-tags">
@@ -1041,58 +1112,6 @@ session.getTransaction().commit();
         
           <div class="alignleft readMore">
             <a href="/2010/06/24/2012-06-13-struts2-5/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-06-23T07:42:00.000Z"><a href="/2010/06/23/2012-06-13-struts2-6/">Jun 23rd, 2010</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-              <span class="tag-Struts">
-                <a href="/tags/Struts/">Struts</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/06/23/2012-06-13-struts2-6/">struts2获取servlet对象</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在struts2中，为了进行解耦，对原生的servlet对象进行的包装，但同时也提供了获取原生servlet对象的入口。要获得Servlet对象，需要了解ActionContext和ServletActionContext这两个类。  </p>
-<p><strong>ActionContext</strong>  </p>
-<p>ActionContext（com.opensymphony.xwork.ActionContext）是Action执行时的上下文，上下文可以看作是一个容器（就是一个Map而已），它存放的是Action在执行时需要用到的对象，比如：在使用WebWork时，我们的上下文放有请求的参数（Parameter）、会话(Session)、Servlet上下文（ServletContext）、本地化（Locale）信息等。WebWork负责将Servlet相关数据转换为与ServletAPI无关的Map对象（即ActionContext），使得xwork的Action实现与web层、逻辑层与表现层的解耦。
-在每次执行Action之前都会创建新的ActionContext，ActionContext是<code>线程安全</code>的，也就是说在同一个线程里ActionContext里的属性是唯一的，这样Action就可以在多线程中使用。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2010/06/23/2012-06-13-struts2-6/#more" class="more-link">Read More</a>
           </div>
         
         

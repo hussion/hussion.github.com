@@ -375,6 +375,9 @@ article header .post-tags .tag-Hibernate {
 article header .post-tags .tag-Spring {
   background: #6eb056;
 }
+article header .post-tags .tag-AngularJS {
+  background: #f5b461;
+}
 article header .title {
   font-weight: bold;
   font-size: 1.6em;

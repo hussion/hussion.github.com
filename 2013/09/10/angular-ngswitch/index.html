@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于AngularJs中ngSwitch进行切换时，获取不到Model | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="关于AngularJs中ngSwitch进行切换时，获取不到Model"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="http://weibo.com/hussion">Weibo</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-09-10T13:46:27.000Z"><a href="/2013/09/10/angular-ngswitch/">Sep 10th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-AngularJS">
+                <a href="/tags/AngularJS/">AngularJS</a>
+              </span>
+            
+              <span class="tag-前端开发">
+                <a href="/tags/前端开发/">前端开发</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">关于AngularJs中ngSwitch进行切换时，获取不到Model</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight lang-javascript"><figcaption><span>Controller</span></figcaption><pre><span class="function"><span class="keyword">function</span> <span class="title">myCtrl</span><span class="params">($scope)</span> {</span>
+	$scope.stage = <span class="number">1</span>;
+	$scope.switchStage = <span class="keyword">function</span>() {
+		$scope.stage = ($scope.stage == <span class="number">1</span>) ? <span class="number">2</span> : <span class="number">1</span>;
+	}
+}
+</pre></figure>
+
+<figure class="highlight lang-html"><figcaption><span>View</span></figcaption><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">ng-controller</span>=<span class="value">"myCtrl"</span>&gt;</span>
+
+	<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">value</span>=<span class="value">"switch"</span> <span class="attribute">ng-click</span>=<span class="value">"switchStage()"</span>/&gt;</span>
+	
+	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">ng-switch</span> <span class="attribute">on</span>=<span class="value">"stage"</span>&gt;</span>
+		<span class="tag">&lt;<span class="title">div</span> <span class="attribute">ng-switch-when</span>=<span class="value">"1"</span>&gt;</span>
+			<span class="tag">&lt;<span class="title">select</span> <span class="attribute">ng-model</span>=<span class="value">"selectModel"</span>&gt;</span>
+				<span class="tag">&lt;<span class="title">option</span>&gt;</span>please select one<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+				<span class="tag">&lt;<span class="title">option</span>&gt;</span>xxx<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+				<span class="tag">&lt;<span class="title">option</span>&gt;</span>xxxxxx<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+			<span class="tag">&lt;/<span class="title">select</span>&gt;</span>
+		<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+	<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+	
+	<span class="tag">&lt;<span class="title">span</span> <span class="attribute">ng-bind</span>=<span class="value">"selectModel"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></figure>
+
+<p>如上面代码，在选择<code>option</code>的时候，我们发现，在<code>ng-switch</code>外面的<code>span</code>标签里，<code>ng-bind</code>里绑定的同一个<code>model</code>却没有抓到值，这是为什么呢？官网的Api上说了这么一句话：</p>
+<blockquote>
+<p>This directive creates new scope  </p>
+</blockquote>
+<p>意思就是：ng-switch这个标签创建了一个新的scope，也就是在controller-“myCtrl”下面创建了一个subScope，所以导致ng-bind的model取不到值，这是ng-switch的一个坑，解决办法也很简单：</p>
+<blockquote>
+<p>把ng-model=&quot;selectModel&quot;改为：ng-model=&quot;$parent.selectModel&quot;  </p>
+</blockquote>
+<p>这样，咱们的ng-bind中的selectModel就可以正常取回值了。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/AngularJS/">AngularJS</a>, <a href="/tags/前端开发/">前端开发</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/scrollUp.min.js"></script>
+<script>
+  $(function() {
+    $.scrollUp({
+      scrollText: ''
+    });
+  });
+</script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>
