@@ -67,6 +67,74 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2010-06-24T00:17:00.000Z"><a href="/2010/06/24/2012-06-13-struts2-5/">Jun 24th, 2010</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Struts">
+                <a href="/tags/Struts/">Struts</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2010/06/24/2012-06-13-struts2-5/">struts2: Action &amp; ActionSupport</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>Action接口</strong>  </p>
+<p>该接口宣称，所有的action类都可以实现这个接口，该接口暴露了一个execute()方法，另外该接口还提供了5个常量。</p>
+<figure class="highlight lang-java"><figcaption><span>Action.java </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Action</span> {</span>  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SUCCESS = <span class="string">"success"</span> ;  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NONE = <span class="string">"none"</span> ;  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ERROR = <span class="string">"error"</span> ;  
+  
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String INPUT = <span class="string">"input"</span> ;  
+  
+     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOGIN = <span class="string">"login"</span> ;  
+  
+     <span class="keyword">public</span> String execute() <span class="keyword">throws</span> Exception;  
+  
+}
+</pre></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2010/06/24/2012-06-13-struts2-5/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2010-06-23T07:42:00.000Z"><a href="/2010/06/23/2012-06-13-struts2-6/">Jun 23rd, 2010</a></time>
       
         <div class="post-tags">
@@ -516,71 +584,13 @@ MVC（Model-View-Controller）应用程序结构被用来分析分布式应用�
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-02-18T05:35:00.000Z"><a href="/2010/02/18/2012-05-28-javaio/">Feb 18th, 2010</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/02/18/2012-05-28-javaio/">Java IO总结</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>File类</strong><br>Java中的<code>java.io.File</code>类表示一个目录（文件夹）或者一个文件  </p>
-<p><strong>File类常用方法</strong>  </p>
-<figure class="highlight lang-java"><pre>isFile() <span class="comment">//是否为文件   </span>
-isDirectory() <span class="comment">//是否为目录  </span>
-canRead() <span class="comment">//是否可读  </span>
-canWrite() <span class="comment">//是否可写  </span>
-length() <span class="comment">//字节大小  </span>
-delete() <span class="comment">//删除文件  </span>
-getName() <span class="comment">//文件或目录的名称  </span>
-listFiles() <span class="comment">//列出当前目录下的所有文件及目录  </span>
-createNewFile() <span class="comment">//创建文件  </span>
-mkdir() <span class="comment">//创建目录(只能创建单层目录)  </span>
-mkdirs() <span class="comment">//创建目录(可以创建多层目录)</span>
-</pre></figure>
-
-
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2010/02/18/2012-05-28-javaio/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
     <a href="/page/4/" class="alignleft prev">Prev</a>
   
+  
+    <a href="/page/6/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
 </nav></div></div>

@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Angular中Controller的几种注册方式 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Angular中Controller的几种注册方式"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="http://weibo.com/hussion">Weibo</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-09-10T15:37:08.000Z"><a href="/2013/09/10/angular-controller/">Sep 10th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-AngularJS">
+                <a href="/tags/AngularJS/">AngularJS</a>
+              </span>
+            
+              <span class="tag-前端开发">
+                <a href="/tags/前端开发/">前端开发</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">Angular中Controller的几种注册方式</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>1.最直接最简单的方式</strong></p>
+<figure class="highlight lang-javascript"><pre><span class="function"><span class="keyword">function</span> <span class="title">MyCtrl</span><span class="params">($scope)</span> {</span>
+    $scope.xxx = <span class="string">'balabala'</span>;
+}
+</pre></figure>
+
+<p>其对应的<code>view</code>如下：</p>
+<figure class="highlight lang-html"><pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span> <span class="attribute">ng-app</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"path/to/angular.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">utf-8</span> /&gt;</span>
+<span class="tag">&lt;<span class="title">title</span>&gt;</span>JS Bin<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">ng-controller</span>=<span class="value">"MyCtrl"</span>&gt;</span>
+    
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</pre></figure>
+
+<p>这种写法虽然简单，但是有点小问题，就是在javascript最小化(Minification)的时候，参数<code>$scope</code>是区域参数，所以名称会被改变成类似a/b/...,而AngularJS在执行注入的时候就会找不到<code>$scope</code>,因此无法正常注入。解决方案有两个，如下所示：</p>
+<figure class="highlight lang-javascript"><figcaption><span>方式一</span></figcaption><pre><span class="function"><span class="keyword">function</span> <span class="title">MyCtrl</span><span class="params">($scope)</span> {</span>
+    $scope.xxx = <span class="string">'balabala'</span>;
+}
+
+<span class="comment">//加上这句</span>
+MyCtrl.$inject = [<span class="string">'$scope'</span>];
+</pre></figure>
+
+<figure class="highlight lang-javascript"><figcaption><span>方式二</span></figcaption><pre><span class="keyword">var</span> MyCtrl = [<span class="string">'$scope'</span>, <span class="keyword">function</span>($scope) {
+    $scope.xxx = <span class="string">'balabala'</span>;
+}];
+</pre></figure>
+
+<p><em>推荐方式二这种写法。</em></p>
+<p><strong>2.通过自定义一个Module,并将Controller声明注册在这个Module内</strong></p>
+<p>这种方式，其实跟第一种方式差不多。但是这种方式，是模块化的写法，随着项目的逐渐复杂，会更容易管理。</p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);
+app.controller(<span class="string">'MyCtrl'</span>, <span class="function"><span class="keyword">function</span> <span class="title">MyCtrl</span><span class="params">($scope)</span> {</span>
+  $scope.xxx = <span class="string">'balabala'</span>;
+});
+</pre></figure>
+
+<p>当你自定义了<code>myApp</code>模块，也就意味着controller只会存在于<code>myApp</code>模块内，所以在view模板html上，就必须修改np-app的属性值为<code>myApp</code>。</p>
+<figure class="highlight lang-html"><pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span> <span class="attribute">ng-app</span>=<span class="value">"myApp"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"path/to/angular.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">utf-8</span> /&gt;</span>
+<span class="tag">&lt;<span class="title">title</span>&gt;</span>JS Bin<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">ng-controller</span>=<span class="value">"MyCtrl"</span>&gt;</span>
+    
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</pre></figure>
+
+<p>但是这种方式在js最小化的时候，一样存在注入失败的问题，我们可以仿照方式一的解决方案来解决。</p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);
+app.controller(<span class="string">'MyCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span> <span class="title">MyCtrl</span><span class="params">($scope)</span> {</span>
+  $scope.xxx = <span class="string">'balabala'</span>;
+}]);
+
+<span class="comment">//同时还可以这样写，并且可以声明多个</span>
+<span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);
+app.controller({
+  <span class="string">'MyCtrl'</span>: [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span> <span class="title">MyCtrl</span><span class="params">($scope)</span> {</span>$scope.xxx = <span class="string">'balabala'</span>;}],
+  <span class="string">'MyCtrl2'</span>: [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span> <span class="title">MyCtrl2</span><span class="params">($scope)</span> {</span>$scope.xxx = <span class="string">'balabala'</span>;}]			
+});
+</pre></figure>
+
+<p><strong>3.通过$controllerProvider注册控制器</strong></p>
+<p>这种注册方式更加底层一些，比以上两种看起来要复杂。</p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, []);
+app.config([<span class="string">'$controllerProvider'</span>, <span class="keyword">function</span>($controllerProvider) {
+  $controllerProvider.register(<span class="string">'MyCtrl'</span>, [<span class="string">'$scope'</span>, <span class="keyword">function</span>($scope) {
+    $scope.xxx = <span class="string">'balabala'</span>;
+  }]);
+}]);
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/AngularJS/">AngularJS</a>, <a href="/tags/前端开发/">前端开发</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  Copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/scrollUp.min.js"></script>
+<script>
+  $(function() {
+    $.scrollUp({
+      scrollText: ''
+    });
+  });
+</script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

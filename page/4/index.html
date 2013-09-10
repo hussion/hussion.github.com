@@ -67,6 +67,67 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-02-08T00:06:00.000Z"><a href="/2011/02/08/2011-02-08-linux3/">Feb 8th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/02/08/2011-02-08-linux3/">linux学习笔记(三):文件处理命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>命令名称: <strong>ls</strong>  </li>
+</ul>
+<figure class="highlight lang-bash"><pre>命令英文原意： list  
+命令所在路径： /bin/ls  
+执行权限： 所有用户  
+功能描述： 显示目录文件及其信息
+   
+ <span class="comment">#语法：  </span>
+ls 选项[-ald] [文件或目录]  
+-a <span class="comment">#显示所有文件，包括隐藏文件  </span>
+-l <span class="comment">#详细信息显示  </span>
+-d <span class="comment">#查看目录属性  </span>
+-i <span class="comment">#显示文件或者目录的i节点信息</span>
+</pre></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2011/02/08/2011-02-08-linux3/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2011-02-03T03:17:00.000Z"><a href="/2011/02/03/2012-02-03-linux2/">Feb 3rd, 2011</a></time>
       
         <div class="post-tags">
@@ -1044,74 +1105,6 @@ session.getTransaction().commit();
         
           <div class="alignleft readMore">
             <a href="/2010/06/25/2012-06-14-struts2-7/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-06-24T00:17:00.000Z"><a href="/2010/06/24/2012-06-13-struts2-5/">Jun 24th, 2010</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-              <span class="tag-Struts">
-                <a href="/tags/Struts/">Struts</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/06/24/2012-06-13-struts2-5/">struts2: Action &amp; ActionSupport</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>Action接口</strong>  </p>
-<p>该接口宣称，所有的action类都可以实现这个接口，该接口暴露了一个execute()方法，另外该接口还提供了5个常量。</p>
-<figure class="highlight lang-java"><figcaption><span>Action.java </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Action</span> {</span>  
-  
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SUCCESS = <span class="string">"success"</span> ;  
-  
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NONE = <span class="string">"none"</span> ;  
-  
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ERROR = <span class="string">"error"</span> ;  
-  
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String INPUT = <span class="string">"input"</span> ;  
-  
-     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOGIN = <span class="string">"login"</span> ;  
-  
-     <span class="keyword">public</span> String execute() <span class="keyword">throws</span> Exception;  
-  
-}
-</pre></figure>
-
-
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2010/06/24/2012-06-13-struts2-5/#more" class="more-link">Read More</a>
           </div>
         
         
