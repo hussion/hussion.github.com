@@ -67,6 +67,130 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-05-03T02:38:00.000Z"><a href="/2012/05/03/2012-06-03-ubuntu-octopress/">May 3rd, 2012</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2012/05/03/2012-06-03-ubuntu-octopress/">ubuntu安装octopress注意事项</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>1.<strong>安装rvm</strong></p>
+<figure class="highlight lang-bash"><pre>1.
+bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)  
+2.
+<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bash_profile  
+3.
+source ~/.bash_profile  
+/*  
+*解决ruby use xxx时候会ERROR等一系列报错问题  
+*/  
+4.
+<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bashrc  
+5.
+source ~/.bashrc
+</pre></figure>
+
+<p>2.<strong>安装ruby 1.9.2</strong></p>
+<figure class="highlight lang-bash"><pre>rvm install 1.9.2 && rvm use 1.9.2  
+rvm rubygems latest
+</pre></figure>
+
+<p>3.<strong>修改gem更新源</strong></p>
+<figure class="highlight lang-bash"><pre>gem sources --remove http://rubygems.org/  
+gem sources -a http://ruby.taobao.org/  
+gem sources -l <span class="comment">#检测是否只有http://ruby.taobao.org/  </span>
+ <span class="comment">#打开octopress文件夹里面的Gemfile，把更新源也改为:  http://ruby.taobao.org/</span>
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-04-29T10:22:00.000Z"><a href="/2012/04/29/2012-05-08-octopress2/">Apr 29th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2012/04/29/2012-05-08-octopress2/">关于octopress：Could not open library '.dll': 找不到指定的模组</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误...</p>
+<figure class="highlight lang-bash"><pre>	(LoadError)ib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:75:<span class="keyword">in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:in `map'</span>
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:<span class="keyword">in</span> `ffi_lib<span class="string">'
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:30:in `&lt;module:Python&gt;'</span>
+      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:21:<span class="keyword">in</span> `&lt;top (required)&gt;<span class="string">'
+</pre></figure>
+
+
+<p>看到这错误，绝对让人很郁闷，如果对于那些非常熟悉<code>ruby</code>和<code>python</code>的人来说，可能会很容易解决，可是对于那些不熟悉这两者语言的友友们来说，脑子一篇空白，不知所措，好吧，下面我就给大家介绍一下此问题的解决办法，让我们一起来拥抱octopress  </p>
+<ul>
+<li>首先确认你的环境都配置正常了，不确定的可以看我的上一篇octopress博客，都正常之后执行以下命令</li>
+</ul>
+<figure class="highlight lang-bash"><pre>gem update --system  
+gem update  
+bundle update
+</pre></figure>
+
+<ul>
+<li>现在再执行<code>rake generate</code>生成博客，或者<code>rake preview</code>进行预览，看是否已经正常（通常执行这3步可以解决此问题），如果还不行，将<code>C:\windows\system32\python27.dll </code>复制到<code>C:\python27\libs</code>下面，然后修改<code>C:\Ruby192\lib\ruby\gems\1.9.1\gems\rubypython-0.5.1\lib\rubypython\python.rb</code>的26行</li>
+</ul>
+<figure class="highlight lang-bash"><pre>PYTHON_LIB = EXEC.library
+ <span class="comment"># FFI::DynamicLibrary::RTLD_LAZY | FFI::DynamicLibrary::RTLD_GLOBAL  </span>
+ffi_lib_flags :lazy, :global  
+ <span class="comment"># ffi_lib EXEC.library # 问题出在 EXEC.library 一直是 nil，所以直接注解掉  </span>
+ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此句</span>
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2012-04-28T15:20:00.000Z"><a href="/2012/04/28/octopress/">Apr 28th, 2012</a></time>
       
         <div class="post-tags">
@@ -480,108 +604,6 @@ ps:
     </div>
     <footer>
       
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2011-02-23T08:58:00.000Z"><a href="/2011/02/23/2012-05-03-linux5/">Feb 23rd, 2011</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Linux">
-                <a href="/tags/Linux/">Linux</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2011/02/23/2012-05-03-linux5/">linux学习笔记(五):文件搜索命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <ul>
-<li>命令名称：<strong>which</strong></li>
-</ul>
-<p><em>功能描述：显示系统命令所在目录,并可以提供命令的别名信息</em></p>
-<blockquote>
-<p>语法： which [命令名称].</p>
-</blockquote>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2011/02/23/2012-05-03-linux5/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2011-02-15T04:02:00.000Z"><a href="/2011/02/15/2011-02-15-linux4/">Feb 15th, 2011</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Linux">
-                <a href="/tags/Linux/">Linux</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2011/02/15/2011-02-15-linux4/">linux学习笔记(四):权限管理命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <ul>
-<li>命令：<strong>chmod</strong>  </li>
-</ul>
-<p><em>功能描述：改变文件或目录权限</em></p>
-<blockquote>
-<p>语法<br>    $ chmod [{ugo}{+-=}{rwx}] [文件或者目录]<br>    r: 4, w: 2, x: 1<br>    $ chmod [mode=421] [文件或者目录]<br>    例<br>    $ chmod 777 [file1] #把file1所有用户的权限设为rwx</p>
-</blockquote>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2011/02/15/2011-02-15-linux4/#more" class="more-link">Read More</a>
-          </div>
         
         
       

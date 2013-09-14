@@ -67,6 +67,209 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-10-24T14:20:00.000Z"><a href="/2012/10/24/2012-10-24-css3-1/">Oct 24th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Css">
+                <a href="/tags/Css/">Css</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2012/10/24/2012-10-24-css3-1/">Css3-对于不支持的浏览器解决方案</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>一、 接受差异</strong><br>在很多情况下，处理不支持的浏览器的最佳方法就是直接接受视觉表现上的差异，这就是渐进增强的核心思想。很多情况下添加额外的兼容方案反而会让访客更加反感，比如在旧式浏览器上添加背景图片，为了实现圆角，添加圆角背景图片，等一些列图片来实现类似css3效果，这样会导致页面加载缓慢，结果得不偿失。<br><strong>二、为一个属性同时提供非Css3和Css3的值</strong><br>在那些你希望或者不得不提供回滚方案的情形下，可以只为同一条规则提供多于一个的属性值：第一条是为不支持的浏览器准备的；第二条，css3特性值，是为高级浏览器准备的。这样不支持的浏览器会忽略那些它们不能理解的属性，而高级浏览器则会用第二条值去重载第一条的值。比如：  </p>
+<figure class="highlight lang-css"><pre><span class="tag">div</span> <span class="rules">{
+	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#CC0000</span>;</span></span>
+	<span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">hsla(<span class="number">0</span>, <span class="number">100</span>%, <span class="number">40</span>%, .<span class="number">5</span>)</span>;</span></span>
+<span class="rule">}</span></span>
+</pre></figure>
+
+<p><strong>三、使用Modernizr检测css3支持</strong><br><a href="http://www.modernizr.com">Modernizr</a>是一个第三方脚本，它可以检测用户浏览器对css3和html5特性的支持情况，然后会对html元素添加一些类来表明当前浏览器是否支持某些特性，比如“no-multiplebgs”表明浏览器不支持在单一元素上排布多背景图片，而相应的“multiplebgs”则表明浏览器是支持的。<br>当这些类加入时，我们就可以很容易的为每个类编写特定的样式，而且能够确保每个样式只会被支持的浏览器识别。比如：</p>
+<figure class="highlight lang-css"><pre><span class="id">#wrapper</span> <span class="rules">{
+	<span class="rule">……	
+}</span></span>
+<span class="class">.no-multiplebgs</span> <span class="id">#wrapper</span> <span class="rules">{
+	<span class="rule">……
+}</span></span>
+</pre></figure>
+
+<p>另外推荐一遍文章 <a href="http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr">taking advantage of html5 and css3 with modernizr</a><br><strong>四、使用javascript模拟Css3</strong><br>javascript通常能够是的不支持的浏览器实现和高级浏览器一样的效果，例如现在已经有很多脚本实现圆角效果了。
+<a href="http://code.google.com/p/html5shiv/"><strong>html5.js</strong></a>,你只需且必须在页面head元素内调用它就行了(因为IE必须在元素解析前知道这个元素，所以这个js文件不能在页面底部调用）。</p>
+<figure class="highlight lang-javascript"><figcaption><span>html5.js </span></figcaption><pre>&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;
+<span class="xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://html5shiv.googlecode.com/svn/trunk/html5.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">![endif]--</span>&gt;</span></span>
+</pre></figure>
+
+<p>现在主要用的是html5.js，当然还有一些其他的js模拟脚本，有兴趣的可以去研究下，比如 <code>Selectivizr</code>, <code>cssSandpaper</code>, <code>PIE</code>等。<br><strong>五、IE滤镜</strong><br>滤镜是微软提供的主要用来并且只在IE浏览器中起作用的创建不同样式表。通常是通过独有的属性滤镜或者-ms-filter属性来实现。具体的属性滤镜语法则依赖于你所使用的特定滤镜，但它们通用的格式是一样的：  </p>
+<figure class="highlight lang-css"><figcaption><span>滤镜 </span></figcaption><pre>filter:progid:DXImageTransform.Microsoft.filtername(sProperties)
+// filtername是滤镜的名字， sProperties是它的值
+</pre></figure>
+
+<p>在IE8以后，这个语法升级成了<code>-ms-filter</code>作为属性名，你也应该用引号来包裹它的属性值。</p>
+<blockquote>
+<p>DropShadow、 Shadow、 Glow和Blur滤镜用来模拟box-shadow和text-shadow.<br>Gradient滤镜用来模拟RGBA、 HSLA和线性渐变效果<br>Alpha和BasicImage滤镜用来模拟opaticy效果<br>Matrix和BasicImage滤镜用来模拟2D变形效果  </p>
+</blockquote>
+<p>滤镜的优点是它不需要javascript并且只在IE中有效，当然也有很多缺点。<br><code>长度：</code>描述一个滤镜将会花费很多字符。如果一个css文件中使用很多滤镜，这样会明显增大css文件的大小。为了克服这个，需要将这些样式表放在一个单独的文件里面，使用IE条件表达式来引入它。<br><code>无法通过验证：</code>包含滤镜的样式表是无法通过验证的。你必须将这些滤镜放在IE-only的文件里面从而保证至少你的主样式表文件是可以验证通过的。<br><code>性能：</code>滤镜会让页面的加载速度变慢，并且消耗大量的内存<br><code>粗糙的字体：</code>滤镜会关闭windows的ClearType渲染，因此文本显示不再是抗锯齿的，从而看起来很粗糙。<br>当然还有很多其他的缺陷，就不一一列出了。<br><strong>六、使用条件表达式过滤IE</strong><br>1. 提供IE独有的样式表  </p>
+<figure class="highlight lang-css"><figcaption><span>IE独有样式表 </span></figcaption><pre>&lt;!--[if IE]&gt;
+&lt;link rel="stylesheet" href=“ie_all.css” type="text/css"&gt;
+&lt;![endif]--&gt;
+</pre></figure>
+
+<ol>
+<li>对IE不可见</li>
+</ol>
+<figure class="highlight lang-css"><figcaption><span>非IE样式表 </span></figcaption><pre>&lt;!--[if !IE]&gt;--&gt;
+&lt;link rel="stylesheet" href=“not_ie.css” type="text/css"&gt;
+&lt;--&lt;![endif]--&gt;
+</pre></figure>
+
+<ol>
+<li>在html标签上添加IE版本类</li>
+</ol>
+<figure class="highlight lang-css"><figcaption><span>html标签加载IE</span></figcaption><pre>&lt;!--[if lt IE 7]&gt; &lt;html class="ie6" lang="en"&gt; &lt;![endif]--&gt;
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-10-14T09:54:00.000Z"><a href="/2012/10/14/2012-10-14-python-1/">Oct 14th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Python">
+                <a href="/tags/Python/">Python</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2012/10/14/2012-10-14-python-1/">python基础知识</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>算法：</strong><br>算法是描述如何完成一项任务的方法。实际上，在编写程序的时候，就是要使用计算机能够理解的语言（如python）来准确地描述算法。这类对机器友好的描述就叫做程序。<br><strong>函数（function）：</strong><br>python中的函数类似于java中的方法，可以有参数，并且返回值<br><strong>模块（module）：</strong><br>模块就是扩展，它可以导入到python中，从而扩展python的功能。在使用模块的时候需要先导入模块。例如： <code>math</code>模块提供了很多有用的数学函数。</p>
+<figure class="highlight lang-python"><figcaption><span>math模块 </span></figcaption><pre><span class="keyword">import</span> math	<span class="comment"># 导入math模块</span>
+math.floor()
+</pre></figure>
+
+<p>如果不想每次都输入<code>模块名.函数名</code>来调用函数，想直接通过<code>函数名</code>来调用,可以这么做。</p>
+<figure class="highlight lang-python"><figcaption><span>通过函数名直接调用 </span></figcaption><pre><span class="keyword">from</span> math <span class="keyword">import</span> sqrt	<span class="comment"># 也可以使用from math import *  导入所有函数 </span>
+sqrt(<span class="number">9</span>)	<span class="comment"># 3.0</span>
+</pre></figure>
+
+<p>但是使用from…import…语句，容易造成命名冲突，比如cmath模块中也有个sqrt()方法，这样的话一旦使用此语句，就没法使用普通的sqrt函数了，所以除非真的需要from这个形式的模块导入语句，否则应该坚持使用普通的import<br><strong>运算符：</strong><br>对于基本的加减乘除和java都一样，对于乘除python里进行了增强。</p>
+<figure class="highlight lang-python"><figcaption><span>python乘除 </span></figcaption><pre>print(<span class="number">1</span> / <span class="number">2</span>)	<span class="comment"># 0</span>
+print(<span class="number">1</span> / <span class="number">2.</span>)	<span class="comment"># 0.5</span>
+
+---------------------------------
+<span class="keyword">from</span> __future__ <span class="keyword">import</span> division 
+print(<span class="number">1</span> / <span class="number">2</span>)	<span class="comment"># 0.5</span>
+
+---------------------------------
+ <span class="comment"># “//”整除运算符号</span>
+print(<span class="number">1</span> // <span class="number">2</span>)	<span class="comment"># 0</span>
+print(<span class="number">1.0</span> // <span class="number">2.0</span>)	<span class="comment"># 0.0 浮点数也会执行整除     </span>
+
+-----------------------------------------
+ <span class="comment"># "**" 幂(乘方)运算 </span>
+print(<span class="number">2</span> ** <span class="number">3</span>)	<span class="comment"># 8</span>
+print(-<span class="number">3</span> ** <span class="number">2</span>) <span class="comment"># -9</span>
+print((-<span class="number">3</span>) ** <span class="number">2</span>)	<span class="comment"># 9</span>
+</pre></figure>
+
+<p><strong>注意：</strong>Python 不支持 C 语言中的自增 1 和自减 1 运算符,这是因为 + 和 － 也是单目运算符，Python 会将 --n 解释为-(-n) 从而得到 n , 同样 ++n 的结果也是 n.  </p>
+<p><strong>获取用户输入：</strong><br>获取用户输入可以使用<code>input(prompt)</code>函数和<code>raw_input(prompt)</code>.</p>
+<figure class="highlight lang-python"><figcaption><span>input&raw_input </span></figcaption><pre>value1 = raw_input(<span class="string">"&gt; "</span>)
+value2 = input(<span class="string">"&gt; "</span>)
+ <span class="comment"># 现在我们分别都输入数字：123</span>
+print(type(value1), type(value2))	<span class="comment"># 结果：(&lt;type 'str'&gt;, &lt;type 'int'&gt;)</span>
+ <span class="comment"># 现在我们分别输入表达式：1 + 2</span>
+print(value1, value2)	<span class="comment"># 结果：‘1 + 2’，3</span>
+
+-------------------------------------------------------------------------
+value1 = raw_input(<span class="string">"&gt; "</span>)
+value2 = input(<span class="string">"&gt; "</span>)
+ <span class="comment"># 现在我们分别都输入字符串：abc，结果如下：</span>
+&gt; abc
+&gt; abc
+Traceback (most recent call last):
+  File <span class="string">"/Users/hussion/PycharmProjects/test/HelloPython.py"</span>, line <span class="number">6</span>, <span class="keyword">in</span> &lt;module&gt;
+    v2 = input(<span class="string">"&gt; "</span>)
+  File <span class="string">"&lt;string&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;
+NameError: name <span class="string">'abc'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined
+</pre></figure>
+
+<p>从以上测试，我们知道：<br>1. <code>raw_input()</code>将所有输入作为字符串看待，返回字符串类型。而<code>input()</code>在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（ int, float ）;<br>2. 这两个函数均能接收字符串 ，但<code>raw_input()</code>直接读取控制台的输入（任何类型的输入它都可以接收）。而对于<code>input()</code>，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError。<br>3. 查看<a href="http://docs.python.org/library/functions.html?highlight=input#built-in-functions">Built-in Functions</a>可以知道<code>input()</code>本质上还是使用<code>raw_input()</code>来实现的，只是调用完<code>raw_input()</code>之后再调用<code>eval()</code>函数，所以，你甚至可以将表达式作为<code>input()</code>的参数，并且它会计算表达式的值并返回它。
+另外在<code>Built-in Functions</code>里说到：Consider using the raw_input() function for general input from users.
+意思就是<strong>除非对<code>input()</code>有特别需要，否则一般情况下我们都是推荐使用<code>raw_input()</code></strong>。l</p>
+<figure class="highlight lang-python"><figcaption><span>一些基础函数 </span></figcaption><pre>abs(number) 			<span class="comment">#返回数字的绝对值  </span>
+math.sqrt(number)		<span class="comment">#返回平方根，不适用于负数</span>
+cmath.sqrt(number) 		<span class="comment">#返回平方根，也可以应用于负数</span>
+float(object)			<span class="comment">#将字符串和数字转换为浮点数</span>
+help()					<span class="comment">#提供交互式帮助</span>
+input(prompt)			<span class="comment">#获取用户输入</span>
+int(object)				<span class="comment">#将字符串和数字转换为整数</span>
+long(object)			<span class="comment">#将字符串和数字转换为长整型数</span>
+math.ceil(number)		<span class="comment">#返回数的上入整数，返回值的类型为浮点数</span>
+math.floor(number)		<span class="comment">#返回数的下舍整数，返回值的类型为浮点数</span>
+pow(x, y[.z])			<span class="comment">#返回x的y次幂（所得结果对z取模）</span>
+round(number)			<span class="comment">#根据给定的精度对数字进行四舍五入</span>
+str(object)				<span class="comment">#将值转换为字符串</span>
+repr(object)			<span class="comment">#返回值的字符串表示形式</span>
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2012-09-30T05:11:00.000Z"><a href="/2012/09/30/2012-09-30-mac-screenshot/">Sep 30th, 2012</a></time>
       
         <div class="post-tags">
@@ -536,130 +739,6 @@ sudo make install
 
 
 <p>现在再次运行gem update –system，搞定！</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-05-03T02:38:00.000Z"><a href="/2012/05/03/2012-06-03-ubuntu-octopress/">May 3rd, 2012</a></time>
-      
-        <div class="post-tags">
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/05/03/2012-06-03-ubuntu-octopress/">ubuntu安装octopress注意事项</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>1.<strong>安装rvm</strong></p>
-<figure class="highlight lang-bash"><pre>1.
-bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)  
-2.
-<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bash_profile  
-3.
-source ~/.bash_profile  
-/*  
-*解决ruby use xxx时候会ERROR等一系列报错问题  
-*/  
-4.
-<span class="keyword">echo</span> <span class="string">'[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function'</span> &gt;&gt; ~/.bashrc  
-5.
-source ~/.bashrc
-</pre></figure>
-
-<p>2.<strong>安装ruby 1.9.2</strong></p>
-<figure class="highlight lang-bash"><pre>rvm install 1.9.2 && rvm use 1.9.2  
-rvm rubygems latest
-</pre></figure>
-
-<p>3.<strong>修改gem更新源</strong></p>
-<figure class="highlight lang-bash"><pre>gem sources --remove http://rubygems.org/  
-gem sources -a http://ruby.taobao.org/  
-gem sources -l <span class="comment">#检测是否只有http://ruby.taobao.org/  </span>
- <span class="comment">#打开octopress文件夹里面的Gemfile，把更新源也改为:  http://ruby.taobao.org/</span>
-</pre></figure>
-
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-04-29T10:22:00.000Z"><a href="/2012/04/29/2012-05-08-octopress2/">Apr 29th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/04/29/2012-05-08-octopress2/">关于octopress：Could not open library '.dll': 找不到指定的模组</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误...</p>
-<figure class="highlight lang-bash"><pre>	(LoadError)ib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:75:<span class="keyword">in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
-      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:in `map'</span>
-      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:<span class="keyword">in</span> `ffi_lib<span class="string">'
-      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:30:in `&lt;module:Python&gt;'</span>
-      from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:21:<span class="keyword">in</span> `&lt;top (required)&gt;<span class="string">'
-</pre></figure>
-
-
-<p>看到这错误，绝对让人很郁闷，如果对于那些非常熟悉<code>ruby</code>和<code>python</code>的人来说，可能会很容易解决，可是对于那些不熟悉这两者语言的友友们来说，脑子一篇空白，不知所措，好吧，下面我就给大家介绍一下此问题的解决办法，让我们一起来拥抱octopress  </p>
-<ul>
-<li>首先确认你的环境都配置正常了，不确定的可以看我的上一篇octopress博客，都正常之后执行以下命令</li>
-</ul>
-<figure class="highlight lang-bash"><pre>gem update --system  
-gem update  
-bundle update
-</pre></figure>
-
-<ul>
-<li>现在再执行<code>rake generate</code>生成博客，或者<code>rake preview</code>进行预览，看是否已经正常（通常执行这3步可以解决此问题），如果还不行，将<code>C:\windows\system32\python27.dll </code>复制到<code>C:\python27\libs</code>下面，然后修改<code>C:\Ruby192\lib\ruby\gems\1.9.1\gems\rubypython-0.5.1\lib\rubypython\python.rb</code>的26行</li>
-</ul>
-<figure class="highlight lang-bash"><pre>PYTHON_LIB = EXEC.library
- <span class="comment"># FFI::DynamicLibrary::RTLD_LAZY | FFI::DynamicLibrary::RTLD_GLOBAL  </span>
-ffi_lib_flags :lazy, :global  
- <span class="comment"># ffi_lib EXEC.library # 问题出在 EXEC.library 一直是 nil，所以直接注解掉  </span>
-ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此句</span>
-</pre></figure>
-
 
       
     </div>
