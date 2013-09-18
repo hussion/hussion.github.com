@@ -188,7 +188,7 @@ a:hover {
   clear: both;
   line-height: 3.4em;
   padding-left: 10px;
-  background: transparent url("http://hussion.qiniudn.com/nav.jpg") repeat-x;
+  background: #303030 url("http://hussion.qiniudn.com/nav.jpg") repeat-x;
   -webkit-border-top-left-radius: 6px;
   -webkit-border-top-right-radius: 6px;
   -moz-border-radius-topleft: 6px;
