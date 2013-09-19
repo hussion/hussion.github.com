@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -92,8 +92,7 @@
 <figure class="highlight lang-javascript"><pre>encodeURI(URIstring)
 </pre></figure>
 
-<p>该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：<code>- _ . ! ~ * &#39; ( ) 。</code>
-该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：<code>;/?:@&amp;=+$,#</code>;此时就必须使用encodeURIComponent()进行编码。<br>1. 传递参数时需要使用encodeURIComponent，这样组合的url才不会被#等特殊字符截断。<br>2. 进行url跳转时可以整体使用encodeURI<br>3. js使用数据时可以使用escape<br>4. escape对0-255以外的unicode值进行编码时输出%u<em>**</em>格式，其它情况下escape，encodeURI，encodeURIComponent编码结果相同。另外使用<code>unescape()</code>对    <code>escape()</code>编码的字符进行解码。但是ECMAScript v3反对使用该方法，应使用<code>decodeURI()</code>和<code>decodeURIComponent()</code>代替<br>最多使用的应为encodeURIComponent，它是将中文、韩文等特殊字符转换成utf-8格式的url编码，所以如果给后台传递参数需要使用encodeURIComponent时需要后台解码对utf-8支持（form中的编码方式和当前页面编码方式相同）</p>
+<p>该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：<code>- _ . ! ~ * &#39; ( ) 。</code><br>该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：<code>;/?:@&amp;=+$,#</code>;此时就必须使用encodeURIComponent()进行编码。<br>1. 传递参数时需要使用encodeURIComponent，这样组合的url才不会被#等特殊字符截断。<br>2. 进行url跳转时可以整体使用encodeURI<br>3. js使用数据时可以使用escape<br>4. escape对0-255以外的unicode值进行编码时输出%u<em>**</em>格式，其它情况下escape，encodeURI，encodeURIComponent编码结果相同。另外使用<code>unescape()</code>对    <code>escape()</code>编码的字符进行解码。但是ECMAScript v3反对使用该方法，应使用<code>decodeURI()</code>和<code>decodeURIComponent()</code>代替<br>最多使用的应为encodeURIComponent，它是将中文、韩文等特殊字符转换成utf-8格式的url编码，所以如果给后台传递参数需要使用encodeURIComponent时需要后台解码对utf-8支持（form中的编码方式和当前页面编码方式相同）</p>
 <figure class="highlight lang-javascript"><pre>escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
 
 encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，
@@ -144,7 +143,7 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -157,6 +156,9 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

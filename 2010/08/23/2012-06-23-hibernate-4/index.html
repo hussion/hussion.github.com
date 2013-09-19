@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -94,13 +94,12 @@
       
         <p>数据关联映射分为：一对多、多对一，一对一，多对多。  </p>
 <p><strong>一对多、多对一</strong>  </p>
-<pre><code><figure class="highlight"><pre><span class="comment">t_address</span>             <span class="comment">t_user</span>
+<pre><code><span class="comment">t_address</span>             <span class="comment">t_user</span>
 <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
 <span class="comment">id</span>                    <span class="comment">id</span>
 <span class="comment">address</span>               <span class="comment">name</span>
 <span class="comment">userid(FK)</span>            <span class="comment">age</span>
-<span class="comment">tel
-</pre></figure></code></pre>
+<span class="comment">tel</code></pre>
 <figure class="highlight lang-java"><figcaption><span>一对多、多对一持久化类设计 </span></figcaption><pre><span class="comment">// User类</span>
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> {</span> 
  
@@ -183,11 +182,10 @@ session.getTransaction().commit();
 </pre></figure>
 
 <p><strong>一对一</strong>  </p>
-<pre><code><figure class="highlight"><pre><span class="comment">t_person</span>                        <span class="comment">t_card</span>
+<pre><code><span class="comment">t_person</span>                        <span class="comment">t_card</span>
 <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
 <span class="comment">id</span>                              <span class="comment">id(Fk)</span>
-<span class="comment">name</span>                            <span class="comment">cardnum
-</pre></figure></code></pre>
+<span class="comment">name</span>                            <span class="comment">cardnum</code></pre>
 <figure class="highlight lang-java"><figcaption><span>持久化类设计 </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> {</span> 
  
 <span class="keyword">private</span> <span class="keyword">int</span> id; 
@@ -220,8 +218,7 @@ session.getTransaction().commit();
 </pre></figure>
 
 
-<p>cascade属性 
-• <code>save-update</code>：在执行保存和修改是进行级联操作<br>• <code>delete</code>：在执行删除时进行级联操作<br>• <code>all</code>：在所有情况下进行级联操作<br>• <code>none</code>：不进行级联操作（默认）</p>
+<p>cascade属性<br>• <code>save-update</code>：在执行保存和修改是进行级联操作<br>• <code>delete</code>：在执行删除时进行级联操作<br>• <code>all</code>：在所有情况下进行级联操作<br>• <code>none</code>：不进行级联操作（默认）</p>
 <figure class="highlight lang-xml"><figcaption><span>card.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
 	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Card"</span> <span class="attribute">table</span>=<span class="value">"t_card"</span>&gt;</span> 
 		<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span> <span class="attribute">column</span>=<span class="value">"id"</span>&gt;</span> 
@@ -237,12 +234,11 @@ session.getTransaction().commit();
 
 
 <p><strong>一对一（唯一外键关联）</strong>  </p>
-<pre><code><figure class="highlight"><pre><span class="comment">t_person</span>                 <span class="comment">t_card</span>
+<pre><code><span class="comment">t_person</span>                 <span class="comment">t_card</span>
 <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
 <span class="comment">id</span>                       <span class="comment">id</span>
 <span class="comment">name</span>                     <span class="comment">cardnum</span>
-<span class="comment">cardid(FK)</span>               <span class="comment">personid(FK)
-</pre></figure></code></pre>
+<span class="comment">cardid(FK)</span>               <span class="comment">personid(FK)</code></pre>
 <figure class="highlight lang-xml"><figcaption><span>person.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
     <span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Person"</span> <span class="attribute">table</span>=<span class="value">"t_person"</span>&gt;</span> 
     	<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span>&gt;</span> 
@@ -268,12 +264,11 @@ session.getTransaction().commit();
 </pre></figure>
 
 <p><strong>多对多</strong>  </p>
-<pre><code><figure class="highlight"><pre><span class="comment">t_student</span>         <span class="comment">t_student_teacher</span>           <span class="comment">t_teacher</span>
+<pre><code><span class="comment">t_student</span>         <span class="comment">t_student_teacher</span>           <span class="comment">t_teacher</span>
 <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
 <span class="comment">id</span>                <span class="comment">id</span>                          <span class="comment">id</span>
 <span class="comment">name</span>              <span class="comment">studentid(FK)</span>                   <span class="comment">name</span>
-                  <span class="comment">teacherid(FK)
-</pre></figure></code></pre>
+                  <span class="comment">teacherid(FK)</code></pre>
 <figure class="highlight lang-java"><figcaption><span>持久化类设计 </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> {</span> 
  
 <span class="keyword">private</span> <span class="keyword">int</span> id; 
@@ -363,7 +358,7 @@ session.getTransaction().commit();
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -376,6 +371,9 @@ session.getTransaction().commit();
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -89,15 +89,11 @@
     <div class="entry">
       
         <p><strong>动态语言</strong> </p>
-<p>说到动态语言，大致认同的一个定义是：“程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言”。从这个观点看，Perl，Python
-，Ruby是动态语言，C++，Java，C#不是动态语言，但是也有人把java叫做&quot;动态语言&quot;,因为java所具有的Reflection是java被视为动态(或准动态)语言的一个关键性质。
-<a name="more"></a><br><strong>java语言的反射机制</strong> </p>
+<p>说到动态语言，大致认同的一个定义是：“程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言”。从这个观点看，Perl，Python<br>，Ruby是动态语言，C++，Java，C#不是动态语言，但是也有人把java叫做“动态语言”,因为java所具有的Reflection是java被视为动态(或准动态)语言的一个关键性质。<br><a id="more"></a><br><strong>java语言的反射机制</strong> </p>
 <p>• 在运行时判断任意一个对象所属的类。<br>• 在运行时构造任意一个类的对象。<br>• 在运行时判断任意一个类所具有的成员变量和方法。<br>• 在运行时调用任意一个对象的方法  </p>
 <p>在JDK中，主要由以下类来实现Java反射机制，这些类都位于<code>java.lang.reflect</code>包中<br>– Class 类：代表一个类。<br>– Field 类：代表类的成员变量（成员变量也称为类的属性）。<br>– Method 类：代表类的方法。<br>– Constructor 类：代表类的构造方法。<br>– Array 类：提供了动态创建数组，以及访问数组的元素的静态方法  </p>
 <p><strong>Class类</strong> </p>
-<p>在java的Object类中的申明了数个应该在所有的java类中被改写的methods：hashCode(), equals(),clone(),toStrin(),getClass()等，其中的getClass()返回一个Class 类型的对象。Class类十分的特殊，它和一般的类一样继承自Object，其实体用以表达java程序运行
-时的 class和 interface，也用来表达 enum，array，primitive，Java Types 以及关键字void，当加载一个类，或者当加载器（class loader）的defineClass（）被JVM调用，便产生一个Class
-对象，Class是Reflection起源，针对任何你想探勘的class（类），唯有现为他产生一个Class的对象，接下来才能经由后者唤起为数十多个的反射API。  </p>
+<p>在java的Object类中的申明了数个应该在所有的java类中被改写的methods：hashCode(), equals(),clone(),toStrin(),getClass()等，其中的getClass()返回一个Class 类型的对象。Class类十分的特殊，它和一般的类一样继承自Object，其实体用以表达java程序运行<br>时的 class和 interface，也用来表达 enum，array，primitive，Java Types 以及关键字void，当加载一个类，或者当加载器（class loader）的defineClass（）被JVM调用，便产生一个Class<br>对象，Class是Reflection起源，针对任何你想探勘的class（类），唯有现为他产生一个Class的对象，接下来才能经由后者唤起为数十多个的反射API。  </p>
 <p><strong>Class类常用方法</strong>  </p>
 <figure class="highlight"><pre><span class="function"><span class="title">getName</span><span class="params">()</span>  　获得类的完整名字 
 <span class="title">getMethods</span><span class="params">()</span>  　获取所有<span class="title">public</span>方法    
@@ -431,7 +427,7 @@ Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -444,6 +440,9 @@ Object result1 = addMethod.invoke(invokeTester, <span class="number">1</span>, <
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

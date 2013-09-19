@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -64,6 +64,105 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-17T02:47:32.000Z"><a href="/2013/08/17/spring-ioc/">Aug 17th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Java">
+                <a href="/tags/Java/">Java</a>
+              </span>
+            
+              <span class="tag-Spring">
+                <a href="/tags/Spring/">Spring</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/08/17/spring-ioc/">深入浅出Spring IOC原理</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>学过spring的应该知道，spring的核心就是ioc和aop了。今天来说一下ioc到底是什么，原理是什么，主要解决了哪些问题。<br><strong>IOC拟物化</strong><br>我不知道大家有没有经常网购的习惯，反正我平常消费的银子70%都是花在网购上，感觉网购很方便，可以随便挑，各种东西应有尽有，还送货上门，乐趣无限啊。说到网购，大家仔细想一下，其实，淘宝网就是很大的ioc容器，你要的东西应有尽有，店家把各自的东西挂到上面，就相当于把Bean放入容器的过程，而我们搜索我们想要的东西的过程，就类似于ioc注入的过程，找到了也就是注入成功了，找不到就抛出异常。意思就是：只要满足我们的条件，哪家卖的都无所谓。言外之意，反应到ioc中就是：只要实现的接口，具体注入哪个实现类都是无关紧要的。<br><strong>IOC概念</strong><br>我们都知道ioc是控制反转，什么是控制反转呢？个人认为这个概念比较抽象，另一个名称：DI(依赖注入)能更好的解释这个概念。从字面意义上理解，控制反转就是反过来控制。以前我们需要一个对象，都需要自己去new出来这个对象，控制反转之后，也就是说我们不需要主动自己去new这个对象，我们只要直接去接受这个对象就行了，换句话说这个对象被注入进来了，这就是DI的概念。<br><strong>IOC原理</strong><br>我们知道，ioc的最大作用就是bean管理和解耦。到底是如何进行解耦的呢？下面我用数学中的有向图进行说明。我们可以把Spring管理的每一个Bean当做一个节点（假设有N个Bean，那么就有N个节点），于是这些Bean加上相互之间表示调用关系的有向边就组成了一个有向图。毫无疑问，有向图的边越多那么平均来说每个顶点之间的耦合度就越大，最大的情况为完全有向图，即任何两个节点之间都有两条有向边，此时每个顶点的度为2（N-1），也就是说每个Bean与其他的N-1个Bean有耦合，而且还是双向耦合。如下图所示：<br><img src="http://ww3.sinaimg.cn/large/6cdc22a9jw1e7pj6y5vfpj20bx07at8r.jpg" alt="Bean之间相互耦合"><br>在编程的时候，我们都是本着高内聚、低耦合的编程方式，但是我们知道，要想达到完全的没有耦合是不可能的。所以能做的就是尽最大可能的保证松耦合。如何能减少类与类直接的耦合呢？一般我们都是用接口来实现。通过让类与类之间，依赖于接口，而不依赖于类，来达到松耦合的目的。但是无论耦合多么“松散”，具体的实现类还是需要new出来的，于是就得考虑这个new的过程应该放在哪里才是最合适的。如果在每个Bean中都去new这个Bean需要的其他Bean，那么耦合的程度又回到了上图的情况，那是没有意义的。所以我们就需要找一个中间人，在中间人那里实现new的过程，然后把new好的实例传递给需要这个实例的对象，这样的话一切问题就迎刃而解了。因此spring ioc容器就借助这个原理实现了bean管理和松耦合的功能。如下图所示：<br><img src="http://ww4.sinaimg.cn/large/6cdc22a9jw1e7pjqc4ddyj20a808awei.jpg" alt="IOC容器进行解耦"><br>上图也就是Spring的数学描述，图中很清晰的表明了在使用Spring之后，任意两个节点（Bean）之间的有向线段变成了0（确切的说不完全是0，因为任意两个节点之间还是可以通过容器连接的），唯一和这些Bean有关系的是容器（无论谁需要什么东西都去找容器，尽量避免两个Bean之间直接打交道）也正因为如此Spring才达到了解耦的目的。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-10-28T05:49:00.000Z"><a href="/2012/10/28/2012-10-28-javascript-1/">Oct 28th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Javascript">
+                <a href="/tags/Javascript/">Javascript</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2012/10/28/2012-10-28-javascript-1/">javascript中escape,encodeURI,encodeURIComponent函数</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>三个方法主要用来转码操作，解决地址栏中文传参等问题，但有所不同。</p>
+<figure class="highlight lang-javascript"><pre>encodeURI(URIstring)
+</pre></figure>
+
+<p>该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：<code>- _ . ! ~ * &#39; ( ) 。</code><br>该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：<code>;/?:@&amp;=+$,#</code>;此时就必须使用encodeURIComponent()进行编码。<br>1. 传递参数时需要使用encodeURIComponent，这样组合的url才不会被#等特殊字符截断。<br>2. 进行url跳转时可以整体使用encodeURI<br>3. js使用数据时可以使用escape<br>4. escape对0-255以外的unicode值进行编码时输出%u<em>**</em>格式，其它情况下escape，encodeURI，encodeURIComponent编码结果相同。另外使用<code>unescape()</code>对    <code>escape()</code>编码的字符进行解码。但是ECMAScript v3反对使用该方法，应使用<code>decodeURI()</code>和<code>decodeURIComponent()</code>代替<br>最多使用的应为encodeURIComponent，它是将中文、韩文等特殊字符转换成utf-8格式的url编码，所以如果给后台传递参数需要使用encodeURIComponent时需要后台解码对utf-8支持（form中的编码方式和当前页面编码方式相同）</p>
+<figure class="highlight lang-javascript"><pre>escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
+
+encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，
+
+0-9，a-z，A-Z
+
+encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~，0-9，a-z，A-Z
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -96,7 +195,7 @@
 <span class="rule">}</span></span>
 </pre></figure>
 
-<p><strong>三、使用Modernizr检测css3支持</strong><br><a href="http://www.modernizr.com">Modernizr</a>是一个第三方脚本，它可以检测用户浏览器对css3和html5特性的支持情况，然后会对html元素添加一些类来表明当前浏览器是否支持某些特性，比如“no-multiplebgs”表明浏览器不支持在单一元素上排布多背景图片，而相应的“multiplebgs”则表明浏览器是支持的。<br>当这些类加入时，我们就可以很容易的为每个类编写特定的样式，而且能够确保每个样式只会被支持的浏览器识别。比如：</p>
+<p><strong>三、使用Modernizr检测css3支持</strong><br><a href="http://www.modernizr.com" target="_blank">Modernizr</a>是一个第三方脚本，它可以检测用户浏览器对css3和html5特性的支持情况，然后会对html元素添加一些类来表明当前浏览器是否支持某些特性，比如“no-multiplebgs”表明浏览器不支持在单一元素上排布多背景图片，而相应的“multiplebgs”则表明浏览器是支持的。<br>当这些类加入时，我们就可以很容易的为每个类编写特定的样式，而且能够确保每个样式只会被支持的浏览器识别。比如：</p>
 <figure class="highlight lang-css"><pre><span class="id">#wrapper</span> <span class="rules">{
 	<span class="rule">……	
 }</span></span>
@@ -105,8 +204,7 @@
 }</span></span>
 </pre></figure>
 
-<p>另外推荐一遍文章 <a href="http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr">taking advantage of html5 and css3 with modernizr</a><br><strong>四、使用javascript模拟Css3</strong><br>javascript通常能够是的不支持的浏览器实现和高级浏览器一样的效果，例如现在已经有很多脚本实现圆角效果了。
-<a href="http://code.google.com/p/html5shiv/"><strong>html5.js</strong></a>,你只需且必须在页面head元素内调用它就行了(因为IE必须在元素解析前知道这个元素，所以这个js文件不能在页面底部调用）。</p>
+<p>另外推荐一遍文章 <a href="http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr" target="_blank">taking advantage of html5 and css3 with modernizr</a><br><strong>四、使用javascript模拟Css3</strong><br>javascript通常能够是的不支持的浏览器实现和高级浏览器一样的效果，例如现在已经有很多脚本实现圆角效果了。<br><a href="http://code.google.com/p/html5shiv/" target="_blank"><strong>html5.js</strong></a>,你只需且必须在页面head元素内调用它就行了(因为IE必须在元素解析前知道这个元素，所以这个js文件不能在页面底部调用）。</p>
 <figure class="highlight lang-javascript"><figcaption><span>html5.js </span></figcaption><pre>&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;
 <span class="xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://html5shiv.googlecode.com/svn/trunk/html5.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">![endif]--</span>&gt;</span></span>
@@ -211,7 +309,7 @@ print(-<span class="number">3</span> ** <span class="number">2</span>) <span cla
 print((-<span class="number">3</span>) ** <span class="number">2</span>)	<span class="comment"># 9</span>
 </pre></figure>
 
-<p><strong>注意：</strong>Python 不支持 C 语言中的自增 1 和自减 1 运算符,这是因为 + 和 － 也是单目运算符，Python 会将 --n 解释为-(-n) 从而得到 n , 同样 ++n 的结果也是 n.  </p>
+<p><strong>注意：</strong>Python 不支持 C 语言中的自增 1 和自减 1 运算符,这是因为 + 和 － 也是单目运算符，Python 会将 —n 解释为-(-n) 从而得到 n , 同样 ++n 的结果也是 n.  </p>
 <p><strong>获取用户输入：</strong><br>获取用户输入可以使用<code>input(prompt)</code>函数和<code>raw_input(prompt)</code>.</p>
 <figure class="highlight lang-python"><figcaption><span>input&raw_input </span></figcaption><pre>value1 = raw_input(<span class="string">"&gt; "</span>)
 value2 = input(<span class="string">"&gt; "</span>)
@@ -233,9 +331,7 @@ Traceback (most recent call last):
 NameError: name <span class="string">'abc'</span> <span class="keyword">is</span> <span class="keyword">not</span> defined
 </pre></figure>
 
-<p>从以上测试，我们知道：<br>1. <code>raw_input()</code>将所有输入作为字符串看待，返回字符串类型。而<code>input()</code>在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（ int, float ）;<br>2. 这两个函数均能接收字符串 ，但<code>raw_input()</code>直接读取控制台的输入（任何类型的输入它都可以接收）。而对于<code>input()</code>，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError。<br>3. 查看<a href="http://docs.python.org/library/functions.html?highlight=input#built-in-functions">Built-in Functions</a>可以知道<code>input()</code>本质上还是使用<code>raw_input()</code>来实现的，只是调用完<code>raw_input()</code>之后再调用<code>eval()</code>函数，所以，你甚至可以将表达式作为<code>input()</code>的参数，并且它会计算表达式的值并返回它。
-另外在<code>Built-in Functions</code>里说到：Consider using the raw_input() function for general input from users.
-意思就是<strong>除非对<code>input()</code>有特别需要，否则一般情况下我们都是推荐使用<code>raw_input()</code></strong>。l</p>
+<p>从以上测试，我们知道：<br>1. <code>raw_input()</code>将所有输入作为字符串看待，返回字符串类型。而<code>input()</code>在对待纯数字输入时具有自己的特性，它返回所输入的数字的类型（ int, float ）;<br>2. 这两个函数均能接收字符串 ，但<code>raw_input()</code>直接读取控制台的输入（任何类型的输入它都可以接收）。而对于<code>input()</code>，它希望能够读取一个合法的 python 表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个 SyntaxError。<br>3. 查看<a href="http://docs.python.org/library/functions.html?highlight=input#built-in-functions" target="_blank">Built-in Functions</a>可以知道<code>input()</code>本质上还是使用<code>raw_input()</code>来实现的，只是调用完<code>raw_input()</code>之后再调用<code>eval()</code>函数，所以，你甚至可以将表达式作为<code>input()</code>的参数，并且它会计算表达式的值并返回它。<br>另外在<code>Built-in Functions</code>里说到：Consider using the raw_input() function for general input from users.<br>意思就是<strong>除非对<code>input()</code>有特别需要，否则一般情况下我们都是推荐使用<code>raw_input()</code></strong>。l</p>
 <figure class="highlight lang-python"><figcaption><span>一些基础函数 </span></figcaption><pre>abs(number) 			<span class="comment">#返回数字的绝对值  </span>
 math.sqrt(number)		<span class="comment">#返回平方根，不适用于负数</span>
 cmath.sqrt(number) 		<span class="comment">#返回平方根，也可以应用于负数</span>
@@ -294,8 +390,7 @@ repr(object)			<span class="comment">#返回值的字符串表示形式</span>
       
         <p>Mac OS X 内置的截图应用程序Grab。Grab截屏的特点包括可截取带有光标的屏幕，光标样式可以在设置里选择。还可以利用Grab时间延迟功能，也能截取带菜单的截图。</p>
 <p>不用开启程序直接快捷键即可截图，常用快捷键：</p>
-<p><code>⌘-⇧-3</code>: 全屏截屏, 保存至桌面;<br><code>⌘-⇧-4</code>: 选定屏幕的某一方形区域截屏, 拖动指针改变选定区域;<br><code>⌘-⇧-4</code>, 释放, 然后按空格, 点击, 对当前活动窗口截屏, 并保存至桌面;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住空格, 可以固定选定方块在屏幕上拖动截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥</code>, 可以在水平或垂直方向以已选区域为中心, 同比例放大或缩小;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧</code>, 固定<code>x</code>轴<code>y</code>轴选定宽度, 变动<code>y</code>轴或<code>x</code>轴来截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥-⇧</code>, 上述5/6的组合;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧-空格</code>, 上述4/6的组合.
-<code>ctrl+</code>以上3条快捷键任一条, 把截屏保存至剪贴板; </p>
+<p><code>⌘-⇧-3</code>: 全屏截屏, 保存至桌面;<br><code>⌘-⇧-4</code>: 选定屏幕的某一方形区域截屏, 拖动指针改变选定区域;<br><code>⌘-⇧-4</code>, 释放, 然后按空格, 点击, 对当前活动窗口截屏, 并保存至桌面;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住空格, 可以固定选定方块在屏幕上拖动截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥</code>, 可以在水平或垂直方向以已选区域为中心, 同比例放大或缩小;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧</code>, 固定<code>x</code>轴<code>y</code>轴选定宽度, 变动<code>y</code>轴或<code>x</code>轴来截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥-⇧</code>, 上述5/6的组合;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧-空格</code>, 上述4/6的组合.<br><code>ctrl+</code>以上3条快捷键任一条, 把截屏保存至剪贴板; </p>
 <p><strong>在以上任一条快捷中, 按Esc取消截屏.</strong></p>
 
       
@@ -496,8 +591,7 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
 <p>当开发一个Web页面时，要考虑第一件事就是区分页面重点。将这些内容用DIV标签包含起来，页面的代码会呈现出整洁、缩进良好的风格。 </p>
 <p><strong>2、将HTML标签和CSS样式表分割开来 </strong></p>
 <p>好的页面应该将HTML标签和CSS样式表分割开来。这是每一个Web开发者在首次接触Web开发时就应该知道的一条原则。然而，直到今天，仍然有很多开发者没有严格遵循这一原则。 </p>
-<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。 
-
+<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。<br>
       
     </div>
     <footer>
@@ -542,8 +636,7 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
     <div class="entry">
       
         <p><strong>1. 代码只占生意的5%</strong>  </p>
-<p>我见到的最多、最严重的问题就是开发者被代码绑架，花费数不清的时间让一个功能变得完美，或者炫耀最新的技术。是的，你的代码必须高质量，并且没有严重的 bug 和安全问题。但是你要记住，再好的代码如果没有人用的话都是垃圾。当税务局过来封门查税的时候，你会发现代码是没有用的，当你收到法院关于知识产权官司传票的时候，你会发现代码是没有用的。
-
+<p>我见到的最多、最严重的问题就是开发者被代码绑架，花费数不清的时间让一个功能变得完美，或者炫耀最新的技术。是的，你的代码必须高质量，并且没有严重的 bug 和安全问题。但是你要记住，再好的代码如果没有人用的话都是垃圾。当税务局过来封门查税的时候，你会发现代码是没有用的，当你收到法院关于知识产权官司传票的时候，你会发现代码是没有用的。<br>
       
     </div>
     <footer>
@@ -589,8 +682,7 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
       
         <p><strong>创建型模式</strong></p>
 <p>1、FACTORY—追MM少不了请吃饭了，麦当劳的鸡翅和肯德基的鸡翅都是MM爱吃的东西，虽然口味有所不同，但不管你带MM去麦当劳或肯德基，只管向服务员说“来四个鸡翅”就行了。麦当劳和肯德基就是生产鸡翅的Factory</p>
-<p><code>工厂模式</code>：客户类和工厂类分开。消费者任何时候需要某种产品，只需向工厂请求即可。消费者无须修改就可以接纳新产品。缺点是当产品修改时，工厂类也要做相应的修改。如：如何创建及如何向客户端提供。
-
+<p><code>工厂模式</code>：客户类和工厂类分开。消费者任何时候需要某种产品，只需向工厂请求即可。消费者无须修改就可以接纳新产品。缺点是当产品修改时，工厂类也要做相应的修改。如：如何创建及如何向客户端提供。<br>
       
     </div>
     <footer>
@@ -599,154 +691,6 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
           <div class="alignleft readMore">
             <a href="/2012/06/04/2012-06-04-pd-story/#more" class="more-link">Read More</a>
           </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-05-20T03:08:00.000Z"><a href="/2012/05/20/2012-06-03-ubuntu-octopress3/">May 20th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Linux">
-                <a href="/tags/Linux/">Linux</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/05/20/2012-06-03-ubuntu-octopress3/">no such file to load -- openssl解决方案</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>出现这个问题，按照上次缺少zlib的解决经验，首先去bashsource文件夹下安装openssl  </p>
-<figure class="highlight lang-bash"><pre>cd .rvm/src/ruby-1.9.2-p320/ext/openssl  
-bashextconf.rb
-</pre></figure>
-
-
-<p>执行到这一步的时候，又开始郁闷了，出现了如下错误：</p>
-<figure class="highlight lang-bash"><pre>=== OpenSSL <span class="keyword">for</span> bashconfigurator === 
-=== Checking <span class="keyword">for</span> system dependent stuff... === 
-checking <span class="keyword">for</span> t_open() <span class="keyword">in</span> -lnsl... no 
-checking <span class="keyword">for</span> socket() <span class="keyword">in</span> -lsocket... no 
-checking <span class="keyword">for</span> assert.h... yes 
-=== Checking <span class="keyword">for</span> required stuff... === 
-checking <span class="keyword">for</span> openssl/ssl.h... no 
-=== Checking <span class="keyword">for</span> required stuff failed. === 
-Makefile wasn<span class="string">'t created. Fix the errors above.
-</pre></figure>
-
-
-<p>看了一下，说缺少<code>ssl.h</code>,然后makefile无法创建。没办法，只有去下载openssl，然后自己编译了；<a href="http://www.openssl.org/">点我</a>官网下载openssl,现在最新版是<code>OpenSSL 1.0.1c.tar.gz</code>，然后解压，完成后执行:</p>
-<figure class="highlight lang-bash"><pre>make && sudo make install
-</pre></figure>
-
-
-<p>漫长等待后,去该文件夹下可以发现<code>ssl.h</code>文件存在了，现在cd到ruby源文件文件夹的/ext/openssl文件夹下，执行:</p>
-<figure class="highlight lang-bash"><pre>bashextconf.rb --with-openssl-include=/usr/local/ssl/include/
-</pre></figure>
-
-
-<p>惊喜之余，又出现了新错误： </p>
-<figure class="highlight lang-bash"><pre>=== OpenSSL <span class="keyword">for</span> bashconfigurator === 
-=== Checking <span class="keyword">for</span> system dependent stuff... === 
-checking <span class="keyword">for</span> t_open() <span class="keyword">in</span> -lnsl... no 
-checking <span class="keyword">for</span> socket() <span class="keyword">in</span> -lsocket... no 
-checking <span class="keyword">for</span> assert.h... yes 
-=== Checking <span class="keyword">for</span> required stuff... === 
-checking <span class="keyword">for</span> openssl/ssl.h... yes 
-checking <span class="keyword">for</span> OpenSSL_add_all_digests() <span class="keyword">in</span> -lcrypto... no 
-checking <span class="keyword">for</span> OpenSSL_add_all_digests() <span class="keyword">in</span> -llibeay32... no 
-=== Checking <span class="keyword">for</span> required stuff failed. === 
-Makefile wasn<span class="string">'t created. Fix the errors above.
-</pre></figure>
-
-<p>虽然出错了，大家仔细看下会发现ssl.h已经check到了，下面只需要再执行一个命令即可:</p>
-<figure class="highlight lang-bash"><pre>bashextconf.rb --with-openssl-include=/usr/local/ssl/include/ --with-openssl-lib=/usr/local/ssl/lib
-</pre></figure>
-
-
-<p>这时我们会发现makefile已经成功创建，现在就可以接着执行下面命令了</p>
-<figure class="highlight lang-bash"><pre>make && sudo make install
-</pre></figure>
-
-
-<p>现在再测试一下吧，你会发现openssl被成功的安装了到ruby的安装文件夹!</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-05-08T07:55:00.000Z"><a href="/2012/05/08/2012-06-03-ubuntu-octopress2/">May 8th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Linux">
-                <a href="/tags/Linux/">Linux</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/05/08/2012-06-03-ubuntu-octopress2/">升级gem提示缺少no such file to load --zlib</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>在ubuntu中，在进行<code>gem update --system</code>的时候，可能会报<code>no such file to load --zlib</code>，这个时候我们第一反应就是去安装zlib1g-dev，执行命令如下：</p>
-<figure class="highlight lang-bash"><pre>sudo apt-get install zlib1g-dev
-</pre></figure>
-
-
-<p>安装完成后，再次<code>gem update --system</code>我们会发现问题依旧，这时候需要到ruby Source文件夹下安装ruby自身提供的zlib包</p>
-<figure class="highlight lang-bash"><pre>cd .rvm/src/ruby-1.9.2-p320/ext/zlib  
-ruby extconf.rb  
-make 
-sudo make install
-</pre></figure>
-
-
-<p>现在再次运行gem update –system，搞定！</p>
-
-      
-    </div>
-    <footer>
-      
         
         
       
@@ -772,7 +716,7 @@ sudo make install
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -785,6 +729,9 @@ sudo make install
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

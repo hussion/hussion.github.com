@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -89,8 +89,7 @@
     <div class="entry">
       
         <p><code>Wallpaper Wizard</code>是mac上为数不多的壁纸应用中最为突出的，漂亮简洁的界面，以及海量高清壁纸，不同分类，任你下载，推荐指数5颗星 ★★★★★。</p>
-<p><img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8ltcod0b0j20uo0msgrd.jpg" alt="">
-<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8ltdwpx9ij20uo0msn2q.jpg" alt=""></p>
+<p><img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8ltcod0b0j20uo0msgrd.jpg" alt=""><br><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8ltdwpx9ij20uo0msn2q.jpg" alt=""></p>
 
       
     </div>
@@ -132,7 +131,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -145,6 +144,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

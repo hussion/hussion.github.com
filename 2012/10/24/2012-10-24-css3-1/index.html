@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -95,7 +95,7 @@
 <span class="rule">}</span></span>
 </pre></figure>
 
-<p><strong>三、使用Modernizr检测css3支持</strong><br><a href="http://www.modernizr.com">Modernizr</a>是一个第三方脚本，它可以检测用户浏览器对css3和html5特性的支持情况，然后会对html元素添加一些类来表明当前浏览器是否支持某些特性，比如“no-multiplebgs”表明浏览器不支持在单一元素上排布多背景图片，而相应的“multiplebgs”则表明浏览器是支持的。<br>当这些类加入时，我们就可以很容易的为每个类编写特定的样式，而且能够确保每个样式只会被支持的浏览器识别。比如：</p>
+<p><strong>三、使用Modernizr检测css3支持</strong><br><a href="http://www.modernizr.com" target="_blank">Modernizr</a>是一个第三方脚本，它可以检测用户浏览器对css3和html5特性的支持情况，然后会对html元素添加一些类来表明当前浏览器是否支持某些特性，比如“no-multiplebgs”表明浏览器不支持在单一元素上排布多背景图片，而相应的“multiplebgs”则表明浏览器是支持的。<br>当这些类加入时，我们就可以很容易的为每个类编写特定的样式，而且能够确保每个样式只会被支持的浏览器识别。比如：</p>
 <figure class="highlight lang-css"><pre><span class="id">#wrapper</span> <span class="rules">{
 	<span class="rule">……	
 }</span></span>
@@ -104,8 +104,7 @@
 }</span></span>
 </pre></figure>
 
-<p>另外推荐一遍文章 <a href="http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr">taking advantage of html5 and css3 with modernizr</a><br><strong>四、使用javascript模拟Css3</strong><br>javascript通常能够是的不支持的浏览器实现和高级浏览器一样的效果，例如现在已经有很多脚本实现圆角效果了。
-<a href="http://code.google.com/p/html5shiv/"><strong>html5.js</strong></a>,你只需且必须在页面head元素内调用它就行了(因为IE必须在元素解析前知道这个元素，所以这个js文件不能在页面底部调用）。</p>
+<p>另外推荐一遍文章 <a href="http://www.alistapart.com/articles/taking-advantage-of-html5-and-css3-with-modernizr" target="_blank">taking advantage of html5 and css3 with modernizr</a><br><strong>四、使用javascript模拟Css3</strong><br>javascript通常能够是的不支持的浏览器实现和高级浏览器一样的效果，例如现在已经有很多脚本实现圆角效果了。<br><a href="http://code.google.com/p/html5shiv/" target="_blank"><strong>html5.js</strong></a>,你只需且必须在页面head元素内调用它就行了(因为IE必须在元素解析前知道这个元素，所以这个js文件不能在页面底部调用）。</p>
 <figure class="highlight lang-javascript"><figcaption><span>html5.js </span></figcaption><pre>&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;
 <span class="xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://html5shiv.googlecode.com/svn/trunk/html5.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">![endif]--</span>&gt;</span></span>
@@ -181,7 +180,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -194,6 +193,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

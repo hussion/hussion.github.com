@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -89,9 +89,7 @@
     <div class="entry">
       
         <p><strong>1. 代码只占生意的5%</strong>  </p>
-<p>我见到的最多、最严重的问题就是开发者被代码绑架，花费数不清的时间让一个功能变得完美，或者炫耀最新的技术。是的，你的代码必须高质量，并且没有严重的 bug 和安全问题。但是你要记住，再好的代码如果没有人用的话都是垃圾。当税务局过来封门查税的时候，你会发现代码是没有用的，当你收到法院关于知识产权官司传票的时候，你会发现代码是没有用的。
-<a name="more"></a>
-我看到太多创业者在论坛、博客中讨论代码的问题，而不是商业的问题。当然讨论商业的问题更让人头疼，那么谁让你要创业的呢？</p>
+<p>我见到的最多、最严重的问题就是开发者被代码绑架，花费数不清的时间让一个功能变得完美，或者炫耀最新的技术。是的，你的代码必须高质量，并且没有严重的 bug 和安全问题。但是你要记住，再好的代码如果没有人用的话都是垃圾。当税务局过来封门查税的时候，你会发现代码是没有用的，当你收到法院关于知识产权官司传票的时候，你会发现代码是没有用的。<br><a id="more"></a><br>我看到太多创业者在论坛、博客中讨论代码的问题，而不是商业的问题。当然讨论商业的问题更让人头疼，那么谁让你要创业的呢？</p>
 <p><strong>2. 界面很重要，特别是和竞争对手相比</strong>  </p>
 <p>你的产品界面必须做好！标准的灰色的背景和方框控件是不够的。但是你也要注意你的界面只需要比你竞争对手更漂亮就行了。所以你正在开发一个 IT 系统的后台管理系统的话，你不需要按照终端用户产品的标准来做。你要做的只是让你的客户意识到你的界面比竞争对手的更好。记住，人们往往都是看封面买书的。</p>
 <p><strong>3. 考虑长远</strong>  </p>
@@ -114,7 +112,7 @@
 <p>时间总是不够用的。往往看起来只需要一天的工作最终花费了好几个礼拜。你需要耐心。我发现我必须时常提醒自己这一点，否则我就会因为没有足够的进度而变得暴躁。如果可能的话，不要和你的客户设定时间期限，更不要把三个月的工作承诺一个月做完。我自己也还在琢磨这一点。</p>
 <p><strong>10. 始终像学习编程一样对待创业</strong>  </p>
 <p>还记得你刚开始学习编程的时候吗？你会把每本书都读一遍。在学习第一门语言的时候，你会买八本不同的书，虽然他们讲的是差不多的内容，但你还是把它们都看完了，因为你总感觉你还没学够。从一个程序员变成一个创业者，你需要把这种态度拿出来，否则你永远是屌丝，永远成不了高富帅。你需要阅读尽可能多的资料让你了解目标市场，经营企业，日常管理，时间管理。  </p>
-<p><a href="http://www.ianlandsman.com/2006/10/06/10-tips-for-moving-from-programmer-to-entrepreneur">原文链接</a></p>
+<p><a href="http://www.ianlandsman.com/2006/10/06/10-tips-for-moving-from-programmer-to-entrepreneur" target="_blank">原文链接</a></p>
 
       
     </div>
@@ -156,7 +154,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -169,6 +167,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -90,9 +90,7 @@
       
         <p>MVC是<strong>Model-View-Controller</strong>的简称，即模型-视图-控制器。  </p>
 <p><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8f30hrtdcj209604z3yf.jpg" alt=""></p>
-<p>MVC它是一种设计模式，它把应用程序分成三个核心模块：模型、视图、控制器，它们各自处理自己的任务。
-MVC（Model-View-Controller）应用程序结构被用来分析分布式应用程序的特征。这种抽象结构能有助于将应用程序分割成若干逻辑部件，使程序设计变得更加容易。<br><a name="more"></a>
-MVC结构提供了一种按功能对各种对象进行分割的方法（这些对象是用来维护和表现数据的），其目的是为了将各对象间的耦合程度减至最小。MVC结构本来是为了将传统的输入（input）、处理（processing）、输出（output）任务运用到图形化用户交互模型中而设计的。但是，将这些概念运用于基于Web的企业级多层应用领域也是很适合的。 </p>
+<p>MVC它是一种设计模式，它把应用程序分成三个核心模块：模型、视图、控制器，它们各自处理自己的任务。<br>MVC（Model-View-Controller）应用程序结构被用来分析分布式应用程序的特征。这种抽象结构能有助于将应用程序分割成若干逻辑部件，使程序设计变得更加容易。<br><a id="more"></a><br>MVC结构提供了一种按功能对各种对象进行分割的方法（这些对象是用来维护和表现数据的），其目的是为了将各对象间的耦合程度减至最小。MVC结构本来是为了将传统的输入（input）、处理（processing）、输出（output）任务运用到图形化用户交互模型中而设计的。但是，将这些概念运用于基于Web的企业级多层应用领域也是很适合的。 </p>
 <p>在MVC结构中，模型（Model）代表应用程序的数据（data）和用于控制访问和修改这些数据的业务规则（business rule）。通常模型被用来作为对现实世界中一个处理过程的软件近似，当定义一个模型时，可以采用一般的简单的建模技术。 </p>
 <p>当模型发生改变时，它会通知视图（View），并且为视提供查询模型相关状态的能力。同时，它也为控制器（Controller）提供访问封装在模型内部的应用程序功能的能力。 </p>
 <p>一个视图（View）用来组织模型的内容。它从模型那里获得数据并指定这些数据如何表现。当模型变化时，视负责维持数据表现的一致性。视同时将用户要求告知控制器（Controller）。 </p>
@@ -149,7 +147,7 @@ MVC结构提供了一种按功能对各种对象进行分割的方法（这些�
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -162,6 +160,9 @@ MVC结构提供了一种按功能对各种对象进行分割的方法（这些�
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

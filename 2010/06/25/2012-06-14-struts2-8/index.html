@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -93,9 +93,7 @@
     <div class="entry">
       
         <p><strong>零配置</strong>  </p>
-<p>要实现零配置，首先必须要导入jar包，struts2-convention-plugin.jar，然后要遵守其约定，现在的这些ssh框架，基本都是约定大于配置的。 
-<a name="more"></a> 
-<code>&lt;1&gt;</code> 包名：包名必须是xx.xx.action(actions, struts, struts2)这种形式。<br><code>&lt;2&gt;</code> 类名：你的aciton类名必须是XxxAction形式，比如下面的UserAction<br><code>&lt;3&gt;</code> 请求名：按照上面的约定写好包名和类名后，那么你的默认请求名就为xxx.action(XxxAction的首字母小写,并去掉Action，然后加上.action)，比如说有一个UserAction，那么默认请求名就为user.action，，当然了这是针对execute()方法的。<br><code>&lt;4&gt;</code>请求页面：必须要在项目的/WEB-INF/下面新建一个content文件夹，路径也就是/WEB-INF/content，然后页面名字为：请求名-返回值.jsp ，比如说user.action的execute()方法返回值为success，那么它的请求页面为：user-success.jsp，如果返回值为input，那么请求页面名字为：user-input.jsp.     </p>
+<p>要实现零配置，首先必须要导入jar包，struts2-convention-plugin.jar，然后要遵守其约定，现在的这些ssh框架，基本都是约定大于配置的。<br><a id="more"></a><br><code>&lt;1&gt;</code> 包名：包名必须是xx.xx.action(actions, struts, struts2)这种形式。<br><code>&lt;2&gt;</code> 类名：你的aciton类名必须是XxxAction形式，比如下面的UserAction<br><code>&lt;3&gt;</code> 请求名：按照上面的约定写好包名和类名后，那么你的默认请求名就为xxx.action(XxxAction的首字母小写,并去掉Action，然后加上.action)，比如说有一个UserAction，那么默认请求名就为user.action，，当然了这是针对execute()方法的。<br><code>&lt;4&gt;</code>请求页面：必须要在项目的/WEB-INF/下面新建一个content文件夹，路径也就是/WEB-INF/content，然后页面名字为：请求名-返回值.jsp ，比如说user.action的execute()方法返回值为success，那么它的请求页面为：user-success.jsp，如果返回值为input，那么请求页面名字为：user-input.jsp.     </p>
 <p><strong>Annotation配置</strong>  </p>
 <p>零配置虽好，但是还是有局限的，比如它只能请求Action里面的execute()方法，如果想请求其他方法，以及自定义跳转方式等，还需借助Annotation配置方式。下面看实例：</p>
 <figure class="highlight lang-java"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAction</span> {</span>  
@@ -114,8 +112,7 @@
 </pre></figure>
 
 
-<p>@Action()括号里面如果只有一个参数配置，那么就可以把@Action(value=“xxx”)，简写成 
-@Action（&quot;xxx&quot;）,如果有多个参数，那么就不能简写了。就需要像login（）方法上面的格式进行编写。<br><code>&lt;1&gt;</code>results：里面可以写多个@Result（）只要中间以逗号隔开即可：results={@Result(),@Result()}，另外results也可以写在public class UserAction的头上，格式为：@Results({@Result=(),@Result=()});<br><code>&lt;2&gt;</code> name：name和xml配置文件里意思一样<br><code>&lt;3&gt;</code> location：需要跳转的页面<br><code>&lt;4&gt;</code> type：跳转方式<br><code>&lt;5&gt;</code> params：参数配置，格式为：奇数为key，偶数为value<br><code>&lt;6&gt;</code> interceptorRefs：拦截器配置，配置多个也要以逗号分割开来（和results一样，也是可以写在public class UserAction的头上的，格式也是一样的）</p>
+<p>@Action()括号里面如果只有一个参数配置，那么就可以把@Action(value=“xxx”)，简写成<br>@Action（“xxx”）,如果有多个参数，那么就不能简写了。就需要像login（）方法上面的格式进行编写。<br><code>&lt;1&gt;</code>results：里面可以写多个@Result（）只要中间以逗号隔开即可：results={@Result(),@Result()}，另外results也可以写在public class UserAction的头上，格式为：@Results({@Result=(),@Result=()});<br><code>&lt;2&gt;</code> name：name和xml配置文件里意思一样<br><code>&lt;3&gt;</code> location：需要跳转的页面<br><code>&lt;4&gt;</code> type：跳转方式<br><code>&lt;5&gt;</code> params：参数配置，格式为：奇数为key，偶数为value<br><code>&lt;6&gt;</code> interceptorRefs：拦截器配置，配置多个也要以逗号分割开来（和results一样，也是可以写在public class UserAction的头上的，格式也是一样的）</p>
 
       
     </div>
@@ -157,7 +154,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -170,6 +167,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

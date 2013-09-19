@@ -89,6 +89,7 @@ a:hover {
 }
 .bgdiv {
   position: fixed;
+  background: #edece9;
   top: 0;
   left: 0;
   bottom: 0;
@@ -261,13 +262,13 @@ article .gallery img {
   top: 0;
   left: 0;
   opacity: 0;
-  filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
 article .gallery .control {
   opacity: 0;
-  filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
@@ -729,7 +730,7 @@ article footer .addthis iframe {
   margin-top: 50px;
   margin-bottom: 10px;
   font: 1.2em/1.6 "PT Serif", Helvetica Neue, Helvetica, Arial, sans-serif;
-  text-shadow: 0 1px 1px #fff;
+  text-shadow: 0 1px 1px #ccc;
 }
 .about-left {
   width: 70px;

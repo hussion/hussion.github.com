@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -104,7 +104,7 @@
 </pre></figure>
 
 
-<a name="more"></a>
+<a id="more"></a>
 
 <p>2.在src目录下新建struts.xml配置文件，并进行配置</p>
 <figure class="highlight lang-xml"><figcaption><span>struts.xml </span></figcaption><pre><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>   
@@ -251,7 +251,7 @@ result的name属性默认为"success",另外result还有4个常用的type属性�
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -264,6 +264,9 @@ result的name属性默认为"success",另外result还有4个常用的type属性�
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

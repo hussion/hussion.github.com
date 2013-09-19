@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -104,7 +104,7 @@ mkdirs() <span class="comment">//创建目录(可以创建多层目录)</span>
 </pre></figure>
 
 
-<a name="more"></a> 
+<a id="more"></a> 
 
 <p><strong>递归算法</strong> </p>
 <p><em>输出一个目录(子目录)下所有的文件及文件夹</em></p>
@@ -132,10 +132,8 @@ mkdirs() <span class="comment">//创建目录(可以创建多层目录)</span>
 <p><strong>IO流的结构</strong></p>
 <p>javaIO里面的流分为<code>字节流</code>和<code>字符流</code>。  </p>
 <ul>
-<li>字节流的输入流和输出流是基于<code>InputStream</code>和<code>OutputStream</code>
-这两个抽象类的，字节流的输入输出操作是由这两个类的子类实现的  </li>
-<li>字符流的输入流和输出流是基于<code>Reader</code>和<code>Writer</code>
-这两个抽象类的，字符流的输入输出操作是由这两个类的子类实现的  </li>
+<li>字节流的输入流和输出流是基于<code>InputStream</code>和<code>OutputStream</code><br>这两个抽象类的，字节流的输入输出操作是由这两个类的子类实现的  </li>
+<li>字符流的输入流和输出流是基于<code>Reader</code>和<code>Writer</code><br>这两个抽象类的，字符流的输入输出操作是由这两个类的子类实现的  </li>
 <li>输入和输出是相对程序来说的  </li>
 <li>字节流是处理字节的输入和输出，例如：使用字节流读取写入二进制数据，字符流是处理字符的输入和输出，某些场合，字符流比字节流更有效  </li>
 </ul>
@@ -389,7 +387,7 @@ System.out.println(str);
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -402,6 +400,9 @@ System.out.println(str);
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

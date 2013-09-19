@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -124,7 +124,7 @@
 </blockquote>
 <p>意思就是：ng-switch这个标签创建了一个新的scope，也就是在controller-“myCtrl”下面创建了一个subScope，所以导致ng-bind的model取不到值，这是ng-switch的一个坑，解决办法也很简单：</p>
 <blockquote>
-<p>把ng-model=&quot;selectModel&quot;改为：ng-model=&quot;$parent.selectModel&quot;  </p>
+<p>把ng-model=“selectModel”改为：ng-model=“$parent.selectModel”  </p>
 </blockquote>
 <p>这样，咱们的ng-bind中的selectModel就可以正常取回值了。</p>
 
@@ -168,7 +168,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -181,6 +181,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

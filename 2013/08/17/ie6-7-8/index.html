@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -104,7 +104,7 @@
 <li><p>标准浏览器采用事件捕获的方法，而ie6,7,8用 的事件冒泡机制（所谓事件捕获就是由最外层元素至目标元素最里层，事件冒泡就是由目标元素最里层冒泡到最外层），不过现代浏览器可能更加觉得冒泡机制更好，所以在addEventListener最后加了一个参数，表示是否是捕获机制，一般是false  </p>
 </li>
 <li><p>获取事件对象 标准浏览器回调函数定义e参数,而ie6,7,8使用的是window.event,获取目标元素,标准浏览器用e.target而ie6,7,8用e.srcElement  </p>
-<a name="more"></a>  
+<a id="more"></a>  
 </li>
 <li><p>innerHTML各个浏览器都可以用,innerText除了火狐，哪个浏览器都可以用  </p>
 </li>
@@ -197,7 +197,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -210,6 +210,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

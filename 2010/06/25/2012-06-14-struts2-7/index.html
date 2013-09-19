@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -92,11 +92,9 @@
     </header>
     <div class="entry">
       
-        <p>interceptor(拦截器)作为struts2的核心内容，struts2的大部分功能都是靠拦截器来实现的，如：校验，国际化，类型转换... </p>
+        <p>interceptor(拦截器)作为struts2的核心内容，struts2的大部分功能都是靠拦截器来实现的，如：校验，国际化，类型转换… </p>
 <p><strong>1.拦截器的概念</strong></p>
-<p>拦截器，在spring的AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。拦截是AOP的一种实现策略。 
-<a name="more"></a>
-在Webwork的中文文档的解释为——拦截器是动态拦截Action调用的对象。它提供了一种机制可以使开发者可以定义在一个action执行的前后执行的代码，也可以在一个action执行前阻止其执行。同时也是提供了一种可以提取action中可重用的部分的方式。 </p>
+<p>拦截器，在spring的AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。拦截是AOP的一种实现策略。<br><a id="more"></a><br>在Webwork的中文文档的解释为——拦截器是动态拦截Action调用的对象。它提供了一种机制可以使开发者可以定义在一个action执行的前后执行的代码，也可以在一个action执行前阻止其执行。同时也是提供了一种可以提取action中可重用的部分的方式。 </p>
 <p>说到拦截器，不得不提下过滤器，其两者原理非常相似，在过滤器里面有过滤器链这个说法，而在Struts 2中称为拦截器栈Interceptor Stack。拦截器栈就是将拦截器按一定的顺序联结成一条链。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。 </p>
 <p><strong>2.拦截器的实现原理</strong> </p>
 <p>当请求到达Struts 2的ServletDispatcher时，Struts 2会查找配置文件，并根据其配置实例化相对的拦截器对象，然后串成一个列表（list），最后一个一个地调用列表中的拦截器，这个和过滤器原理相似，从下面的图中可以很容易理解其工作方式。 </p>
@@ -358,7 +356,7 @@ com.opensymphony.xwork2.interceptor.AbstractInterceptor类，
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -371,6 +369,9 @@ com.opensymphony.xwork2.interceptor.AbstractInterceptor类，
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

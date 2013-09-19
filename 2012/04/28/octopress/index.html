@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -84,14 +84,12 @@
       
         <p>最近好多朋友问我如何在windows下安装octopress，今天就给大家分享下安装过程。  </p>
 <ul>
-<li><strong><1></strong><br>Octopress在git中维护， 需要安装git，到msysgit查找下载最新版本当前的
-最新版本Git-1.7.10-preview20120409.exe，下载后直接安装  </li>
+<li><strong><1></strong><br>Octopress在git中维护， 需要安装git，到msysgit查找下载最新版本当前的<br>最新版本Git-1.7.10-preview20120409.exe，下载后直接安装  </li>
 </ul>
-<a name="more"></a>
+<a id="more"></a>
 
 <ul>
-<li><strong><2></strong><br>Octopress/Jekyll是ruby应用程序，需要安装ruby环境。
-在windows下安装ruby环境。 推荐安装RailsInstaller-1.9.2， 里面包含了Ruby、Rails、Bundler、Git 、Sqlite、TinyTDS、SQLServersupport和DevKit。(或者安装rubyinstaller-1.9.2-p290)，Octopress要求安装ruby-1.9.2， 安装后， 确保<code>C:\Ruby192\bin</code>在Windows当前用户的<code>PATH</code>环境变量中。</li>
+<li><strong><2></strong><br>Octopress/Jekyll是ruby应用程序，需要安装ruby环境。<br>在windows下安装ruby环境。 推荐安装RailsInstaller-1.9.2， 里面包含了Ruby、Rails、Bundler、Git 、Sqlite、TinyTDS、SQLServersupport和DevKit。(或者安装rubyinstaller-1.9.2-p290)，Octopress要求安装ruby-1.9.2， 安装后， 确保<code>C:\Ruby192\bin</code>在Windows当前用户的<code>PATH</code>环境变量中。</li>
 <li><p><strong><3></strong><br>ruby的模块工具gem在生成本地模块时可能需要用到编译环境。有两种选择MinGWandMSYS或RubyInstaller DevKit，推荐安装<code>RubyInstaller DevKit</code></p>
 </li>
 <li><p><strong><4></strong> 安装需执行如下步骤将DevKit自解压包释放到<code>C:\DevKit</code>,在WindowsCMD窗口中执行</p>
@@ -180,13 +178,12 @@ $ rake install
 
 </li>
 </ul>
-<pre><code class="lang-bash"><figure class="highlight lang-bash"><pre>$ rake setup_github_pages  
+<pre><code class="lang-bash">$ rake setup_github_pages  
 $ rake generate  
 $ rake deploy  
 $ git add .  
 $ git commit -m <span class="string">'yourmessage'</span>  
-$ git push origin source
-</pre></figure></code></pre>
+$ git push origin source</code></pre>
 <blockquote>
 <p>五：结束语</p>
 </blockquote>
@@ -227,7 +224,7 @@ $ git push origin source
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -240,6 +237,9 @@ $ git push origin source
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

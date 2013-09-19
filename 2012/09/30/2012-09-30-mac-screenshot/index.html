@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -90,8 +90,7 @@
       
         <p>Mac OS X 内置的截图应用程序Grab。Grab截屏的特点包括可截取带有光标的屏幕，光标样式可以在设置里选择。还可以利用Grab时间延迟功能，也能截取带菜单的截图。</p>
 <p>不用开启程序直接快捷键即可截图，常用快捷键：</p>
-<p><code>⌘-⇧-3</code>: 全屏截屏, 保存至桌面;<br><code>⌘-⇧-4</code>: 选定屏幕的某一方形区域截屏, 拖动指针改变选定区域;<br><code>⌘-⇧-4</code>, 释放, 然后按空格, 点击, 对当前活动窗口截屏, 并保存至桌面;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住空格, 可以固定选定方块在屏幕上拖动截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥</code>, 可以在水平或垂直方向以已选区域为中心, 同比例放大或缩小;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧</code>, 固定<code>x</code>轴<code>y</code>轴选定宽度, 变动<code>y</code>轴或<code>x</code>轴来截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥-⇧</code>, 上述5/6的组合;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧-空格</code>, 上述4/6的组合.
-<code>ctrl+</code>以上3条快捷键任一条, 把截屏保存至剪贴板; </p>
+<p><code>⌘-⇧-3</code>: 全屏截屏, 保存至桌面;<br><code>⌘-⇧-4</code>: 选定屏幕的某一方形区域截屏, 拖动指针改变选定区域;<br><code>⌘-⇧-4</code>, 释放, 然后按空格, 点击, 对当前活动窗口截屏, 并保存至桌面;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住空格, 可以固定选定方块在屏幕上拖动截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥</code>, 可以在水平或垂直方向以已选区域为中心, 同比例放大或缩小;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧</code>, 固定<code>x</code>轴<code>y</code>轴选定宽度, 变动<code>y</code>轴或<code>x</code>轴来截屏;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⌥-⇧</code>, 上述5/6的组合;<br><code>⌘-⇧-4</code>, 释放, 选定区域, 按住<code>⇧-空格</code>, 上述4/6的组合.<br><code>ctrl+</code>以上3条快捷键任一条, 把截屏保存至剪贴板; </p>
 <p><strong>在以上任一条快捷中, 按Esc取消截屏.</strong></p>
 
       
@@ -134,7 +133,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -147,6 +146,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

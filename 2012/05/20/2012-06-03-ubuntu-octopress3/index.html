@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -107,7 +107,7 @@ Makefile wasn<span class="string">'t created. Fix the errors above.
 </pre></figure>
 
 
-<p>看了一下，说缺少<code>ssl.h</code>,然后makefile无法创建。没办法，只有去下载openssl，然后自己编译了；<a href="http://www.openssl.org/">点我</a>官网下载openssl,现在最新版是<code>OpenSSL 1.0.1c.tar.gz</code>，然后解压，完成后执行:</p>
+<p>看了一下，说缺少<code>ssl.h</code>,然后makefile无法创建。没办法，只有去下载openssl，然后自己编译了；<a href="http://www.openssl.org/" target="_blank">点我</a>官网下载openssl,现在最新版是<code>OpenSSL 1.0.1c.tar.gz</code>，然后解压，完成后执行:</p>
 <figure class="highlight lang-bash"><pre>make && sudo make install
 </pre></figure>
 
@@ -183,7 +183,7 @@ Makefile wasn<span class="string">'t created. Fix the errors above.
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -196,6 +196,9 @@ Makefile wasn<span class="string">'t created. Fix the errors above.
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

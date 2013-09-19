@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -82,8 +82,8 @@
     </header>
     <div class="entry">
       
-        <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误...</p>
-<figure class="highlight lang-bash"><pre>	(LoadError)ib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:75:<span class="keyword">in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
+        <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误…</p>
+<figure class="highlight lang-bash"><pre>(LoadError)ib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:75:<span class="keyword">in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
       from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:in `map'</span>
       from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:<span class="keyword">in</span> `ffi_lib<span class="string">'
       from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:30:in `&lt;module:Python&gt;'</span>
@@ -146,7 +146,7 @@ ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -159,6 +159,9 @@ ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -89,8 +89,7 @@
     <div class="entry">
       
         <p>Gemini 是一款由MacPaw出品，找寻Mac中重复文件清理删除给电脑腾出更多硬盘空间的实用工具。只需轻松点击就能自动扫描系统并删除重复的文件，界面华丽好用。</p>
-<p>功能特点：
-重复扫描特定的文件夹，简单容易；自动选择不必要的副本；内置预览重复归类有助于删除不必要的副本；独特的算法使扫描和清除的速度更快；为安全起见，Gemini将确保每个重复项目至少留有一个</p>
+<p>功能特点：<br>重复扫描特定的文件夹，简单容易；自动选择不必要的副本；内置预览重复归类有助于删除不必要的副本；独特的算法使扫描和清除的速度更快；为安全起见，Gemini将确保每个重复项目至少留有一个</p>
 <p><img src="http://ww1.sinaimg.cn/large/6cdc22a9gw1e8lu19ekh3j20m80dwtbe.jpg" alt=""></p>
 
       
@@ -133,7 +132,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -146,6 +145,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

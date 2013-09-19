@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -93,8 +93,7 @@
 <p>当开发一个Web页面时，要考虑第一件事就是区分页面重点。将这些内容用DIV标签包含起来，页面的代码会呈现出整洁、缩进良好的风格。 </p>
 <p><strong>2、将HTML标签和CSS样式表分割开来 </strong></p>
 <p>好的页面应该将HTML标签和CSS样式表分割开来。这是每一个Web开发者在首次接触Web开发时就应该知道的一条原则。然而，直到今天，仍然有很多开发者没有严格遵循这一原则。 </p>
-<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。 
-<a name="more"></a>  </p>
+<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。<br><a id="more"></a>  </p>
 <p><strong>3、优化CSS代码 </strong></p>
 <p>现如今，为网站添加多个CSS文件的做法已经很普遍。但是，当网站包含的CSS文件过多时，会降低网站的响应速度。解决办法是：精简代码并对多个CSS文件进行优化，将其合并成一个文件。这个办法能显著提升网站的加载速度。此外，有很多工具可以用来优化CSS文件，例如CSS Optimizer、Clean CSS等。 </p>
 <p><strong>4、优化Javascript文件，并将其放到页面底部 </strong></p>
@@ -124,7 +123,7 @@
 <p>作为一名开发者，在代码中添加注释是一个好习惯，能方便理解并易于维护。这在其它编程语言如PHP、JAVA 和 C#里很普遍。但是，HTML/XHTML是文本标记语言，非常容易理解。因此，无需为每行代码都添加注释。 </p>
 <p><strong>15、测试代码 </strong></p>
 <p>推荐开发者使用W3C文本标记验证服务来测试代码。它是一个高效的测试工具，能帮助你发现页面中存在的错误。而且，它还能从页面错误出发，帮你定位到相应的代码。这一点通常在编码完成后很难做到。但开发者需要注意的是，验证通过的代码并非就是性能优异的代码。 </p>
-<p>英文原文：<a href="http://www.ansoncheung.tk/articles/10-html-best-practices-web-developer">10+ HTML Best practices for Web Developer</a></p>
+<p>英文原文：<a href="http://www.ansoncheung.tk/articles/10-html-best-practices-web-developer" target="_blank">10+ HTML Best practices for Web Developer</a></p>
 
       
     </div>
@@ -166,7 +165,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -179,6 +178,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

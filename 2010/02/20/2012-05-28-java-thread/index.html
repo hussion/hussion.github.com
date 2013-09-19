@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -88,8 +88,7 @@
     </header>
     <div class="entry">
       
-        <p><strong>线程概念</strong><br>1. 线程就是程序中单独顺序的流控制。线程本身不能运行，它只能用于程序中<br>2. 多线程: 单个程序中可以同时运行多个不同的线程执行不同的任务<br>3. 线程是程序内的顺序控制流，只能使用分配给程序的资源和环境<br><strong>线程和进程</strong><br>1. 一个进程可以有多个线程<br>2. 多个进程的内部数据和状态都是完全独立的,是不可以进行数据交换的;而多线程是共享一块内存空间和一组系统资源,有可能互相影响进程之间，可以进行数据交换，而且线程的切换比进程切换的负担要小<br><a name="more"></a>
-<strong>线程的生命周期</strong>  </p>
+        <p><strong>线程概念</strong><br>1. 线程就是程序中单独顺序的流控制。线程本身不能运行，它只能用于程序中<br>2. 多线程: 单个程序中可以同时运行多个不同的线程执行不同的任务<br>3. 线程是程序内的顺序控制流，只能使用分配给程序的资源和环境<br><strong>线程和进程</strong><br>1. 一个进程可以有多个线程<br>2. 多个进程的内部数据和状态都是完全独立的,是不可以进行数据交换的;而多线程是共享一块内存空间和一组系统资源,有可能互相影响进程之间，可以进行数据交换，而且线程的切换比进程切换的负担要小<br><a id="more"></a><br><strong>线程的生命周期</strong>  </p>
 <p><img src="http://ww1.sinaimg.cn/large/6cdc22a9gw1e8f2dpcah3j20ic06saak.jpg" alt=""></p>
 <p><strong>线程的创建</strong><br>1. 继承<code>java.lang.Thread</code>类，并重写<code>run()</code>方法<br>2. 实现<code>java.lang.Runnable</code>接口，并实现其<code>run()</code>方法  </p>
 <blockquote>
@@ -133,9 +132,7 @@ thread.start();
 <li>线程一旦死亡，则不能再次调用<code>start()</code>方法让其重新执行。</li>
 </ol>
 <p><strong>join线程</strong>  </p>
-<p>Thread提供了让一个线程等待另一个线程完成的方法：<code>join()</code>。当某
-个程序在执行过程中调用了其他线程的<code>join()</code>方法，则当前线程被阻
-塞，直到被<code>join()</code>方法加入的线程完成为止</p>
+<p>Thread提供了让一个线程等待另一个线程完成的方法：<code>join()</code>。当某<br>个程序在执行过程中调用了其他线程的<code>join()</code>方法，则当前线程被阻<br>塞，直到被<code>join()</code>方法加入的线程完成为止</p>
 <figure class="highlight lang-java"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) <span class="keyword">throws</span> InterruptedException { 
  
 	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) { 
@@ -319,7 +316,7 @@ thread.start();
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -332,6 +329,9 @@ thread.start();
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

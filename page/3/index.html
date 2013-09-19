@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -64,6 +64,154 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-05-20T03:08:00.000Z"><a href="/2012/05/20/2012-06-03-ubuntu-octopress3/">May 20th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2012/05/20/2012-06-03-ubuntu-octopress3/">no such file to load -- openssl解决方案</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>出现这个问题，按照上次缺少zlib的解决经验，首先去bashsource文件夹下安装openssl  </p>
+<figure class="highlight lang-bash"><pre>cd .rvm/src/ruby-1.9.2-p320/ext/openssl  
+bashextconf.rb
+</pre></figure>
+
+
+<p>执行到这一步的时候，又开始郁闷了，出现了如下错误：</p>
+<figure class="highlight lang-bash"><pre>=== OpenSSL <span class="keyword">for</span> bashconfigurator === 
+=== Checking <span class="keyword">for</span> system dependent stuff... === 
+checking <span class="keyword">for</span> t_open() <span class="keyword">in</span> -lnsl... no 
+checking <span class="keyword">for</span> socket() <span class="keyword">in</span> -lsocket... no 
+checking <span class="keyword">for</span> assert.h... yes 
+=== Checking <span class="keyword">for</span> required stuff... === 
+checking <span class="keyword">for</span> openssl/ssl.h... no 
+=== Checking <span class="keyword">for</span> required stuff failed. === 
+Makefile wasn<span class="string">'t created. Fix the errors above.
+</pre></figure>
+
+
+<p>看了一下，说缺少<code>ssl.h</code>,然后makefile无法创建。没办法，只有去下载openssl，然后自己编译了；<a href="http://www.openssl.org/" target="_blank">点我</a>官网下载openssl,现在最新版是<code>OpenSSL 1.0.1c.tar.gz</code>，然后解压，完成后执行:</p>
+<figure class="highlight lang-bash"><pre>make && sudo make install
+</pre></figure>
+
+
+<p>漫长等待后,去该文件夹下可以发现<code>ssl.h</code>文件存在了，现在cd到ruby源文件文件夹的/ext/openssl文件夹下，执行:</p>
+<figure class="highlight lang-bash"><pre>bashextconf.rb --with-openssl-include=/usr/local/ssl/include/
+</pre></figure>
+
+
+<p>惊喜之余，又出现了新错误： </p>
+<figure class="highlight lang-bash"><pre>=== OpenSSL <span class="keyword">for</span> bashconfigurator === 
+=== Checking <span class="keyword">for</span> system dependent stuff... === 
+checking <span class="keyword">for</span> t_open() <span class="keyword">in</span> -lnsl... no 
+checking <span class="keyword">for</span> socket() <span class="keyword">in</span> -lsocket... no 
+checking <span class="keyword">for</span> assert.h... yes 
+=== Checking <span class="keyword">for</span> required stuff... === 
+checking <span class="keyword">for</span> openssl/ssl.h... yes 
+checking <span class="keyword">for</span> OpenSSL_add_all_digests() <span class="keyword">in</span> -lcrypto... no 
+checking <span class="keyword">for</span> OpenSSL_add_all_digests() <span class="keyword">in</span> -llibeay32... no 
+=== Checking <span class="keyword">for</span> required stuff failed. === 
+Makefile wasn<span class="string">'t created. Fix the errors above.
+</pre></figure>
+
+<p>虽然出错了，大家仔细看下会发现ssl.h已经check到了，下面只需要再执行一个命令即可:</p>
+<figure class="highlight lang-bash"><pre>bashextconf.rb --with-openssl-include=/usr/local/ssl/include/ --with-openssl-lib=/usr/local/ssl/lib
+</pre></figure>
+
+
+<p>这时我们会发现makefile已经成功创建，现在就可以接着执行下面命令了</p>
+<figure class="highlight lang-bash"><pre>make && sudo make install
+</pre></figure>
+
+
+<p>现在再测试一下吧，你会发现openssl被成功的安装了到ruby的安装文件夹!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2012-05-08T07:55:00.000Z"><a href="/2012/05/08/2012-06-03-ubuntu-octopress2/">May 8th, 2012</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2012/05/08/2012-06-03-ubuntu-octopress2/">升级gem提示缺少no such file to load --zlib</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在ubuntu中，在进行<code>gem update --system</code>的时候，可能会报<code>no such file to load --zlib</code>，这个时候我们第一反应就是去安装zlib1g-dev，执行命令如下：</p>
+<figure class="highlight lang-bash"><pre>sudo apt-get install zlib1g-dev
+</pre></figure>
+
+
+<p>安装完成后，再次<code>gem update --system</code>我们会发现问题依旧，这时候需要到ruby Source文件夹下安装ruby自身提供的zlib包</p>
+<figure class="highlight lang-bash"><pre>cd .rvm/src/ruby-1.9.2-p320/ext/zlib  
+ruby extconf.rb  
+make 
+sudo make install
+</pre></figure>
+
+
+<p>现在再次运行gem update –system，搞定！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -145,8 +293,8 @@ gem sources -l <span class="comment">#检测是否只有http://ruby.taobao.org/ 
     </header>
     <div class="entry">
       
-        <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误...</p>
-<figure class="highlight lang-bash"><pre>	(LoadError)ib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:75:<span class="keyword">in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
+        <p>很多朋友已经体验到octopress给我们带来的魅力，但是可能还有好多朋友还在苦恼当中。辛辛苦苦的写好一篇文章，正准备 rake generate，心里满怀激动的时候，突然屏幕上喷出一大堆错误…</p>
+<figure class="highlight lang-bash"><pre>(LoadError)ib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:75:<span class="keyword">in</span> `block <span class="keyword">in</span> ffi_lib<span class="string">': Could not open library '</span>.dll<span class="string">': 找不到指定的模组。
       from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:in `map'</span>
       from C:/Ruby192/lib/ruby/gems/1.9.1/gems/ffi-1.0.9-x86-mingw32/lib/ffi/library.rb:54:<span class="keyword">in</span> `ffi_lib<span class="string">'
       from C:/Ruby192/lib/ruby/gems/1.9.1/gems/rubypython-0.5.1/lib/rubypython/python.rb:30:in `&lt;module:Python&gt;'</span>
@@ -209,8 +357,7 @@ ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此
       
         <p>最近好多朋友问我如何在windows下安装octopress，今天就给大家分享下安装过程。  </p>
 <ul>
-<li><strong><1></strong><br>Octopress在git中维护， 需要安装git，到msysgit查找下载最新版本当前的
-最新版本Git-1.7.10-preview20120409.exe，下载后直接安装  </li>
+<li><strong><1></strong><br>Octopress在git中维护， 需要安装git，到msysgit查找下载最新版本当前的<br>最新版本Git-1.7.10-preview20120409.exe，下载后直接安装  </li>
 </ul>
 
       
@@ -298,7 +445,7 @@ ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此
     </header>
     <div class="entry">
       
-        <p>说明：本文是简体中文版的markdown语法说明，转载于<a href="http://www.ituring.com.cn/article/504">图灵社区</a>，以方便大家对markdown语法的学习。  </p>
+        <p>说明：本文是简体中文版的markdown语法说明，转载于<a href="http://www.ituring.com.cn/article/504" target="_blank">图灵社区</a>，以方便大家对markdown语法的学习。  </p>
 <ul>
 <li><a href="#overview">概述</a><ul>
 <li><a href="#philosophy">哲学</a></li>
@@ -333,7 +480,7 @@ ffi_lib <span class="string">"python27"</span> <span class="comment"># 加上此
 <h3 id="philosophy">哲学</h3>
 
 <p>Markdown 的目标是实现「易读易写」。</p>
-<p>不过最需要强调的便是它的可读性。一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 <a href="http://docutils.sourceforge.net/mirror/setext.html">Setext</a>、<a href="http://www.aaronsw.com/2002/atx/">atx</a>、<a href="http://textism.com/tools/textile/">Textile</a>、<a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>、<a href="http://www.triptico.com/software/grutatxt.html">Grutatext</a> 和 <a href="http://ettext.taint.org/doc/">EtText</a>，然而最大灵感来源其实是纯文本的电子邮件格式。</p>
+<p>不过最需要强调的便是它的可读性。一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 <a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank">Setext</a>、<a href="http://www.aaronsw.com/2002/atx/" target="_blank">atx</a>、<a href="http://textism.com/tools/textile/" target="_blank">Textile</a>、<a href="http://docutils.sourceforge.net/rst.html" target="_blank">reStructuredText</a>、<a href="http://www.triptico.com/software/grutatxt.html" target="_blank">Grutatext</a> 和 <a href="http://ettext.taint.org/doc/" target="_blank">EtText</a>，然而最大灵感来源其实是纯文本的电子邮件格式。</p>
 <p>因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。像是在文字两旁加上星号，看起来就像*强调*。Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。</p>
 
       
@@ -512,111 +659,6 @@ ps: 该命令是实时通信，接收信息的用户必须在线方可发送成�
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2011-03-05T03:51:00.000Z"><a href="/2011/03/05/2012-05-05-linux7/">Mar 5th, 2011</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Linux">
-                <a href="/tags/Linux/">Linux</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2011/03/05/2012-05-05-linux7/">linux学习笔记(六): 压缩解压缩命令</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <ul>
-<li>命令名称： <strong>gzip和gunzip</strong></li>
-</ul>
-<p><em>功能描述：压缩和解压缩文件</em></p>
-<figure class="highlight lang-bash"><pre>语法：  
-gzip [文件] <span class="comment">#压缩文件  </span>
-gzip -d [文件] <span class="comment">#解压缩.gz格式压缩文件    </span>
-gunzip [选项] [压缩文件] <span class="comment">#解压缩.gz格式的压缩文件   </span>
- 
-ps:  
-1&gt; 压缩后的文件格式为 .gz  
-2&gt; 只能压缩文件  
-3&gt; 不保留原文件(直接替换原文件)
-</pre></figure>
-
-
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2011/03/05/2012-05-05-linux7/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2011-03-02T02:13:00.000Z"><a href="/2011/03/02/2012-05-05-linux6/">Mar 2nd, 2011</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Linux">
-                <a href="/tags/Linux/">Linux</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2011/03/02/2012-05-05-linux6/">Secure CRT和Putty连接linux中文乱码问题</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>一开始我们用secure CRT和putty连接linux，发现中文都乱码了，实际上这是由于编码不一致引起的，当然了解决办法也很容易。</p>
-<blockquote>
-<p>secure CRT: 选项-&gt;会话选项-&gt;外观-&gt;字符编码-&gt;UTF-8<br>putty: Change settings -&gt; Window-&gt;Translation-&gt;Remote character set: UTF-8</p>
-</blockquote>
-<p>PS: 以上请确认默认的字体是否支持中文，不支持的话，换一个字体即可。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -632,7 +674,7 @@ ps:
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -645,6 +687,9 @@ ps:
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

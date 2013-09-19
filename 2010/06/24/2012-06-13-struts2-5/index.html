@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -112,11 +112,11 @@
 </pre></figure>
 
 
-<a name="more"></a>
+<a id="more"></a>
 
 <p><code>ERROR</code>: Action执行失败。显示一个错误的视图（页面），这个页面可以要求用户再次输入相关数据<br><code>NONE</code>: Action执行成功，但是不会显示一个视图。<br><code>LOGIN</code>: Action不能执行，登录失败。<br><code>SUCCESS</code>: Action执行成功。显示结果视图（页面）给用户。<br><code>INPUT</code>: Action的执行成功需要更多的输入。这个结果是一个典型的结果，它表明如果一个表单通过提供默认的表单来操作一个Action。这个表单会显示给最终用户。这个结果也用于用户输入无效，意味着用户需要再次输入。  </p>
 <p><strong>ActionSupport类</strong>  </p>
-<p>该类实现了Action接口，并增加了验证，国际化，获取本地信息，增加错误提示信息等...当然，继承此类，用户的Action将拥有这些功能。<br><strong>1.</strong>验证的实现</p>
+<p>该类实现了Action接口，并增加了验证，国际化，获取本地信息，增加错误提示信息等…当然，继承此类，用户的Action将拥有这些功能。<br><strong>1.</strong>验证的实现</p>
 <figure class="highlight lang-java"><figcaption><span>ProductAction.java </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span>   
    
   <span class="title">public</span> <span class="title">String</span> <span class="title">execute</span>() <span class="title">throws</span> <span class="title">Exception</span>  
@@ -136,7 +136,7 @@
 </pre></figure>
 
 
-<p>其中的validate()方法就是我们所需的验证方法，由ActionSupport类提供，我们只需要重写此方法即可完成所欲的验证。<br>但是实际运行起来，我们会发现，无论你执行任何方法，该validate方法都会被执行，显然这不是我们想要的，对于这个问题，struts2是借鉴了<code>ruby on rails</code>，提出了一个约定，你可以自己编写针对某个方法的validate，从而达到用户自己的验证目的，关于这个约定问题，也就是我们经常说的&quot;约定大于配置&quot;。下面来看一下如何编写自己的validate()方法。</p>
+<p>其中的validate()方法就是我们所需的验证方法，由ActionSupport类提供，我们只需要重写此方法即可完成所欲的验证。<br>但是实际运行起来，我们会发现，无论你执行任何方法，该validate方法都会被执行，显然这不是我们想要的，对于这个问题，struts2是借鉴了<code>ruby on rails</code>，提出了一个约定，你可以自己编写针对某个方法的validate，从而达到用户自己的验证目的，关于这个约定问题，也就是我们经常说的“约定大于配置”。下面来看一下如何编写自己的validate()方法。</p>
 <figure class="highlight lang-java"><pre><span class="comment">/*
 	如何编写自己需要的验证方法呢？实际上很简单，你只需写一个返回类型为void，
 	方法名子为 validateXxx();Xxx为你需要验证的方法名,首字母要大写。
@@ -216,7 +216,7 @@ addActionMessage(); <span class="comment">//注意此方法只会添加信息，
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -229,6 +229,9 @@ addActionMessage(); <span class="comment">//注意此方法只会添加信息，
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

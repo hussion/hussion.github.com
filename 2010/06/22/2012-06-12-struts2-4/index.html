@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -95,8 +95,7 @@
         <p>1.struts2对于 8 个原生数据类型以及 Date，String 等常见类型，Struts2 可以使用内建的类型转换器实现自动的转换。</p>
 <p>2.对于自定义的类型转换器来说需要提供3 个信息：Action的名字、Action中待转换的属性名以及该属性对应的类型转换器。其中Action 的名字是通过属性文件名来获得的、Action中待转换的属性名是通过属性文件中的key来获得的，该属性对应的类型转换器是通过该key所对应的value来获得的。</p>
 <p>3.可以使用Struts2框架自带的类型转换器StrutsTypeConverter简化类型转换代码的编写 ,StrutsTypeConverter继承于DefaultTypeConverter父类，并且提供了两个抽象方法：convertFromString与convertToString，分别表示从页面的字符串转换为后台对象以及从后台对象转换为页面的字符串，我们只需实现这两个抽象方法即可实现类型转换。</p>
-<p>4.全局类型转换。在src目录下新建xwork-conversion.properties，该文件的内容是待转换的类=转换器的名字，即 
-com.hussion.bean.User=com.hussion.converter.UserConverter</p>
+<p>4.全局类型转换。在src目录下新建xwork-conversion.properties，该文件的内容是待转换的类=转换器的名字，即<br>com.hussion.bean.User=com.hussion.converter.UserConverter</p>
 
       
     </div>
@@ -138,7 +137,7 @@ com.hussion.bean.User=com.hussion.converter.UserConverter</p>
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -151,6 +150,9 @@ com.hussion.bean.User=com.hussion.converter.UserConverter</p>
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

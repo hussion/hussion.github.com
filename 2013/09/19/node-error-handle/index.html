@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node.js 异常以及错误的处理 | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Node.js 异常以及错误的处理"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <div class="bgdiv">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
+  </div>	
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="http://weibo.com/hussion">Weibo</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-09-19T04:54:27.000Z"><a href="/2013/09/19/node-error-handle/">Sep 19th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-NodeJs">
+                <a href="/tags/NodeJs/">NodeJs</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">Node.js 异常以及错误的处理</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在编程过程中，处理好错误，并且有一个明确的、有效率的处理策略，是一个非常好的编程习惯和规则。 Node.js也不例外，在不同的应用场景中提供了多种不同的错误处理方案。</p>
+<p><strong>异常</strong></p>
+<p>异步执行代码的错误处理会有点棘手，示例：  </p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">try</span>
+{
+    setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'who will catch me?'</span>);
+    }, <span class="number">1</span>);
+}
+<span class="keyword">catch</span> (e) {
+    console.log(<span class="string">'not me'</span>);
+}
+</pre></figure>
+
+<p>由于<code>setTimeout</code>是异步的，它会安排好待执行的方法然后就立即返回，不抛出任何异常。因此导致<code>catch</code>会直接被忽略，执行结果如下：</p>
+<figure class="highlight lang-javascript"><pre>posts/errors » node first.js
+
+timers.js:<span class="number">103</span>
+            <span class="keyword">if</span> (!process.listeners(<span class="string">'uncaughtException'</span>).length) <span class="keyword">throw</span> e;
+                                                                      ^
+Error: who will <span class="keyword">catch</span> me?
+    at Object._onTimeout (<span class="regexp">/Users/g</span>ustavo/code/posts/errors/first.js:<span class="number">4</span>:<span class="number">18</span>)
+    at Timer.list.ontimeout (timers.js:<span class="number">101</span>:<span class="number">19</span>)
+</pre></figure>
+
+<p>这将会导致进程退出，然后打印出堆栈跟踪的错误。那么我们该如何捕获这种未捕获异常呢？</p>
+<a id="more"></a>
+
+<p><strong>未捕获异常</strong>  </p>
+<p>在node中我们可以采取这样一个手段，在进程退出之前捕获到未捕获异常。它就是<code>process</code>对象中的<code>uncaughtException</code>事件。把下面这段代码放到文件的顶端，它将会让程序更加优雅的退出。</p>
+<figure class="highlight lang-javascript"><pre>process.on(<span class="string">'uncaughtException'</span>, <span class="function"><span class="keyword">function</span> <span class="params">( err )</span> {</span>
+    console.error(<span class="string">'An uncaughtException was found, the program will end.'</span>);
+    <span class="comment">//hopefully do some logging.</span>
+    process.exit(<span class="number">1</span>);
+});
+</pre></figure>
+
+<p>不幸的是，这种方式不是银弹，不能用来在node.js程序中处理错误。它仅仅是为了能够暴露出问题，让程序更加优雅的退出。而且不能保证程序的状态始终如一，因此，应该重启该程序。那么我们该如何阻止程序像这样退出呢？</p>
+<p><strong>域（Domains）</strong></p>
+<p><a href="http://nodejs.org/api/domain.html" target="_blank">域</a>提供一种优雅的方式来创建不同的执行上下文，而且在每个域内都可以管理<code>uncaughtExceptions</code>。因此从根本上说，在一个域内每个异常都可以被域的错误事件捕获到。下面来看一个示例(摘自node官网)：</p>
+<figure class="highlight lang-javascript"><pre><span class="comment">// XXX WARNING!  BAD IDEA!</span>
+
+<span class="keyword">var</span> d = require(<span class="string">'domain'</span>).create();
+d.on(<span class="string">'error'</span>, <span class="keyword">function</span>(er) {
+  <span class="comment">// The error won't crash the process, but what it does is worse!</span>
+  <span class="comment">// Though we've prevented abrupt process restarting, we are leaking</span>
+  <span class="comment">// resources like crazy if this ever happens.</span>
+  <span class="comment">// This is no better than process.on('uncaughtException')!</span>
+  console.log(<span class="string">'error, but oh well'</span>, er.message);
+});
+d.run(<span class="keyword">function</span>() {
+  require(<span class="string">'http'</span>).createServer(<span class="keyword">function</span>(req, res) {
+    handleRequest(req, res);
+  }).listen(PORT);
+});
+</pre></figure>
+
+<p>很明显这种做法很不好，因为我们只是忽略了凸现出的未处理的异常这个事实，就像注释中说的一样。但是我们会发现：代码<code>process.on(&#39;uncaughtException&#39;)</code>将不会被执行。它允许我们把程序分割成不同的上下文已经相应的错误处理行为。另外，我们应该<code>try/catch</code>每个可能会出现异常的方法（通常是指非异步的）。</p>
+<p><strong>EventEmitters</strong></p>
+<p><code>EventEmitter</code>类，它是非常棒的核心类库，而且提供了抽象事件。当你继承或者使用一个<code>EventEmitter</code>对象的时候，你可以让监听器知道通过<code>emit</code>触发的事件。你可以这样实现你自己的事件触发器：</p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">var</span> util = require(<span class="string">'util'</span>),
+      EventEmitter = require(<span class="string">'events'</span>).EventEmitter;
+
+ <span class="keyword">var</span> MyClass = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+
+      <span class="keyword">if</span> (!(<span class="keyword">this</span> <span class="keyword">instanceof</span> MyClass)) <span class="keyword">return</span> <span class="keyword">new</span> MyClass();
+
+      EventEmitter.call(<span class="keyword">this</span>);
+ };
+
+ util.inherits(MyClass, EventEmitter);
+</pre></figure>
+
+
+<p> 这个类如何处理错误呢？有这样两个方面。第一，当你实现一个<code>EventEmitter</code>的时候，你应该遵守它本身提出错误的事件，也就是<code>error</code>事件。第二，一个错误被提出的时候，如果没有采取任何措施，那么这个异常将会被抛出。特别需要注意的就是第二点，因为它可以导致程序退出。</p>
+<p>通过MyClass发出一个错误，它会抛出一个异常：</p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">var</span> foo = <span class="keyword">new</span> MyClass();
+foo.emit(<span class="string">'error'</span>); <span class="comment">// this will throw</span>
+</pre></figure>
+
+<p>如果我们对该错误加一个监听器，那么该错误将会被处理。</p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">var</span> foo = <span class="keyword">new</span> MyClass();
+foo.on(<span class="string">'error'</span>, <span class="keyword">function</span>() {
+  console.log(<span class="string">'it blew'</span>);
+});
+foo.emit(<span class="string">'error'</span>); <span class="comment">// this will not throw :)</span>
+</pre></figure>
+
+<p>如果你node.js代码写的足够多的话，你最终都会创建一个你自己的<code>EventEmitters</code>，它是非常值得探索的。所以写代码的时候一定要多留意错误处理。</p>
+<p><strong>Express.js</strong></p>
+<p>当使用express.js的时候，执行一个请求的时候，一定要特别注意错误的发生。当错误出现的时候，你可以返回一个错误状态码。</p>
+<figure class="highlight lang-javascript"><pre>app.get(<span class="string">'/'</span>, <span class="keyword">function</span>(req, res) {
+  res.send(<span class="number">500</span>, <span class="string">'sorry'</span>);
+});
+</pre></figure>
+
+<p>如果像上面那样在所有的路由中都这样处理错误，那么最终在哪里真正处理错误和日志呢？</p>
+<p><strong>Error Handler Middlewares</strong></p>
+<p>你应该经常尝试用错误中间件，错误处理中间件有4个参数，如下所示：</p>
+<figure class="highlight lang-javascript"><pre>app.use(<span class="keyword">function</span>(err, req, res, next) {
+  console.error(err.stack);
+  res.send(<span class="number">500</span>, <span class="string">'Something broke!'</span>);
+});
+</pre></figure>
+
+<p>错误处理器通常被放到中间件栈的底部，并用<code>next</code>这个参数来发送错误。</p>
+<figure class="highlight lang-javascript"><pre>app.use(<span class="keyword">function</span>(req, res, next) {
+  next(<span class="string">'it blew'</span>);
+});
+</pre></figure>
+
+<p>你既可以发送一个字符串，也可以发送错误实例。我通常会发送一个错误实例，因为它提供调用栈。</p>
+<p><strong>The Error Class</strong></p>
+<p>有个问题就是，我已经有错误处理类了，但是扩展比较困难。当然，你可以继承该类，然后创建自己的错误类，像<code>HttpError</code>，<code>DbError</code>等。但是这样做比较花时间，而且不能添加太多的值，除非你做类型做一些事。有时候，你仅仅想添加一个消息，并保持内部错误；有时候，你可能想用参数扩展一下错误，等等。举个简单例子：</p>
+<figure class="highlight lang-javascript"><pre>app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> <span class="params">( req, res, next )</span> {</span>
+
+    getSomething(<span class="function"><span class="keyword">function</span> <span class="params">( err, data )</span> {</span>
+
+        <span class="keyword">if</span> ( err ) {
+            <span class="keyword">var</span> report = <span class="keyword">new</span> Error(<span class="string">'unable to get something in home'</span>);
+            report.status = <span class="number">500</span>;
+            report.inner = err;
+            next(report);
+            <span class="keyword">return</span>;
+        }
+
+        <span class="keyword">if</span> ( !data ) {
+            <span class="keyword">var</span> report = <span class="keyword">new</span> Error(<span class="string">'something not found'</span>);
+            report.status = <span class="number">404</span>;
+            next(report);
+            <span class="keyword">return</span>;
+        }
+
+        res.send(<span class="number">200</span>, data);
+    })
+});
+</pre></figure>
+
+<p>用错误类来处理可能就有点啰嗦了。而且报告和打印也不太方便。下面是输出<code>report.toString()</code>的信息：</p>
+<figure class="highlight lang-javascript"><pre><span class="string">'Error: unable to get something in home'</span>
+</pre></figure>
+
+<p>下面是<code>JSON.stringify(report)</code>信息：</p>
+<figure class="highlight lang-javascript"><pre><span class="string">'{"status":500,"inner":"oops"}'</span>
+</pre></figure>
+
+<p>大多时候，打印出的格式都不正确：</p>
+<figure class="highlight lang-javascript"><pre><span class="string">'Error: unable to get something in home\n    at repl:1:14\n    at REPLServer.self.eval (repl.js:109:21)\n    at rli.on.self.bufferedCmd (repl.js:258:20)\n    at REPLServer.self.eval (repl.js:116:5)\n    at Interface.&lt;anonymous&gt; (repl.js:248:12)\n    at Interface.EventEmitter.emit (events.js:96:17)\n    at Interface._onLine (readline.js:200:10)\n    at Interface._line (readline.js:518:8)\n    at Interface._ttyWrite (readline.js:736:14)\n    at ReadStream.onkeypress (readline.js:97:10)'</span>
+</pre></figure>
+
+<p>因此为了打印出正确的格式，你必须这样做：</p>
+<blockquote>
+<p>.toString() it<br>JSON.stringify() it<br>append the .stack (maybe .split(&#39;\n‘).join(’xxx&#39;)如果你想html中看的话)</p>
+</blockquote>
+<p>由于以上这些，有个帮助类库<a href="https://github.com/machadogj/node-simple-errors" target="_blank">simple-errors</a>能让你更简单的处理它们。</p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">var</span> report = Error.http(<span class="number">500</span>, <span class="string">'something…'</span>, {foo: <span class="string">'bar'</span>}, <span class="string">'oops'</span>);
+</pre></figure>
+
+<p>而且使用<code>Error.toJson</code>还可以提供json对象格式输出：</p>
+<figure class="highlight lang-javascript"><pre>{ message: <span class="string">'something...'</span>,
+  stack:
+   [ <span class="string">'Error: something...'</span>,
+     <span class="string">'    at Function.Error.create (/Users/gustavo/code/posts/errors/node_modules/simple-errors/index.js:20:12)'</span>,
+     <span class="string">'    at Function.Error.http (/Users/gustavo/code/posts/errors/node_modules/simple-errors/index.js:58:18)'</span>,
+     <span class="string">'    at repl:1:20'</span>,
+     <span class="string">'    at REPLServer.self.eval (repl.js:109:21)'</span>,
+     <span class="string">'    at rli.on.self.bufferedCmd (repl.js:258:20)'</span>,
+     <span class="string">'    at REPLServer.self.eval (repl.js:116:5)'</span>,
+     <span class="string">'    at Interface.&lt;anonymous&gt; (repl.js:248:12)'</span>,
+     <span class="string">'    at Interface.EventEmitter.emit (events.js:96:17)'</span>,
+     <span class="string">'    at Interface._onLine (readline.js:200:10)'</span>,
+     <span class="string">'    at Interface._line (readline.js:518:8)'</span> ],
+  inner: <span class="string">'oops'</span>,
+  foo: <span class="string">'bar'</span>,
+  status: <span class="number">500</span> }
+</pre></figure>
+
+<p>有了以上这两个帮助方法，在Express.js中你可以更容易的管理错误，而且能想出一些更好的日志处理中间件。</p>
+<p><strong>总结</strong></p>
+<p>在用Node.js开发的过程中，会碰到各种各样的错误，你需要正确的处理好它们。希望以上所述的方案在你处理错误的时候有所帮助。</p>
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/NodeJs/">NodeJs</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  copyright &copy; 2013 hussion
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/scrollUp.min.js"></script>
+<script>
+  $(function() {
+    $.scrollUp({
+      scrollText: ''
+    });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
+  });
+</script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

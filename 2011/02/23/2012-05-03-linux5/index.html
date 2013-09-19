@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -95,7 +95,7 @@
 <blockquote>
 <p>语法： which [命令名称].</p>
 </blockquote>
-<a name="more"></a> 
+<a id="more"></a> 
 
 <ul>
 <li>命令名称：<strong>whereis</strong>  </li>
@@ -139,8 +139,7 @@
 </ul>
 <p><em>功能描述：查找文件或目录</em></p>
 <blockquote>
-<p>语法： locate [搜索关键字]
-该命令是从系统安装或者更新的数据库里面去查找，所以查找速度特别快，但是<br>该数据库系统默认是定期更新的，所以你查找前如果没有更新数据库，那么可能<br>好多文件查不到  所以可以配合 updatedb(更新数据库) 命令进行查找 </p>
+<p>语法： locate [搜索关键字]<br>该命令是从系统安装或者更新的数据库里面去查找，所以查找速度特别快，但是<br>该数据库系统默认是定期更新的，所以你查找前如果没有更新数据库，那么可能<br>好多文件查不到  所以可以配合 updatedb(更新数据库) 命令进行查找 </p>
 </blockquote>
 <ul>
 <li>命令名称：<strong>grep</strong>  </li>
@@ -175,8 +174,7 @@
 </ul>
 <p><em>功能描述：获取索引的简短说明信息</em></p>
 <blockquote>
-<p>语法：whatis [任何关键字] 和 apropos [任何关键字]<br>两者区别<br>apropos：使用关键字以模糊比对的方式查询资料库，然后将结果输出(宽松)，相当与man -k 命令<br>whatis：只输出完全符合关键字的信息(完全符合)，相当于man - f 命令 
-makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命令发生错误时，就是whatis database 没有建立</p>
+<p>语法：whatis [任何关键字] 和 apropos [任何关键字]<br>两者区别<br>apropos：使用关键字以模糊比对的方式查询资料库，然后将结果输出(宽松)，相当与man -k 命令<br>whatis：只输出完全符合关键字的信息(完全符合)，相当于man - f 命令<br>makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命令发生错误时，就是whatis database 没有建立</p>
 </blockquote>
 
       
@@ -219,7 +217,7 @@ makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命�
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -232,6 +230,9 @@ makewhatis #是whatis和apropos搜索使用的数据库，当使用这两个命�
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

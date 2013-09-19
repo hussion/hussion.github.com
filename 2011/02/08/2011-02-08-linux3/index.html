@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -105,7 +105,7 @@ ls 选项[-ald] [文件或目录]
 </pre></figure>
 
 
-<a name="more"></a> 
+<a id="more"></a> 
 
 <ul>
 <li>命令名称: <strong>cd</strong>  </li>
@@ -338,7 +338,7 @@ $ ln -s [源文件] [目标文件] <span class="comment">#创建软链接文件 
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -351,6 +351,9 @@ $ ln -s [源文件] [目标文件] <span class="comment">#创建软链接文件 
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -92,7 +92,7 @@
     </header>
     <div class="entry">
       
-        <p>面向对象设计原则是OOPS（Object-Oriented Programming System，面向对象的程序设计系统）编程的核心，但大多数Java程序员追逐像Singleton、Decorator、Observer这样的设计模式，而不重视面向对象的分析和设计。甚至还有经验丰富的Java程序员没有听说过OOPS和SOLID设计原则，他们根本不知道设计原则的好处，也不知道如何依照这些原则来进行编程。<br><a name="more"></a></p>
+        <p>面向对象设计原则是OOPS（Object-Oriented Programming System，面向对象的程序设计系统）编程的核心，但大多数Java程序员追逐像Singleton、Decorator、Observer这样的设计模式，而不重视面向对象的分析和设计。甚至还有经验丰富的Java程序员没有听说过OOPS和SOLID设计原则，他们根本不知道设计原则的好处，也不知道如何依照这些原则来进行编程。<br><a id="more"></a></p>
 <p>众所周知，Java编程最基本的原则就是要追求高内聚和低耦合的解决方案和代码模块设计。查看Apache和Sun的开放源代码能帮助你发现其他Java设计原则在这些代码中的实际运用。Java Development Kit则遵循以下模式：BorderFactory类中的工厂模式、Runtime类中的单件模式。你可以通过Joshua Bloch的《Effective Java》一书来了解更多信息。我个人偏向的另一种面向对象的设计模式是Kathy Sierra的Head First Design Pattern以及Head First Object Oriented Analysis and Design。  </p>
 <p>虽然实际案例是学习设计原则或模式的最佳途径，但通过本文的介绍，没有接触过这些原则或还在学习阶段的Java程序员也能够了解这10个面向对象的设计原则。其实每条原则都需要大量的篇幅才能讲清楚，但我会尽力做到言简意赅。 </p>
 <blockquote>
@@ -177,7 +177,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -190,6 +190,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -98,16 +98,9 @@
 <p>• Struts2有一组相互协作的类、Servlet以及Jsp TagLib组成。基于Struts2构架的web应用程序基本上符合JSP Model2的设计标准，可以说是MVC设计模式的一种变化类型。根据上一篇文章对Framework的描述，我们很容易理解为什么说Struts2是一个web framework，而不仅仅是一些标记库的组合。</p>
 <p>• 说到jsp Model,我们就要说到java web应用结构的发展</p>
 <p>• 阶段1：JSP是一个独立的、自主完成所有任务的模块<br>• 阶段2：JSP Model1<br>• 阶段3：JSP Model2  </p>
-<p>• 早期的Java Web应用中，JSP文件同时负责生成网页、控制到下一个网页的流程，以及负责业务逻辑，这给Web开发带来一系列问题：
-–HTML 和 Java 强耦合在一起，JSP 文件的编写者必须既是网页设计者，又是 Java 开发者。
-–可读性差。
-–调试困难。
-–不利于维护，更改业务逻辑或数据可能牵涉相关的多个网页。</p>
+<p>• 早期的Java Web应用中，JSP文件同时负责生成网页、控制到下一个网页的流程，以及负责业务逻辑，这给Web开发带来一系列问题：<br>–HTML 和 Java 强耦合在一起，JSP 文件的编写者必须既是网页设计者，又是 Java 开发者。<br>–可读性差。<br>–调试困难。<br>–不利于维护，更改业务逻辑或数据可能牵涉相关的多个网页。</p>
 <p>• 等到发展到jsp Model 2的时候</p>
-<p>-JSP负责生成动态网页
-- Servlet负责流程控制
-- JavaBean负责业务逻辑
-其架构就比较的清晰了，已经符合了我们现在所说的MVC设计模式，这也是我们现在一直在用的这种设计模式。</p>
+<p>-JSP负责生成动态网页<br>- Servlet负责流程控制<br>- JavaBean负责业务逻辑<br>其架构就比较的清晰了，已经符合了我们现在所说的MVC设计模式，这也是我们现在一直在用的这种设计模式。</p>
 <p>最后一点：Struts2和Web App的关系</p>
 <p>既然struts2叫做webframework，那么其肯定主要基于web层的应用系统开发。按照J2EEArchitecture 的标准,struts2 应当和jsp/servlet一样，存在于web container一层,实际上也是这样的。</p>
 
@@ -151,7 +144,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -164,6 +157,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

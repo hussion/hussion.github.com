@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -70,6 +70,128 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-09-19T05:14:43.000Z"><a href="/2013/09/19/shell-echo-color/">Sep 19th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+              <span class="tag-Mac">
+                <a href="/tags/Mac/">Mac</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/09/19/shell-echo-color/">Shell中echo输出样式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>示例</strong></p>
+<figure class="highlight lang-bash"><pre><span class="keyword">echo</span> -e <span class="string">"\033[44;37;5m I am color \033[0m No color"</span>
+</pre></figure>
+
+<p>以上命令设置背景成为蓝色，前景白色，闪烁光标，输出字符<code>I am color</code>，然后重新设置屏幕到缺省设置，输出字符 “No color”。“e”是命令 echo 的一个可选项，它用于激活特殊字符的解析器。“\033”引导非常规字符序列。“m”意味着设置属性然后结束非常规字符序列，这个例子里真正有效的字符是 “44;37;5” 和“0”。</p>
+<p>修改“44;37;5”可以生成不同颜色的组合，数值和编码的前后顺序没有关系。可以选择的编码如下所示：</p>
+<p><strong>编码 颜色/动作</strong></p>
+<p>0 重新设置属性到缺省设置<br>1 设置粗体<br>2 设置一半亮度（模拟彩色显示器的颜色）<br>4 设置下划线（模拟彩色显示器的颜色）<br>5 设置闪烁<br>7 设置反向图象<br>22 设置一般密度<br>24 关闭下划线<br>25 关闭闪烁<br>27 关闭反向图象<br>30 设置黑色前景<br>31 设置红色前景<br>32 设置绿色前景<br>33 设置棕色前景<br>34 设置蓝色前景<br>35 设置紫色前景<br>36 设置青色前景<br>37 设置白色前景<br>38 在缺省的前景颜色上设置下划线<br>39 在缺省的前景颜色上关闭下划线<br>40 设置黑色背景<br>41 设置红色背景<br>42 设置绿色背景<br>43 设置棕色背景<br>44 设置蓝色背景<br>45 设置紫色背景<br>46 设置青色背景<br>47 设置白色背景<br>49 设置缺省黑色背景</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-09-19T04:54:27.000Z"><a href="/2013/09/19/node-error-handle/">Sep 19th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-NodeJs">
+                <a href="/tags/NodeJs/">NodeJs</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/09/19/node-error-handle/">Node.js 异常以及错误的处理</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在编程过程中，处理好错误，并且有一个明确的、有效率的处理策略，是一个非常好的编程习惯和规则。 Node.js也不例外，在不同的应用场景中提供了多种不同的错误处理方案。</p>
+<p><strong>异常</strong></p>
+<p>异步执行代码的错误处理会有点棘手，示例：  </p>
+<figure class="highlight lang-javascript"><pre><span class="keyword">try</span>
+{
+    setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'who will catch me?'</span>);
+    }, <span class="number">1</span>);
+}
+<span class="keyword">catch</span> (e) {
+    console.log(<span class="string">'not me'</span>);
+}
+</pre></figure>
+
+<p>由于<code>setTimeout</code>是异步的，它会安排好待执行的方法然后就立即返回，不抛出任何异常。因此导致<code>catch</code>会直接被忽略，执行结果如下：</p>
+<figure class="highlight lang-javascript"><pre>posts/errors » node first.js
+
+timers.js:<span class="number">103</span>
+            <span class="keyword">if</span> (!process.listeners(<span class="string">'uncaughtException'</span>).length) <span class="keyword">throw</span> e;
+                                                                      ^
+Error: who will <span class="keyword">catch</span> me?
+    at Object._onTimeout (<span class="regexp">/Users/g</span>ustavo/code/posts/errors/first.js:<span class="number">4</span>:<span class="number">18</span>)
+    at Timer.list.ontimeout (timers.js:<span class="number">101</span>:<span class="number">19</span>)
+</pre></figure>
+
+<p>这将会导致进程退出，然后打印出堆栈跟踪的错误。那么我们该如何捕获这种未捕获异常呢？</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2013/09/19/node-error-handle/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2013-09-14T02:44:24.000Z"><a href="/2013/09/14/mac-gemini/">Sep 14th, 2013</a></time>
       
         <div class="post-tags">
@@ -90,8 +212,7 @@
     <div class="entry">
       
         <p>Gemini 是一款由MacPaw出品，找寻Mac中重复文件清理删除给电脑腾出更多硬盘空间的实用工具。只需轻松点击就能自动扫描系统并删除重复的文件，界面华丽好用。</p>
-<p>功能特点：
-重复扫描特定的文件夹，简单容易；自动选择不必要的副本；内置预览重复归类有助于删除不必要的副本；独特的算法使扫描和清除的速度更快；为安全起见，Gemini将确保每个重复项目至少留有一个</p>
+<p>功能特点：<br>重复扫描特定的文件夹，简单容易；自动选择不必要的副本；内置预览重复归类有助于删除不必要的副本；独特的算法使扫描和清除的速度更快；为安全起见，Gemini将确保每个重复项目至少留有一个</p>
 <p><img src="http://ww1.sinaimg.cn/large/6cdc22a9gw1e8lu19ekh3j20m80dwtbe.jpg" alt=""></p>
 
       
@@ -134,8 +255,7 @@
     <div class="entry">
       
         <p><code>Wallpaper Wizard</code>是mac上为数不多的壁纸应用中最为突出的，漂亮简洁的界面，以及海量高清壁纸，不同分类，任你下载，推荐指数5颗星 ★★★★★。</p>
-<p><img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8ltcod0b0j20uo0msgrd.jpg" alt="">
-<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8ltdwpx9ij20uo0msn2q.jpg" alt=""></p>
+<p><img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8ltcod0b0j20uo0msgrd.jpg" alt=""><br><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8ltdwpx9ij20uo0msn2q.jpg" alt=""></p>
 
       
     </div>
@@ -202,7 +322,7 @@
 <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
 </pre></figure>
 
-<p>这种写法虽然简单，但是有点小问题，就是在javascript最小化(Minification)的时候，参数<code>$scope</code>是区域参数，所以名称会被改变成类似a/b/...,而AngularJS在执行注入的时候就会找不到<code>$scope</code>,因此无法正常注入。解决方案有两个，如下所示：</p>
+<p>这种写法虽然简单，但是有点小问题，就是在javascript最小化(Minification)的时候，参数<code>$scope</code>是区域参数，所以名称会被改变成类似a/b/…,而AngularJS在执行注入的时候就会找不到<code>$scope</code>,因此无法正常注入。解决方案有两个，如下所示：</p>
 <figure class="highlight lang-javascript"><figcaption><span>方式一</span></figcaption><pre><span class="function"><span class="keyword">function</span> <span class="title">MyCtrl</span><span class="params">($scope)</span> {</span>
     $scope.xxx = <span class="string">'balabala'</span>;
 }
@@ -341,7 +461,7 @@ app.config([<span class="string">'$controllerProvider'</span>, <span class="keyw
 </blockquote>
 <p>意思就是：ng-switch这个标签创建了一个新的scope，也就是在controller-“myCtrl”下面创建了一个subScope，所以导致ng-bind的model取不到值，这是ng-switch的一个坑，解决办法也很简单：</p>
 <blockquote>
-<p>把ng-model=&quot;selectModel&quot;改为：ng-model=&quot;$parent.selectModel&quot;  </p>
+<p>把ng-model=“selectModel”改为：ng-model=“$parent.selectModel”  </p>
 </blockquote>
 <p>这样，咱们的ng-bind中的selectModel就可以正常取回值了。</p>
 
@@ -562,7 +682,7 @@ brew cleanup			<span class="comment"># all</span>
 <li>减值迭代(从高往低循环)  </li>
 <li>简化循环体  </li>
 <li>简化终止条件  </li>
-<li>避免双重解释(避免eval(&#39;alert(&quot;1&quot;)&#39;);避免new Function();避免setTimeout第一参数传入字符串)  </li>
+<li>避免双重解释(避免eval(‘alert(“1”)’);避免new Function();避免setTimeout第一参数传入字符串)  </li>
 <li>其他事项(原生方法比较快;switch比if-else快[把更可能的case放在前面];位运算比逻辑与、逻辑或都要快)  </li>
 </ol>
 <p><em>使用Array作为String Buffer</em><br>IE在字符串拼接的时候，效率很低；firefox下，Array的join执行效率是拼接的1.4倍<br><em>对于多次重复执行，setIntelval效率高于setTimeout</em>  </p>
@@ -645,106 +765,6 @@ brew cleanup			<span class="comment"># all</span>
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2013-08-17T02:47:32.000Z"><a href="/2013/08/17/spring-ioc/">Aug 17th, 2013</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-              <span class="tag-Spring">
-                <a href="/tags/Spring/">Spring</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2013/08/17/spring-ioc/">深入浅出Spring IOC原理</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>学过spring的应该知道，spring的核心就是ioc和aop了。今天来说一下ioc到底是什么，原理是什么，主要解决了哪些问题。<br><strong>IOC拟物化</strong><br>我不知道大家有没有经常网购的习惯，反正我平常消费的银子70%都是花在网购上，感觉网购很方便，可以随便挑，各种东西应有尽有，还送货上门，乐趣无限啊。说到网购，大家仔细想一下，其实，淘宝网就是很大的ioc容器，你要的东西应有尽有，店家把各自的东西挂到上面，就相当于把Bean放入容器的过程，而我们搜索我们想要的东西的过程，就类似于ioc注入的过程，找到了也就是注入成功了，找不到就抛出异常。意思就是：只要满足我们的条件，哪家卖的都无所谓。言外之意，反应到ioc中就是：只要实现的接口，具体注入哪个实现类都是无关紧要的。<br><strong>IOC概念</strong><br>我们都知道ioc是控制反转，什么是控制反转呢？个人认为这个概念比较抽象，另一个名称：DI(依赖注入)能更好的解释这个概念。从字面意义上理解，控制反转就是反过来控制。以前我们需要一个对象，都需要自己去new出来这个对象，控制反转之后，也就是说我们不需要主动自己去new这个对象，我们只要直接去接受这个对象就行了，换句话说这个对象被注入进来了，这就是DI的概念。<br><strong>IOC原理</strong><br>我们知道，ioc的最大作用就是bean管理和解耦。到底是如何进行解耦的呢？下面我用数学中的有向图进行说明。我们可以把Spring管理的每一个Bean当做一个节点（假设有N个Bean，那么就有N个节点），于是这些Bean加上相互之间表示调用关系的有向边就组成了一个有向图。毫无疑问，有向图的边越多那么平均来说每个顶点之间的耦合度就越大，最大的情况为完全有向图，即任何两个节点之间都有两条有向边，此时每个顶点的度为2（N-1），也就是说每个Bean与其他的N-1个Bean有耦合，而且还是双向耦合。如下图所示：<br><img src="http://ww3.sinaimg.cn/large/6cdc22a9jw1e7pj6y5vfpj20bx07at8r.jpg" alt="Bean之间相互耦合"><br>在编程的时候，我们都是本着高内聚、低耦合的编程方式，但是我们知道，要想达到完全的没有耦合是不可能的。所以能做的就是尽最大可能的保证松耦合。如何能减少类与类直接的耦合呢？一般我们都是用接口来实现。通过让类与类之间，依赖于接口，而不依赖于类，来达到松耦合的目的。但是无论耦合多么“松散”，具体的实现类还是需要new出来的，于是就得考虑这个new的过程应该放在哪里才是最合适的。如果在每个Bean中都去new这个Bean需要的其他Bean，那么耦合的程度又回到了上图的情况，那是没有意义的。所以我们就需要找一个中间人，在中间人那里实现new的过程，然后把new好的实例传递给需要这个实例的对象，这样的话一切问题就迎刃而解了。因此spring ioc容器就借助这个原理实现了bean管理和松耦合的功能。如下图所示：<br><img src="http://ww4.sinaimg.cn/large/6cdc22a9jw1e7pjqc4ddyj20a808awei.jpg" alt="IOC容器进行解耦"><br>上图也就是Spring的数学描述，图中很清晰的表明了在使用Spring之后，任意两个节点（Bean）之间的有向线段变成了0（确切的说不完全是0，因为任意两个节点之间还是可以通过容器连接的），唯一和这些Bean有关系的是容器（无论谁需要什么东西都去找容器，尽量避免两个Bean之间直接打交道）也正因为如此Spring才达到了解耦的目的。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-10-28T05:49:00.000Z"><a href="/2012/10/28/2012-10-28-javascript-1/">Oct 28th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Javascript">
-                <a href="/tags/Javascript/">Javascript</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/10/28/2012-10-28-javascript-1/">javascript中escape,encodeURI,encodeURIComponent函数</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>三个方法主要用来转码操作，解决地址栏中文传参等问题，但有所不同。</p>
-<figure class="highlight lang-javascript"><pre>encodeURI(URIstring)
-</pre></figure>
-
-<p>该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：<code>- _ . ! ~ * &#39; ( ) 。</code>
-该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：<code>;/?:@&amp;=+$,#</code>;此时就必须使用encodeURIComponent()进行编码。<br>1. 传递参数时需要使用encodeURIComponent，这样组合的url才不会被#等特殊字符截断。<br>2. 进行url跳转时可以整体使用encodeURI<br>3. js使用数据时可以使用escape<br>4. escape对0-255以外的unicode值进行编码时输出%u<em>**</em>格式，其它情况下escape，encodeURI，encodeURIComponent编码结果相同。另外使用<code>unescape()</code>对    <code>escape()</code>编码的字符进行解码。但是ECMAScript v3反对使用该方法，应使用<code>decodeURI()</code>和<code>decodeURIComponent()</code>代替<br>最多使用的应为encodeURIComponent，它是将中文、韩文等特殊字符转换成utf-8格式的url编码，所以如果给后台传递参数需要使用encodeURIComponent时需要后台解码对utf-8支持（form中的编码方式和当前页面编码方式相同）</p>
-<figure class="highlight lang-javascript"><pre>escape不编码字符有69个：*，+，-，.，/，@，_，0-9，a-z，A-Z
-
-encodeURI不编码字符有82个：!，#，$，&，'，(，)，*，+，,，-，.，/，:，;，=，?，@，_，~，
-
-0-9，a-z，A-Z
-
-encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~，0-9，a-z，A-Z
-</pre></figure>
-
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -758,7 +778,7 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -771,6 +791,9 @@ encodeURIComponent不编码字符有71个：!， '，(，)，*，-，.，_，~�
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

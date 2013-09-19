@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -93,9 +93,8 @@
     <div class="entry">
       
         <p><strong>OGNL</strong>  </p>
-<p>• OGNL的全称为Object Graph Navigation Language（对象图导航
-语言），在Struts2中可以使用OGNL获取值栈、Session等空间内的值。Struts2中的OGNL需要和Struts2的标签库配合起来使用。Struts2的标签库对OGNL、EL表达式都有很好的支持。  </p>
-<a name="more"></a>
+<p>• OGNL的全称为Object Graph Navigation Language（对象图导航<br>语言），在Struts2中可以使用OGNL获取值栈、Session等空间内的值。Struts2中的OGNL需要和Struts2的标签库配合起来使用。Struts2的标签库对OGNL、EL表达式都有很好的支持。  </p>
+<a id="more"></a>
 
 <p><em>OGNL操作普通属性</em></p>
 <figure class="highlight lang-xml"><pre>地址：<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"address"</span>/&gt;</span>
@@ -111,24 +110,24 @@ userPwd: <span class="tag">&lt;<span class="title">s:property</span> <span class
 
 
 <p><em>OGNL操作List集合</em></p>
-<figure class="highlight lang-xml"><pre>	userList:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList"</span>/&gt;</span> 
-	list size:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.size"</span>/&gt;</span> 
+<figure class="highlight lang-xml"><pre>userList:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList"</span>/&gt;</span> 
+list size:<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.size"</span>/&gt;</span> 
 
-	第一个List对象：
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList[0]"</span>/&gt;</span> 
-	投影取得List中所有的姓名：
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userName}"</span>/&gt;</span> 
-	获取List第一个对象的姓名：
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userName}[0]"</span>/&gt;</span> 
-	获取List第一个对象的密码：
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userPwd}[0]"</span>/&gt;</span> 
-	 	 
-	输出List中姓名为aa的所有用户对象： 
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{?#this.userName == 'aa'}"</span>/&gt;</span> 
-	输出List中姓名为aa的第一个用户对象： 
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{^#this.userName == 'aa'}.{id}"</span>/&gt;</span> 
-	输出List中姓名为aa的所有用户对象： 
-	<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{$#this.userName == 'aa'}.{id}"</span>/&gt;</span>
+第一个List对象：
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList[0]"</span>/&gt;</span> 
+投影取得List中所有的姓名：
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userName}"</span>/&gt;</span> 
+获取List第一个对象的姓名：
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userName}[0]"</span>/&gt;</span> 
+获取List第一个对象的密码：
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{userPwd}[0]"</span>/&gt;</span> 
+ 	 
+输出List中姓名为aa的所有用户对象： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{?#this.userName == 'aa'}"</span>/&gt;</span> 
+输出List中姓名为aa的第一个用户对象： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{^#this.userName == 'aa'}.{id}"</span>/&gt;</span> 
+输出List中姓名为aa的所有用户对象： 
+<span class="tag">&lt;<span class="title">s:property</span> <span class="attribute">value</span>=<span class="value">"userList.{$#this.userName == 'aa'}.{id}"</span>/&gt;</span>
 </pre></figure>
 
 
@@ -336,7 +335,7 @@ listValue 	如果集合中是对象，指定对象中哪个属性作为选项的
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -349,6 +348,9 @@ listValue 	如果集合中是对象，指定对象中哪个属性作为选项的
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

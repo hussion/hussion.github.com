@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -94,8 +94,7 @@
       
         <p>包括三种状态：瞬态（自由态），持久态，托管态  </p>
 <p><strong>自由态</strong>  </p>
-<p>持久化对象的自由态，指的是对象在内存中存在，但是在数据库中并没有数据与其关联。比如Student student = new Student()，这里的student对象就是一个自由态的持久化对象。<br><a name="more"></a>
-<strong>持久态</strong>  </p>
+<p>持久化对象的自由态，指的是对象在内存中存在，但是在数据库中并没有数据与其关联。比如Student student = new Student()，这里的student对象就是一个自由态的持久化对象。<br><a id="more"></a><br><strong>持久态</strong>  </p>
 <p>持久态指的是持久化对象处于由Hibernate管理的状态，这种状态下持久化对象的变化将会被同步到数据库中。</p>
 <figure class="highlight lang-java"><figcaption><span>持久态示例 </span></figcaption><pre>session.beginTransaction(); 
 
@@ -123,8 +122,7 @@ user.setUserPwd(<span class="string">"789"</span>); <span class="comment">// 游
 
 
 <p><strong>游离态和自由态区别</strong>  </p>
-<p><strong>1.</strong> 区别就在于游离态对象可以再次与Session迚行关联而成为持久态对
-象。</p>
+<p><strong>1.</strong> 区别就在于游离态对象可以再次与Session迚行关联而成为持久态对<br>象。</p>
 <figure class="highlight lang-java"><figcaption><span>游离态 → 自由态 </span></figcaption><pre>session.beginTransaction(); 
 User user = <span class="keyword">new</span> User(); <span class="comment">// 自由态</span>
 user.setUserName(<span class="string">"James"</span>); 
@@ -141,9 +139,7 @@ session2.getTransaction().commit();
 </pre></figure>
 
 
-<p><strong>2.</strong> 自由态对象在数据库中没有数据与其对应，但是游离态对象在数据库
-中有数据与其对应，只不过当前对象不在Session环境中而已。从对
-象的是否有主键值可以做<code>简单</code>的判断。</p>
+<p><strong>2.</strong> 自由态对象在数据库中没有数据与其对应，但是游离态对象在数据库<br>中有数据与其对应，只不过当前对象不在Session环境中而已。从对<br>象的是否有主键值可以做<code>简单</code>的判断。</p>
 <figure class="highlight lang-java"><figcaption><span>对比示例 </span></figcaption><pre>session.beginTransaction(); 
 User user = <span class="keyword">new</span> User(); 
 user.setUserName(<span class="string">"James"</span>); 
@@ -226,7 +222,7 @@ session.getTransaction().commit();
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -239,6 +235,9 @@ session.getTransaction().commit();
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -93,8 +93,7 @@
     <div class="entry">
       
         <p><strong>ORM</strong>  </p>
-<p>ORM(Object Relation Mapping)对象关系映射。是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将java程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。<br><a name="more"></a>
-<strong>ORM优势</strong>   </p>
+<p>ORM(Object Relation Mapping)对象关系映射。是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将java程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。<br><a id="more"></a><br><strong>ORM优势</strong>   </p>
 <p>ORM框架可以让我们减少乏味的代码，更加的面向对象的设计，更好的性能，更好的移植性。  </p>
 <p><strong>第一个hibernate程序</strong>  </p>
 <p>•  加入Hibernate jar包<br>•  创建持久化类（pojo）<br>•  创建映射文件（XXX.hbm.xml）<br>•  创建Hibernate配置文件（hibernate.cfg.xml）<br>•  测试运行</p>
@@ -259,7 +258,7 @@ session.getTransaction().commit();
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -272,6 +271,9 @@ session.getTransaction().commit();
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

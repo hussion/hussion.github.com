@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>linux学习笔记(四):权限管理命令 | hussion</title>
+  <title>Shell中echo输出样式 | hussion</title>
   <meta name="author" content="hussion">
   
   <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="linux学习笔记(四):权限管理命令"/>
+  <meta property="og:title" content="Shell中echo输出样式"/>
   <meta property="og:site_name" content="hussion"/>
 
   
@@ -69,7 +69,7 @@
     <header>
       
         <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2011-02-15T04:02:00.000Z"><a href="/2011/02/15/2011-02-15-linux4/">Feb 15th, 2011</a></time>
+        <time class="index-post-time" datetime="2013-09-19T05:14:43.000Z"><a href="/2013/09/19/shell-echo-color/">Sep 19th, 2013</a></time>
       
         <div class="post-tags">
           
@@ -78,94 +78,28 @@
                 <a href="/tags/Linux/">Linux</a>
               </span>
             
+              <span class="tag-Mac">
+                <a href="/tags/Mac/">Mac</a>
+              </span>
+            
           
         </div>
       
   
-    <h1 class="title">linux学习笔记(四):权限管理命令</h1>
+    <h1 class="title">Shell中echo输出样式</h1>
   
 
     </header>
     <div class="entry">
       
-        <ul>
-<li>命令：<strong>chmod</strong>  </li>
-</ul>
-<p><em>功能描述：改变文件或目录权限</em></p>
-<blockquote>
-<p>语法<br>    $ chmod [{ugo}{+-=}{rwx}] [文件或者目录]<br>    r: 4, w: 2, x: 1<br>    $ chmod [mode=421] [文件或者目录]<br>    例<br>    $ chmod 777 [file1] #把file1所有用户的权限设为rwx</p>
-</blockquote>
-<a id="more"></a>  
-
-<ul>
-<li>命令：<strong>chown</strong></li>
-</ul>
-<p><em>功能描述：改变文件或目录的所有者</em></p>
-<figure class="highlight"><pre><span class="comment">#语法  </span>
-<span class="variable">$ </span>chown [用户] [文件或者目录]    
-<span class="variable">$ </span>chown nobody file1 <span class="comment">#把file1所有者设为nobody</span>
+        <p><strong>示例</strong></p>
+<figure class="highlight lang-bash"><pre><span class="keyword">echo</span> -e <span class="string">"\033[44;37;5m I am color \033[0m No color"</span>
 </pre></figure>
 
-
-<ul>
-<li>命令：<strong>chgrp</strong></li>
-</ul>
-<p><em>功能描述：改变文件或目录的所属组</em></p>
-<figure class="highlight"><pre> <span class="comment">#语法  </span>
-<span class="variable">$ </span>chgrp [用户组] [文件或者目录]    
-<span class="variable">$ </span>chgrp adm file1 <span class="comment">#把file1所属组设为adm</span>
-</pre></figure>
-
-
-<ul>
-<li>命令：<strong>umask</strong></li>
-</ul>
-<p><em>功能描述：显示、设置新建文件的缺省权限</em></p>
-<figure class="highlight"><pre> <span class="comment">#语法  </span>
-<span class="variable">$ </span>umask [选项] [掩码]  
- <span class="comment">#例：  </span>
-<span class="variable">$ </span>umask <span class="comment">#以掩码形式显示新建文件或目录会具有的权限，如0022(第一个0代表特殊权限位，  </span>
-<span class="number">022</span>代表掩码值，用“<span class="number">777</span>-掩码值 = 文件的权限值”)     
-<span class="variable">$ </span>umask -<span class="constant">S</span> <span class="comment">#以rwx形式显示新建文件或目录缺省权限  </span>
- <span class="comment">#设置新建文件或目录的缺省权限  </span>
-<span class="variable">$ </span>umask <span class="number">022</span> <span class="comment">#实际权限值为777-022=755</span>
-</pre></figure>
-
-
-<ul>
-<li>linux中权限概念</li>
-</ul>
-<p><em>下面是linux中权限概念 ↓</em></p>
-<table>
-<thead>
-<tr>
-<th align="center">代表字符</th>
-<th>权限</th>
-<th align="center">对文件的含义</th>
-<th align="center">对目录的含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">r</td>
-<td>读权限</td>
-<td align="center">可以查看文件内容</td>
-<td align="center">可以列出目录中内容</td>
-</tr>
-<tr>
-<td align="center">w</td>
-<td>写权限</td>
-<td align="center">可以修改文件内容</td>
-<td align="center">可以在目录中创建、删除文件</td>
-</tr>
-<tr>
-<td align="center">x</td>
-<td>执行权限</td>
-<td align="center">可以执行文件</td>
-<td align="center">可以进入目录</td>
-</tr>
-</tbody>
-</table>
+<p>以上命令设置背景成为蓝色，前景白色，闪烁光标，输出字符<code>I am color</code>，然后重新设置屏幕到缺省设置，输出字符 “No color”。“e”是命令 echo 的一个可选项，它用于激活特殊字符的解析器。“\033”引导非常规字符序列。“m”意味着设置属性然后结束非常规字符序列，这个例子里真正有效的字符是 “44;37;5” 和“0”。</p>
+<p>修改“44;37;5”可以生成不同颜色的组合，数值和编码的前后顺序没有关系。可以选择的编码如下所示：</p>
+<p><strong>编码 颜色/动作</strong></p>
+<p>0 重新设置属性到缺省设置<br>1 设置粗体<br>2 设置一半亮度（模拟彩色显示器的颜色）<br>4 设置下划线（模拟彩色显示器的颜色）<br>5 设置闪烁<br>7 设置反向图象<br>22 设置一般密度<br>24 关闭下划线<br>25 关闭闪烁<br>27 关闭反向图象<br>30 设置黑色前景<br>31 设置红色前景<br>32 设置绿色前景<br>33 设置棕色前景<br>34 设置蓝色前景<br>35 设置紫色前景<br>36 设置青色前景<br>37 设置白色前景<br>38 在缺省的前景颜色上设置下划线<br>39 在缺省的前景颜色上关闭下划线<br>40 设置黑色背景<br>41 设置红色背景<br>42 设置绿色背景<br>43 设置棕色背景<br>44 设置蓝色背景<br>45 设置紫色背景<br>46 设置青色背景<br>47 设置白色背景<br>49 设置缺省黑色背景</p>
 
       
     </div>
@@ -175,7 +109,7 @@
         <!-- 
   
   <div class="tags">
-    <a href="/tags/Linux/">Linux</a>
+    <a href="/tags/Linux/">Linux</a>, <a href="/tags/Mac/">Mac</a>
   </div>
  -->
         

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -100,7 +100,7 @@
 <li>减值迭代(从高往低循环)  </li>
 <li>简化循环体  </li>
 <li>简化终止条件  </li>
-<li>避免双重解释(避免eval(&#39;alert(&quot;1&quot;)&#39;);避免new Function();避免setTimeout第一参数传入字符串)  </li>
+<li>避免双重解释(避免eval(‘alert(“1”)’);避免new Function();避免setTimeout第一参数传入字符串)  </li>
 <li>其他事项(原生方法比较快;switch比if-else快[把更可能的case放在前面];位运算比逻辑与、逻辑或都要快)  </li>
 </ol>
 <p><em>使用Array作为String Buffer</em><br>IE在字符串拼接的时候，效率很低；firefox下，Array的join执行效率是拼接的1.4倍<br><em>对于多次重复执行，setIntelval效率高于setTimeout</em>  </p>
@@ -149,7 +149,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -162,6 +162,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

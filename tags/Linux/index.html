@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -68,6 +68,18 @@
 
 
   <div class="archive">
+    
+      <article class="post archive-block">
+        <div class="post-content">
+          <header>
+            <!-- <div class="icon"></div> -->
+            
+              <h1 class="title"><a href="/2013/09/19/shell-echo-color/">Shell中echo输出样式</a></h1>
+            
+            <time datetime="2013-09-19T05:14:43.000Z"><a>Sep 19th, 2013</a></time>
+          </header>
+        </div>
+      </article>
     
       <article class="post archive-block">
         <div class="post-content">
@@ -220,7 +232,7 @@
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -233,6 +245,9 @@
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

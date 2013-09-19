@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -104,16 +104,14 @@ unalias <span class="comment">#删除别名</span>
 </pre></figure>
 
 
-<a name="more"></a>
+<a id="more"></a>
 
 <ul>
 <li>输入输出重定向</li>
 </ul>
 <blockquote>
 <p>同标准I/O一样，<code>Shell</code>对于每一个进程预先定义3个文件描述字（0，1，2）,分别对应于：<br>0 （STDIN） 标准输入；<br>1 （STDOUT） 标准输出；<br>2 （STDERR） 标准错误输出；  </p>
-<p>>和&gt;&gt; 输出重定向
-ls -l/tmp &gt; /tmp.msg (覆盖式重定向输出)
-date &gt;&gt; /tmp.msg (附加式重定向输出)</p>
+<p>>和&gt;&gt; 输出重定向<br>ls -l/tmp &gt; /tmp.msg (覆盖式重定向输出)<br>date &gt;&gt; /tmp.msg (附加式重定向输出)</p>
 </blockquote>
 <p><em>&lt; 输入重定向</em></p>
 <figure class="highlight lang-bash"><pre>wall &lt; /etc/motd
@@ -121,8 +119,7 @@ date &gt;&gt; /tmp.msg (附加式重定向输出)</p>
 
 
 <blockquote>
-<p>错误输出重定向
-cat usr/dsfxfd 2&gt; error (文件&#39;dsfxfd&#39;不存在，就会把错误信息输出到error文件里)</p>
+<p>错误输出重定向<br>cat usr/dsfxfd 2&gt; error (文件‘dsfxfd’不存在，就会把错误信息输出到error文件里)</p>
 </blockquote>
 <ul>
 <li>管道</li>
@@ -191,7 +188,7 @@ ls -l /etc | grep init | wc -l
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -204,6 +201,9 @@ ls -l /etc | grep init | wc -l
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -114,7 +114,7 @@
 <span class="tag">&lt;/<span class="title">html</span>&gt;</span>
 </pre></figure>
 
-<p>这种写法虽然简单，但是有点小问题，就是在javascript最小化(Minification)的时候，参数<code>$scope</code>是区域参数，所以名称会被改变成类似a/b/...,而AngularJS在执行注入的时候就会找不到<code>$scope</code>,因此无法正常注入。解决方案有两个，如下所示：</p>
+<p>这种写法虽然简单，但是有点小问题，就是在javascript最小化(Minification)的时候，参数<code>$scope</code>是区域参数，所以名称会被改变成类似a/b/…,而AngularJS在执行注入的时候就会找不到<code>$scope</code>,因此无法正常注入。解决方案有两个，如下所示：</p>
 <figure class="highlight lang-javascript"><figcaption><span>方式一</span></figcaption><pre><span class="function"><span class="keyword">function</span> <span class="title">MyCtrl</span><span class="params">($scope)</span> {</span>
     $scope.xxx = <span class="string">'balabala'</span>;
 }
@@ -218,7 +218,7 @@ app.config([<span class="string">'$controllerProvider'</span>, <span class="keyw
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -231,6 +231,9 @@ app.config([<span class="string">'$controllerProvider'</span>, <span class="keyw
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 

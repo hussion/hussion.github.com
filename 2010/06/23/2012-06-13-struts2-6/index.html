@@ -41,7 +41,7 @@
 
 <body>
   <div class="bgdiv">
-  	<img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e8qwncb9bnj21hc0u0n1g.jpg" alt="">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
   </div>	
   <header id="header" class="inner"><div class="alignleft top-title">
   <h1><a href="/">hussion</a></h1>
@@ -94,9 +94,8 @@
       
         <p>在struts2中，为了进行解耦，对原生的servlet对象进行的包装，但同时也提供了获取原生servlet对象的入口。要获得Servlet对象，需要了解ActionContext和ServletActionContext这两个类。  </p>
 <p><strong>ActionContext</strong>  </p>
-<p>ActionContext（com.opensymphony.xwork.ActionContext）是Action执行时的上下文，上下文可以看作是一个容器（就是一个Map而已），它存放的是Action在执行时需要用到的对象，比如：在使用WebWork时，我们的上下文放有请求的参数（Parameter）、会话(Session)、Servlet上下文（ServletContext）、本地化（Locale）信息等。WebWork负责将Servlet相关数据转换为与ServletAPI无关的Map对象（即ActionContext），使得xwork的Action实现与web层、逻辑层与表现层的解耦。
-在每次执行Action之前都会创建新的ActionContext，ActionContext是<code>线程安全</code>的，也就是说在同一个线程里ActionContext里的属性是唯一的，这样Action就可以在多线程中使用。</p>
-<a name="more"></a>
+<p>ActionContext（com.opensymphony.xwork.ActionContext）是Action执行时的上下文，上下文可以看作是一个容器（就是一个Map而已），它存放的是Action在执行时需要用到的对象，比如：在使用WebWork时，我们的上下文放有请求的参数（Parameter）、会话(Session)、Servlet上下文（ServletContext）、本地化（Locale）信息等。WebWork负责将Servlet相关数据转换为与ServletAPI无关的Map对象（即ActionContext），使得xwork的Action实现与web层、逻辑层与表现层的解耦。<br>在每次执行Action之前都会创建新的ActionContext，ActionContext是<code>线程安全</code>的，也就是说在同一个线程里ActionContext里的属性是唯一的，这样Action就可以在多线程中使用。</p>
+<a id="more"></a>
 
 <p><strong>ServletActionContext</strong></p>
 <p>ServletActionContext(com.opensymphony.webwork.ServletActionContext),这个类直接继承了ActionContext,它提供了直接与Servlet相关对象访问的功能,通过它可以直接获取HttpServletRequest,HttpServletResponse,Servletcontext，ServletConfig,PageContext这些对象。因为它继承了ActionContext，所有它也是线程安全的。  </p>
@@ -227,7 +226,7 @@ ServletContext application = (ServletContext)ctx.get(ServletActionContext.SERVLE
   </div>
   <footer id="footer" class="inner"><div>
   
-  Copyright &copy; 2013 hussion
+  copyright &copy; 2013 hussion
   
 </div>
 <div class="clearfix"></div></footer>
@@ -240,6 +239,9 @@ ServletContext application = (ServletContext)ctx.get(ServletActionContext.SERVLE
     $.scrollUp({
       scrollText: ''
     });
+    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
+      $('footer').css({'borderBottom':'none'});
+    };
   });
 </script>
 
