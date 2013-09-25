@@ -21,7 +21,7 @@
   padding: 0;
 }
 body {
-  background: transparent fixed;
+  background: #e3d6c5;
   color: #444;
   font-family: "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-size: 14px;
@@ -79,7 +79,7 @@ a:hover {
   clear: both;
 }
 .inner {
-  width: 768px;
+  width: 680px;
   margin: 0 auto;
 }
 @media screen and (max-width: 828px) {
@@ -102,7 +102,7 @@ a:hover {
   border: 0;
 }
 #main-col {
-  width: 768px;
+  width: 680px;
   background: #fff url("http://ww2.sinaimg.cn/large/6cdc22a9jw1e7k22zgfp6j205k05kt8k.jpg");
   -webkit-box-shadow: 0 0 134px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 134px rgba(0,0,0,0.6);
@@ -242,7 +242,7 @@ article.link .title a:after {
   vertical-align: super;
 }
 article .post-content {
-  padding: 30px 40px 0 40px;
+  padding: 30px 30px 0 30px;
   position: relative;
 }
 article .gallery {
@@ -433,7 +433,7 @@ article .entry p em {
 }
 article .entry blockquote {
   border-left: 5px solid #dfb5b4;
-  background: #fcf2f2;
+  background: #eee;
   font-size: 0.9em;
   padding: 10px 20px;
 }
@@ -576,7 +576,7 @@ article footer {
 article footer .readMore {
   margin-bottom: 20px;
   background: #ed786a;
-  padding: 10px 15px;
+  padding: 8px 10px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
