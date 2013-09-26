@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Object.prototype &amp; Function.prototype | hussion</title>
+  <meta name="author" content="hussion">
+  
+  <meta name="description" content="前端开发, Node.js, html, html5, css, css3, mongoDB, redis, SEO, java, struts, hibernate, spring, mybatis">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Object.prototype &amp; Function.prototype"/>
+  <meta property="og:site_name" content="hussion"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="hussion" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43093196-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <div class="bgdiv">
+  	<img src="http://ww3.sinaimg.cn/large/6cdc22a9gw1e8rv2ehbsjj21400mi76a.jpg" alt="">
+  </div>	
+  <header id="header" class="inner"><div class="alignleft top-title">
+  <h1><a href="/">hussion</a></h1>
+  <h2><a href="/">热爱前，后端开发，关注互联网，分享技术和生活</a></h2>
+</div>
+<nav id="main-nav">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+      <li><a href="http://weibo.com/hussion">Weibo</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-09-26T15:15:34.000Z"><a href="/2013/09/26/javascript-object-function/">Sep 26th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Javascript">
+                <a href="/tags/Javascript/">Javascript</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title">Object.prototype &amp; Function.prototype</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><img src="http://ww2.sinaimg.cn/large/6cdc22a9gw1e90ceow8m1j20gz0l4q5r.jpg" alt="Javascript Object Layout"></p>
+<p><strong>Object.prototype</strong></p>
+<p>javascript是基于原型继承的，任何一个对象都有一个prototype属性。Object.prototype是所有对象的根，并且不可改变。</p>
+<figure class="highlight lang-javascript"><pre>Object.prototype = <span class="literal">null</span>;
+console.log(Object.prototype); <span class="comment">// [object Object]</span>
+</pre></figure>
+
+<p><strong>Object与Object.prototype</strong></p>
+<p>Object继承于Object.prototype，增加一个属性给Object.prototype，同时也会反应到Object上。</p>
+<figure class="highlight lang-javascript"><pre>Object.prototype.sayHello = <span class="keyword">function</span>() {
+  <span class="keyword">return</span> <span class="string">'Hello World'</span>;
+}; 
+alert(Object.sayHello());<span class="comment">// Hello World</span>
+</pre></figure>
+
+<p><strong>Function.prototype与Object.prototype</strong></p>
+<p>由于Object.prototype是javascript中的万物之根，所以Function.prototype也同时会继承Object.prototype的所有属性，当然了Function也不会例外。</p>
+<figure class="highlight lang-javascript"><pre>Object.prototype.sayHello = <span class="keyword">function</span>() {
+  <span class="keyword">return</span> <span class="string">'Hello World'</span>;
+}; 
+alert(Function.prototype.sayHello());<span class="comment">// Hello World</span>
+alert(Function.sayHello());<span class="comment">// Hello World</span>
+</pre></figure>
+
+<p><strong>Object/Function/String/Number/Boolean/Array/Date</strong></p>
+<p>Object/Function/String/Number/Boolean/Array/Date都是函数，函数又继承于Function.prototype, 所以更改Function.prototype一样会影响到Object/Function/String/Number/Boolean/Array/Date。</p>
+<figure class="highlight lang-javascript"><pre>Function.prototype.initType=<span class="string">'Function Type'</span>; 
+Function.prototype.getType=<span class="keyword">function</span>(){<span class="keyword">return</span> <span class="keyword">this</span>.initType}; 
+<span class="comment">//alert(Object.getType());//Function Type </span>
+<span class="comment">//alert(Date.getType());//Function Type </span>
+<span class="comment">//alert(Number.getType());//Function Type </span>
+<span class="comment">//alert(String.getType());//Function Type </span>
+<span class="comment">//alert(Boolean.getType());//Function Type </span>
+alert(Array.getType());<span class="comment">//Function Type</span>
+</pre></figure>
+
+<p>同样Function.prototype也会把所受Object.prototype的影响，传递给它的下一层级。</p>
+<figure class="highlight lang-javascript"><pre>Object.prototype.nameStr=<span class="string">"Object Prototype"</span>; 
+Object.prototype.getName=<span class="keyword">function</span>(){<span class="keyword">return</span> <span class="keyword">this</span>.nameStr}; 
+alert(Function.prototype.getName());<span class="comment">//Object Prototype </span>
+alert(Array.getName());<span class="comment">//Object Prototype </span>
+alert(Boolean.prototype.getName());<span class="comment">//Object Prototype</span>
+</pre></figure>
+
+<p><strong>Array/Array.prototype与Function.prototype/Object.prototype</strong></p>
+<p>Array是函数对象，受Function.prototype的影响，而Array.prototype不是函数对象,所以不受Function.prototype的影响，但是所有的对象都受Object.prototype的影响，所以Array.prototype也会受Object.prototype的影响。</p>
+<figure class="highlight lang-javascript"><pre>Object.prototype.nameStr=<span class="string">"Object Prototype"</span>; 
+Object.prototype.getName=<span class="keyword">function</span>(){<span class="keyword">return</span> <span class="keyword">this</span>.nameStr}; 
+<span class="comment">//alert(Function.prototype.getName());//Object Prototype </span>
+<span class="comment">//alert(Boolean.prototype.getName());//Object Prototype </span>
+Function.prototype.initFun=<span class="keyword">function</span>(){ 
+  <span class="keyword">return</span> <span class="string">'Function.prototype.initFun'</span>; 
+} 
+alert(Array.initFun());<span class="comment">//Function.prototype.initFun </span>
+<span class="keyword">var</span> arr=[<span class="string">'a'</span>,<span class="string">'b'</span>]; 
+alert(arr.getName());<span class="comment">//Object Prototype </span>
+alert(arr.initFun());<span class="comment">//Error: arr.initFun is not a function </span>
+alert(arr.initFun);<span class="comment">//undefined</span>
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        <!--  -->
+        <!-- 
+  
+  <div class="tags">
+    <a href="/tags/Javascript/">Javascript</a>
+  </div>
+ -->
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+    <div class="ds-thread"></div>
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hussion"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+</section>
+</div></div>
+    <!-- <aside id="sidebar" class="alignright"></aside> -->
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  copyright &copy; 2013 hussion
+  
+</div>
+<div id="scrollBtn"></div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/easing.1.3.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $(window).scroll(function() {
+      if ($(window).scrollTop() > 200) {
+        $('#scrollBtn').fadeIn('slow');
+      } else {
+        $('#scrollBtn').fadeOut('slow');
+      }
+    });
+    $('#scrollBtn').click(function(e) {
+      $('html, body').animate({
+     scrollTop: 0}, 
+     1500, 
+     'easeOutBounce');
+    });
+  $('.fancybox').fancybox({
+  	'titleShow': false,
+    'transitionIn': 'elastic',
+    'transitionOut': 'elastic',
+    'easingIn': 'easeOutBack',
+    'easingOut': 'easeInBack'
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

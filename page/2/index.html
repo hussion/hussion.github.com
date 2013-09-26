@@ -70,6 +70,66 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-17T09:34:12.000Z"><a href="/2013/08/17/ie6-7-8/">Aug 17th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-前端开发">
+                <a href="/tags/前端开发/">前端开发</a>
+              </span>
+            
+              <span class="tag-Javascript">
+                <a href="/tags/Javascript/">Javascript</a>
+              </span>
+            
+              <span class="tag-Css">
+                <a href="/tags/Css/">Css</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/08/17/ie6-7-8/">IE兼容问题总结</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>javascript兼容</strong>  </p>
+<p>在js中，各个浏览器的基本语法差距并不大,兼容问题出现在各个宿主环境里（就是所谓的的浏览器中），尤其是事件。</p>
+<ol>
+<li><p>ie6+都可以用事件一级模型和事件二级模型来绑定一个事件,在二级模型事件中,现代浏览器用的是addEventListener,而ie6,7,8用的是attachEvent，9,10两者都可以用  </p>
+</li>
+<li><p>标准浏览器采用事件捕获的方法，而ie6,7,8用 的事件冒泡机制（所谓事件捕获就是由最外层元素至目标元素最里层，事件冒泡就是由目标元素最里层冒泡到最外层），不过现代浏览器可能更加觉得冒泡机制更好，所以在addEventListener最后加了一个参数，表示是否是捕获机制，一般是false  </p>
+</li>
+<li><p>获取事件对象 标准浏览器回调函数定义e参数,而ie6,7,8使用的是window.event,获取目标元素,标准浏览器用e.target而ie6,7,8用e.srcElement  </p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2013/08/17/ie6-7-8/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2013-08-17T02:47:32.000Z"><a href="/2013/08/17/spring-ioc/">Aug 17th, 2013</a></time>
       
         <div class="post-tags">
@@ -655,52 +715,6 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-06-04T08:18:00.000Z"><a href="/2012/06/04/2012-06-04-pd-story/">Jun 4th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-杂谈">
-                <a href="/tags/杂谈/">杂谈</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/06/04/2012-06-04-pd-story/">设计模式的故事</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>创建型模式</strong></p>
-<p>1、FACTORY—追MM少不了请吃饭了，麦当劳的鸡翅和肯德基的鸡翅都是MM爱吃的东西，虽然口味有所不同，但不管你带MM去麦当劳或肯德基，只管向服务员说“来四个鸡翅”就行了。麦当劳和肯德基就是生产鸡翅的Factory</p>
-<p><code>工厂模式</code>：客户类和工厂类分开。消费者任何时候需要某种产品，只需向工厂请求即可。消费者无须修改就可以接纳新产品。缺点是当产品修改时，工厂类也要做相应的修改。如：如何创建及如何向客户端提供。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2012/06/04/2012-06-04-pd-story/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -719,21 +733,12 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
   copyright &copy; 2013 hussion
   
 </div>
+<div id="scrollBtn"></div>
 <div class="clearfix"></div></footer>
   <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
-<script src="/js/scrollUp.min.js"></script>
-<script>
-  $(function() {
-    $.scrollUp({
-      scrollText: ''
-    });
-    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
-      $('footer').css({'borderBottom':'none'});
-    };
-  });
-</script>
+<script src="/js/easing.1.3.min.js"></script>
 
 
 
@@ -742,6 +747,19 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
+  $(window).scroll(function() {
+      if ($(window).scrollTop() > 200) {
+        $('#scrollBtn').fadeIn('slow');
+      } else {
+        $('#scrollBtn').fadeOut('slow');
+      }
+    });
+    $('#scrollBtn').click(function(e) {
+      $('html, body').animate({
+     scrollTop: 0}, 
+     1500, 
+     'easeOutBounce');
+    });
   $('.fancybox').fancybox({
   	'titleShow': false,
     'transitionIn': 'elastic',

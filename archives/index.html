@@ -74,6 +74,18 @@
           <header>
             <!-- <div class="icon"></div> -->
             
+              <h1 class="title"><a href="/2013/09/26/javascript-object-function/">Object.prototype &amp; Function.prototype</a></h1>
+            
+            <time datetime="2013-09-26T15:15:34.000Z"><a>Sep 26th, 2013</a></time>
+          </header>
+        </div>
+      </article>
+    
+      <article class="post archive-block">
+        <div class="post-content">
+          <header>
+            <!-- <div class="icon"></div> -->
+            
               <h1 class="title"><a href="/2013/09/19/shell-echo-color/">Shell中echo输出样式</a></h1>
             
             <time datetime="2013-09-19T05:14:43.000Z"><a>Sep 19th, 2013</a></time>
@@ -739,21 +751,12 @@
   copyright &copy; 2013 hussion
   
 </div>
+<div id="scrollBtn"></div>
 <div class="clearfix"></div></footer>
   <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
-<script src="/js/scrollUp.min.js"></script>
-<script>
-  $(function() {
-    $.scrollUp({
-      scrollText: ''
-    });
-    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
-      $('footer').css({'borderBottom':'none'});
-    };
-  });
-</script>
+<script src="/js/easing.1.3.min.js"></script>
 
 
 
@@ -762,6 +765,19 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
+  $(window).scroll(function() {
+      if ($(window).scrollTop() > 200) {
+        $('#scrollBtn').fadeIn('slow');
+      } else {
+        $('#scrollBtn').fadeOut('slow');
+      }
+    });
+    $('#scrollBtn').click(function(e) {
+      $('html, body').animate({
+     scrollTop: 0}, 
+     1500, 
+     'easeOutBounce');
+    });
   $('.fancybox').fancybox({
   	'titleShow': false,
     'transitionIn': 'elastic',

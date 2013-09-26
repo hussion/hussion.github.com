@@ -70,6 +70,59 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-03-08T15:40:00.000Z"><a href="/2011/03/08/2012-05-06-linux8/">Mar 8th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/03/08/2012-05-06-linux8/">linux学习笔记(七): 网络通信命令</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>命令名称： <strong>write</strong>  </li>
+</ul>
+<p><em>功能描述：向另外一个用户发送信息，以Ctrl+D作为结束</em></p>
+<figure class="highlight lang-bash"><pre>语法： write [用户名]  
+ps: 该命令是实时通信，接收信息的用户必须在线方可发送成功！
+</pre></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2011/03/08/2012-05-06-linux8/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2011-03-05T03:51:00.000Z"><a href="/2011/03/05/2012-05-05-linux7/">Mar 5th, 2011</a></time>
       
         <div class="post-tags">
@@ -1070,56 +1123,6 @@ session.getTransaction().commit();
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-08-01T08:11:00.000Z"><a href="/2010/08/01/2012-06-19-hibernate-2/">Aug 1st, 2010</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-              <span class="tag-Hibernate">
-                <a href="/tags/Hibernate/">Hibernate</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/08/01/2012-06-19-hibernate-2/">hibernate持久化对象的生命周期(状态)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>包括三种状态：瞬态（自由态），持久态，托管态  </p>
-<p><strong>自由态</strong>  </p>
-<p>持久化对象的自由态，指的是对象在内存中存在，但是在数据库中并没有数据与其关联。比如Student student = new Student()，这里的student对象就是一个自由态的持久化对象。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2010/08/01/2012-06-19-hibernate-2/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -1138,21 +1141,12 @@ session.getTransaction().commit();
   copyright &copy; 2013 hussion
   
 </div>
+<div id="scrollBtn"></div>
 <div class="clearfix"></div></footer>
   <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
-<script src="/js/scrollUp.min.js"></script>
-<script>
-  $(function() {
-    $.scrollUp({
-      scrollText: ''
-    });
-    if (location.href.indexOf('/about/') != -1 || location.href.indexOf('/tags/') != -1) {
-      $('footer').css({'borderBottom':'none'});
-    };
-  });
-</script>
+<script src="/js/easing.1.3.min.js"></script>
 
 
 
@@ -1161,6 +1155,19 @@ session.getTransaction().commit();
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
+  $(window).scroll(function() {
+      if ($(window).scrollTop() > 200) {
+        $('#scrollBtn').fadeIn('slow');
+      } else {
+        $('#scrollBtn').fadeOut('slow');
+      }
+    });
+    $('#scrollBtn').click(function(e) {
+      $('html, body').animate({
+     scrollTop: 0}, 
+     1500, 
+     'easeOutBounce');
+    });
   $('.fancybox').fancybox({
   	'titleShow': false,
     'transitionIn': 'elastic',
