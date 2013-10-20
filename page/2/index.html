@@ -70,6 +70,114 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-19T10:23:33.000Z"><a href="/2013/08/19/soft-dialogue/">Aug 19th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Mac">
+                <a href="/tags/Mac/">Mac</a>
+              </span>
+            
+              <span class="tag-Ios">
+                <a href="/tags/Ios/">Ios</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/08/19/soft-dialogue/">Dialogue – 使用蓝牙连接你的手机在Mac上打电话</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Dialogue 是Mac下一款很酷的小应用。使用这款软件可以让你用 Mac化身蓝牙耳机，代替 iPhone 进行电话的接收和拨打工作。</p>
+<p>首先使用 Dialogue 前需要将iPhone 和 Mac 两端开启蓝牙并配对连接好，然后在Mac下就可以工作了。来电话后，Mac会自动弹出“来电”操作框；通话过程中还能选择“录音”，录音结束后可保存为M4A格式文件到本地硬盘。</p>
+<p>使用Dialogue的通话质量还凑合，推荐使用耳机，这样效果更佳， Dialogue能与Mac通讯录联系人完美整合，你可以在Dialogue里直接查找联系人呼出电话，也可以直接输入要拨打的号码直接呼出。</p>
+<p>Dialogue可以在OS X Mavericks 10.9下工作。<br><img src="http://ww4.sinaimg.cn/large/6cdc22a9jw1e7s5bs951cj20m80dw0to.jpg" alt=""></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-18T01:55:03.000Z"><a href="/2013/08/18/javascript-performance-optimize/">Aug 18th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Javascript">
+                <a href="/tags/Javascript/">Javascript</a>
+              </span>
+            
+              <span class="tag-前端开发">
+                <a href="/tags/前端开发/">前端开发</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/08/18/javascript-performance-optimize/">javascript性能优化</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>注意作用域</strong>  </p>
+<p><em>避免全局查询</em><br>局部查找比全局查找快<br><em>避免使用with</em><br>with()会创建自己的作用域，增加作用域链的长度</p>
+<p><strong>选择正确的方法</strong>  </p>
+<p><em>避免不必要的查找，减少复杂度</em><br><em>优化循环</em>  </p>
+<ol>
+<li>减值迭代(从高往低循环)  </li>
+<li>简化循环体  </li>
+<li>简化终止条件  </li>
+<li>避免双重解释(避免eval(‘alert(“1”)’);避免new Function();避免setTimeout第一参数传入字符串)  </li>
+<li>其他事项(原生方法比较快;switch比if-else快[把更可能的case放在前面];位运算比逻辑与、逻辑或都要快)  </li>
+</ol>
+<p><em>使用Array作为String Buffer</em><br>IE在字符串拼接的时候，效率很低；firefox下，Array的join执行效率是拼接的1.4倍<br><em>对于多次重复执行，setIntelval效率高于setTimeout</em>  </p>
+<p><strong>最小语句化</strong>  </p>
+<p><em>多个变量声明合并</em><br><em>插入迭代值</em><br>将name=value[i];i++;合并为：name=value[i++]<br><em>使用数组和对象字面量,缩短定义</em></p>
+<p><strong>优化DOM交互</strong>  </p>
+<p><em>DOM交互最消耗时间</em><br><em>最小化现场更新</em><br><em>使用innerHTML</em><br>innerHTML比createElement快，而且比appendChild快<br><em>使用事件代理</em><br>如果可能，把事件附加到更高层次的地方<br><em>注意NodeList</em><br>查询NodeList的属性，方法开销很昂贵;另外特别要优化循环查询</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2013-08-17T09:34:12.000Z"><a href="/2013/08/17/ie6-7-8/">Aug 17th, 2013</a></time>
       
         <div class="post-tags">
@@ -611,100 +719,6 @@ export LSCOLORS=gxfxaxdxcxegedabagacad
     </div>
     <footer>
       
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-06-06T01:11:00.000Z"><a href="/2012/06/06/2012-06-06-java-web/">Jun 6th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-杂谈">
-                <a href="/tags/杂谈/">杂谈</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/06/06/2012-06-06-java-web/">10+ HTML Best practices for Web Developer</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>HTML已经走过了近20的发展历程。从HTML4到XHTML，再到最近十分火热的HTML5，它几乎见证了整个互联网的发展。但是，即便到现在，有很多基础的概念和原则依然需要开发者高度注意。下面，向大家介绍这些应该遵循的开发原则。 </p>
-<p><strong>1、善用DIV来布局 </strong></p>
-<p>当开发一个Web页面时，要考虑第一件事就是区分页面重点。将这些内容用DIV标签包含起来，页面的代码会呈现出整洁、缩进良好的风格。 </p>
-<p><strong>2、将HTML标签和CSS样式表分割开来 </strong></p>
-<p>好的页面应该将HTML标签和CSS样式表分割开来。这是每一个Web开发者在首次接触Web开发时就应该知道的一条原则。然而，直到今天，仍然有很多开发者没有严格遵循这一原则。 </p>
-<p>不要在HTML标签里内嵌样式表代码。开发者应该养成习惯，单独建立文件，用以存放CSS样式表。而这也将方便其他开发者在修改你的代码时，能迅速完成工作。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2012/06/06/2012-06-06-java-web/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-06-04T08:36:00.000Z"><a href="/2012/06/04/2012-06-04-10tips/">Jun 4th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-杂谈">
-                <a href="/tags/杂谈/">杂谈</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/06/04/2012-06-04-10tips/">从程序员到企业家的10个技巧</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong>1. 代码只占生意的5%</strong>  </p>
-<p>我见到的最多、最严重的问题就是开发者被代码绑架，花费数不清的时间让一个功能变得完美，或者炫耀最新的技术。是的，你的代码必须高质量，并且没有严重的 bug 和安全问题。但是你要记住，再好的代码如果没有人用的话都是垃圾。当税务局过来封门查税的时候，你会发现代码是没有用的，当你收到法院关于知识产权官司传票的时候，你会发现代码是没有用的。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft readMore">
-            <a href="/2012/06/04/2012-06-04-10tips/#more" class="more-link">Read More</a>
-          </div>
         
         
       

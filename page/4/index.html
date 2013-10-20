@@ -70,6 +70,111 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-03-19T15:35:00.000Z"><a href="/2011/03/19/2012-05-12-vim/">Mar 19th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/03/19/2012-05-12-vim/">linux学习笔记(九): vim编辑器的使用</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Vim/Vi是一个功能强大的全屏幕文本编辑器，也是linux/unix上最常用的文本编辑器，它的作用是建立、编辑、显示文本文件。<br>Vim/Vi <strong>没有菜单，只有命令</strong>！<br>Vim的三种工作模式：<code>命令模式</code>、<code>插入模式</code>、<code>编辑模式</code>。<br>命令模式分为两种: 一种是<code>输入命令模式</code>,一种是<code>快捷键方式</code><br>命令以回车结束运行 </p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2011/03/19/2012-05-12-vim/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-03-16T16:12:00.000Z"><a href="/2011/03/17/2012-05-07-linux9/">Mar 17th, 2011</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/03/17/2012-05-07-linux9/">linux学习笔记(八): shell基础应用技巧</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>1.清屏快捷键：<code>Ctrl+l</code>, 清除光标前所有命令： <code>Ctrl+U</code>  </p>
+<p>2.命令别名： <strong>alias</strong>  </p>
+</blockquote>
+<figure class="highlight lang-bash"><pre>/*  
+*语法  
+*/  
+alias <span class="comment">#查看所有别名信息  </span>
+alias <span class="comment">#自定义的别名=命令  </span>
+alias 自定义的别名=<span class="string">"命令"</span>  
+alias copy=cp <span class="comment">#让cp命令定义别名为copy  </span>
+alias drm=<span class="string">"rm -rf"</span> <span class="comment">#定义带选项的命令别名  </span>
+unalias <span class="comment">#删除别名</span>
+</pre></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2011/03/17/2012-05-07-linux9/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2011-03-08T15:40:00.000Z"><a href="/2011/03/08/2012-05-06-linux8/">Mar 8th, 2011</a></time>
       
         <div class="post-tags">
@@ -487,627 +592,6 @@ passwd: 修改密码
 <li>避免使用 . 作为普通文件名的第一个字符(在linux中以.开头的代表隐藏文件)</li>
 <li>要注意大小写(在linux中，大小写敏感)</li>
 </ol>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-08-23T00:24:00.000Z"><a href="/2010/08/23/2012-06-23-hibernate-4/">Aug 23rd, 2010</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-              <span class="tag-Hibernate">
-                <a href="/tags/Hibernate/">Hibernate</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/08/23/2012-06-23-hibernate-4/">hibernate的数据关联映射</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>数据关联映射分为：一对多、多对一，一对一，多对多。  </p>
-<p><strong>一对多、多对一</strong>  </p>
-<pre><code><span class="comment">t_address</span>             <span class="comment">t_user</span>
-<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
-<span class="comment">id</span>                    <span class="comment">id</span>
-<span class="comment">address</span>               <span class="comment">name</span>
-<span class="comment">userid(FK)</span>            <span class="comment">age</span>
-<span class="comment">tel</code></pre>
-<figure class="highlight lang-java"><figcaption><span>一对多、多对一持久化类设计 </span></figcaption><pre><span class="comment">// User类</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String name; 
-<span class="keyword">private</span> <span class="keyword">int</span> age; 
-<span class="keyword">private</span> Set&lt;Address&gt; addressSet; 
- 
-<span class="comment">//get set method </span>
-}
-
-<span class="comment">//Address类</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String address; 
-<span class="keyword">private</span> <span class="keyword">int</span> tel; 
-<span class="keyword">private</span> User user; 
- 
-<span class="comment">//get set method </span>
-}
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>user.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span>  
-	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"User"</span> <span class="attribute">table</span>=<span class="value">"t_user"</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span> <span class="attribute">column</span>=<span class="value">"id"</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>&gt;</span><span class="tag">&lt;/<span class="title">generator</span>&gt;</span> 
-		<span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"name"</span> <span class="attribute">column</span>=<span class="value">"name"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"age"</span> <span class="attribute">column</span>=<span class="value">"age"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-
-		<span class="comment">&lt;!--inverse="true"放弃关系维护--&gt;</span> 
-		<span class="tag">&lt;<span class="title">set</span> <span class="attribute">name</span>=<span class="value">"addressSet"</span> <span class="attribute">inverse</span>=<span class="value">"true"</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">key</span> <span class="attribute">column</span>=<span class="value">"userid"</span>/&gt;</span> 
-		  <span class="tag">&lt;<span class="title">one-to-many</span> <span class="attribute">class</span>=<span class="value">"Address"</span>/&gt;</span> 
-		<span class="tag">&lt;/<span class="title">set</span>&gt;</span> 
-	<span class="tag">&lt;/<span class="title">class</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>address.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Address"</span> <span class="attribute">table</span>=<span class="value">"t_address"</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>/&gt;</span> 
-		<span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"address"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"tel"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">many-to-one</span> <span class="attribute">name</span>=<span class="value">"user"</span> <span class="attribute">class</span>=<span class="value">"User"</span> <span class="attribute">column</span>=<span class="value">"userid"</span>/&gt;</span> 
-	<span class="tag">&lt;/<span class="title">class</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>测试 </span></figcaption><pre>User user = <span class="keyword">new</span> User(); 
-user.setName(<span class="string">"tom"</span>); 
-user.setAge(<span class="number">21</span>); 
- 
-Address address1 = <span class="keyword">new</span> Address(); 
-address1.setAddress(<span class="string">"China"</span>); 
-address1.setTel(<span class="string">"010-9999999"</span>); 
- 
-Address address2 = <span class="keyword">new</span> Address(); 
-address2.setAddress(<span class="string">"USA"</span>); 
-address2.setTel(<span class="string">"89898989"</span>); 
- 
-Set&lt;Address&gt; set = <span class="keyword">new</span> HashSet&lt;Address&gt;(); 
-set.add(address2); 
-set.add(address1); 
- 
-user.setAddressSet(set);
-session.beginTransaction(); 
- 
-session.save(address1); 
-session.save(address2); 
-session.save(user); 
- 
-session.getTransaction().commit();
-</pre></figure>
-
-<p><strong>一对一</strong>  </p>
-<pre><code><span class="comment">t_person</span>                        <span class="comment">t_card</span>
-<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
-<span class="comment">id</span>                              <span class="comment">id(Fk)</span>
-<span class="comment">name</span>                            <span class="comment">cardnum</code></pre>
-<figure class="highlight lang-java"><figcaption><span>持久化类设计 </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String userName; 
-<span class="keyword">private</span> Card card; 
- 
-<span class="comment">//get set Method </span>
-} 
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Card</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String cardNum; 
-<span class="keyword">private</span> Person person; 
- 
-<span class="comment">//get set Method </span>
-}
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>person.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
-    <span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Person"</span> <span class="attribute">table</span>=<span class="value">"t_person"</span>&gt;</span> 
-    	<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span>&gt;</span> 
-	      <span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>&gt;</span><span class="tag">&lt;/<span class="title">generator</span>&gt;</span> 
-	    <span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-     	<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"userName"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-      	<span class="tag">&lt;<span class="title">one-to-one</span> <span class="attribute">name</span>=<span class="value">"card"</span> <span class="attribute">class</span>=<span class="value">"Card"</span> <span class="attribute">cascade</span>=<span class="value">"delete"</span>/&gt;</span>
-    <span class="tag">&lt;/<span class="title">class</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-</pre></figure>
-
-
-<p>cascade属性<br>• <code>save-update</code>：在执行保存和修改是进行级联操作<br>• <code>delete</code>：在执行删除时进行级联操作<br>• <code>all</code>：在所有情况下进行级联操作<br>• <code>none</code>：不进行级联操作（默认）</p>
-<figure class="highlight lang-xml"><figcaption><span>card.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Card"</span> <span class="attribute">table</span>=<span class="value">"t_card"</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span> <span class="attribute">column</span>=<span class="value">"id"</span>&gt;</span> 
-			<span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"foreign"</span>&gt;</span> 
-			  <span class="tag">&lt;<span class="title">param</span> <span class="attribute">name</span>=<span class="value">"property"</span>&gt;</span>person<span class="tag">&lt;/<span class="title">param</span>&gt;</span> 
-			<span class="tag">&lt;/<span class="title">generator</span>&gt;</span> 
-		<span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"cardNum"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">one-to-one</span> <span class="attribute">name</span>=<span class="value">"person"</span> <span class="attribute">class</span>=<span class="value">"Person"</span>&gt;</span><span class="tag">&lt;/<span class="title">one-to-one</span>&gt;</span> 
-	<span class="tag">&lt;/<span class="title">class</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-</pre></figure>
-
-
-<p><strong>一对一（唯一外键关联）</strong>  </p>
-<pre><code><span class="comment">t_person</span>                 <span class="comment">t_card</span>
-<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
-<span class="comment">id</span>                       <span class="comment">id</span>
-<span class="comment">name</span>                     <span class="comment">cardnum</span>
-<span class="comment">cardid(FK)</span>               <span class="comment">personid(FK)</code></pre>
-<figure class="highlight lang-xml"><figcaption><span>person.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
-    <span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Person"</span> <span class="attribute">table</span>=<span class="value">"t_person"</span>&gt;</span> 
-    	<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span>&gt;</span> 
-	      <span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>&gt;</span><span class="tag">&lt;/<span class="title">generator</span>&gt;</span> 
-	    <span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-	    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"userName"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-	  	<span class="tag">&lt;<span class="title">many-to-one</span> <span class="attribute">name</span>=<span class="value">"card"</span> <span class="attribute">column</span>=<span class="value">"cardid"</span> <span class="attribute">class</span>=<span class="value">"Card"</span>  
-	    <span class="attribute">cascade</span>=<span class="value">"delete"</span> <span class="attribute">unique</span>=<span class="value">"true"</span>/&gt;</span> 
-    <span class="tag">&lt;/<span class="title">class</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>card.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Card"</span> <span class="attribute">table</span>=<span class="value">"t_card"</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span> <span class="attribute">column</span>=<span class="value">"id"</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>&gt;</span><span class="tag">&lt;/<span class="title">generator</span>&gt;</span> 
-		<span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"cardNum"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">many-to-one</span> <span class="attribute">name</span>=<span class="value">"person"</span> <span class="attribute">class</span>=<span class="value">"Person"</span> <span class="attribute">column</span>=<span class="value">"personid"</span> <span class="attribute">unique</span>=<span class="value">"true“/&gt; 
-	&lt;/class&gt; 
-&lt;/hibernate-mapping&gt;
-</pre></figure>
-
-<p><strong>多对多</strong>  </p>
-<pre><code><span class="comment">t_student</span>         <span class="comment">t_student_teacher</span>           <span class="comment">t_teacher</span>
-<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
-<span class="comment">id</span>                <span class="comment">id</span>                          <span class="comment">id</span>
-<span class="comment">name</span>              <span class="comment">studentid(FK)</span>                   <span class="comment">name</span>
-                  <span class="comment">teacherid(FK)</code></pre>
-<figure class="highlight lang-java"><figcaption><span>持久化类设计 </span></figcaption><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String name; 
-<span class="keyword">private</span> Set&lt;Student&gt; student; 
- 
-<span class="comment">//get set method </span>
-} 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> {</span> 
- 
-<span class="keyword">private</span> <span class="keyword">int</span> id; 
-<span class="keyword">private</span> String name; 
-<span class="keyword">private</span> Set&lt;Teacher&gt; teacher; 
- 
-<span class="comment">//get set method </span>
-}
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>teacher.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Teacher"</span> <span class="attribute">table</span>=<span class="value">"t_teacher"</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span> <span class="attribute">column</span>=<span class="value">"id"</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>&gt;</span><span class="tag">&lt;/<span class="title">generator</span>&gt;</span> 
-		<span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"name"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">set</span> <span class="attribute">name</span>=<span class="value">"student"</span> <span class="attribute">table</span>=<span class="value">"t_student_techer"</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">key</span> <span class="attribute">column</span>=<span class="value">"teacherid"</span>/&gt;</span> 
-		  <span class="tag">&lt;<span class="title">many-to-many</span> <span class="attribute">class</span>=<span class="value">“Student”</span> <span class="attribute">column</span>=<span class="value">“studentid”</span>/&gt;</span> 
-		<span class="tag">&lt;/<span class="title">set</span>&gt;</span> 
-	<span class="tag">&lt;/<span class="title">class</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>student.hbm.xml </span></figcaption><pre><span class="tag">&lt;<span class="title">hibernate-mapping</span> <span class="attribute">package</span>=<span class="value">"com.hussion.pojo"</span>&gt;</span> 
-	<span class="tag">&lt;<span class="title">class</span> <span class="attribute">name</span>=<span class="value">"Student"</span> <span class="attribute">table</span>=<span class="value">"t_student"</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">id</span> <span class="attribute">name</span>=<span class="value">"id"</span> <span class="attribute">column</span>=<span class="value">"id"</span>&gt;</span> 
-		  <span class="tag">&lt;<span class="title">generator</span> <span class="attribute">class</span>=<span class="value">"native"</span>&gt;</span><span class="tag">&lt;/<span class="title">generator</span>&gt;</span> 
-		<span class="tag">&lt;/<span class="title">id</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"name"</span>&gt;</span><span class="tag">&lt;/<span class="title">property</span>&gt;</span> 
-		<span class="tag">&lt;<span class="title">set</span> <span class="attribute">name</span>=<span class="value">"teacher"</span> <span class="attribute">table</span>=<span class="value">"t_student_techer"</span>&gt;</span> 
-			<span class="tag">&lt;<span class="title">key</span> <span class="attribute">column</span>=<span class="value">"studentid"</span>/&gt;</span> 
-			<span class="tag">&lt;<span class="title">many-to-many</span> <span class="attribute">class</span>=<span class="value">"Teacher"</span> <span class="attribute">column</span>=<span class="value">"teacherid"</span>/&gt;</span> 
-		<span class="tag">&lt;/<span class="title">set</span>&gt;</span> 
-	<span class="tag">&lt;/<span class="title">class</span>&gt;</span> 
-<span class="tag">&lt;/<span class="title">hibernate-mapping</span>&gt;</span>
-</pre></figure>
-
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-08-11T23:38:00.000Z"><a href="/2010/08/12/2012-06-20-hibernate-3/">Aug 12th, 2010</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-              <span class="tag-Hibernate">
-                <a href="/tags/Hibernate/">Hibernate</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/08/12/2012-06-20-hibernate-3/">hibernate的查询方式</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>hibernate的查询方式常见的主要分为三种: HQL, QBC, 以及使用原生SQL查询  </p>
-<p><strong>HQL查询</strong>  </p>
-<p>• HQL（Hibernate Query Language）提供了丰富灵活的查询方式，使用HQL进行查询也是Hibernate官方推荐使用的查询方式。 </p>
-<p>• HQL在语法结构上和SQL语句十分的相同，所以可以很快的上手进行使用。使用HQL需要用到Hibernate中的Query对象，该对象专门执行HQL方式的操作。</p>
-<figure class="highlight lang-java"><figcaption><span>查询所有示例 </span></figcaption><pre>session.beginTransaction(); 
-String hql = <span class="string">"from User"</span>; <span class="comment">// from 后跟的是要查询的对象，而不是表</span>
-Query query = session.createQuery(hql); 
-List&lt;User&gt; userList = query.list(); 
-<span class="keyword">for</span>(User user:userList){ 
-  System.out.println(user.getUserName()); 
-} 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>带where的查询示例 </span></figcaption><pre>session.beginTransaction(); 
-String hql = <span class="string">"from User where userName = 'James'"</span>; 
-Query query = session.createQuery(hql); 
-List&lt;User&gt; userList = query.list(); 
-<span class="keyword">for</span>(User user:userList){ 
-  System.out.println(user.getUserName()); 
-} 
-session.getTransaction().commit(); 
-
-<span class="comment">/*
-在HQL中where语句中使用的是持久化对象的属性名，如上面示例中的userName。当然在HQL中也可以使用别名
-*/</span>
-
-String hql = <span class="string">"from User as u where u.userName = 'James'"</span>; 
-
-<span class="comment">/*
-过滤条件 
-在where语句中还可以使用各种过滤条件，如：=、&lt;&gt;、&lt;、&gt;、&gt;=、&lt;=、between、not between、
-in、not in、is、like、and、or等
-*/</span>
-</pre></figure>
-
-<figure class="highlight lang-java"><figcaption><span>获取一个不完整的对象 </span></figcaption><pre>session.beginTransaction(); 
-String hql = <span class="string">"select userName from User"</span>; 
-Query query = session.createQuery(hql); 
-List nameList = query.list(); 
-<span class="keyword">for</span>(Object obj:nameList){ 
-  System.out.println(obj); 
-} 
-session.getTransaction().commit();
-
-<span class="comment">// 多个属性的话，需要用object[]接收</span>
-
-session.beginTransaction(); 
-String hql = <span class="string">"select userName,userPwd from User"</span>; 
-Query query = session.createQuery(hql); 
-List nameList = query.list(); 
-
-<span class="keyword">for</span>(Object obj:nameList){ 
-	Object[] array = (Object[]) obj; <span class="comment">// 转成object[]</span>
-	System.out.println(<span class="string">"name:"</span> + array[<span class="number">0</span>]); 
-	System.out.println(<span class="string">"pwd:"</span> + array[<span class="number">1</span>]); 
-} 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>统计和分组查询 </span></figcaption><pre>session.beginTransaction(); 
-String hql = <span class="string">"select count(*),max(id) from User"</span>; 
-Query query = session.createQuery(hql); 
-List nameList = query.list(); 
-<span class="keyword">for</span>(Object obj:nameList){ 
-	Object[] array = (Object[]) obj; 
-	System.out.println(<span class="string">"count:"</span> + array[<span class="number">0</span>]); 
-	System.out.println(<span class="string">"max:"</span> + array[<span class="number">1</span>]); 
-} 
-session.getTransaction().commit();
-
-<span class="comment">/*  
-*该条sql语句返回的是单条数据，所以还可以这样写
-*单列数据用Object，多列数据用Object[]
-*/</span>
-
-Object[] object = (Object[]) query.uniqueResult();
-System.out.println(<span class="string">"count:"</span> + object[<span class="number">0</span>]); 
-System.out.println(<span class="string">"max:"</span> + object[<span class="number">1</span>]);
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>更多写法 </span></figcaption><pre>select distinct name from Student; 
- 
-select max(age) from Student; 
- 
-select count(age),age from Student group by age; 
- 
-from Student order by age;
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>HQL占位符 </span></figcaption><pre>session.beginTransaction(); 
-String hql = <span class="string">"from User where userName = ?"</span>; 
-Query query = session.createQuery(hql); 
-<span class="comment">// 索引从0开始 </span>
-query.setString(<span class="number">0</span>, <span class="string">"James"</span>); 
- 
-List&lt;User&gt; userList = query.list(); 
- 
-<span class="keyword">for</span>(User user:userList){ 
-  System.out.println(user.getUserName()); 
-} 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>HQL引用占位符 </span></figcaption><pre>session.beginTransaction(); 
-String hql = <span class="string">"from User where userName = :name"</span>; 
-Query query = session.createQuery(hql); 
- 
-query.setParameter(<span class="string">"name"</span>, <span class="string">"James"</span>); 
- 
-List&lt;User&gt; userList = query.list(); 
- 
-<span class="keyword">for</span>(User user:userList){ 
-  System.out.println(user.getUserName()); 
-} 
- 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>HQL分页 </span></figcaption><pre>session.beginTransaction(); 
-String hql = <span class="string">"from User"</span>; 
-Query query = session.createQuery(hql); 
- 
-query.setFirstResult(<span class="number">0</span>); 
-query.setMaxResults(<span class="number">2</span>); 
- 
-List&lt;User&gt; userList = query.list(); 
-<span class="keyword">for</span>(User user:userList){ 
-  System.out.println(user.getUserName()); 
-} 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<p><strong>QBC（Query By Criteria）查询</strong>  </p>
-<p>• Criteria对象提供了一种面向对象的方式查询数据库。Criteria对象需要使用Session对象来获得。 </p>
-<p>• 一个Criteria对象表示对一个持久化类的查询。</p>
-<figure class="highlight lang-java"><figcaption><span>查询所有 </span></figcaption><pre>session.beginTransaction(); 
- 
-Criteria c = session.createCriteria(User.class); 
- 
-List&lt;User&gt; userList = c.list(); 
- 
-<span class="keyword">for</span>(User user:userList){ 
-  System.out.println(user.getUserName()); 
-} 
- 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>where </span></figcaption><pre>session.beginTransaction(); 
- 
-Criteria c = session.createCriteria(User.class); 
- 
-c.add(Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"James"</span>)); 
- 
-List&lt;User&gt; userList = c.list(); 
-<span class="keyword">for</span>(User user:userList){ 
-  System.out.println(user.getUserName()); 
-} 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>Restrictions对象</span></figcaption><pre>方法名称  				对应SQL中的表达式
----------------------------------------------------------- 
-Restrictions.eq  		field = value 
-Restrictions.gt  		field &gt; value 
-Restrictions.lt  		field <span class="tag">&lt; <span class="attribute">value</span> 
-<span class="attribute">Restrictions.ge</span>  	<span class="attribute">field</span> &gt;</span>= value
-Restrictions.le  		field <span class="tag">&lt;<span class="title">=</span> <span class="attribute">value</span> 
-<span class="attribute">Restrictions.between</span>  	<span class="attribute">field</span> <span class="attribute">between</span> <span class="attribute">value1</span> <span class="attribute">and</span> <span class="attribute">value2</span> 
-<span class="attribute">Restrictions.in</span>  		<span class="attribute">field</span> <span class="attribute">in</span>(…) 
-<span class="attribute">Restrictions.and</span>  	<span class="attribute">and</span> 
-<span class="attribute">Restrictions.or</span>  		<span class="attribute">or</span> 
-<span class="attribute">Restrictions.like</span>  	<span class="attribute">field</span> <span class="attribute">like</span> <span class="attribute">value</span>
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>示例 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
- 
-c.add(Restrictions.like(<span class="string">"userName"</span>, <span class="string">"J"</span>)); 
-c.add(Restrictions.eq(<span class="string">"id"</span>, <span class="number">120</span>));
-c.add(Restrictions.or(Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"James"</span>),  
-  Restrictions.eq(<span class="string">"userName"</span>, <span class="string">"Alex"</span>)));
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>获取唯一记录</span></figcaption><pre>session.beginTransaction(); 
- 
-Criteria c = session.createCriteria(User.class); 
-c.add(Restrictions.eq(<span class="string">"id"</span>, <span class="number">120</span>)); 
- 
-User user = (User) c.uniqueResult(); 
- 
-System.out.println(user.getUserName()); 
- 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>分页 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
- 
-c.setFirstResult(<span class="number">0</span>); 
-c.setMaxResults(<span class="number">5</span>);
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>分组与统计 </span></figcaption><pre>session.beginTransaction(); 
- 
-Criteria c = session.createCriteria(User.class); 
- 
-c.setProjection(Projections.sum(<span class="string">"id"</span>)); 
- 
-Object obj = c.uniqueResult(); 
-System.out.println(obj); 
- 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-xml"><figcaption><span>Projections对象</span></figcaption><pre>方法名称  						描述 
--------------------------------------------------------
-Projections.sum  			等于SQL中聚合函数sum 
-Projections.avg  			等于SQL中聚合函数avg 
-Projections.count  		等于SQL中聚合函数count 
-Projections .distinct  	去除重复记录 
-Projections.max  			等于SQL中聚合函数max 
-Projections.min  			等于SQL中聚合函数min 
-Projections .groupProperty  对指定的属性进行分组查询
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>多个统计与分组 </span></figcaption><pre>session.beginTransaction(); 
- 
-Criteria c = session.createCriteria(User.class); 
- 
-ProjectionList projectionList = Projections.projectionList(); 
-projectionList.add(Projections.sum(<span class="string">"id"</span>)); 
-projectionList.add(Projections.min(<span class="string">"id"</span>)); 
- 
-c.setProjection(projectionList); 
-<span class="comment">// 和HQL一样，单列用Object，多列用Object[] </span>
-Object[] obj = (Object[]) c.uniqueResult(); 
- 
-System.out.println(<span class="string">"sum:"</span> + obj[<span class="number">0</span>]); 
-System.out.println(<span class="string">"min:"</span> + obj[<span class="number">1</span>]);
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>排序 </span></figcaption><pre>Criteria c = session.createCriteria(User.class); 
- 
-c.addOrder(Order.desc(<span class="string">"id"</span>));
-</pre></figure>
-
-
-<p><strong>原生SQL查询</strong>  </p>
-<figure class="highlight lang-java"><figcaption><span>示例</span></figcaption><pre>session.beginTransaction(); 
- 
-String sql = <span class="string">"select id,username,userpwd from t_user"</span>; 
-List list = session.createSQLQuery(sql).list(); 
- 
-<span class="keyword">for</span>(Object item : list){ 
-	Object[] rows = (Object[]) item; 
-	System.out.println(<span class="string">"id:"</span> + rows[<span class="number">0</span>] + <span class="string">"username:"</span>  
-	  + rows[<span class="number">1</span>] + <span class="string">"userpwd:"</span> + rows[<span class="number">2</span>]); 
-} 
- 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>addEntity()示例 </span></figcaption><pre>session.beginTransaction(); 
- 
-String sql = <span class="string">"select id,username,userpwd from t_user"</span>; 
-
-<span class="comment">// addEntity()可以告诉Hibernate你想要封装成对象的类型，然后自动为你封装</span>
-SQLQuery query = session.createSQLQuery(sql).addEntity(User.class); 
- 
-List&lt;User&gt; list = query.list(); 
- 
-<span class="keyword">for</span>(User user : list){ 
-  System.out.println(user.getUserName()); 
-} 
- 
-session.getTransaction().commit();
-</pre></figure>
-
-
-<figure class="highlight lang-java"><figcaption><span>uniqueResult示例 </span></figcaption><pre>session.beginTransaction(); 
- 
-String sql = <span class="string">"select id,username,userpwd from t_user where id = 2"</span>; 
-SQLQuery query = session.createSQLQuery(sql).addEntity(User.class); 
- 
-User user = (User) query.uniqueResult(); 
- 
-System.out.println(user.getUserName()); 
- 
-session.getTransaction().commit();
-</pre></figure>
-
 
       
     </div>
