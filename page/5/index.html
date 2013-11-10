@@ -70,6 +70,52 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2011-02-03T02:17:00.000Z"><a href="/2011/02/03/2011-02-03-linux/">Feb 3rd, 2011</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Linux">
+                <a href="/tags/Linux/">Linux</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2011/02/03/2011-02-03-linux/">linux学习笔记(一):文件命名规则</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ol>
+<li>除了 / 之外，所有的字符都合法</li>
+<li>有些字符最好不要用，如空格符、制表符、退格符和字符@ # $ &amp; () - 等</li>
+<li>避免使用 . 作为普通文件名的第一个字符(在linux中以.开头的代表隐藏文件)</li>
+<li>要注意大小写(在linux中，大小写敏感)</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2010-08-23T00:24:00.000Z"><a href="/2010/08/23/2012-06-23-hibernate-4/">Aug 23rd, 2010</a></time>
       
         <div class="post-tags">
@@ -1042,54 +1088,6 @@ session.getTransaction().commit();
           <div class="alignleft readMore">
             <a href="/2010/06/23/2012-06-13-struts2-6/#more" class="more-link">Read More</a>
           </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2010-06-22T09:35:00.000Z"><a href="/2010/06/22/2012-06-12-struts2-4/">Jun 22nd, 2010</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Java">
-                <a href="/tags/Java/">Java</a>
-              </span>
-            
-              <span class="tag-Struts">
-                <a href="/tags/Struts/">Struts</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2010/06/22/2012-06-12-struts2-4/">struts2数据类型转换</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>1.struts2对于 8 个原生数据类型以及 Date，String 等常见类型，Struts2 可以使用内建的类型转换器实现自动的转换。</p>
-<p>2.对于自定义的类型转换器来说需要提供3 个信息：Action的名字、Action中待转换的属性名以及该属性对应的类型转换器。其中Action 的名字是通过属性文件名来获得的、Action中待转换的属性名是通过属性文件中的key来获得的，该属性对应的类型转换器是通过该key所对应的value来获得的。</p>
-<p>3.可以使用Struts2框架自带的类型转换器StrutsTypeConverter简化类型转换代码的编写 ,StrutsTypeConverter继承于DefaultTypeConverter父类，并且提供了两个抽象方法：convertFromString与convertToString，分别表示从页面的字符串转换为后台对象以及从后台对象转换为页面的字符串，我们只需实现这两个抽象方法即可实现类型转换。</p>
-<p>4.全局类型转换。在src目录下新建xwork-conversion.properties，该文件的内容是待转换的类=转换器的名字，即<br>com.hussion.bean.User=com.hussion.converter.UserConverter</p>
-
-      
-    </div>
-    <footer>
-      
         
         
       

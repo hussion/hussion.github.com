@@ -70,6 +70,56 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-11-10T13:29:14.000Z"><a href="/2013/11/10/front-end-sence/">Nov 10th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-前端开发">
+                <a href="/tags/前端开发/">前端开发</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/11/10/front-end-sence/">前端MV*框架的意义</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>经常有人质疑，在前端搞MV*有什么意义？也有人提出这样的疑问：以AngularJS，Knockout，BackBone为代表的MV*框架，它跟jQuery这样的框架有什么区别？我jQuery用得好好的，有什么必要再引入这种框架？</p>
+<p>回答这些问题之前，先要理清一些历史，前端从什么时候开始有框架的？</p>
+<p>早期前端都是比较简单，基本以页面为工作单元，内容以浏览型为主，也偶尔有简单的表单操作，这个时期每个界面上只有很少的JavaScript逻辑，基本不太需要框架。随着AJAX的出现，Web2.0的兴起，人们可以在页面上可以做比较复杂的事情了，然后前端框架才真正出现了，以jQuery为代表，针对界面上常见的DOM操作，远程请求，数据处理等作了封装，也有专注于处理数据的Underscore，严格来说，这些都不能算框架，而是算库。</p>
+<p>库和框架是有一些区别的：库是一种工具，我提供了，你可以不用，即使你用了，也没影响你自己的代码结构。框架则是面向一个领域，提供一套解决方案，如果你用我，就得按照我的方式办事。按照这个定义，jQuery和Underscore都只能算是库，ExtJS和dojo算框架。</p>
+<p>MV*框架又是为什么兴起的呢？它的出现，伴随着一些Web产品逐渐往应用方向发展，遇到了在C/S领域相同的问题：由于前端功能的增强、代码的膨胀，导致不得不做“前端的架构”这个事情了。</p>
+<p>很多做后端开发的人对前端架构很不屑，认为前端只是很薄的一层东西，做架构干什么？什么，不但要搞架构，还要搞MVC？Java Struts的MVC中，整个前端都只能算是View而已，你还要在这个View里面划分模型和控制器等其他东西？他们中的多数对这个很不屑，但Web前端随着复杂度的增加，很多地方跟客户端已经没有本质区别了。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft readMore">
+            <a href="/2013/11/10/front-end-sence/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2013-10-20T02:48:12.000Z"><a href="/2013/10/20/angularjs-style-guide/">Oct 20th, 2013</a></time>
       
         <div class="post-tags">
@@ -703,124 +753,6 @@ app.config([<span class="string">'$controllerProvider'</span>, <span class="keyw
 <p>把ng-model=“selectModel”改为：ng-model=“$parent.selectModel”  </p>
 </blockquote>
 <p>这样，咱们的ng-bind中的selectModel就可以正常取回值了。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2013-08-29T11:48:43.000Z"><a href="/2013/08/29/mac-homebrew/">Aug 29th, 2013</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Mac">
-                <a href="/tags/Mac/">Mac</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2013/08/29/mac-homebrew/">Homebrew 札记</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><strong> Homebrew 目录结构 </strong></p>
-<p>Homebrew将本地的/usr/local初始化为git的工作树，并将目录所有者变更为当前所操作的用户，以后的操作将不需要sudo.</p>
-<figure class="highlight"><pre><span class="literal">-</span><span class="comment">bin</span>          <span class="comment">用于存放所安装程序的启动链接（相当于快捷方式）</span>
-<span class="literal">-</span><span class="comment">Cellar</span>       <span class="comment">所以brew安装的程序，都将以</span>[<span class="comment">程序名/版本号</span>]<span class="comment">存放于本目录下</span>
-<span class="literal">-</span><span class="comment">etc</span>          <span class="comment">brew安装程序的配置文件默认存放路径</span>
-<span class="literal">-</span><span class="comment">Library</span>      <span class="comment">Homebrew</span> <span class="comment">系统自身文件夹</span>
-<span class="literal">+</span><span class="comment">–Formula</span>     <span class="comment">程序的下载路径和编译参数及安装路径等配置文件存放地</span>
-<span class="literal">+</span><span class="comment">–Homebrew</span>    <span class="comment">brew程序自身命令集
-</pre></figure>
-
-<p><strong> Homebrew 命令 </strong></p>
-<ul>
-<li>查看帮助</li>
-</ul>
-<figure class="highlight"><pre><span class="comment">brew</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">help
-</pre></figure>
-
-<ul>
-<li>安装软件 </li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> install wget
-</pre></figure>
-
-<ul>
-<li>卸载软件 </li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> uninstall wget
-</pre></figure>
-
-<ul>
-<li>搜索软件 </li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> search wget
-</pre></figure>
-
-<ul>
-<li>已安装软件 </li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> list
-</pre></figure>
-
-<ul>
-<li>更新软件，把所有的Formula目录更新，并且会对本机已经安装并有更新的软件用*标明 </li>
-</ul>
-<figure class="highlight"><pre>brew <span class="operator"><span class="keyword">update</span>
-</pre></figure>
-
-<ul>
-<li>更新某个具体软件</li>
-</ul>
-<figure class="highlight"><pre>brew <span class="operator"><span class="keyword">update</span> wget
-</pre></figure>
-
-<ul>
-<li>查看软件信息</li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> [<span class="built_in">info</span> | home] [FORMULA...]
-</pre></figure>
-
-<ul>
-<li>查看可更新的程序</li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> outdated
-</pre></figure>
-
-<ul>
-<li>清除无用的/老的程序安装包，可删除指定的单个软件删除和所有</li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> cleanup wget		<span class="comment"># single</span>
-brew cleanup			<span class="comment"># all</span>
-</pre></figure>
-
-<ul>
-<li>清除无用的链接</li>
-</ul>
-<figure class="highlight"><pre><span class="title">brew</span> prune
-</pre></figure>
-
 
       
     </div>

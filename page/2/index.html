@@ -70,6 +70,124 @@
     <header>
       
         <!-- <div class="icon"></div> -->
+        <time class="index-post-time" datetime="2013-08-29T11:48:43.000Z"><a href="/2013/08/29/mac-homebrew/">Aug 29th, 2013</a></time>
+      
+        <div class="post-tags">
+          
+            
+              <span class="tag-Mac">
+                <a href="/tags/Mac/">Mac</a>
+              </span>
+            
+          
+        </div>
+      
+  
+    <h1 class="title"><a href="/2013/08/29/mac-homebrew/">Homebrew 札记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong> Homebrew 目录结构 </strong></p>
+<p>Homebrew将本地的/usr/local初始化为git的工作树，并将目录所有者变更为当前所操作的用户，以后的操作将不需要sudo.</p>
+<figure class="highlight"><pre><span class="literal">-</span><span class="comment">bin</span>          <span class="comment">用于存放所安装程序的启动链接（相当于快捷方式）</span>
+<span class="literal">-</span><span class="comment">Cellar</span>       <span class="comment">所以brew安装的程序，都将以</span>[<span class="comment">程序名/版本号</span>]<span class="comment">存放于本目录下</span>
+<span class="literal">-</span><span class="comment">etc</span>          <span class="comment">brew安装程序的配置文件默认存放路径</span>
+<span class="literal">-</span><span class="comment">Library</span>      <span class="comment">Homebrew</span> <span class="comment">系统自身文件夹</span>
+<span class="literal">+</span><span class="comment">–Formula</span>     <span class="comment">程序的下载路径和编译参数及安装路径等配置文件存放地</span>
+<span class="literal">+</span><span class="comment">–Homebrew</span>    <span class="comment">brew程序自身命令集
+</pre></figure>
+
+<p><strong> Homebrew 命令 </strong></p>
+<ul>
+<li>查看帮助</li>
+</ul>
+<figure class="highlight"><pre><span class="comment">brew</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">help
+</pre></figure>
+
+<ul>
+<li>安装软件 </li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> install wget
+</pre></figure>
+
+<ul>
+<li>卸载软件 </li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> uninstall wget
+</pre></figure>
+
+<ul>
+<li>搜索软件 </li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> search wget
+</pre></figure>
+
+<ul>
+<li>已安装软件 </li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> list
+</pre></figure>
+
+<ul>
+<li>更新软件，把所有的Formula目录更新，并且会对本机已经安装并有更新的软件用*标明 </li>
+</ul>
+<figure class="highlight"><pre>brew <span class="operator"><span class="keyword">update</span>
+</pre></figure>
+
+<ul>
+<li>更新某个具体软件</li>
+</ul>
+<figure class="highlight"><pre>brew <span class="operator"><span class="keyword">update</span> wget
+</pre></figure>
+
+<ul>
+<li>查看软件信息</li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> [<span class="built_in">info</span> | home] [FORMULA...]
+</pre></figure>
+
+<ul>
+<li>查看可更新的程序</li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> outdated
+</pre></figure>
+
+<ul>
+<li>清除无用的/老的程序安装包，可删除指定的单个软件删除和所有</li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> cleanup wget		<span class="comment"># single</span>
+brew cleanup			<span class="comment"># all</span>
+</pre></figure>
+
+<ul>
+<li>清除无用的链接</li>
+</ul>
+<figure class="highlight"><pre><span class="title">brew</span> prune
+</pre></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <!-- <div class="icon"></div> -->
         <time class="index-post-time" datetime="2013-08-19T10:23:33.000Z"><a href="/2013/08/19/soft-dialogue/">Aug 19th, 2013</a></time>
       
         <div class="post-tags">
@@ -625,95 +743,6 @@ repr(object)			<span class="comment">#返回值的字符串表示形式</span>
 </pre></figure>
 
 <p>ok，enjoy now ！</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <!-- <div class="icon"></div> -->
-        <time class="index-post-time" datetime="2012-09-30T03:39:00.000Z"><a href="/2012/09/30/2012-09-30-mac-terminal/">Sep 30th, 2012</a></time>
-      
-        <div class="post-tags">
-          
-            
-              <span class="tag-Mac">
-                <a href="/tags/Mac/">Mac</a>
-              </span>
-            
-          
-        </div>
-      
-  
-    <h1 class="title"><a href="/2012/09/30/2012-09-30-mac-terminal/">让Mac下的终端颜色高亮</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>以前用惯了linux下的bash对于不同类型的文件以不同的颜色进行高亮,对于现在mac下的terminal感觉很不爽，google了一下，终于找到解决办法。</p>
-<p><strong>针对terminal采用bash模式</strong><br>编辑 <code>~/.bash_profile</code>, 加入以下代码:</p>
-<figure class="highlight lang-bash"><figcaption><span>~/.bash_profile </span></figcaption><pre>export CLICOLOR=1  
-export LSCOLORS=gxfxaxdxcxegedabagacad
-</pre></figure>
-
-<p>保存并重启终端，测试一下,上色成功！  </p>
-<img src="http://ww4.sinaimg.cn/large/6cdc22a9gw1dxee4szrlkj.jpg">
-
-
-<p><strong>详细讲解代码中的涵义:</strong><br><code>CLICOLOR</code>: 前景色和背景色的字符串合并值<br><code>LSCOLORS</code>: 对于不同变量所采用的颜色方案,具体看如下表格:</p>
-<figure class="highlight lang-bash"><pre>    a       black
-    b       red
-    c       green
-    d       brown
-    e       blue
-    f        magenta
-    g      cyan
-    h       light grey
-    A      bold black, usually shows up as dark grey
-    B       bold red
-    C      bold green
-    D      bold brown, usually shows up as yellow
-    E       bold blue
-    F       bold magenta
-    G     bold cyan
-    H      bold light grey; looks like bright white
-    x       default foreground or background
-</pre></figure>
-
-<p>而文件类型列表如下:  </p>
-<figure class="highlight lang-bash"><pre>    1. directory
-    2. symbolic link
-    3. socket
-    4. pipe
-    5. executable
-    6. block special
-    7. character special
-    8. executable with setuid bit <span class="keyword">set</span>
-    9. executable with setgid bit <span class="keyword">set</span>
-    10. directory writable to others, with sticky bit
-    11. directory writable to others, without sticky
-</pre></figure>
-
-<p>所以对照这张表就可以得知:</p>
-<figure class="highlight lang-bash"><figcaption><span>LSCOLORS </span></figcaption><pre>gxfxaxdxcxegedabagacad
-</pre></figure>
-
-<p>就是对于directory而言,它的前景色就是: g(cyan),而背景色就是:x(默认的背景色).根据这个原理我们就可以自己进行配置了。</p>
 
       
     </div>
